@@ -1,0 +1,8 @@
+.Orders {
+   display: flex;
+   flex-direction: column;
+   padding: 1rem 1rem 1.5rem;
+   background-color: #e7e9eb;
+   /* border-bottom-right-radius: 2rem; */
+   height: calc(100% - 7.6rem);
+}

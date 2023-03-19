@@ -19,26 +19,31 @@ import img3 from "../imgs/img3.png";
 // Sidebar Data
 export const SidebarData = [
    {
+      id: 0,
       icon: UilEstate,
       heading: "Dashboard",
       to: "/",
    },
    {
+      id: 1,
       icon: UilClipboardAlt,
       heading: "Orders",
       to: "/orders",
    },
    {
+      id: 2,
       icon: UilUsersAlt,
       heading: "Customers",
       to: "/customers",
    },
    {
+      id: 3,
       icon: UilPackage,
       heading: "Products",
       to: "/products",
    },
    {
+      id: 4,
       icon: UilChart,
       heading: "Analytics",
       to: "/analytics",

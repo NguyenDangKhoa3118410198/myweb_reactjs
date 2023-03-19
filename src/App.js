@@ -1,6 +1,6 @@
 import "./App.css";
 import { publicRoutes } from "./routes";
-import AdminDefaultLayout from "./Layouts";
+import AdminDefaultLayout from "./Layouts/DefaultLayout";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Fragment } from "react";
@@ -27,7 +27,7 @@ function App() {
                         element={
                            //trong JSX ten cua element phai duoc viet Hoa len
                            <div className="AppGlass">
-                              <Layout>
+                              <Layout name={route.name}>
                                  <PageCurrent />
                               </Layout>
                            </div>

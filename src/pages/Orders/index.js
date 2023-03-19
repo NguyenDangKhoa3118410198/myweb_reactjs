@@ -1,5 +1,13 @@
+import React from "react";
+import Table from "../../components/Table/Table";
+import "./Orders.css";
+
 function Orders() {
-   return <h2>Orders Page</h2>;
+   return (
+      <div className="Orders">
+         <Table />
+      </div>
+   );
 }
 
 export default Orders;

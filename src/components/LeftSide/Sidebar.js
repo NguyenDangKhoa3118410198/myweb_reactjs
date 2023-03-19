@@ -1,46 +1,85 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { UilSignOutAlt } from "@iconscout/react-unicons";
 
+import Menu, { MenuItem } from "./Menu";
 import "./Sidebar.css";
 import Logo from "../../imgs/logo.png";
-import { SidebarData } from "../../Data/Data";
+import {
+   UilEstate,
+   UilClipboardAlt,
+   UilUsersAlt,
+   UilPackage,
+   UilChart,
+} from "@iconscout/react-unicons";
 
 const Sidebar = () => {
-   const [selected, setSelected] = useState(0);
-
    return (
       <>
          <div className="sidebar">
             {/* logo */}
-            <div className="logo">
+            <Link to="/" className="logo">
                <img src={Logo} alt="logo" />
                <span>
                   Sh<span>o</span>ps
                </span>
-            </div>
+            </Link>
 
-            <div className="menu">
-               {SidebarData.map((item, index) => {
+            <Menu>
+               <MenuItem
+                  title="Home"
+                  to="/"
+                  icon={<UilEstate />}
+                  className="menuItem"
+               />
+               <MenuItem
+                  title="Orders"
+                  to="/orders"
+                  icon={<UilClipboardAlt />}
+                  className="menuItem"
+               />
+               <MenuItem
+                  title="Customers"
+                  to="/customers"
+                  icon={<UilUsersAlt />}
+                  className="menuItem"
+               />
+               <MenuItem
+                  title="Products"
+                  to="/products"
+                  icon={<UilPackage />}
+                  className="menuItem"
+               />
+               <MenuItem
+                  title="Analytics"
+                  to="/analytics"
+                  icon={<UilChart />}
+                  className="menuItem"
+               />
+
+               {/* {SidebarData.map((item) => {
                   return (
                      <Link
                         to={item.to}
                         className={
-                           selected === index ? "menuItem active" : "menuItem"
+                           selected === item.id ? "menuItem active" : "menuItem"
                         }
-                        key={index}
-                        onClick={() => setSelected(index)}
+                        key={item.id}
+                        onClick={() => {
+                           setSelected(item.id);
+                        }}
                      >
                         <item.icon />
                         <span className="item">{item.heading}</span>
                      </Link>
                   );
-               })}
+               })} */}
+
                {/* signoutIcon */}
-               <div className="menuItem">
+               <div className="iconSignOut">
                   <UilSignOutAlt />
                </div>
-            </div>
+            </Menu>
          </div>
       </>
    );

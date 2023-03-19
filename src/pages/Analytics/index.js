@@ -1,5 +1,5 @@
 function Analytics() {
-   return <h2>Analytics Page</h2>;
+   return <h2>Content Analytics Page</h2>;
 }
 
 export default Analytics;

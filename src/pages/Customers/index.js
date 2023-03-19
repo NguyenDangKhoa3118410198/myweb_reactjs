@@ -1,5 +1,5 @@
 function Customers() {
-   return <h2>Customers Page</h2>;
+   return <h2>Content Customers Page</h2>;
 }
 
 export default Customers;
