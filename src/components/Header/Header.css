@@ -1,7 +1,7 @@
 .Header {
    display: flex;
    align-items: center;
-   min-height: 6.5rem;
+   min-height: 5rem;
    padding-left: 1rem;
    background-color: cyan;
    border-top-right-radius: 2rem;

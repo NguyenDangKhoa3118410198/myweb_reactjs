@@ -1,7 +1,7 @@
 // import RightSide from "../../components/RightSide/RightSide";
 import Sidebar from "../../components/LeftSide/Sidebar";
 import Header from "../../components/Header/Header";
-import "./DefaultLayout.css";
+import "./AdminDefaultLayout.css";
 
 function AdminDefaultLayout({ name, children }) {
    return (

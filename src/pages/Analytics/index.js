@@ -1,5 +1,7 @@
+import Cards from "../../components/Cards/Cards";
+
 function Analytics() {
-   return <h2>Content Analytics Page</h2>;
+   return <Cards />;
 }
 
 export default Analytics;
