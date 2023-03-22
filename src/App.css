@@ -24,11 +24,12 @@
 
 .AppGlass {
    display: flex;
-   /* grid-template-columns: 13rem auto 20rem; */
    width: 97%;
    height: 97%;
    border-radius: 2rem;
    background: var(--glass);
+   overflow-y: hidden;
+   /* grid-template-columns: 13rem auto 20rem; */
    /* gap: 16px; khoang trang giua cac copt trong grid */
 }
 

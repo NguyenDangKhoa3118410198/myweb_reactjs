@@ -1,21 +1,6 @@
 .wrapper {
 }
 
-/* [data-column-id="fullname"].rdt_TableCol {
-   font-size: 1.2rem;
-   font-weight: 600;
-}
-
-[data-column-id="age"].rdt_TableCol {
-   font-size: 1.2rem;
-   font-weight: 600;
-}
-
-[data-column-id="email"].rdt_TableCol {
-   font-size: 1.2rem;
-   font-weight: 600;
-} */
-
 .btn {
    display: inline-block;
    font-weight: 400;

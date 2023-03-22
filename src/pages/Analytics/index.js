@@ -1,7 +1,8 @@
-import Cards from "../../components/Cards/Cards";
+// import Cards from "../../components/Cards/Cards";
+import RightSide from "../../components/RightSide/RightSide";
 
 function Analytics() {
-   return <Cards />;
+   return <RightSide />;
 }
 
 export default Analytics;

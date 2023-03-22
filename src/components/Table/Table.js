@@ -11,10 +11,15 @@ const Table = ({ columns, data }) => {
             columns={columns}
             data={data}
             fixedHeader
+            fixedHeaderScrollHeight="440px"
             pagination
             paginationPerPage={5}
             paginationResetDefaultPage={1}
-            paginationRowsPerPageOptions={[]}
+            paginationRowsPerPageOptions={[5, 8]}
+            paginationComponentOptions={{
+               rowsPerPageText: "Records per page:",
+               rangeSeparatorText: "out of",
+            }}
             customStyles={TableCustomStyles}
          />
       </div>
