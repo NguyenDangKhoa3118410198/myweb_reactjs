@@ -26,11 +26,9 @@ function App() {
                         path={route.path}
                         element={
                            //trong JSX ten cua element phai duoc viet Hoa len
-                           <div className="AppGlass">
-                              <Layout name={route.name}>
-                                 <PageCurrent />
-                              </Layout>
-                           </div>
+                           <Layout name={route.name}>
+                              <PageCurrent />
+                           </Layout>
                         }
                      />
                   );

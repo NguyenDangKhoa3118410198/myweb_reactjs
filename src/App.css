@@ -12,7 +12,6 @@
 }
 
 .App {
-   /* padding: 0.5rem 3.5rem; */
    display: flex;
    justify-content: center;
    align-items: center;
@@ -20,28 +19,4 @@
    color: var(--black);
    background: linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232));
    font-family: "Inter", sans-serif;
-}
-
-.AppGlass {
-   display: flex;
-   width: 97%;
-   height: 97%;
-   border-radius: 2rem;
-   background: var(--glass);
-   overflow-y: hidden;
-   /* grid-template-columns: 13rem auto 20rem; */
-   /* gap: 16px; khoang trang giua cac copt trong grid */
-}
-
-@media screen and (max-width: 1200px) {
-   .AppGlass {
-      grid-template-columns: 10% 50% auto;
-      overflow-y: scroll;
-   }
-}
-
-@media screen and (max-width: 768px) {
-   .AppGlass {
-      grid-template-columns: 1fr;
-   }
 }

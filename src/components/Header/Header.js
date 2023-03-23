@@ -1,7 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 
 import "./Header.css";
-import { UilUser, UilInfoCircle } from "@iconscout/react-unicons";
+import {
+   UilUser,
+   UilInfoCircle,
+   UilQuestionCircle,
+   UilSignout,
+} from "@iconscout/react-unicons";
 import { Link } from "react-router-dom";
 
 const Header = ({ nameContent }) => {
@@ -34,28 +39,41 @@ const Header = ({ nameContent }) => {
 
          <div ref={menuRef}>
             <nav>
-               <div className="user-header" onClick={toggleMenu}>
+               <div className="user-wrapper">
                   <span>Xin chao : Admin </span>
-                  <UilUser className="user-header__icon" />
+                  <div className="user-header" onClick={toggleMenu}>
+                     <UilUser className="user-header__icon" />
+                  </div>
                </div>
                <ul className="menu-user">
                   {isMenuOpen && (
                      <ul className="dropdown-menu">
-                        <li className="menu-item">
+                        <li>
                            <Link to="/">
-                              <span className="menu-item-content">Info</span>
+                              <div className="menu-item">
+                                 <UilInfoCircle className="icon-menu-item" />
+                                 <span className="menu-item-content">Info</span>
+                              </div>
                            </Link>
                         </li>
-                        <li className="menu-item">
+                        <li>
                            <Link to="/orders">
-                              <span className="menu-item-content">
-                                 Feedback
-                              </span>
+                              <div className="menu-item">
+                                 <UilQuestionCircle className="icon-menu-item" />
+                                 <span className="menu-item-content">
+                                    Feedback
+                                 </span>
+                              </div>
                            </Link>
                         </li>
-                        <li className="menu-item">
+                        <li>
                            <Link to="/products">
-                              <span className="menu-item-content">Logout</span>
+                              <div className="menu-item">
+                                 <UilSignout className="icon-menu-item" />
+                                 <span className="menu-item-content">
+                                    Logout
+                                 </span>
+                              </div>
                            </Link>
                         </li>
                      </ul>
