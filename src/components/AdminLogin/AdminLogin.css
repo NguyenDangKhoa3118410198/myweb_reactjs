@@ -5,50 +5,50 @@
    margin-top: 50px;
 }
 
-form {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   border: 2px solid black;
-   padding: 20px;
-   border-radius: 5px;
-   width: 300px;
+.name-form {
+   color: white;
+   padding: 1rem;
 }
 
 label {
    margin-top: 10px;
 }
 
+.label-name {
+   font-size: 1.4rem;
+   font-weight: 500;
+}
+
 input {
-   border: 2px solid black !important;
+   border: 2px solid black;
+   display: block;
    width: 100%;
-   padding: 12px 20px;
-   margin: 8px 0;
-   box-sizing: border-box;
+   height: 40px;
+   padding: 10px;
+   margin-bottom: 15px;
+   border: 2px solid #ccc;
    border-radius: 5px;
+   box-sizing: border-box;
+   font-size: 24px;
+   color: #333;
+   background-color: #f8f8f8;
+   transition: all 0.3s ease-in-out;
 }
 
-input[type="email"]:focus {
-   background-color: lightblue;
-}
-
-input[type="password"]:focus {
-   background-color: lightblue;
-}
-
-button {
+.button-login {
    margin-top: 1rem;
    padding: 1rem 2rem;
    font-size: 1.5rem;
    font-weight: 600;
    border-radius: 0.5rem;
-   background: var(--bodyContent);
+   background: var(--buttonBlue);
+   color: var(--white);
    cursor: pointer;
 }
 
-button:hover {
+.button-login:hover {
    color: white;
-   background-color: #333;
+   background-color: var(--buttonBlueHover);
    box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.24) 0 17px 50px 0
       rgba(0, 0, 0, 0.19);
 }

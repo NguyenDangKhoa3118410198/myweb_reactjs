@@ -12,23 +12,25 @@ const Login = () => {
 
    return (
       <div className="login-container">
-         <h1>Login</h1>
+         <h1 className="name-form">Login</h1>
          <form onSubmit={handleSubmit}>
-            <label>Email:</label>
+            <label className="label-name">Email:</label>
             <input
-               type="email"
+               type="text"
                value={email}
                onChange={(e) => setEmail(e.target.value)}
                required
             />
-            <label>Password:</label>
+            <label className="label-name">Password:</label>
             <input
                type="password"
                value={password}
                onChange={(e) => setPassword(e.target.value)}
                required
             />
-            <button type="submit">Login</button>
+            <button className="button-login" type="submit">
+               Login
+            </button>
          </form>
       </div>
    );

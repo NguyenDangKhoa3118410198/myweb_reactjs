@@ -67,7 +67,7 @@ const Header = ({ nameContent }) => {
                            </Link>
                         </li>
                         <li>
-                           <Link to="/products">
+                           <Link to="/login">
                               <div className="menu-item">
                                  <UilSignout className="icon-menu-item" />
                                  <span className="menu-item-content">

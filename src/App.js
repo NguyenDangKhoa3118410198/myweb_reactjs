@@ -11,9 +11,14 @@ function App() {
          <div className="App">
             <Routes>
                {publicRoutes.map((route, index) => {
-                  const PageCurrent = route.component;
-                  let Layout = AdminDefaultLayout;
+                  let PageCurrent = route.component;
+                  if (route.component) {
+                     PageCurrent = route.component;
+                  } else if (route.component === null) {
+                     PageCurrent = Fragment;
+                  }
 
+                  let Layout = AdminDefaultLayout;
                   if (route.layout) {
                      Layout = route.layout;
                   } else if (route.layout === null) {

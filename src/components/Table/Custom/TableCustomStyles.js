@@ -1,3 +1,5 @@
+import { red } from "@mui/material/colors";
+
 const TableCustomStyles = {
    rows: {
       style: {
@@ -15,6 +17,13 @@ const TableCustomStyles = {
    cells: {
       style: {
          //  justifyContent: "center",
+      },
+   },
+
+   head: {
+      style: {
+         backgroundColor: "#ef5350",
+         zIndex: 0,
       },
    },
 };

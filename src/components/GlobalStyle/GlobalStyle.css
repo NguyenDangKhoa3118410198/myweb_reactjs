@@ -13,6 +13,10 @@
    --activeItem: #788097;
    --backgroundSidebar: #3e4759ff;
    --bodyContent: #e7e9eb;
+   --buttonSubmit: #4d90fe;
+   --buttonSubmitHover: #357ae8;
+   --buttonCancel: #fd345c;
+   --buttonCancelHover: rgb(240, 48, 86);
 }
 
 * {
@@ -61,9 +65,115 @@ html {
    font-size: 75%;
 }
 
+label {
+   font-size: 1.2rem;
+   font-weight: 480;
+}
+
 button,
 input,
 [tabindex] {
    outline: none;
    border: none;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+   display: block;
+   width: 25rem;
+   height: 40px;
+   margin-top: 0.5rem;
+   border: 2px solid black;
+   border-radius: 5px;
+   font-size: 16px;
+   font-weight: 450;
+   color: black;
+   background-color: var(--white);
+   transition: all 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+   border: 2px solid var(--buttonSubmit);
+   outline: none;
+   box-shadow: 0 0 5px var(--buttonSubmit);
+}
+
+input[type="submit"] {
+   display: inline-block;
+   padding: 10px 20px;
+   background-color: var(--buttonSubmit);
+   color: #fff;
+   font-size: 16px;
+   font-weight: bold;
+   text-align: center;
+   text-decoration: none;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: all 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover {
+   background-color: var(--buttonSubmitHover);
+}
+
+form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 25rem;
+   height: 20rem;
+   padding: 1.5rem;
+   margin-top: 0.5rem;
+   border: 1px solid rgba(0, 0, 0, 0.2);
+   background-color: #fff;
+   background-clip: padding-box;
+   outline: 0;
+   border-radius: 0.3rem;
+   z-index: 1050;
+}
+
+button[type="submit"] {
+   margin-top: 1rem;
+   padding: 0.5rem 1.5rem;
+   border-radius: 0.5rem;
+   border-radius: 0.25rem;
+   font-size: 1.4rem;
+   font-weight: 450;
+   line-height: 1.5;
+   text-align: center;
+   color: var(--white);
+   background-color: var(--buttonSubmit);
+   border-color: #007bff;
+   cursor: pointer;
+}
+
+button[type="submit"]:hover {
+   color: #fff;
+   background-color: var(--buttonSubmitHover);
+   border-color: #0062cc;
+}
+
+button[type="cancel"] {
+   margin-top: 1rem;
+   padding: 0.5rem 1.5rem;
+   border-radius: 0.5rem;
+   border-radius: 0.25rem;
+   font-size: 1.4rem;
+   font-weight: 450;
+   line-height: 1.5;
+   text-align: center;
+   color: var(--white);
+   background-color: var(--buttonCancel);
+   border-color: #007bff;
+   cursor: pointer;
+}
+
+button[type="cancel"]:hover {
+   color: #fff;
+   background-color: var(--buttonCancelHover);
+   border-color: #0062cc;
 }

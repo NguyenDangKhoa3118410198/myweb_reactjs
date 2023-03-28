@@ -7,6 +7,7 @@ import AdminLogin from "../components/AdminLogin";
 
 import NullLayout from "../Layouts/NullLayout";
 import AdminDefaultLayout from "../Layouts/DefaultLayout";
+import NotFoundComponent from "../Layouts/NotFoundComponent";
 
 const publicRoutes = [
    {
@@ -40,6 +41,12 @@ const publicRoutes = [
       path: "/login",
       component: AdminLogin,
       layout: NullLayout,
+   },
+   {
+      name: "Error 404",
+      path: "*",
+      component: null,
+      layout: NotFoundComponent,
    },
 ];
 const privateRoutes = [];
