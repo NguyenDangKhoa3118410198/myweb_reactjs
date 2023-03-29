@@ -3,7 +3,7 @@ import "./NullLayout.css";
 function NullLayout({ children }) {
    return (
       <>
-         <div className="content">{children}</div>
+         <div className="null-layout-container">{children}</div>
       </>
    );
 }

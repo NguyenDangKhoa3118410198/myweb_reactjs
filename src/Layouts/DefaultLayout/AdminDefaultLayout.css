@@ -9,9 +9,9 @@
    /* gap: 16px; khoang trang giua cac copt trong grid */
 }
 
-.content {
+.container {
    display: flex;
    flex-direction: column;
    width: 100%;
-   background-color: #4b5e6b;
+   background-color: var(--white);
 }

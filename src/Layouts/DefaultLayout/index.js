@@ -7,7 +7,7 @@ function AdminDefaultLayout({ name, children }) {
       <>
          <div className="AppGlass">
             <Sidebar />
-            <div className="content">
+            <div className="container">
                <Header nameContent={name} />
                {children}
             </div>

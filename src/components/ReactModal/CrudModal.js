@@ -17,6 +17,23 @@ const CrudModal = ({
       email: "",
    });
 
+   const [dirty, setDirty] = useState(false);
+
+   useEffect(() => {
+      const handleBeforeUnload = (event) => {
+         if (dirty) {
+            event.preventDefault();
+            event.returnValue = "";
+         }
+      };
+
+      window.addEventListener("beforeunload", handleBeforeUnload);
+
+      return () => {
+         window.removeEventListener("beforeunload", handleBeforeUnload);
+      };
+   }, [dirty]);
+
    useEffect(() => {
       if (record) {
          setFormData({ name: record.name, email: record.email });
@@ -28,11 +45,14 @@ const CrudModal = ({
    const handleInputChange = (event) => {
       const { name, value } = event.target;
       setFormData({ ...formData, [name]: value });
+      setDirty(true);
    };
 
    const handleSaveClick = () => {
       onSave({ ...record, ...formData });
       onRequestClose();
+      setDirty(false);
+      setFormData("");
    };
 
    const handleDeleteClick = () => {

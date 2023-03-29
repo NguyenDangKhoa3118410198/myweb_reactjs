@@ -4,11 +4,13 @@ import axios from "axios";
 import Table from "../../components/Table/Table";
 import "./MainDash.css";
 import CrudModal from "../../components/ReactModal/CrudModal";
+import ActionsCell from "../../components/ReactModal/ActionsCell/ActionsCell";
 
 const MainDash = () => {
    const [isModalOpen, setIsModalOpen] = useState(false);
    const [records, setRecords] = useState([]);
    const [currentRecord, setCurrentRecord] = useState(null);
+   const [searchTerm, setSearchTerm] = useState("");
 
    const columns = [
       {
@@ -35,26 +37,12 @@ const MainDash = () => {
          name: "Action",
          sortable: false,
          cell: (record) => (
-            <div>
-               <button
-                  className="btn btn-primary btn-spacing"
-                  onClick={() => handleEditClick(record)}
-               >
-                  Edit
-               </button>
-               <button
-                  className="btn btn-success btn-spacing"
-                  onClick={() => handleAddClick(record)}
-               >
-                  Add
-               </button>
-               <button
-                  className="btn btn-danger btn-spacing"
-                  onClick={() => handleDelete(record)}
-               >
-                  Delete
-               </button>
-            </div>
+            <ActionsCell
+               record={record}
+               handleEditClick={handleEditClick}
+               handleAddClick={handleAddClick}
+               handleDelete={handleDelete}
+            />
          ),
       },
    ];
@@ -107,11 +95,39 @@ const MainDash = () => {
          return;
       }
       setRecords(records.filter((r) => r.id !== record.id));
-      // console.log(records.filter((r) => r.id === record.id)[0].name);
    };
+
+   function handleSearch(event) {
+      setSearchTerm(event.target.value);
+   }
+
+   function filterData(records) {
+      return records.filter((row) =>
+         Object.values(row).some(
+            (value) =>
+               typeof value === "string" &&
+               value.toLowerCase().includes(searchTerm.toLowerCase())
+         )
+      );
+   }
 
    return (
       <div className="MainDash">
+         <div className="add-filter-wrapper">
+            <button
+               className="btn btn-success btn-add"
+               onClick={() => handleAddClick()}
+            >
+               Add
+            </button>
+            <input
+               className="searchBox"
+               type="text"
+               placeholder="Search..."
+               value={searchTerm}
+               onChange={handleSearch}
+            />
+         </div>
          <CrudModal
             record={currentRecord}
             isOpen={isModalOpen}
@@ -121,7 +137,7 @@ const MainDash = () => {
             onDelete={handleDelete}
          />
 
-         <Table columns={columns} data={records} />
+         <Table columns={columns} data={filterData(records)} />
       </div>
    );
 };

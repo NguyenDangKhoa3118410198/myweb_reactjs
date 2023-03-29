@@ -15,7 +15,7 @@ const Table = ({ columns, data }) => {
             pagination
             paginationPerPage={5}
             paginationResetDefaultPage={1}
-            paginationRowsPerPageOptions={[5, 8]}
+            paginationRowsPerPageOptions={[5, 7]}
             paginationComponentOptions={{
                rowsPerPageText: "Records per page:",
                rangeSeparatorText: "out of",
