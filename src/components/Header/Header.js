@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 
 const Header = ({ nameContent }) => {
    const [isMenuOpen, setIsMenuOpen] = useState(false);
-   let currentUser = true;
    const menuRef = useRef(null);
 
    const toggleMenu = () => {
@@ -31,7 +30,7 @@ const Header = ({ nameContent }) => {
       };
    }, [menuRef]);
 
-   return currentUser ? (
+   return (
       <header className="Header">
          <div>
             <h1>{nameContent}</h1>
@@ -82,8 +81,6 @@ const Header = ({ nameContent }) => {
             </nav>
          </div>
       </header>
-   ) : (
-      navigator("/login")
    );
 };
 

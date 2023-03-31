@@ -11,8 +11,29 @@ import NotFoundComponent from "../Layouts/NotFoundComponent";
 
 const publicRoutes = [
    {
+      name: "Admin Login",
+      path: "/login",
+      component: AdminLogin,
+      layout: NullLayout,
+   },
+   {
+      name: "Error 404",
+      path: "*",
+      component: null,
+      layout: NotFoundComponent,
+   },
+];
+
+const privateRoutes = [
+   {
       name: "Dashboard",
       path: "/",
+      component: MainDash,
+      layout: AdminDefaultLayout,
+   },
+   {
+      name: "Dashboard",
+      path: "/home",
       component: MainDash,
       layout: AdminDefaultLayout,
    },
@@ -36,18 +57,6 @@ const publicRoutes = [
       path: "/analytics",
       component: Analytics,
    },
-   {
-      name: "Admin Login",
-      path: "/login",
-      component: AdminLogin,
-      layout: NullLayout,
-   },
-   {
-      name: "Error 404",
-      path: "*",
-      component: null,
-      layout: NotFoundComponent,
-   },
 ];
-const privateRoutes = [];
+
 export { publicRoutes, privateRoutes };

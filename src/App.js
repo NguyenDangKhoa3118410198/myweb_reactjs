@@ -1,39 +1,54 @@
 import "./App.css";
-import { publicRoutes } from "./routes";
+import { privateRoutes, publicRoutes } from "./routes";
 import AdminDefaultLayout from "./Layouts/DefaultLayout";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Fragment } from "react";
+import PrivateRoute from "./routes/PrivateRoute/PrivateRoute";
 
 function App() {
+   const handleRouteComponentAndLayout = (route) => {
+      const PageCurrent = route.component || Fragment;
+      const Layout = route.layout || AdminDefaultLayout;
+      return { PageCurrent, Layout };
+   };
+
    return (
       <Router>
          <div className="App">
             <Routes>
-               {publicRoutes.map((route, index) => {
-                  let PageCurrent = route.component;
-                  if (route.component) {
-                     PageCurrent = route.component;
-                  } else if (route.component === null) {
-                     PageCurrent = Fragment;
-                  }
-
-                  let Layout = AdminDefaultLayout;
-                  if (route.layout) {
-                     Layout = route.layout;
-                  } else if (route.layout === null) {
-                     Layout = Fragment;
-                  }
+               {publicRoutes.map((route) => {
+                  const { PageCurrent, Layout } =
+                     handleRouteComponentAndLayout(route);
 
                   return (
                      <Route
-                        key={index}
+                        key={route.name}
                         path={route.path}
                         element={
                            //trong JSX ten cua element phai duoc viet Hoa len
                            <Layout name={route.name}>
                               <PageCurrent />
                            </Layout>
+                        }
+                     />
+                  );
+               })}
+
+               {privateRoutes.map((route) => {
+                  const { PageCurrent, Layout } =
+                     handleRouteComponentAndLayout(route);
+
+                  return (
+                     <Route
+                        key={route.name}
+                        path={route.path}
+                        element={
+                           <PrivateRoute>
+                              <Layout name={route.name}>
+                                 <PageCurrent />
+                              </Layout>
+                           </PrivateRoute>
                         }
                      />
                   );
