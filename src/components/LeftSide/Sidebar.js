@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { UilSignOutAlt } from "@iconscout/react-unicons";
 
-import Menu, { MenuItem } from "./Menu";
+import Menu, { MenuItem, MenuItemDropdown } from "./Menu";
 import "./Sidebar.css";
 import Logo from "../../imgs/logo.png";
 import {
@@ -14,6 +13,10 @@ import {
 } from "@iconscout/react-unicons";
 
 const Sidebar = () => {
+   const dropdownLinks = [
+      { title: "All Customers", to: "/customers/all" },
+      { title: "Add Customer", to: "/customers/new" },
+   ];
    return (
       <>
          <div className="sidebar">
@@ -56,29 +59,19 @@ const Sidebar = () => {
                   icon={<UilChart />}
                   className="menuItem"
                />
-
-               {/* {SidebarData.map((item) => {
-                  return (
-                     <Link
-                        to={item.to}
-                        className={
-                           selected === item.id ? "menuItem active" : "menuItem"
-                        }
-                        key={item.id}
-                        onClick={() => {
-                           setSelected(item.id);
-                        }}
-                     >
-                        <item.icon />
-                        <span className="item">{item.heading}</span>
-                     </Link>
-                  );
-               })} */}
-
-               {/* signoutIcon */}
-               <div className="iconSignOut">
-                  <UilSignOutAlt />
-               </div>
+               <MenuItemDropdown
+                  title="Test"
+                  dropdownLinks={dropdownLinks}
+                  icon={<UilUsersAlt />}
+                  className="menuItem"
+               />
+               <MenuItem
+                  title="Analytics"
+                  to="/analytics"
+                  icon={<UilChart />}
+                  className="menuItem"
+               />
+               <div style={{ marginBottom: "2rem" }}></div>
             </Menu>
          </div>
       </>

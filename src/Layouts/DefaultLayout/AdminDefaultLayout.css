@@ -1,8 +1,7 @@
 .AppGlass {
    display: flex;
-   width: 97%;
-   height: 97%;
-   border-radius: 2rem;
+   width: 100%;
+   height: 100%;
    background: var(--glass);
    overflow-y: hidden;
    /* grid-template-columns: 13rem auto 20rem; */

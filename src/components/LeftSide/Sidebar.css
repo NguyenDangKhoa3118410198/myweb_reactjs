@@ -5,10 +5,9 @@
    min-width: 14rem;
    color: var(--white);
    padding: 2rem 0.5rem 0 0;
-   border-top-left-radius: 2rem;
-   border-bottom-left-radius: 2rem;
    transition: all 850ms ease;
    background-color: var(--backgroundSidebar);
+   padding-bottom: 0;
 }
 
 /* logo */
