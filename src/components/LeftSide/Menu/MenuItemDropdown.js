@@ -11,14 +11,15 @@ const MenuItemDropdown = ({ title, dropdownLinks, icon }) => {
    };
 
    return (
-      <div className="menuItem">
+      <div className="wrapperMenu">
          <div className="menuItemDropdown" onClick={toggleDropdown}>
             <span className="icon">{icon}</span>
             <span className="item">{title}</span>
-            <span className={`icon ${isDropdownOpen ? "rotate" : ""} `}>
+            <span className={`iconDropdown ${isDropdownOpen ? "rotate" : ""} `}>
                <UilAngleDown />
             </span>
          </div>
+
          {isDropdownOpen && (
             <div className="dropdownContent">
                {dropdownLinks.map((link) => (

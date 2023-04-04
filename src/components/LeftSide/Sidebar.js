@@ -14,13 +14,12 @@ import {
 
 const Sidebar = () => {
    const dropdownLinks = [
-      { title: "All Customers", to: "/customers/all" },
-      { title: "Add Customer", to: "/customers/new" },
+      { title: "All Customers", to: "/" },
+      { title: "Add Customer", to: "/customers" },
    ];
    return (
       <>
          <div className="sidebar">
-            {/* logo */}
             <Link to="/" className="logo">
                <img src={Logo} alt="logo" />
                <span>
@@ -53,9 +52,10 @@ const Sidebar = () => {
                   icon={<UilPackage />}
                   className="menuItem"
                />
-               <MenuItem
+               <MenuItemDropdown
                   title="Analytics"
-                  to="/analytics"
+                  // to="/analytics"
+                  dropdownLinks={dropdownLinks}
                   icon={<UilChart />}
                   className="menuItem"
                />
@@ -66,8 +66,8 @@ const Sidebar = () => {
                   className="menuItem"
                />
                <MenuItem
-                  title="Analytics"
-                  to="/analytics"
+                  title="Test2"
+                  to="/login"
                   icon={<UilChart />}
                   className="menuItem"
                />
