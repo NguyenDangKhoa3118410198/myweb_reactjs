@@ -1,97 +1,95 @@
 .menu {
-   display: flex;
-   flex-direction: column;
-   margin-top: 4rem;
-   gap: 2rem;
-   overflow-y: overlay;
-   height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    gap: 2rem;
+    overflow-y: overlay;
+    height: 100%;
 }
 
 .menuItem {
-   display: flex;
-   align-items: center;
-   position: relative;
-   height: 2.5rem;
-   font-size: 14px;
-   border-radius: 0.7rem;
-   gap: 0.8rem;
-   transition: all 700ms ease;
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 2.5rem;
+    font-size: 14px;
+    border-radius: 0.7rem;
+    gap: 0.8rem;
+    transition: all 700ms ease;
 }
 
 .menuItem:hover {
-   cursor: pointer;
-   background-color: var(--gray);
+    cursor: pointer;
+    background-color: var(--gray);
 }
 
 .menu .menuItem:last-child {
-   width: 100%;
-   bottom: 2.3rem;
-   position: absolute;
+    width: 100%;
+    bottom: 2.3rem;
+    position: absolute;
 }
 
-.active {
-   background: var(--gray);
-}
+/* .active {
+    background: var(--gray);
+} */
 
 .active::before {
-   width: 8px;
-   height: 100%;
-   margin-right: calc(1rem - 20px);
-   content: "";
-   background: var(--black);
+    width: 8px;
+    height: 100%;
+    margin-right: calc(1rem - 20px);
+    content: '';
+    background: var(--white);
 }
 
 .icon {
-   margin-left: 1.5rem;
+    margin-left: 1.5rem;
 }
 
 .item {
-   font-size: 1.2rem;
-   font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
 .wrapperMenu {
-   display: flex;
-   flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .menuItemDropdown {
-   display: flex;
-   align-items: center;
-   position: relative;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 
 .dropdownContent {
-   background-color: var(--backgroundSidebar);
-   padding-top: 0.5rem;
-   border-radius: 0.7rem;
-   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    /* background-color: var(--backgroundSidebar); */
+    padding-top: 0.5rem;
+    border-radius: 0.7rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .menuItemDropdown .rotate {
-   transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 
 .dropdownContent a {
-   display: block;
-   height: 1.8rem;
-   text-align: center;
-   padding: 0.6rem 1.5rem;
-   border-radius: 0.5rem;
-   color: var(--white);
-   font-size: 14px;
-   transition: all 250ms ease;
+    display: block;
+    height: 1.8rem;
+    text-align: center;
+    padding: 0.6rem 1.5rem;
+    border-radius: 0.2rem;
+    font-size: 14px;
 }
 
-.dropdownContent a:hover {
-   background-color: var(--gray);
-}
+/* .dropdownContent a:hover {
+    background-color: var(--gray);
+} */
 
 .menuItemDropdown .item {
-   margin-left: 1rem;
+    margin-left: 1rem;
 }
 
 .iconDropdown {
-   position: fixed;
-   left: 11.5rem;
+    position: fixed;
+    left: 11.5rem;
 }
