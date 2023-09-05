@@ -4,6 +4,7 @@ import Customers from "../pages/Customers";
 import Products from "../pages/Products";
 import Analytics from "../pages/Analytics";
 import AdminLogin from "../components/AdminLogin";
+import VideoPlayer from "../pages/VideoPlayer";
 
 import NullLayout from "../Layouts/NullLayout";
 import AdminDefaultLayout from "../Layouts/DefaultLayout";
@@ -56,6 +57,11 @@ const privateRoutes = [
       name: "Analytics",
       path: "/analytics",
       component: Analytics,
+   },
+   {
+      name: "Video",
+      path: "/video",
+      component: VideoPlayer,
    },
 ];
 

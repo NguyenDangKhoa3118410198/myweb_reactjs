@@ -43,7 +43,7 @@ code {
 /* Scrollbar CSS */
 html *::-webkit-scrollbar {
    border-radius: 0;
-   width: 8px;
+   width: 7px;
 }
 
 html *::-webkit-scrollbar-thumb {

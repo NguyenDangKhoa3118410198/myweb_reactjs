@@ -3,7 +3,7 @@
    flex-direction: column;
    margin-top: 4rem;
    gap: 2rem;
-   overflow-y: scroll;
+   overflow-y: overlay;
    height: 100%;
 }
 
@@ -15,7 +15,7 @@
    font-size: 14px;
    border-radius: 0.7rem;
    gap: 0.8rem;
-   transition: all 800ms ease;
+   transition: all 700ms ease;
 }
 
 .menuItem:hover {
