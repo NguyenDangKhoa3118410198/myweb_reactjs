@@ -1,84 +1,81 @@
 .sidebar {
-    color: var(--white);
-    padding: 2rem 0.5rem 0 0;
-    background-color: var(--backgroundSidebar);
+  color: var(--white);
+  padding: 2rem 0.5rem 0 0;
+  background-color: var(--backgroundSidebar);
 }
 
 .head-sidebar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0.2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.2rem;
 }
 
 /* logo */
 .bars {
-    display: none;
+  display: none;
 }
 
 .logo {
-    margin: 0 2rem;
-    display: inline-flex;
-    font-weight: bold;
-    font-size: 20px;
-    gap: 0.5rem;
-    align-items: center;
-    justify-content: center;
+  margin: 0 2rem 0 1rem;
+  display: inline-flex;
+  font-weight: bold;
+  font-size: 20px;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo > span > span {
-    color: var(--pink);
+  color: var(--pink);
 }
 
 .logo > img {
-    width: 3rem;
-    height: 3rem;
+  width: 3rem;
+  height: 3rem;
 }
 
 .menu-toggle {
-    color: var(--white);
-    padding: 2rem 0.5rem 0 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 14px;
-    background-color: var(--backgroundSidebar);
+  color: var(--white);
+  padding: 2rem 0.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  background-color: var(--backgroundSidebar);
 }
 
 .btn-toggle {
-    width: 3rem;
-    height: 3rem;
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
-    border-radius: 0.25rem;
-    position: relative;
-    right: 0;
-    cursor: pointer;
-    background-color: var(--backgroundSidebar);
+  width: 3rem;
+  height: 3rem;
+  padding: 0 0.8rem 0 1.2rem;
+  text-align: center;
+  align-items: center;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  background-color: var(--backgroundSidebar);
 }
 
 .sidebar.active {
-    display: none;
+  display: none;
 }
 
 .menu-minimized {
-    width: 5rem;
-    color: var(--white);
-    padding: 2rem 0.5rem 0 0;
-    text-align: center;
-    background-color: var(--backgroundSidebar);
-}
-
-.menu-minimized.active {
-    display: none;
+  width: 5rem;
+  color: var(--white);
+  padding: 2rem 0.5rem 0 0;
+  text-align: center;
+  background-color: var(--backgroundSidebar);
 }
 
 @media (max-width: 768px) {
-    .sidebar {
-        display: none; /* Hide the sidebar */
-    }
+  .sidebar {
+    display: none; /* Hide the sidebar */
+  }
 
-    .btn-toggle {
-        display: block; /* Display the burger menu */
-    }
+  .btn-toggle {
+    display: block; /* Display the burger menu */
+  }
 }

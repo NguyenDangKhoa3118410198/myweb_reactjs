@@ -1,5 +1,7 @@
+import DashboardBoxCharts from "../../components/Charts/DashboardBoxCharts";
+
 function Products() {
-   return <h2>Content Products Page</h2>;
+  return <DashboardBoxCharts />;
 }
 
 export default Products;
