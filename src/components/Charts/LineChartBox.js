@@ -12,12 +12,12 @@ function LineChartBox({ data }) {
             border: "none",
           }}
           labelStyle={{ display: "none" }}
-          position={{ x: 10, y: 60 }}
+          position={{ x: 50, y: 80 }}
           itemStyle={{
-            color: "#3399ff",
+            color: "#fff",
           }}
         />
-        <Line type="monotone" dataKey="pv" stroke="#0d6efd" strokeWidth={2} />
+        <Line type="monotone" dataKey="pv" stroke="#fff " strokeWidth={2} />
       </LineChart>
     </ResponsiveContainer>
   );

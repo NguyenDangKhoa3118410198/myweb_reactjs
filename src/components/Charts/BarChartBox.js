@@ -12,14 +12,14 @@ function BarChartBox({ data }) {
             border: "none",
           }}
           labelStyle={{ display: "none" }}
-          position={{ x: 10, y: 70 }}
+          position={{ x: 50, y: 0 }}
           itemStyle={{
-            color: "#3399ff",
+            color: "#fff",
           }}
-          cursor={{ fill: "#fff" }}
+          cursor={{ fill: "#ef376e" }}
         />
 
-        <Bar dataKey="uv" fill="#39f" />
+        <Bar dataKey="uv" fill="#fff" />
       </BarChart>
     </ResponsiveContainer>
   );

@@ -24,10 +24,10 @@ function AreaChartBox({ data }) {
           labelStyle={{ display: "none" }}
           position={{ x: 10, y: 70 }}
           itemStyle={{
-            color: "#3399ff",
+            color: "#fff",
           }}
         />
-        <Area type="monotone" dataKey="uv" stroke="#0d6efd" fill="#39f" />
+        <Area type="monotone" dataKey="uv" stroke="#fff" fill="#fff" />
       </AreaChart>
     </ResponsiveContainer>
   );

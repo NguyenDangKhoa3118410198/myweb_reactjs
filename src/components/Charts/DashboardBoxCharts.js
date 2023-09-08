@@ -2,6 +2,7 @@ import React from "react";
 
 import "./DashboardBoxCharts.css";
 import BoxChart from "./Box/BoxChart";
+import LargeBoxChart from "./Box/LargeBoxChart";
 
 const data = [
   {
@@ -48,18 +49,35 @@ const data = [
   },
 ];
 
+const dataBoxes = ["Customers", "Products", "Orders"];
+
 function DashboardBoxCharts() {
   return (
     <div className="container">
       <div className="grid-container">
         <div className="box box1">
-          <BoxChart data={data} chartModel={"AreaChartBox"} />
+          <BoxChart
+            data={data}
+            chartModel={"AreaChartBox"}
+            dataBoxes={dataBoxes[0]}
+          />
         </div>
         <div className="box box2">
-          <BoxChart data={data} chartModel={"LineChartBox"} />
+          <BoxChart
+            data={data}
+            chartModel={"LineChartBox"}
+            dataBoxes={dataBoxes[1]}
+          />
         </div>
         <div className="box box3">
-          <BoxChart data={data} chartModel={"BarChartBox"} />
+          <BoxChart
+            data={data}
+            chartModel={"BarChartBox"}
+            dataBoxes={dataBoxes[2]}
+          />
+        </div>
+        <div className="box box4">
+          <LargeBoxChart data={data} chartModel={"TotalChartBox"} />
         </div>
       </div>
     </div>
