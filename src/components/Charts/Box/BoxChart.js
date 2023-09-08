@@ -1,14 +1,12 @@
 import React from "react";
-import AreaChartBox from "../AreaChartBox";
-import LineChartBox from "../LineChartBox";
-import BarChartBox from "../BarChartBox";
+import { AreaChart, LineChart, BarChart } from "../ChartTemplate";
 import "../DashboardBoxCharts";
 
 function BoxChart({ data, chartModel, dataBoxes }) {
   const chartComponents = {
-    AreaChartBox: <AreaChartBox data={data} />,
-    LineChartBox: <LineChartBox data={data} />,
-    BarChartBox: <BarChartBox data={data} />,
+    AreaChartBox: <AreaChart data={data} />,
+    LineChartBox: <LineChart data={data} />,
+    BarChartBox: <BarChart data={data} />,
   };
   const selectedChart = chartComponents[chartModel] || null;
 

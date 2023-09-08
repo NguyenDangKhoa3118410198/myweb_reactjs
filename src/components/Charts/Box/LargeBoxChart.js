@@ -1,29 +1,29 @@
 import React from "react";
-import AreaChartBox from "../AreaChartBox";
-import LineChartBox from "../LineChartBox";
-import BarChartBox from "../BarChartBox";
-import TotalChartBox from "../TotalChartBox";
-
+import { AreaChart, LineChart, BarChart, TotalChart } from "../ChartTemplate";
 import "../DashboardBoxCharts";
 
-function LargeBoxChart({ data, chartModel, dataBoxes }) {
+function LargeBoxChart({ data, chartModel }) {
   const chartComponents = {
-    AreaChartBox: <AreaChartBox data={data} />,
-    LineChartBox: <LineChartBox data={data} />,
-    BarChartBox: <BarChartBox data={data} />,
-    TotalChartBox: <TotalChartBox data={data} />,
+    AreaChartBox: <AreaChart data={data} />,
+    LineChartBox: <LineChart data={data} />,
+    BarChartBox: <BarChart data={data} />,
+    TotalChartBox: <TotalChart data={data} />,
   };
 
   const selectedChart = chartComponents[chartModel] || null;
-  const today = new Date();
-  const month = today.getMonth() + 1;
-  const year = today.getFullYear();
+
+  const getDate = () => {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    return `${month}/${year}`;
+  };
 
   return (
     <div className="largeBox">
       <div className="largeBoxInfo">
         <div className="title">
-          <h3>{`Date : ${month}/${year}`}</h3>
+          <h3>{getDate()}</h3>
         </div>
       </div>
 
