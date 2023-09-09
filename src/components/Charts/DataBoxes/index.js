@@ -1,4 +1,19 @@
-export const dataBoxes = ["Customers", "Products", "Orders"];
+import { FaUser, FaShoppingCart, FaBox } from "react-icons/fa";
+
+export const InfoBox = [
+  {
+    title: "Customers",
+    icon: <FaUser />,
+  },
+  {
+    title: "Products",
+    icon: <FaShoppingCart />,
+  },
+  {
+    title: "Orders",
+    icon: <FaBox />,
+  },
+];
 
 export const data = [
   {

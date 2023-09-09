@@ -3,15 +3,15 @@ import Header from "../../components/Header/Header";
 import "./AdminDefaultLayout.css";
 
 function AdminDefaultLayout({ name, children }) {
-   return (
-      <div className="AppGlass">
-         <Sidebar />
-         <div className="container">
-            <Header nameContent={name} />
-            {children}
-         </div>
+  return (
+    <div className="admin-layout">
+      <Sidebar />
+      <div className="container-admin-layout">
+        <Header nameContent={name} />
+        {children}
       </div>
-   );
+    </div>
+  );
 }
 
 export default AdminDefaultLayout;

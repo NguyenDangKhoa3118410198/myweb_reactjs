@@ -2,7 +2,7 @@ import React from "react";
 import { AreaChart, LineChart, BarChart } from "../ChartTemplate";
 import "../DashboardBoxCharts";
 
-function BoxChart({ data, chartModel, dataBoxes }) {
+function BoxChart({ data, chartModel, infoBox }) {
   const chartComponents = {
     AreaChartBox: <AreaChart data={data} />,
     LineChartBox: <LineChart data={data} />,
@@ -13,7 +13,10 @@ function BoxChart({ data, chartModel, dataBoxes }) {
   return (
     <div className="containerBox">
       <div className="boxInfo">
-        <div className="title">{dataBoxes}</div>
+        <div className="title">
+          {infoBox.icon}
+          {infoBox.title}
+        </div>
         <h1>10</h1>
         <p>View All</p>
       </div>
