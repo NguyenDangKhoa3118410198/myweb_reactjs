@@ -1,4 +1,5 @@
 .sidebar {
+  height: 100%;
   color: var(--white);
   padding: 2rem 0.5rem 0 0;
   background-color: var(--backgroundSidebar);
@@ -64,6 +65,7 @@
 
 .menu-minimized {
   width: 5rem;
+  height: 100%;
   color: var(--white);
   padding: 2rem 0.5rem 0 0;
   text-align: center;

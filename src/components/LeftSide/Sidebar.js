@@ -25,9 +25,9 @@ const Sidebar = () => {
     setShowSidebar(!showSidebar);
   }
   return (
-    <>
+    <aside>
       <div className={`sidebar ${showSidebar ? "active" : ""}`}>
-        <div className="head-sidebar">
+        <header className="head-sidebar">
           <Link className="btn-toggle spc-toggle" onClick={toggleSidebar}>
             <UilBars />
           </Link>
@@ -37,7 +37,7 @@ const Sidebar = () => {
               K<span>o</span>ss
             </span>
           </Link>
-        </div>
+        </header>
         <Menu showSidebar={showSidebar}>
           <MenuItem
             title="Home"
@@ -106,7 +106,7 @@ const Sidebar = () => {
           </Menu>
         </div>
       )}
-    </>
+    </aside>
   );
 };
 

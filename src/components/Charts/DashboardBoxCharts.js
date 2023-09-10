@@ -6,8 +6,8 @@ import { data, InfoBox } from "./DataBoxes";
 
 function DashboardBoxCharts() {
   return (
-    <div className="container">
-      <div className="grid-container">
+    <div className="dashboard-charts-box-container">
+      <div className="dashboard-grid-container">
         <div className="box box1">
           <Box data={data} chartModel={"AreaChartBox"} infoBox={InfoBox[0]} />
         </div>

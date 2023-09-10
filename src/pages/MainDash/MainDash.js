@@ -113,36 +113,34 @@ const MainDash = () => {
   }
 
   return (
-    <>
-      <div className="MainDash">
-        <DashboardBoxChart />
-        <div className="add-filter-wrapper">
-          <button
-            className="btn btn-success btn-add"
-            onClick={() => handleAddClick()}
-          >
-            Add
-          </button>
-          <input
-            className="searchBox"
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={handleSearch}
-          />
-        </div>
-        <CrudModal
-          record={currentRecord}
-          isOpen={isModalOpen}
-          onRequestClose={() => setIsModalOpen(false)}
-          shouldCloseOnOverlayClick={false}
-          onSave={handleSave}
-          onDelete={handleDelete}
+    <main className="main-dashboard-container">
+      <DashboardBoxChart />
+      <div className="add-filter-wrapper">
+        <button
+          className="btn btn-success btn-add"
+          onClick={() => handleAddClick()}
+        >
+          Add
+        </button>
+        <input
+          className="searchBox"
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={handleSearch}
         />
-
-        <Table columns={columns} data={filterData(records)} />
       </div>
-    </>
+      <CrudModal
+        record={currentRecord}
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        shouldCloseOnOverlayClick={false}
+        onSave={handleSave}
+        onDelete={handleDelete}
+      />
+
+      <Table columns={columns} data={filterData(records)} />
+    </main>
   );
 };
 

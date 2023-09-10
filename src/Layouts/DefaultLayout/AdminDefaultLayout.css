@@ -4,11 +4,9 @@
   height: 100%;
   background: var(--glass);
   overflow-y: hidden;
-  /* grid-template-columns: 13rem auto 20rem; */
-  /* gap: 16px; khoang trang giua cac copt trong grid */
 }
 
-.container-admin-layout {
+.admin-layout-container {
   display: flex;
   flex-direction: column;
   width: 100%;

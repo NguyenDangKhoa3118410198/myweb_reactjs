@@ -6,7 +6,7 @@ function AdminDefaultLayout({ name, children }) {
   return (
     <div className="admin-layout">
       <Sidebar />
-      <div className="container-admin-layout">
+      <div className="admin-layout-container">
         <Header nameContent={name} />
         {children}
       </div>

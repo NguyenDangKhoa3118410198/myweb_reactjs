@@ -6,7 +6,7 @@ import "./VideoPlayer.css";
 
 function VideoPlayer() {
   return (
-    <div className="wrapper-videos">
+    <main className="wrapper-videos">
       {videos.map((video) =>
         video.weight === "500mbs" ? (
           <div className="container-video" key={video.videoUrl}>
@@ -17,8 +17,8 @@ function VideoPlayer() {
                 width="640"
                 height="360"
                 allow="autoplay"
-                allowfullscreen="allowfullscreen"
-                frameborder="0"
+                frameBorder="0"
+                allowFullScreen="allowFullScreen"
               ></iframe>
             </div>
             <div className="information-video">
@@ -43,7 +43,7 @@ function VideoPlayer() {
           </div>
         )
       )}
-    </div>
+    </main>
   );
 }
 

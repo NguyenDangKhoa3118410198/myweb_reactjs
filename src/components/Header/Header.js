@@ -32,14 +32,14 @@ const Header = ({ nameContent }) => {
   }, [menuRef]);
 
   return (
-    <header className="Header">
+    <header className="nav-user-header">
       <div>
         <h1>{nameContent}</h1>
       </div>
 
       <div ref={menuRef}>
         <nav>
-          <div className="user-wrapper">
+          <div className="user-tools">
             <div className="icon-menu-item">
               <FaBell />
             </div>
