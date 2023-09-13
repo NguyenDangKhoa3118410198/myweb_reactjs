@@ -65,7 +65,6 @@ const Sidebar = () => {
           />
           <MenuItemDropdown
             title="Analytics"
-            // to="/analytics"
             dropdownLinks={dropdownLinks}
             icon={<UilChart />}
             className="menuItem"
