@@ -27,7 +27,7 @@ function AreaChartBox({ data }) {
             color: "#fff",
           }}
         />
-        <Area type="monotone" dataKey="uv" stroke="#fff" fill="#fff" />
+        <Area type="monotone" dataKey="amount" stroke="#fff" fill="#fff" />
       </AreaChart>
     </ResponsiveContainer>
   );

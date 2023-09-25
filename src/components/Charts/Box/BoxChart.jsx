@@ -9,7 +9,6 @@ function BoxChart({ data, chartModel, infoBox }) {
     BarChartBox: <BarChart data={data} />,
   };
   const selectedChart = chartComponents[chartModel] || null;
-
   return (
     <div className="containerBox">
       <div className="boxInfo">

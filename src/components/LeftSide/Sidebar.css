@@ -72,7 +72,7 @@
   background-color: var(--backgroundSidebar);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .sidebar {
     display: none; /* Hide the sidebar */
   }
