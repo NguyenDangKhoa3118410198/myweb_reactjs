@@ -1,122 +1,143 @@
 .nav-user-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 5rem;
-  padding-left: 1rem;
-  padding-right: 3rem;
-  padding-top: 0.1rem;
-  padding-bottom: 0.1rem;
-  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 5rem;
+    padding-left: 1rem;
+    padding-right: 3rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    position: relative;
+}
+
+.burger-icon {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    padding: 1px;
+    border-radius: 5px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.burger-icon:hover {
+    cursor: pointer;
+    background-color: #dad8d8;
+}
+
+.nav-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .user-tools {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .user-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1rem;
 }
 
 .user-header span {
-  padding-right: 10px;
+    padding-right: 10px;
 }
 
 .user-header__icon {
-  padding: 8px;
-  border-radius: 50%;
-  transition: background-color 0.2s ease-in-out;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease-in-out;
 }
 
 .user-header__icon:hover {
-  background-color: #ddd;
-  cursor: pointer;
+    background-color: #ddd;
+    cursor: pointer;
 }
 
 .menu-user {
-  display: flex;
-  align-items: center;
-  position: relative;
-  list-style: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    position: relative;
+    list-style: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .user-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 1rem;
-  border: 2px solid black;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  background-color: #fff;
-  outline: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border: 2px solid black;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
 .user-icon:hover,
 .user-icon:focus {
-  background-color: #000;
-  color: #fff;
+    background-color: #000;
+    color: #fff;
 }
 
 .dropdown-menu {
-  position: absolute;
-  width: 130px;
-  top: 100%;
-  right: 0;
-  font-weight: 600;
-  list-style: none;
-  border-radius: 0.2rem;
-  border: 1px solid #ccc;
-  z-index: 1000; /* set a higher z-index value */
+    position: absolute;
+    width: 130px;
+    top: 100%;
+    right: 0;
+    font-weight: 600;
+    list-style: none;
+    border-radius: 0.2rem;
+    border: 1px solid #ccc;
+    z-index: 1000; /* set a higher z-index value */
 }
 
 .dropdown-menu li {
-  border-radius: 2px;
-  border-bottom: solid rgba(224, 220, 220, 0.991);
-  background-color: #f9f9f9;
-  color: #333;
+    border-radius: 2px;
+    border-bottom: solid rgba(224, 220, 220, 0.991);
+    background-color: #f9f9f9;
+    color: #333;
 }
 
 .dropdown-menu li:last-child {
-  border-bottom: none; /* remove the bottom border on the last li element */
+    border-bottom: none; /* remove the bottom border on the last li element */
 }
 
 .dropdown-menu li:hover {
-  background-color: #ddd;
+    background-color: #ddd;
 }
 
 .menu-item {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0.5rem 0.8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5rem 0.8rem;
 }
 
 .menu-item-content {
-  display: flex;
-  justify-content: center;
-  padding: 0.5rem;
-  max-width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    max-width: 100%;
 }
 
 .icon-menu-item {
-  margin-right: 10px;
-  padding: 10px;
-  display: flex;
-  font-size: 18px;
-  align-items: center;
-  justify-content: space-between;
+    margin-right: 10px;
+    padding: 10px;
+    display: flex;
+    font-size: 18px;
+    align-items: center;
+    justify-content: space-between;
 }
