@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import Menu, { MenuItem, MenuItemDropdown } from "./Menu";
@@ -11,34 +11,30 @@ import {
   UilPackage,
   UilChart,
   UilVideo,
-  UilBars,
 } from "@iconscout/react-unicons";
 
 const Sidebar = () => {
-  const [showSidebar, setShowSidebar] = useState(false);
   const dropdownLinks = [
     { title: "All Customers", to: "/" },
     { title: "Add Customer", to: "/customers" },
   ];
 
-  function toggleSidebar() {
-    setShowSidebar(!showSidebar);
-  }
   return (
     <aside>
-      <div className={`sidebar ${showSidebar ? "active" : ""}`}>
+      <div className={"sidebar"}>
         <header className="head-sidebar">
-          <Link className="btn-toggle spc-toggle" onClick={toggleSidebar}>
-            <UilBars />
-          </Link>
           <Link to="/" className="logo">
-            <img src={Logo} alt="logo" />
-            <span>
-              K<span>o</span>ss
-            </span>
+            <div className="brand">
+              <img src={Logo} alt="logo" />
+            </div>
+            <div className="logo">
+              <span>
+                K<span>o</span>ss
+              </span>
+            </div>
           </Link>
         </header>
-        <Menu showSidebar={showSidebar}>
+        <Menu>
           <MenuItem
             title="Home"
             to="/"
@@ -79,32 +75,6 @@ const Sidebar = () => {
           <div style={{ marginBottom: "2rem" }}></div>
         </Menu>
       </div>
-      {showSidebar && (
-        <div className="menu-minimized">
-          <Link className="btn-toggle spc-toggle" onClick={toggleSidebar}>
-            <UilBars />
-          </Link>
-          <Menu>
-            <MenuItem to="/" icon={<UilEstate />} className="menuItem" />
-            <MenuItem
-              to="/orders"
-              icon={<UilClipboardAlt />}
-              className="menuItem"
-            />
-            <MenuItem
-              to="/customers"
-              icon={<UilUsersAlt />}
-              className="menuItem"
-            />
-            <MenuItem
-              to="/products"
-              icon={<UilPackage />}
-              className="menuItem"
-            />
-            <MenuItem to="/video" icon={<UilVideo />} className="menuItem" />
-          </Menu>
-        </div>
-      )}
     </aside>
   );
 };

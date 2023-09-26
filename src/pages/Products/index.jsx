@@ -1,9 +1,9 @@
-import DashboardBoxCharts from "../../components/Charts/DashboardBoxCharts";
+import MyCalendar from "../../components/Calendar";
 
 function Products() {
   return (
     <main>
-      <DashboardBoxCharts />
+      <MyCalendar />
     </main>
   );
 }

@@ -6,6 +6,7 @@ import "./MainDash.css";
 import CrudModal from "../../components/ReactModal/CrudModal";
 import ActionsCell from "../../components/ReactModal/ActionsCell/ActionsCell";
 import DashboardBoxChart from "../../components/Charts/DashboardBoxCharts";
+import MyCalendar from "../../components/Calendar";
 
 const MainDash = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -115,6 +116,8 @@ const MainDash = () => {
   return (
     <main className="main-dashboard-container">
       <DashboardBoxChart />
+      <MyCalendar />
+
       <div className="add-filter-wrapper">
         <button
           className="btn btn-success btn-add"

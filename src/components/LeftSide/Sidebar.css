@@ -31,32 +31,10 @@
   color: var(--pink);
 }
 
-.logo > img {
+.brand > img {
   width: 3rem;
   height: 3rem;
-}
-
-.menu-toggle {
-  color: var(--white);
-  padding: 2rem 0.5rem 0 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 14px;
-  background-color: var(--backgroundSidebar);
-}
-
-.btn-toggle {
-  width: 3rem;
-  height: 3rem;
-  padding: 0 0.8rem 0 1.2rem;
-  text-align: center;
-  align-items: center;
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  background-color: var(--backgroundSidebar);
+  padding: 0 0 0 1rem;
 }
 
 .sidebar.active {
