@@ -62,9 +62,10 @@ const Sidebar = ({ isMenuActive, toggleBurger }) => {
                         icon={<UilPackage />}
                         className="menuItem"
                     />
-                    <MenuItemDropdown
+                    <MenuItem
                         title="Analytics"
-                        dropdownLinks={dropdownLinks}
+                        // dropdownLinks={dropdownLinks}
+                        to="/analytics"
                         icon={<UilChart />}
                         className="menuItem"
                     />

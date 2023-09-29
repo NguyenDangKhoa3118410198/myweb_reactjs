@@ -14,18 +14,20 @@
 }
 
 .burger-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 30px;
     height: 30px;
     margin: 0 10px;
     padding: 1px;
     border-radius: 5px;
     border: 1px solid black;
-    text-align: center;
 }
 
 .burger-icon:hover {
     cursor: pointer;
-    background-color: #dad8d8;
+    opacity: 0.5;
 }
 
 .nav-left {
