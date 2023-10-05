@@ -4,21 +4,21 @@ import Header from '../../components/Header/Header';
 import './AdminDefaultLayout.css';
 
 function AdminDefaultLayout({ name, children }) {
-    const [isMenuActive, activeMenu] = useState(true);
+   const [isMenuActive, activeMenu] = useState(true);
 
-    const toggleBurger = () => {
-        activeMenu(!isMenuActive);
-    };
+   const toggleBurger = () => {
+      activeMenu(!isMenuActive);
+   };
 
-    return (
-        <div className="admin-layout">
-            <Sidebar isMenuActive={isMenuActive} toggleBurger={toggleBurger} />
-            <div className="admin-layout-container">
-                <Header nameContent={name} toggleBurger={toggleBurger} />
-                {children}
-            </div>
-        </div>
-    );
+   return (
+      <div className='admin-layout'>
+         <Sidebar isMenuActive={isMenuActive} toggleBurger={toggleBurger} />
+         <div className='admin-layout-container'>
+            <Header nameContent={name} toggleBurger={toggleBurger} />
+            {children}
+         </div>
+      </div>
+   );
 }
 
 export default AdminDefaultLayout;

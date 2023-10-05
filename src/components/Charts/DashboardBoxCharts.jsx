@@ -1,63 +1,63 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import "./DashboardBoxCharts.css";
-import { Box, LargeBox } from "./Box";
+import './DashboardBoxCharts.css';
+import { Box, LargeBox } from './Box';
 import {
-  data,
-  InfoBox,
-  DataBoxUsers,
-  DataBoxOrders,
-  DataBoxProducts,
-} from "./DataBoxes";
+   data,
+   InfoBox,
+   DataBoxUsers,
+   DataBoxOrders,
+   DataBoxProducts,
+} from './DataBoxes';
 
 function DashboardBoxCharts() {
-  const [dataUser, setDataUser] = useState(null);
-  const [dataOrders, setDataOrders] = useState(null);
-  const [dataProducts, setDataProducts] = useState(null);
+   const [dataUser, setDataUser] = useState(null);
+   const [dataOrders, setDataOrders] = useState(null);
+   const [dataProducts, setDataProducts] = useState(null);
 
-  useEffect(() => {
-    Promise.all([DataBoxUsers(), DataBoxOrders(), DataBoxProducts()])
-      .then((results) => {
-        const [boxUsers, boxOrders, boxProducts] = results;
-        setDataUser(boxUsers.flat());
-        setDataOrders(boxOrders.flat());
-        setDataProducts(boxProducts.flat());
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }, []);
+   useEffect(() => {
+      Promise.all([DataBoxUsers(), DataBoxOrders(), DataBoxProducts()])
+         .then((results) => {
+            const [boxUsers, boxOrders, boxProducts] = results;
+            setDataUser(boxUsers.flat());
+            setDataOrders(boxOrders.flat());
+            setDataProducts(boxProducts.flat());
+         })
+         .catch((error) => {
+            console.error('Error:', error);
+         });
+   }, []);
 
-  return (
-    <div className="dashboard-charts-box-container">
-      <div className="dashboard-grid-container">
-        <div className="box box1">
-          <Box
-            data={dataUser}
-            chartModel={"AreaChartBox"}
-            infoBox={InfoBox[0]}
-          />
-        </div>
-        <div className="box box2">
-          <Box
-            data={dataProducts}
-            chartModel={"LineChartBox"}
-            infoBox={InfoBox[1]}
-          />
-        </div>
-        <div className="box box3">
-          <Box
-            data={dataOrders}
-            chartModel={"BarChartBox"}
-            infoBox={InfoBox[2]}
-          />
-        </div>
-        <div className="box box4">
-          <LargeBox data={data} chartModel={"TotalChartBox"} />
-        </div>
+   return (
+      <div className='dashboard-charts-box-container'>
+         <div className='dashboard-grid-container'>
+            <div className='box box1'>
+               <Box
+                  data={dataUser}
+                  chartModel={'AreaChartBox'}
+                  infoBox={InfoBox[0]}
+               />
+            </div>
+            <div className='box box2'>
+               <Box
+                  data={dataProducts}
+                  chartModel={'LineChartBox'}
+                  infoBox={InfoBox[1]}
+               />
+            </div>
+            <div className='box box3'>
+               <Box
+                  data={dataOrders}
+                  chartModel={'BarChartBox'}
+                  infoBox={InfoBox[2]}
+               />
+            </div>
+            {/* <div className='box box4'>
+               <LargeBox data={data} chartModel={'TotalChartBox'} />
+            </div> */}
+         </div>
       </div>
-    </div>
-  );
+   );
 }
 
 export default DashboardBoxCharts;
