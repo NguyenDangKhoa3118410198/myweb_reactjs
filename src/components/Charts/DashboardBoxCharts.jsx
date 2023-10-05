@@ -52,6 +52,13 @@ function DashboardBoxCharts() {
                   infoBox={InfoBox[2]}
                />
             </div>
+            <div className='box box3'>
+               <Box
+                  data={dataOrders}
+                  chartModel={'BarChartBox'}
+                  infoBox={InfoBox[2]}
+               />
+            </div>
             {/* <div className='box box4'>
                <LargeBox data={data} chartModel={'TotalChartBox'} />
             </div> */}
