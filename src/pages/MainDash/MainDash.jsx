@@ -8,7 +8,7 @@ import ActionsCell from '../../components/ReactModal/ActionsCell/ActionsCell';
 import DashboardBoxChart from '../../components/Charts/DashboardBoxCharts';
 import MyCalendar from '../../components/Calendar';
 
-import ContextualExample from '../../components/line';
+import ContextualExample from '../../components/ProgressBar';
 const MainDash = () => {
    const [isModalOpen, setIsModalOpen] = useState(false);
    const [records, setRecords] = useState([]);
@@ -117,6 +117,11 @@ const MainDash = () => {
    return (
       <main className='main-dashboard-container'>
          <DashboardBoxChart />
+
+         <div>
+            <ContextualExample />
+         </div>
+
          <MyCalendar />
 
          <div className='add-filter-wrapper'>
@@ -144,8 +149,6 @@ const MainDash = () => {
          />
 
          <Table columns={columns} data={filterData(records)} />
-
-         <ContextualExample />
       </main>
    );
 };

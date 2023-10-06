@@ -60,9 +60,9 @@ function DashboardBoxCharts() {
                   infoBox={InfoBox[2]}
                />
             </div>
-            {/* <div className='box box4'>
+            <div className='box box5'>
                <LargeBox data={data} chartModel={'TotalChartBox'} />
-            </div> */}
+            </div>
          </div>
       </div>
    );

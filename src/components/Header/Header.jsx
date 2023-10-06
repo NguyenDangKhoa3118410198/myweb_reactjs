@@ -62,7 +62,7 @@ const Header = ({ nameContent, toggleBurger }) => {
                         id='dropdown-basic'
                      >
                         <UilUser />
-                        <span>Xin chao : Admin </span>
+                        <span> Xin chao : Admin</span>
                      </Dropdown.Toggle>
 
                      <Dropdown.Menu>
