@@ -1,29 +1,28 @@
 .main-dashboard-container {
-  /* display: flex;
-  flex-direction: column; */
-  padding: 1rem 1rem 1.5rem;
-  background-color: var(--bodyContent);
-  border-bottom-right-radius: 2rem;
-  height: calc(100% - 7.6rem);
-  overflow-y: scroll;
+   box-sizing: border-box;
+   padding: 2rem;
+   background-color: var(--bodyContent);
+   border-bottom-right-radius: 2rem;
+   height: calc(100% - 7.6rem);
+   overflow-y: scroll;
 }
 
 .btn-add {
-  margin-right: 0.5rem;
+   margin-right: 0.5rem;
 }
 
 .searchBox {
-  margin: 0;
-  margin-bottom: 0.5rem;
-  height: 2.5rem !important;
+   margin: 0;
+   margin-bottom: 0.5rem;
+   height: 2.5rem !important;
 }
 
 .add-filter-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-items: center;
-  align-items: center;
-  width: 3rem;
-  height: 3rem;
-  margin-bottom: 0.5rem;
+   display: flex;
+   flex-direction: row;
+   justify-items: center;
+   align-items: center;
+   width: 3rem;
+   height: 3rem;
+   margin-bottom: 0.5rem;
 }

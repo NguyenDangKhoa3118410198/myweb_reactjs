@@ -1,8 +1,7 @@
-// import Cards from "../../components/Cards/Cards";
-import RightSide from "../../components/RightSide/RightSide";
+import BreadcrumbExample from '../../components/Breadcrumb';
 
 function Analytics() {
-   return <RightSide />;
+   return <BreadcrumbExample />;
 }
 
 export default Analytics;

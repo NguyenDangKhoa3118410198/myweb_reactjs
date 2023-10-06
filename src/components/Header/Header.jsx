@@ -10,11 +10,12 @@ import {
 } from '@iconscout/react-unicons';
 import { FaBell, FaCalendarCheck, FaQuestionCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 const Header = ({ nameContent, toggleBurger }) => {
    const [isMenuOpen, setIsMenuOpen] = useState(false);
    const menuRef = useRef(null);
-
+   // eslint-disable-next-line
    const toggleMenu = () => {
       setIsMenuOpen(!isMenuOpen);
    };
@@ -39,7 +40,7 @@ const Header = ({ nameContent, toggleBurger }) => {
                <UilBars />
             </div>
 
-            <h1>{nameContent}</h1>
+            <h1 className='name-tab'>{nameContent}</h1>
          </div>
 
          <div ref={menuRef}>
@@ -55,46 +56,37 @@ const Header = ({ nameContent, toggleBurger }) => {
                      <FaQuestionCircle />
                   </div>
 
-                  <span>Xin chao : Admin </span>
+                  <Dropdown>
+                     <Dropdown.Toggle
+                        className='user-profile'
+                        id='dropdown-basic'
+                     >
+                        <UilUser />
+                        <span>Xin chao : Admin </span>
+                     </Dropdown.Toggle>
 
-                  <div className='user-header' onClick={toggleMenu}>
-                     <UilUser className='user-header__icon' />
-                  </div>
+                     <Dropdown.Menu>
+                        <Dropdown.Item as={Link} to='/'>
+                           <div className='menu-item'>
+                              <UilInfoCircle className='icon-menu-item-dropdown' />
+                              <span className='name-menu-item'>Info</span>
+                           </div>
+                        </Dropdown.Item>
+                        <Dropdown.Item as={Link} to='/orders'>
+                           <div className='menu-item'>
+                              <UilQuestionCircle className='icon-menu-item-dropdown' />
+                              <span className='name-menu-item'>Feedback</span>
+                           </div>
+                        </Dropdown.Item>
+                        <Dropdown.Item as={Link} to='/login'>
+                           <div className='menu-item'>
+                              <UilSignout className='icon-menu-item-dropdown' />
+                              <span className='name-menu-item'>Logout</span>
+                           </div>
+                        </Dropdown.Item>
+                     </Dropdown.Menu>
+                  </Dropdown>
                </div>
-               <ul className='menu-user'>
-                  {isMenuOpen && (
-                     <ul className='dropdown-menu'>
-                        <li>
-                           <Link to='/'>
-                              <div className='menu-item'>
-                                 <UilInfoCircle className='icon-menu-item-dropdown' />
-                                 <span className='menu-item-content'>Info</span>
-                              </div>
-                           </Link>
-                        </li>
-                        <li>
-                           <Link to='/orders'>
-                              <div className='menu-item'>
-                                 <UilQuestionCircle className='icon-menu-item-dropdown' />
-                                 <span className='menu-item-content'>
-                                    Feedback
-                                 </span>
-                              </div>
-                           </Link>
-                        </li>
-                        <li>
-                           <Link to='/login'>
-                              <div className='menu-item'>
-                                 <UilSignout className='icon-menu-item-dropdown' />
-                                 <span className='menu-item-content'>
-                                    Logout
-                                 </span>
-                              </div>
-                           </Link>
-                        </li>
-                     </ul>
-                  )}
-               </ul>
             </nav>
          </div>
       </header>

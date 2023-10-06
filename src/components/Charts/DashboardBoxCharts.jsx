@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
 import './DashboardBoxCharts.css';
+// eslint-disable-next-line no-unused-vars
 import { Box, LargeBox } from './Box';
 import {
+   // eslint-disable-next-line no-unused-vars
    data,
    InfoBox,
    DataBoxUsers,
@@ -52,7 +53,7 @@ function DashboardBoxCharts() {
                   infoBox={InfoBox[2]}
                />
             </div>
-            <div className='box box3'>
+            <div className='box box4'>
                <Box
                   data={dataOrders}
                   chartModel={'BarChartBox'}

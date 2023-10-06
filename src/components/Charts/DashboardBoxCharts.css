@@ -1,18 +1,17 @@
 .dashboard-charts-box-container {
    overflow: hidden;
+   scroll-behavior: smooth;
 }
 
 .dashboard-grid-container {
-   width: 100%;
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(365px, 1fr));
    /* grid-template-rows: repeat(4, 200px); */
-   gap: 20px;
+   gap: 10px;
    padding: 1.5rem 0;
 }
 
 .box {
-   width: 365px;
    margin: 0.8rem;
    border-radius: 10px;
    color: #fff;
@@ -43,10 +42,16 @@
 }
 
 .box4 {
+   grid-column: span 1;
+   grid-row: span 1;
+   background-color: #f79009;
+}
+
+/* .box4 {
    grid-column: span 3;
    grid-row: span 3;
    background-color: #fff;
-}
+} */
 
 .containerBox {
    display: flex;
@@ -70,19 +75,22 @@
    gap: 10px;
 }
 
-.chart {
-   width: 100%;
-   height: 100%;
-}
-
 .chartInfo {
-   width: fit-content;
    flex: 3;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-   padding: 0.4rem 2rem;
+   /* padding: 0.4rem 2rem; */
+   width: max-content;
+   box-sizing: border-box;
 }
+
+.chart {
+   padding: 0 0.5rem;
+   width: 90%;
+   height: 100%;
+}
+
 .texts {
    display: flex;
    flex-direction: column;
