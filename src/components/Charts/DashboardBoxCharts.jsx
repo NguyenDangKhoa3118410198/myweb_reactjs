@@ -61,7 +61,15 @@ function DashboardBoxCharts() {
                />
             </div>
             <div className='box box5'>
+               <LargeBox data={data} chartModel={'PieChartBox'} />
+            </div>
+
+            <div className='box box6'>
                <LargeBox data={data} chartModel={'TotalChartBox'} />
+            </div>
+
+            <div className='box box7'>
+               <LargeBox data={data} chartModel={'RadialBarChartBox'} />
             </div>
          </div>
       </div>
