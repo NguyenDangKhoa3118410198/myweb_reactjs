@@ -1,0 +1,60 @@
+.todolist-container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   min-width: 420px;
+   height: 400px;
+   margin-bottom: 20px;
+   border-radius: 10px;
+   background-color: #fff;
+   border: 1px solid black;
+}
+
+.todolist-title {
+   margin: 5px;
+   font-weight: bold;
+   text-align: center;
+   color: #000;
+}
+
+.todo-form-container {
+   width: 400px;
+   height: 60px;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+}
+
+.add-todo {
+   margin-left: 10px;
+}
+
+.todolist {
+   width: 370px;
+   height: 200px;
+   overflow-y: scroll;
+}
+
+.todo {
+   max-width: 100%;
+   display: flex;
+   word-break: break-all;
+   justify-content: space-between;
+   background: #8758ff;
+   color: #fff;
+   padding: 0.75rem 1rem;
+   border-radius: 5px;
+   margin-bottom: 1rem;
+}
+
+.todo-edit,
+.todo-delete {
+   margin: 0 2px;
+   cursor: pointer;
+}
+
+.completed {
+   text-decoration: line-through;
+}

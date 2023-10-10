@@ -9,6 +9,7 @@ import DashboardBoxChart from '../../components/Charts/DashboardBoxCharts';
 import MyCalendar from '../../components/Calendar';
 
 import ContextualExample from '../../components/ProgressBar';
+import Todolist from '../../components/Totolist/Totolist';
 const MainDash = () => {
    const [isModalOpen, setIsModalOpen] = useState(false);
    const [records, setRecords] = useState([]);
@@ -117,6 +118,16 @@ const MainDash = () => {
    return (
       <main className='main-dashboard-container'>
          <DashboardBoxChart />
+         <div
+            style={{
+               display: 'flex',
+               flexDirection: 'row',
+               flexWrap: 'wrap',
+               justifyContent: 'space-around',
+            }}
+         >
+            <Todolist />
+         </div>
 
          <div>
             <ContextualExample />
