@@ -12,7 +12,7 @@ import { FaBell, FaCalendarCheck, FaQuestionCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 
-const Header = ({ nameContent, toggleBurger }) => {
+const Header = ({ nameContent, toggleBurger, darkMode, setDarkMode }) => {
    const [isMenuOpen, setIsMenuOpen] = useState(false);
    const menuRef = useRef(null);
    // eslint-disable-next-line
@@ -34,13 +34,25 @@ const Header = ({ nameContent, toggleBurger }) => {
    }, [menuRef]);
 
    return (
-      <header className='nav-user-header'>
+      <header className={`nav-user-header ${darkMode ? 'darkmode' : ''}`}>
          <div className='nav-left'>
             <div onClick={toggleBurger} className='burger-icon'>
                <UilBars />
             </div>
 
             <h1 className='name-tab'>{nameContent}</h1>
+         </div>
+         <div className='header-theme-toggle'>
+            <label className='switch'>
+               <input
+                  type='checkbox'
+                  onClick={() => {
+                     setDarkMode(!darkMode);
+                  }}
+               />
+               <span className='slider round'></span>
+            </label>
+            <span>Darkmode Header</span>
          </div>
 
          <div ref={menuRef}>

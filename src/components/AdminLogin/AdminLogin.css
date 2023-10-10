@@ -1,92 +1,72 @@
 .login-wrapper {
-  background-image: url("./wp4923981.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+   background-image: url('./wp4923981.jpg');
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 }
 
 .admin-form-container {
-  border: 2px solid #fff;
-  border-radius: 5px;
-  background: #000;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.admin-form {
-  padding-bottom: 0px;
-  color: #fff;
-  background: inherit;
-  background-color: inherit;
-  transition: all 0.3s ease-in-out;
+   width: 450px;
+   height: 500px;
+   border: 2px solid #fff;
+   border-radius: 20px;
+   background: #0e0e14;
 }
 
 .name-form {
-  background: inherit;
-  background-color: inherit;
-  text-align: center;
-  color: white;
-  padding: 1rem;
+   background: inherit;
+   background-color: inherit;
+   text-align: center;
+   font-weight: bold;
+   color: white;
+   border-radius: 20px;
+   padding: 1rem;
 }
 
-.emailInput,
-.passwordInput {
-  border: 2px solid black;
-  display: block;
-  width: 100%;
-  height: 40px;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 24px;
-  background-color: #f8f8f8;
-  transition: all 0.3s ease-in-out;
+.input-field {
+   margin: 1rem;
+   color: #fff;
+   font-size: 24px;
 }
 
-label {
-  margin-top: 10px;
+.input-field .label-input {
+   margin-left: 1rem;
+   font-weight: bold;
 }
 
-.label-name {
-  font-size: 18px;
-  font-weight: bold;
+input[type='text'],
+input[type='password'] {
+   border-radius: 18px !important;
 }
 
-.button-login {
-  margin-top: 1rem;
-  padding: 1rem 2rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  border-radius: 0.5rem;
-  background: var(--buttonBlue);
-  color: var(--white);
-  cursor: pointer;
-}
-
-.button-login:hover {
-  color: #fff;
-  background-color: var(--buttonBlueHover);
-  box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.24) 0 17px 50px 0
-    rgba(0, 0, 0, 0.19);
+.btn-login {
+   margin: 10px 0;
+   width: 60px !important;
 }
 
 .forgot-password {
-  padding: 10px 20px;
-  font-size: 15px;
-  color: #fff;
-  text-decoration: underline;
-  background: inherit;
-  background-color: inherit;
-  cursor: pointer;
+   margin-top: 1rem;
+   font-size: 16px;
+   font-weight: 400;
+   color: #fff;
+   text-align: center;
+   cursor: pointer;
+   text-decoration: underline;
 }
 
-.forgot-password:hover {
-  color: #f8f8f8;
-  text-decoration: none;
+.other-login {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+}
+
+.item-login {
+   margin: 0 10px;
+   color: #fff;
 }
