@@ -201,3 +201,13 @@ input:checked + .slider:before {
 .slider.round:before {
    border-radius: 50%;
 }
+
+@media (max-width: 767px) {
+   .theme-title {
+      opacity: 0;
+   }
+   .slider.round {
+      margin-left: 10px;
+      width: 60px;
+   }
+}

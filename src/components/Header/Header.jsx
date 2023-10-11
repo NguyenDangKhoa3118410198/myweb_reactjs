@@ -52,7 +52,7 @@ const Header = ({ nameContent, toggleBurger, darkMode, setDarkMode }) => {
                />
                <span className='slider round'></span>
             </label>
-            <span>Darkmode Header</span>
+            <span className='theme-title'>Darkmode Header</span>
          </div>
 
          <div ref={menuRef}>
