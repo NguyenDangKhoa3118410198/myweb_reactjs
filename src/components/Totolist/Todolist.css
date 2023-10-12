@@ -60,3 +60,8 @@
 .completed {
    text-decoration: line-through;
 }
+
+input[type='text']:focus {
+   outline: solid !important;
+   border: 0;
+}

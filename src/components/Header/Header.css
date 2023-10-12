@@ -21,7 +21,7 @@
    height: 30px;
    margin: 0 10px 6px 10px;
    border-radius: 5px;
-   border: 1px solid black;
+   scale: 1.1;
 }
 
 .burger-icon:hover {

@@ -6,7 +6,7 @@
 .dashboard-grid-container {
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(365px, 1fr));
-   grid-template-rows: repeat(2, 195px);
+   grid-template-rows: repeat(auto-fit, 195px);
    gap: 10px;
    padding: 1.5rem 0;
 }
@@ -69,13 +69,13 @@
    background-color: #fff;
 }
 
-.containerBox {
+.box-chart-container {
    display: flex;
    height: 100%;
    width: 100%;
 }
 
-.boxInfo {
+.box-info {
    flex: 2;
    display: flex;
    flex-direction: column;
@@ -92,19 +92,24 @@
    margin-bottom: 5px;
 }
 
+.box-quanlity {
+   font-size: 45px;
+   font-weight: bold;
+}
+
 .chartInfo {
    flex: 3;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-   /* padding: 0.4rem 2rem; */
+   padding: 2px;
    width: max-content;
    box-sizing: border-box;
 }
 
 .chart {
    padding: 0 0.5rem;
-   width: 90%;
+   width: 95%;
    height: 100%;
 }
 
@@ -145,7 +150,7 @@
 }
 
 .largechart {
-   height: 390px;
+   height: 380px;
 }
 
 @media (max-width: 768px) {
@@ -172,5 +177,10 @@
    .box5 {
       grid-row: 3 / 5;
       grid-column: 2 / 4;
+   }
+
+   .box7 {
+      grid-row: span 3;
+      grid-column: span 3;
    }
 }

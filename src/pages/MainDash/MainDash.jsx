@@ -120,6 +120,7 @@ const MainDash = () => {
          <DashboardBoxChart />
          <div
             style={{
+               width: '100%',
                display: 'flex',
                flexDirection: 'row',
                flexWrap: 'wrap',
@@ -127,6 +128,7 @@ const MainDash = () => {
             }}
          >
             <Todolist />
+            <ContextualExample />
          </div>
 
          <div>

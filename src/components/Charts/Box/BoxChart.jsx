@@ -10,13 +10,13 @@ function BoxChart({ data, chartModel, infoBox }) {
    };
    const selectedChart = chartComponents[chartModel] || null;
    return (
-      <div className='containerBox'>
-         <div className='boxInfo'>
+      <div className='box-chart-container'>
+         <div className='box-info'>
             <div className='title'>
                {infoBox.icon}
                {infoBox.title}
             </div>
-            <h1>10</h1>
+            <h1 className='box-quanlity'>10</h1>
             <p>View All</p>
          </div>
          <div className='chartInfo'>

@@ -41,8 +41,9 @@ function ContextualExample() {
    }, []);
    return (
       <div className='progress-container'>
+         <h1 className='progress-title'>Progress</h1>
          <p className='title-progress-bar'>
-            Current Progress is: {parseInt(countOfProgess)} %
+            Export report is: {parseInt(countOfProgess)} %
          </p>
          <ProgressBar
             animated
@@ -51,7 +52,7 @@ function ContextualExample() {
             className='custom-progress-bar'
          />
          <p className='title-progress-bar'>
-            Current Progress Success is: {parseInt(countOfProgessSuccess)} %
+            Dowwnload file is: {parseInt(countOfProgessSuccess)} %
          </p>
          <ProgressBar
             animated
@@ -61,7 +62,7 @@ function ContextualExample() {
             className='custom-progress-bar'
          />
          <p className='title-progress-bar'>
-            Current Progress Warning is: {parseInt(countOfProgessWarning)} %
+            User access is: {parseInt(countOfProgessWarning)} %
          </p>
          <ProgressBar
             animated
@@ -72,10 +73,10 @@ function ContextualExample() {
             className='custom-progress-bar'
          />
 
-         <p className='title-progress-bar'>Current Progress Danger is: 80 %</p>
+         <p className='title-progress-bar'>Error System is: 10 %</p>
          <ProgressBar
             variant='danger'
-            now={80}
+            now={10}
             className='custom-progress-bar'
          />
       </div>
