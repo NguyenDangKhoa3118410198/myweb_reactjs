@@ -42,18 +42,6 @@ const Header = ({ nameContent, toggleBurger, darkMode, setDarkMode }) => {
 
             <h1 className='name-tab'>{nameContent}</h1>
          </div>
-         <div className='header-theme-toggle'>
-            <label className='switch'>
-               <input
-                  type='checkbox'
-                  onClick={() => {
-                     setDarkMode(!darkMode);
-                  }}
-               />
-               <span className='slider round'></span>
-            </label>
-            <span className='theme-title'>Darkmode Header</span>
-         </div>
 
          <div ref={menuRef}>
             <nav>
