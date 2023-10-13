@@ -1,12 +1,13 @@
 .progress-title {
    text-align: center;
    font-weight: bold;
-   margin-bottom: 2rem;
+   margin-bottom: 3rem;
 }
 
 .progress-container {
    min-width: 420px;
    height: 400px;
+   margin-bottom: 20px;
    margin-left: 0 20px;
    border-radius: 5px;
    background-color: #fff;
@@ -22,4 +23,10 @@
    background-color: #fff;
    margin: 10px 0px;
    font-weight: 600;
+}
+
+.progress-bar-content {
+   border-radius: 10px;
+   padding: 20px;
+   background-color: var(--bodyContent);
 }

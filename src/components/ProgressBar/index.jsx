@@ -42,43 +42,45 @@ function ContextualExample() {
    return (
       <div className='progress-container'>
          <h1 className='progress-title'>Progress</h1>
-         <p className='title-progress-bar'>
-            Export report is: {parseInt(countOfProgess)} %
-         </p>
-         <ProgressBar
-            animated
-            now={countOfProgess}
-            label={`${countOfProgess}%`}
-            className='custom-progress-bar'
-         />
-         <p className='title-progress-bar'>
-            Dowwnload file is: {parseInt(countOfProgessSuccess)} %
-         </p>
-         <ProgressBar
-            animated
-            now={countOfProgessSuccess}
-            label={`${countOfProgessSuccess}%`}
-            variant='success'
-            className='custom-progress-bar'
-         />
-         <p className='title-progress-bar'>
-            User access is: {parseInt(countOfProgessWarning)} %
-         </p>
-         <ProgressBar
-            animated
-            now={countOfProgessWarning}
-            label={`${countOfProgessWarning}%`}
-            striped
-            variant='warning'
-            className='custom-progress-bar'
-         />
+         <div className='progress-bar-content'>
+            <p className='title-progress-bar'>
+               Export report is: {parseInt(countOfProgess)} %
+            </p>
+            <ProgressBar
+               animated
+               now={countOfProgess}
+               label={`${countOfProgess}%`}
+               className='custom-progress-bar'
+            />
+            <p className='title-progress-bar'>
+               Dowwnload file is: {parseInt(countOfProgessSuccess)} %
+            </p>
+            <ProgressBar
+               animated
+               now={countOfProgessSuccess}
+               label={`${countOfProgessSuccess}%`}
+               variant='success'
+               className='custom-progress-bar'
+            />
+            <p className='title-progress-bar'>
+               User access is: {parseInt(countOfProgessWarning)} %
+            </p>
+            <ProgressBar
+               animated
+               now={countOfProgessWarning}
+               label={`${countOfProgessWarning}%`}
+               striped
+               variant='warning'
+               className='custom-progress-bar'
+            />
 
-         <p className='title-progress-bar'>Error System is: 10 %</p>
-         <ProgressBar
-            variant='danger'
-            now={10}
-            className='custom-progress-bar'
-         />
+            <p className='title-progress-bar'>Error System is: 10 %</p>
+            <ProgressBar
+               variant='danger'
+               now={10}
+               className='custom-progress-bar'
+            />
+         </div>
       </div>
    );
 }

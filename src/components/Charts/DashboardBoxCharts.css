@@ -24,31 +24,27 @@
 }
 
 .box1 {
-   opacity: 0.9;
    grid-column: span 1;
    grid-row: span 1;
    background-color: #747af2;
 }
 
 .box2 {
-   opacity: 0.9;
    grid-column: span 1;
    grid-row: span 1;
    background-color: #39f;
 }
 
 .box3 {
-   opacity: 0.9;
    grid-column: span 1;
    grid-row: span 1;
    background-color: #ef376e;
 }
 
 .box4 {
-   opacity: 0.9;
    grid-column: span 1;
    grid-row: span 1;
-   background-color: #f79009;
+   background-color: #f7b32b;
 }
 
 .box5 {
@@ -160,7 +156,7 @@
    }
 }
 
-@media (max-width: 767px) {
+@media screen and (max-width: 767px) {
    .box7 {
       grid-column: span 1;
       grid-row: span 3;

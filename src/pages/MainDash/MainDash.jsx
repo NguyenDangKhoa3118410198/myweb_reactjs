@@ -10,6 +10,7 @@ import MyCalendar from '../../components/Calendar';
 
 import ContextualExample from '../../components/ProgressBar';
 import Todolist from '../../components/Totolist/Totolist';
+import CircularProgressbarChart from '../../components/Charts/ChartTemplate/CircularProgressbarChart';
 const MainDash = () => {
    const [isModalOpen, setIsModalOpen] = useState(false);
    const [records, setRecords] = useState([]);
@@ -118,17 +119,18 @@ const MainDash = () => {
    return (
       <main className='main-dashboard-container'>
          <DashboardBoxChart />
-         <div
-            style={{
-               width: '100%',
-               display: 'flex',
-               flexDirection: 'row',
-               flexWrap: 'wrap',
-               justifyContent: 'space-around',
-            }}
-         >
-            <Todolist />
-            <ContextualExample />
+         <div className='check-control-container'>
+            <div className='check-control-item'>
+               <CircularProgressbarChart />
+            </div>
+
+            <div className='check-control-item'>
+               <Todolist />
+            </div>
+
+            <div className='check-control-item'>
+               <ContextualExample />
+            </div>
          </div>
 
          <div>

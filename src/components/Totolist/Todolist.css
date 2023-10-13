@@ -29,10 +29,11 @@
 
 .add-todo {
    margin-left: 10px;
+   background-color: #8758ff !important;
 }
 
 .todolist {
-   width: 370px;
+   width: 390px;
    height: 200px;
    overflow-y: scroll;
 }
@@ -42,11 +43,12 @@
    display: flex;
    word-break: break-all;
    justify-content: space-between;
+   align-items: center;
+   margin-left: 10px;
    padding: 0.75rem 1rem;
    border-radius: 5px;
    margin-bottom: 1rem;
    font-weight: 600;
-   align-items: center;
    color: #fff;
    background: #8758ff;
 }
@@ -59,9 +61,10 @@
 
 .completed {
    text-decoration: line-through;
+   color: black;
 }
 
 input[type='text']:focus {
-   outline: solid !important;
-   border: 0;
+   outline: #8758ff solid 2px !important;
+   border: 0 !important;
 }
