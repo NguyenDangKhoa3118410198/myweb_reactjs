@@ -11,6 +11,7 @@ import MyCalendar from '../../components/Calendar';
 import ContextualExample from '../../components/ProgressBar';
 import Todolist from '../../components/Totolist/Totolist';
 import CircularProgressbarChart from '../../components/Charts/ChartTemplate/CircularProgressbarChart';
+import { UilEllipsisV } from '@iconscout/react-unicons';
 const MainDash = () => {
    const [isModalOpen, setIsModalOpen] = useState(false);
    const [records, setRecords] = useState([]);
@@ -119,17 +120,41 @@ const MainDash = () => {
    return (
       <main className='main-dashboard-container'>
          <DashboardBoxChart />
-         <div className='check-control-container'>
-            <div className='check-control-item'>
-               <CircularProgressbarChart />
+         <div className='combined-stats-container'>
+            <div className='combined-stats-item'>
+               <div className='combined-stats-header'>
+                  <h1 className='combined-stats-title'>Top Revenue</h1>
+                  <div className='combined-stats-icon'>
+                     <UilEllipsisV />
+                  </div>
+               </div>
+               <div className='combined-stats-content'>
+                  <CircularProgressbarChart />
+               </div>
             </div>
 
-            <div className='check-control-item'>
-               <Todolist />
+            <div className='combined-stats-item'>
+               <div className='combined-stats-header'>
+                  <h1 className='combined-stats-title'>Todolist</h1>
+                  <div className='combined-stats-icon'>
+                     <UilEllipsisV />
+                  </div>
+               </div>
+               <div className='combined-stats-content'>
+                  <Todolist />
+               </div>
             </div>
 
-            <div className='check-control-item'>
-               <ContextualExample />
+            <div className='combined-stats-item'>
+               <div className='combined-stats-header'>
+                  <h1 className='combined-stats-title'>Progress Chart</h1>
+                  <div className='combined-stats-icon'>
+                     <UilEllipsisV />
+                  </div>
+               </div>
+               <div className='combined-stats-content'>
+                  <ContextualExample />
+               </div>
             </div>
          </div>
 

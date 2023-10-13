@@ -7,10 +7,6 @@ function CircularProgressbarChart() {
    const percentage = 60;
    return (
       <div className='circular-container'>
-         <div className='circular-header'>
-            <h1 className='circular-title'>Total Revenue</h1>
-         </div>
-
          <div className='circular-bottom'>
             <div className='circular-chart'>
                <CircularProgressbar

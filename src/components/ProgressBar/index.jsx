@@ -41,7 +41,6 @@ function ContextualExample() {
    }, []);
    return (
       <div className='progress-container'>
-         <h1 className='progress-title'>Progress</h1>
          <div className='progress-bar-content'>
             <p className='title-progress-bar'>
                Export report is: {parseInt(countOfProgess)} %

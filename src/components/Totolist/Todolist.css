@@ -1,21 +1,9 @@
 .todolist-container {
+   height: 100%;
    display: flex;
    flex-direction: column;
-   justify-content: center;
    align-items: center;
-   min-width: 420px;
-   height: 400px;
-   margin-bottom: 20px;
-   border-radius: 10px;
-   background-color: #fff;
-   border: 1px solid black;
-}
-
-.todolist-title {
-   margin: 5px;
-   font-weight: bold;
-   text-align: center;
-   color: #000;
+   /* background-color: #000; */
 }
 
 .todo-form-container {
@@ -34,7 +22,7 @@
 
 .todolist {
    width: 390px;
-   height: 200px;
+   height: 300px;
    overflow-y: scroll;
 }
 

@@ -1,16 +1,5 @@
 .circular-container {
-   min-width: 420px;
-   height: 400px;
-   margin-bottom: 20px;
-   border-radius: 10px;
-   background-color: #fff;
-}
-.circular-header {
-   .circular-title {
-      margin: 10px;
-      font-size: 24px;
-      font-weight: bold;
-   }
+   /* background-color: #000; */
 }
 
 .circular-bottom {

@@ -25,23 +25,43 @@
    margin-bottom: 0.5rem;
 }
 
-.check-control-container {
+.combined-stats-container {
    width: 100%;
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
    padding: 1rem;
+   margin: 10px 0 10px -1rem;
+   justify-content: space-between;
 }
 
-.check-control-item {
+.combined-stats-item {
+   padding: 20px;
    flex: 1;
-   margin: 1rem;
+   margin: 10px 0 10px 1rem;
+   border-radius: 15px;
+   background-color: #fff;
 }
 
-.check-control-item:first-child {
-   margin-left: 0;
+.combined-stats-header {
+   display: flex;
+   height: 40px;
+   align-items: center;
+   justify-content: space-between;
 }
 
-.check-control-item:last-child {
-   margin-right: 0;
+.combined-stats-title {
+   font-weight: 600;
+}
+
+.combined-stats-icon {
+   cursor: pointer;
+}
+
+.combined-stats-content {
+   display: flex;
+   flex-direction: column;
+   flex: 1;
+   flex-shrink: 0;
+   height: 91%;
 }

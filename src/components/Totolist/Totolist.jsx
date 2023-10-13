@@ -35,7 +35,6 @@ function Todolist() {
 
    return (
       <div className='todolist-container'>
-         <h1 className='todolist-title'>Todolist</h1>
          <form className='todo-form-container' onSubmit={handleAddTodo}>
             <input
                type='text'
