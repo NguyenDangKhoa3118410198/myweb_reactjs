@@ -41,6 +41,7 @@
    margin: 10px 0 10px 1rem;
    border-radius: 15px;
    background-color: #fff;
+   align-self: stretch;
 }
 
 .combined-stats-header {
@@ -63,5 +64,6 @@
    flex-direction: column;
    flex: 1;
    flex-shrink: 0;
+   align-self: stretch;
    height: 91%;
 }
