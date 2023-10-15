@@ -35,6 +35,11 @@
    align-items: center;
 }
 
+.nav-left,
+.nav-right {
+   color: black;
+}
+
 .user-utilities {
    padding-left: 10px;
    display: flex;
@@ -144,9 +149,9 @@
 }
 
 .darkmode .nav-left,
-.nav-right,
-.header-theme-toggle {
-   color: #fff;
+.darkmode .nav-right,
+.darkmode .header-theme-toggle {
+   color: white;
 }
 
 .switch {
