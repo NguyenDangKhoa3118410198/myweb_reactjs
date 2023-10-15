@@ -7,6 +7,7 @@ import CrudModal from '../../components/ReactModal/CrudModal';
 import ActionsCell from '../../components/ReactModal/ActionsCell/ActionsCell';
 import DashboardBoxChart from '../../components/Charts/DashboardBoxCharts';
 import MyCalendar from '../../components/Calendar';
+import { useSelector } from 'react-redux';
 
 import ContextualExample from '../../components/ProgressBar';
 import Todolist from '../../components/Totolist/Totolist';
@@ -17,6 +18,8 @@ const MainDash = () => {
    const [records, setRecords] = useState([]);
    const [currentRecord, setCurrentRecord] = useState(null);
    const [searchTerm, setSearchTerm] = useState('');
+
+   const darkMode = useSelector((state) => state.darkMode);
 
    const columns = [
       {
@@ -118,7 +121,9 @@ const MainDash = () => {
    }
 
    return (
-      <main className='main-dashboard-container'>
+      <main
+         className={`main-dashboard-container  ${darkMode ? 'darkmode' : ''}`}
+      >
          <DashboardBoxChart />
          <div className='combined-stats-container'>
             <div className='combined-stats-item'>

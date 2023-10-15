@@ -81,19 +81,19 @@
    font-weight: bold;
 }
 
-.title {
+.box-chart-title {
    display: flex;
    align-items: center;
    gap: 10px;
    margin-bottom: 5px;
 }
 
-.box-quanlity {
+.box-chart-quanlity {
    font-size: 45px;
    font-weight: bold;
 }
 
-.chartInfo {
+.box-chart-info {
    flex: 3;
    display: flex;
    flex-direction: column;
@@ -103,7 +103,7 @@
    box-sizing: border-box;
 }
 
-.chart {
+.shape-chart {
    padding: 0 0.5rem;
    width: 95%;
    height: 100%;
@@ -124,7 +124,7 @@
    font-size: 14px;
 }
 
-.largeBox {
+.large-box-chart {
    min-width: 365px;
    display: flex;
    flex-direction: column;
@@ -135,17 +135,17 @@
    padding: 0.4rem 2rem;
 }
 
-.largeBoxInfo {
+.large-box-chart-info {
    flex: 1;
    display: flex;
    flex-direction: row;
 }
 
-.largeChartBox {
+.large-box-chart-content {
    flex: 1;
 }
 
-.largechart {
+.large-shape-chart {
    height: 380px;
 }
 

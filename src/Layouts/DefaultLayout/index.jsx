@@ -5,7 +5,6 @@ import './AdminDefaultLayout.css';
 
 function AdminDefaultLayout({ name, children }) {
    const [isMenuActive, activeMenu] = useState(true);
-   const [darkMode, setDarkMode] = useState(false);
 
    const toggleBurger = () => {
       activeMenu(!isMenuActive);
@@ -15,12 +14,7 @@ function AdminDefaultLayout({ name, children }) {
       <div className='admin-layout'>
          <Sidebar isMenuActive={isMenuActive} toggleBurger={toggleBurger} />
          <div className='admin-layout-container'>
-            <Header
-               nameContent={name}
-               toggleBurger={toggleBurger}
-               darkMode={darkMode}
-               setDarkMode={setDarkMode}
-            />
+            <Header nameContent={name} toggleBurger={toggleBurger} />
             {children}
          </div>
       </div>

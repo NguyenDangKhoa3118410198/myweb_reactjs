@@ -11,10 +11,14 @@ import {
 import { FaBell, FaCalendarCheck, FaQuestionCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleDarkMode } from '../features/darkmode/darkModeSlice';
 
-const Header = ({ nameContent, toggleBurger, darkMode, setDarkMode }) => {
+const Header = ({ nameContent, toggleBurger }) => {
    const [isMenuOpen, setIsMenuOpen] = useState(false);
    const menuRef = useRef(null);
+   const darkMode = useSelector((state) => state.darkMode);
+   const dispatch = useDispatch();
    // eslint-disable-next-line
    const toggleMenu = () => {
       setIsMenuOpen(!isMenuOpen);
@@ -34,7 +38,9 @@ const Header = ({ nameContent, toggleBurger, darkMode, setDarkMode }) => {
    }, [menuRef]);
 
    return (
-      <header className={`nav-user-header ${darkMode ? 'darkmode' : ''}`}>
+      <header
+         className={`nav-user-header-container ${darkMode ? 'darkmode' : ''}`}
+      >
          <div className='nav-left'>
             <div onClick={toggleBurger} className='burger-icon'>
                <UilBars />
@@ -42,8 +48,20 @@ const Header = ({ nameContent, toggleBurger, darkMode, setDarkMode }) => {
 
             <h1 className='name-tab'>{nameContent}</h1>
          </div>
+         <div className='header-theme-toggle'>
+            <label className='switch'>
+               <input
+                  type='checkbox'
+                  onClick={() => {
+                     dispatch(toggleDarkMode());
+                  }}
+               />
+               <span className='slider round'></span>
+            </label>
+            <span className='theme-title'>Darkmode Header</span>
+         </div>
 
-         <div ref={menuRef}>
+         <div ref={menuRef} className='nav-right'>
             <nav>
                <div className='user-utilities'>
                   <div className='icon-menu-item'>
@@ -62,7 +80,7 @@ const Header = ({ nameContent, toggleBurger, darkMode, setDarkMode }) => {
                         id='dropdown-basic'
                      >
                         <UilUser />
-                        <span> Xin chao : Admin</span>
+                        <span className='user-name'></span>
                      </Dropdown.Toggle>
 
                      <Dropdown.Menu>

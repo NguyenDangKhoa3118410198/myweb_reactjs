@@ -12,15 +12,15 @@ function BoxChart({ data, chartModel, infoBox }) {
    return (
       <div className='box-chart-container'>
          <div className='box-info'>
-            <div className='title'>
+            <div className='box-chart-title'>
                {infoBox.icon}
                {infoBox.title}
             </div>
-            <h1 className='box-quanlity'>10</h1>
+            <h1 className='box-chart-quanlity'>10</h1>
             <p>View All</p>
          </div>
-         <div className='chartInfo'>
-            <div className='chart'>{selectedChart}</div>
+         <div className='box-chart-info'>
+            <div className='shape-chart'>{selectedChart}</div>
          </div>
       </div>
    );

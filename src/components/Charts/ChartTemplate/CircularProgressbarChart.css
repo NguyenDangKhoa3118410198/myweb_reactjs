@@ -2,7 +2,7 @@
    /* background-color: #000; */
 }
 
-.circular-bottom {
+.circular-content {
    display: flex;
    flex-direction: column;
    justify-content: center;

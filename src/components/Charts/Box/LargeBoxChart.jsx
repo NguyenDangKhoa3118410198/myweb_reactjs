@@ -29,15 +29,15 @@ function LargeBoxChart({ data, chartModel }) {
    };
 
    return (
-      <div className='largeBox'>
-         <div className='largeBoxInfo'>
-            <div className='title'>
+      <div className='large-box-chart'>
+         <div className='large-box-chart-info'>
+            <div className='large-box-chart-title'>
                <h3>{getDate()}</h3>
             </div>
          </div>
 
-         <div className='largeChartBox'>
-            <div className='largechart'>{selectedChart}</div>
+         <div className='large-box-chart-content'>
+            <div className='large-shape-chart'>{selectedChart}</div>
          </div>
       </div>
    );
