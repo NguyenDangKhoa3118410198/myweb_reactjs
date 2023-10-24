@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line no-unused-vars
@@ -14,15 +14,36 @@ import {
    UilVideo,
 } from '@iconscout/react-unicons';
 
-const Sidebar = ({ isMenuActive, toggleBurger }) => {
+const Sidebar = ({ isMenuActive, toggleBurger, activeMenu }) => {
    // eslint-disable-next-line no-unused-vars
    const dropdownLinks = [
       { title: 'All Customers', to: '/' },
       { title: 'Add Customer', to: '/customers' },
    ];
 
+   const componentRef = useRef(null);
+
+   useEffect(() => {
+      function handleClickOutside(event) {
+         if (
+            componentRef.current &&
+            !componentRef.current.contains(event.target)
+         ) {
+            activeMenu(false);
+         }
+      }
+
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+         document.removeEventListener('mousedown', handleClickOutside);
+      };
+   }, [activeMenu]);
+
    return (
-      <aside className={`side-menu ${isMenuActive ? 'open' : ''}`}>
+      <aside
+         ref={componentRef}
+         className={`side-menu ${isMenuActive ? 'open' : ''}`}
+      >
          <div className='sidebar'>
             <header className='head-sidebar'>
                <Link to='/' className='logo'>

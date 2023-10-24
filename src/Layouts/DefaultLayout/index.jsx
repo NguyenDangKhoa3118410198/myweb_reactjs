@@ -12,7 +12,11 @@ function AdminDefaultLayout({ name, children }) {
 
    return (
       <div className='admin-layout'>
-         <Sidebar isMenuActive={isMenuActive} toggleBurger={toggleBurger} />
+         <Sidebar
+            isMenuActive={isMenuActive}
+            toggleBurger={toggleBurger}
+            activeMenu={activeMenu}
+         />
          <div className='admin-layout-container'>
             <Header nameContent={name} toggleBurger={toggleBurger} />
             {children}
