@@ -168,32 +168,33 @@ const MainDash = () => {
          </div>
 
          <MyCalendar />
-
-         <div className='add-filter-wrapper'>
-            <button
-               className='btn btn-success btn-add'
-               onClick={() => handleAddClick()}
-            >
-               Add
-            </button>
-            <input
-               className='searchBox'
-               type='text'
-               placeholder='Search...'
-               value={searchTerm}
-               onChange={handleSearch}
+         <div style={{ width: '50%' }}>
+            <div className='add-filter-wrapper'>
+               <button
+                  className='btn btn-success btn-add'
+                  onClick={() => handleAddClick()}
+               >
+                  Add
+               </button>
+               <input
+                  className='searchBox'
+                  type='text'
+                  placeholder='Search...'
+                  value={searchTerm}
+                  onChange={handleSearch}
+               />
+            </div>
+            <CrudModal
+               record={currentRecord}
+               isOpen={isModalOpen}
+               onRequestClose={() => setIsModalOpen(false)}
+               shouldCloseOnOverlayClick={false}
+               onSave={handleSave}
+               onDelete={handleDelete}
             />
-         </div>
-         <CrudModal
-            record={currentRecord}
-            isOpen={isModalOpen}
-            onRequestClose={() => setIsModalOpen(false)}
-            shouldCloseOnOverlayClick={false}
-            onSave={handleSave}
-            onDelete={handleDelete}
-         />
 
-         <Table columns={columns} data={filterData(records)} />
+            <Table columns={columns} data={filterData(records)} />
+         </div>
       </main>
    );
 };

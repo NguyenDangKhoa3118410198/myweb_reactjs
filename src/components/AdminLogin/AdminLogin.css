@@ -44,14 +44,6 @@ input[type='password'] {
    border-radius: 18px !important;
 }
 
-input[type='text']:focus,
-input[type='email']:focus,
-input[type='password']:focus {
-   border: 1px solid #fff !important;
-   outline: none;
-   box-shadow: 0 0 10px #fff !important;
-}
-
 .btn-login {
    border-radius: 25px !important;
    margin: 10px 0;

@@ -15,11 +15,11 @@
 
 .add-todo {
    margin-left: 10px;
-   background-color: #8758ff !important;
+   background-color: #8758ff;
 }
 
 .todolist {
-   width: 390px;
+   width: 100%;
    height: 300px;
    overflow-y: scroll;
 }
@@ -50,7 +50,11 @@
    color: black;
 }
 
-input[type='text']:focus {
-   outline: #8758ff solid 2px !important;
-   border: 0 !important;
+.new-todo-input:focus {
+   border: none;
+   outline: #8758ff solid 2px;
+}
+
+.add-todo {
+   background-color: #8758ff !important;
 }

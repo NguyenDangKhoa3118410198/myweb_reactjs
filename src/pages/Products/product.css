@@ -1,0 +1,34 @@
+.product-container {
+   display: grid;
+   width: 100%;
+   height: 100%;
+   gap: 20px;
+   padding: 2rem;
+   grid-template-areas:
+      'table1 table2'
+      'nav  main'
+      'nav  foot';
+   grid-template-columns: 1fr 1fr;
+   overflow-y: scroll;
+}
+
+.product-table-item1 {
+   grid-area: table1;
+}
+
+.product-table-item2 {
+   grid-area: table2;
+}
+
+@media (max-width: 1545px) {
+   .product-container {
+      display: grid;
+      width: 100%;
+      gap: 20px;
+      padding: 2rem;
+      grid-template-areas:
+         'table1'
+         'table2';
+      grid-template-columns: 1fr;
+   }
+}

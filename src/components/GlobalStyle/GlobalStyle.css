@@ -84,21 +84,13 @@ input[type='password'] {
    display: block;
    width: 25rem;
    height: 40px;
-   border: 1.8px solid black;
+   border: 1px solid black;
    border-radius: 5px;
    font-size: 16px;
    font-weight: 450;
    color: black;
    background-color: var(--white);
    transition: all 0.3s ease-in-out;
-}
-
-input[type='text']:focus,
-input[type='email']:focus,
-input[type='password']:focus {
-   border: 5px solid var(--buttonSubmit);
-   outline: none;
-   box-shadow: 0 0 5px var(--buttonSubmit);
 }
 
 input[type='submit'] {
