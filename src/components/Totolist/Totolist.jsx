@@ -39,7 +39,7 @@ function Todolist() {
             <input
                type='text'
                className='new-todo-input'
-               placeholder=' New todo'
+               placeholder='New todo'
                value={todo}
                onChange={(e) => setTodo(e.target.value)}
             />

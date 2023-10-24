@@ -84,13 +84,14 @@ input[type='password'] {
    display: block;
    width: 25rem;
    height: 40px;
-   border: 1px solid black;
+   padding-left: 15px;
+   border: 2px #000 solid;
    border-radius: 5px;
    font-size: 16px;
    font-weight: 450;
    color: black;
    background-color: var(--white);
-   transition: all 0.3s ease-in-out;
+   transition: all 0.2s ease-in-out;
 }
 
 input[type='submit'] {

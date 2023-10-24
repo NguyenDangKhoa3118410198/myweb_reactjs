@@ -50,9 +50,14 @@
    color: black;
 }
 
+.new-todo-input {
+   padding-left: 15px;
+}
+
 .new-todo-input:focus {
    border: none;
    outline: #8758ff solid 2px;
+   transition: all 0.2s ease-in-out;
 }
 
 .add-todo {
