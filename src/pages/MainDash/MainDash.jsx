@@ -163,12 +163,8 @@ const MainDash = () => {
             </div>
          </div>
 
-         <div>
-            <ContextualExample />
-         </div>
-
          <MyCalendar />
-         <div style={{ width: '50%' }}>
+         <div>
             <div className='add-filter-wrapper'>
                <button
                   className='btn btn-success btn-add'

@@ -22,11 +22,7 @@ const MyCalendar = () => {
    };
 
    return (
-      <div
-         style={{
-            overflow: 'hidden',
-         }}
-      >
+      <div className='calendar-container'>
          <Calendar
             localizer={localizer}
             events={events}
@@ -37,9 +33,8 @@ const MyCalendar = () => {
                padding: '1.5rem 2rem',
                overflow: 'auto',
                color: '#000',
-               transform: 'scale(0.95)',
                fontWeight: 'bold',
-               borderRadius: '5px',
+               borderRadius: '15px',
                backgroundColor: '#fff',
             }}
             components={{

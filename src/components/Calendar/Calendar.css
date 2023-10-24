@@ -1,11 +1,15 @@
+.calendar-container {
+   padding: 1rem;
+}
+
 .rbc-month-row {
-  display: inline-table !important;
-  flex: 0 0 0 !important;
-  min-height: 100px !important;
+   display: inline-table !important;
+   flex: 0 0 0 !important;
+   min-height: 100px !important;
 }
 
 .rbc-event-content {
-  overflow: auto;
-  font-weight: lighter;
-  min-height: 20px !important;
+   overflow: auto;
+   font-weight: lighter;
+   min-height: 20px !important;
 }
