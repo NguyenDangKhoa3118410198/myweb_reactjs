@@ -1,7 +1,7 @@
 .side-menu {
    position: fixed;
    top: 0;
-   left: 0;
+   left: -200px;
    background-color: #333;
    opacity: 1;
    transition: transform 0.3s ease;
@@ -12,7 +12,7 @@
 }
 
 .side-menu.open {
-   left: -200px;
+   left: 0;
 }
 
 .sidebar {

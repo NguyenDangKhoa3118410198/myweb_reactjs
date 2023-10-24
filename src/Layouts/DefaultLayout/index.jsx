@@ -4,7 +4,7 @@ import Header from '../../components/Header/Header';
 import './AdminDefaultLayout.css';
 
 function AdminDefaultLayout({ name, children }) {
-   const [isMenuActive, activeMenu] = useState(true);
+   const [isMenuActive, activeMenu] = useState(false);
 
    const toggleBurger = () => {
       activeMenu(!isMenuActive);
