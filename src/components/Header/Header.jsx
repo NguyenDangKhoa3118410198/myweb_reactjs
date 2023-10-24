@@ -9,6 +9,7 @@ import {
    UilBars,
 } from '@iconscout/react-unicons';
 import { FaBell, FaCalendarCheck, FaQuestionCircle } from 'react-icons/fa';
+import { BsSunFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useDispatch, useSelector } from 'react-redux';
@@ -48,22 +49,18 @@ const Header = ({ nameContent, toggleBurger }) => {
 
             <h1 className='name-tab'>{nameContent}</h1>
          </div>
-         <div className='header-theme-toggle'>
-            <label className='switch'>
-               <input
-                  type='checkbox'
-                  onClick={() => {
-                     dispatch(toggleDarkMode());
-                  }}
-               />
-               <span className='slider round'></span>
-            </label>
-            <span className='theme-title'>Darkmode Header</span>
-         </div>
 
          <div ref={menuRef} className='nav-right'>
             <nav>
                <div className='user-utilities'>
+                  <div
+                     className='icon-menu-item'
+                     onClick={() => {
+                        dispatch(toggleDarkMode());
+                     }}
+                  >
+                     <BsSunFill />
+                  </div>
                   <div className='icon-menu-item'>
                      <FaBell />
                   </div>

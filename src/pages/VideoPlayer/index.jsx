@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 
-import { videos } from '../../Video';
+import { videos } from '../../Video/dataVideos';
 import './VideoPlayer.css';
 
 function VideoPlayer() {
@@ -11,7 +11,7 @@ function VideoPlayer() {
             {videos.map((video) =>
                video.weight === '500mbs' ? (
                   <div className='grid-item'>
-                     <div className='container-video' key={video.videoUrl}>
+                     <div className='container-video' key={video.id}>
                         <div className='video'>
                            <iframe
                               title={video.title}
@@ -31,7 +31,7 @@ function VideoPlayer() {
                   </div>
                ) : (
                   <div className='grid-item'>
-                     <div className='container-video' key={video.videoUrl}>
+                     <div className='container-video' key={video.id}>
                         <div className='video'>
                            <ReactPlayer
                               url={video.videoUrl}
