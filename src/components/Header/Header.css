@@ -101,11 +101,15 @@
 
 .user-profile {
    display: flex;
+   justify-content: center;
    align-items: center;
+   height: 40px;
+   width: 40px;
+   border-radius: 50%;
 }
 
-.user-name {
-   padding-left: 5px;
+.user-profile::after {
+   content: none;
 }
 
 .icon-menu-item {

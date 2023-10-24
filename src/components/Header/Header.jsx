@@ -72,12 +72,8 @@ const Header = ({ nameContent, toggleBurger }) => {
                   </div>
 
                   <Dropdown>
-                     <Dropdown.Toggle
-                        className='user-profile'
-                        id='dropdown-basic'
-                     >
+                     <Dropdown.Toggle className='user-profile'>
                         <UilUser />
-                        <span className='user-name'></span>
                      </Dropdown.Toggle>
 
                      <Dropdown.Menu>
