@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { UilFacebook, UilGoogle, UilTwitter } from '@iconscout/react-unicons';
-import './AdminLogin.css';
+import './adminLogin.css';
 
 const Login = () => {
    const [email, setEmail] = useState('');

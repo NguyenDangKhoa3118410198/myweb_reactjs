@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { UilTrashAlt } from '@iconscout/react-unicons';
 
-import './Todolist.css';
+import './todolist.css';
 import { v4 as uuidv4 } from 'uuid';
 function Todolist() {
    const [todo, setTodo] = useState('');

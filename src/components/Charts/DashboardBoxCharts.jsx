@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './DashboardBoxCharts.css';
+import './dashboardBoxCharts.css';
 // eslint-disable-next-line no-unused-vars
 import { Box, LargeBox } from './Box';
 import {

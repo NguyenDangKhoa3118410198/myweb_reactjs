@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line no-unused-vars
 import Menu, { MenuItem, MenuItemDropdown } from './Menu';
-import './Sidebar.css';
+import './sidebar.css';
 import Logo from '../../imgs/logo.png';
 import {
    UilEstate,
