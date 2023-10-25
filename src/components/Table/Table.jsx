@@ -4,14 +4,17 @@ import DataTable from 'react-data-table-component';
 import './table.css';
 import { TableCustomStyles } from './Custom/TableCustomStyles';
 
-const Table = ({ columns, data }) => {
+const Table = ({ columns, data, searchBox }) => {
    return (
       <div className='wrapper'>
          <DataTable
+            title='Table list ...'
+            subHeader
+            subHeaderComponent={searchBox}
             columns={columns}
             data={data}
             fixedHeader
-            fixedHeaderScrollHeight='440px'
+            fixedHeaderScrollHeight='300px'
             pagination
             paginationPerPage={5}
             paginationResetDefaultPage={1}
@@ -21,6 +24,7 @@ const Table = ({ columns, data }) => {
                rangeSeparatorText: 'out of',
             }}
             customStyles={TableCustomStyles}
+            className='react-table'
          />
       </div>
    );

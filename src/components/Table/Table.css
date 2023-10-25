@@ -61,6 +61,14 @@
    margin-right: 0.4rem;
 }
 
-/* .btn-success + .btn-danger {
-   margin: 0rem 0.2rem;
-} */
+.rdt_TableHeader {
+   padding: 10px;
+   border-top-left-radius: 15px;
+   border-top-right-radius: 15px;
+}
+
+.rdt_Pagination {
+   padding: 10px;
+   border-bottom-left-radius: 15px;
+   border-bottom-right-radius: 15px;
+}

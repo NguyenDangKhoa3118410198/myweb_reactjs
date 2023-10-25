@@ -75,6 +75,18 @@ const MainDash = () => {
          });
    }, []);
 
+   const searchBox = (searchTerm, handleSearch) => {
+      return (
+         <input
+            className='searchBox'
+            type='search'
+            placeholder='Search...'
+            value={searchTerm}
+            onChange={handleSearch}
+         />
+      );
+   };
+
    const handleAddClick = () => {
       setCurrentRecord(null);
       setIsModalOpen(true);
@@ -172,13 +184,6 @@ const MainDash = () => {
                >
                   Add
                </button>
-               <input
-                  className='searchBox'
-                  type='text'
-                  placeholder='Search...'
-                  value={searchTerm}
-                  onChange={handleSearch}
-               />
             </div>
             <CrudModal
                record={currentRecord}
@@ -189,7 +194,11 @@ const MainDash = () => {
                onDelete={handleDelete}
             />
 
-            <Table columns={columns} data={filterData(records)} />
+            <Table
+               columns={columns}
+               data={filterData(records)}
+               searchBox={searchBox(searchTerm, handleSearch)}
+            />
          </div>
       </main>
    );
