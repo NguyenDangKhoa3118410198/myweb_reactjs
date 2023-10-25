@@ -176,7 +176,11 @@ const MainDash = () => {
          </div>
 
          <MyCalendar />
-         <div style={{ padding: '1rem' }}>
+         <div
+            style={{
+               padding: '1rem',
+            }}
+         >
             <div className='add-filter-wrapper'>
                <button
                   className='btn btn-success btn-add'

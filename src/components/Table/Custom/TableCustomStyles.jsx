@@ -1,4 +1,9 @@
 const TableCustomStyles = {
+   table: {
+      style: {
+         minHeight: '300px',
+      },
+   },
    rows: {
       style: {
          minHeight: '46px',
