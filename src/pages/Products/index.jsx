@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { columnsProduct } from '../../Data/columns';
 import axios from 'axios';
 import Table from '../../components/Table/Table';
+import { v4 as uuidv4 } from 'uuid';
 
-import { columnsProduct } from '../../Data/columns';
 import './product.css';
 function Products() {
    const [records, setRecords] = useState([]);
@@ -12,7 +13,7 @@ function Products() {
          .then((response) => {
             const updatedData = response.data.map((user) => {
                return {
-                  id: user.id,
+                  id: uuidv4(),
                   name: user.name,
                   username: user.username,
                   email: user.email,

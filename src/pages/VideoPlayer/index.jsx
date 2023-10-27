@@ -2,7 +2,7 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 
 import { videos } from '../../Video/dataVideos';
-import './VideoPlayer.css';
+import './videoPlayer.css';
 
 function VideoPlayer() {
    return (

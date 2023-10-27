@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CrudModal from '../../components/ReactModal/CrudModal';
-import ActionsCell from '../../components/ReactModal/ActionsCell/ActionsCell';
 import Table from '../../components/Table/Table';
-import './Orders.css';
+import TableActions from '../../components/Table/TableActions/TableActions';
+import './orders.css';
+import { v4 as uuidv4 } from 'uuid';
 
 function Orders() {
    const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,14 +41,7 @@ function Orders() {
       {
          name: 'Action',
          sortable: false,
-         cell: (record) => (
-            <ActionsCell
-               record={record}
-               handleEditClick={handleEditClick}
-               handleAddClick={handleAddClick}
-               handleDelete={handleDelete}
-            />
-         ),
+         cell: (record) => TableActions(handleEditClick, handleDelete, record),
       },
    ];
 
@@ -61,7 +55,7 @@ function Orders() {
                .map((cart) => {
                   return cart.products.map((product) => {
                      return {
-                        id: product.id,
+                        id: uuidv4(),
                         title: product.title,
                         price: product.price,
                         quantity: product.quantity,

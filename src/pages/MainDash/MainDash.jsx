@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { UilEllipsisV } from '@iconscout/react-unicons';
 import axios from 'axios';
 
 import Table from '../../components/Table/Table';
-import './MainDash.css';
 import CrudModal from '../../components/ReactModal/CrudModal';
 // import ActionsCell from '../../components/ReactModal/ActionsCell/ActionsCell';
 import DashboardBoxChart from '../../components/Charts/DashboardBoxCharts';
 import MyCalendar from '../../components/Calendar';
-import { useSelector } from 'react-redux';
-
 import ContextualExample from '../../components/ProgressBar';
 import Todolist from '../../components/Totolist/Totolist';
 import CircularProgressbarChart from '../../components/Charts/ChartTemplate/CircularProgressbarChart';
-import { UilEllipsisV } from '@iconscout/react-unicons';
-import Dropdown from 'react-bootstrap/Dropdown';
-import { BsThreeDotsVertical } from 'react-icons/bs';
+import TableActions from '../../components/Table/TableActions/TableActions';
+import './mainDash.css';
 
 const MainDash = () => {
    const [isModalOpen, setIsModalOpen] = useState(false);
@@ -48,31 +46,7 @@ const MainDash = () => {
       {
          name: 'Action',
          sortable: false,
-         cell: (record) => (
-            <Dropdown>
-               <Dropdown.Toggle className='table-actions'>
-                  <BsThreeDotsVertical />
-               </Dropdown.Toggle>
-
-               <Dropdown.Menu>
-                  <Dropdown.Item className='item-action'>View</Dropdown.Item>
-                  <Dropdown.Item
-                     className='item-action'
-                     onClick={() => handleEditClick(record)}
-                  >
-                     Edit
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                     className='item-action'
-                     onClick={() =>
-                        setRecords(records.filter((r) => r.id !== record.id))
-                     }
-                  >
-                     Delete
-                  </Dropdown.Item>
-               </Dropdown.Menu>
-            </Dropdown>
-         ),
+         cell: (record) => TableActions(handleEditClick, handleDelete, record),
       },
    ];
 

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CrudModal from '../../components/ReactModal/CrudModal';
-// import ActionsCell from '../../components/ReactModal/ActionsCell/ActionsCell';
 import Table from '../../components/Table/Table';
-import { BsThreeDotsVertical } from 'react-icons/bs';
-import Dropdown from 'react-bootstrap/Dropdown';
-import './Customers.css';
+import TableActions from '../../components/Table/TableActions/TableActions';
+import { v4 as uuidv4 } from 'uuid';
+import './customers.css';
 
 function Customers() {
    const [isModalOpen, setIsModalOpen] = useState(false);
@@ -57,39 +56,7 @@ function Customers() {
       {
          name: 'Action',
          sortable: false,
-         cell: (record) => (
-            <Dropdown>
-               <Dropdown.Toggle className='table-actions'>
-                  <BsThreeDotsVertical />
-               </Dropdown.Toggle>
-
-               <Dropdown.Menu>
-                  <Dropdown.Item className='item-action'>View</Dropdown.Item>
-                  <Dropdown.Item
-                     className='item-action'
-                     onClick={() => handleEditClick(record)}
-                  >
-                     Edit
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                     className='item-action'
-                     onClick={() =>
-                        setRecords(records.filter((r) => r.id !== record.id))
-                     }
-                  >
-                     Delete
-                  </Dropdown.Item>
-               </Dropdown.Menu>
-            </Dropdown>
-         ),
-         // cell: (record) => (
-         //   <ActionsCell
-         //     record={record}
-         //     handleEditClick={handleEditClick}
-         //     handleAddClick={handleAddClick}
-         //     handleDelete={handleDelete}
-         //   />
-         // ),
+         cell: (record) => TableActions(handleEditClick, handleDelete, record),
       },
    ];
 
@@ -101,7 +68,7 @@ function Customers() {
 
             const infoCustomers = data.users.map((user) => {
                return {
-                  id: user.id,
+                  id: uuidv4(),
                   firstName: user.firstName,
                   lastName: user.lastName,
                   maidenName: user.maidenName,
