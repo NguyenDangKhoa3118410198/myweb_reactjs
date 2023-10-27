@@ -13,7 +13,7 @@ const Table = ({ columns, data, searchBox }) => {
             subHeaderComponent={searchBox}
             columns={columns}
             data={data}
-            fixedHeader
+            // fixedHeader
             fixedHeaderScrollHeight='300px'
             pagination
             paginationPerPage={5}
