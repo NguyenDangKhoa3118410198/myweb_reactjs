@@ -17,8 +17,7 @@ function Todolist() {
             ...prevTodolist,
             { id: uuidv4(), task: todo.trim(), completed: false },
          ]);
-      }
-      setTodo('');
+      } else setTodo('');
    };
 
    const handleToggleTodo = (id) => {

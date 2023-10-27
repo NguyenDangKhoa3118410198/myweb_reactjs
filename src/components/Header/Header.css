@@ -13,6 +13,12 @@
    position: relative;
 }
 
+.nav-user-header-container {
+   &.darkmode {
+      background: linear-gradient(to bottom right, #000, #141b2d, #ddd);
+   }
+}
+
 .burger-icon {
    display: flex;
    justify-content: center;
@@ -140,8 +146,7 @@
 }
 
 .darkmode {
-   background-color: #000;
-   border-bottom: 1px solid #fff;
+   background-color: #141b2d;
 }
 
 .darkmode .nav-left,
