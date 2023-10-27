@@ -3,8 +3,9 @@ import axios from 'axios';
 import CrudModal from '../../components/ReactModal/CrudModal';
 import Table from '../../components/Table/Table';
 import TableActions from '../../components/Table/TableActions/TableActions';
-import './orders.css';
 import { v4 as uuidv4 } from 'uuid';
+import { searchBox } from '../../components/Table/TableActions/handleActions';
+import './orders.css';
 
 function Orders() {
    const [isModalOpen, setIsModalOpen] = useState(false);
@@ -123,13 +124,6 @@ function Orders() {
             >
                Add
             </button>
-            <input
-               className='searchBox'
-               type='text'
-               placeholder='Search...'
-               value={searchTerm}
-               onChange={handleSearch}
-            />
          </div>
          <CrudModal
             record={currentRecord}
@@ -140,7 +134,11 @@ function Orders() {
             onDelete={handleDelete}
          />
 
-         <Table columns={columns} data={filterData(records)} />
+         <Table
+            columns={columns}
+            data={filterData(records)}
+            searchBox={searchBox(searchTerm, handleSearch)}
+         />
       </main>
    );
 }

@@ -5,13 +5,13 @@ import axios from 'axios';
 
 import Table from '../../components/Table/Table';
 import CrudModal from '../../components/ReactModal/CrudModal';
-// import ActionsCell from '../../components/ReactModal/ActionsCell/ActionsCell';
 import DashboardBoxChart from '../../components/Charts/DashboardBoxCharts';
 import MyCalendar from '../../components/Calendar';
 import ContextualExample from '../../components/ProgressBar';
 import Todolist from '../../components/Totolist/Totolist';
 import CircularProgressbarChart from '../../components/Charts/ChartTemplate/CircularProgressbarChart';
 import TableActions from '../../components/Table/TableActions/TableActions';
+import { searchBox } from '../../components/Table/TableActions/handleActions';
 import './mainDash.css';
 
 const MainDash = () => {
@@ -68,18 +68,6 @@ const MainDash = () => {
             console.log(error);
          });
    }, []);
-
-   const searchBox = (searchTerm, handleSearch) => {
-      return (
-         <input
-            className='searchBox'
-            type='search'
-            placeholder='Search...'
-            value={searchTerm}
-            onChange={handleSearch}
-         />
-      );
-   };
 
    const handleAddClick = () => {
       setCurrentRecord(null);

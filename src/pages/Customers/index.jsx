@@ -4,6 +4,7 @@ import CrudModal from '../../components/ReactModal/CrudModal';
 import Table from '../../components/Table/Table';
 import TableActions from '../../components/Table/TableActions/TableActions';
 import { v4 as uuidv4 } from 'uuid';
+import { searchBox } from '../../components/Table/TableActions/handleActions';
 import './customers.css';
 
 function Customers() {
@@ -137,13 +138,6 @@ function Customers() {
             >
                Add
             </button>
-            <input
-               className='searchBox'
-               type='text'
-               placeholder='Search...'
-               value={searchTerm}
-               onChange={handleSearch}
-            />
          </div>
          <CrudModal
             record={currentRecord}
@@ -154,7 +148,11 @@ function Customers() {
             onDelete={handleDelete}
          />
 
-         <Table columns={columns} data={filterData(records)} />
+         <Table
+            columns={columns}
+            data={filterData(records)}
+            searchBox={searchBox(searchTerm, handleSearch)}
+         />
       </main>
    );
 }
