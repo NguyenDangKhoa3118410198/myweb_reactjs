@@ -5,6 +5,7 @@ import Table from '../../components/Table/Table';
 import TableActions from '../../components/Table/TableActions/TableActions';
 import { v4 as uuidv4 } from 'uuid';
 import { searchBox } from '../../components/Table/TableActions/handleActions';
+import { columnsCustomer } from '../../Data/columns';
 import './customers.css';
 
 function Customers() {
@@ -13,53 +14,68 @@ function Customers() {
    const [currentRecord, setCurrentRecord] = useState(null);
    const [searchTerm, setSearchTerm] = useState('');
 
-   const columns = [
-      {
-         name: 'ID',
-         selector: (row) => row.id,
-         sortable: true,
-      },
-      {
-         name: 'First name',
-         selector: (row) => row.firstName,
-         sortable: true,
-      },
-      {
-         name: 'Last name',
-         selector: (row) => row.lastName,
-         sortable: true,
-      },
-      {
-         name: 'Maiden Name',
-         selector: (row) => row.maidenName,
-         sortable: true,
-      },
-      {
-         name: 'Age',
-         selector: (row) => row.age,
-         sortable: true,
-      },
-      {
-         name: 'Gender',
-         selector: (row) => row.gender,
-         sortable: true,
-      },
-      {
-         name: 'Phone',
-         selector: (row) => row.phone,
-         sortable: true,
-      },
-      {
-         name: 'Email',
-         selector: (row) => row.email,
-         sortable: true,
-      },
-      {
-         name: 'Action',
-         sortable: false,
-         cell: (record) => TableActions(handleEditClick, handleDelete, record),
-      },
-   ];
+   const handleEditClick = (record) => {
+      setCurrentRecord(record);
+      setIsModalOpen(true);
+   };
+
+   const handleDelete = (record) => {
+      if (records.length === 0) {
+         console.log('No records to delete');
+         return;
+      }
+      setRecords(records.filter((r) => r.id !== record.id));
+   };
+
+   const columns = columnsCustomer(handleEditClick, handleDelete);
+
+   // const columns = [
+   //    {
+   //       name: 'ID',
+   //       selector: (row) => row.id,
+   //       sortable: true,
+   //    },
+   //    {
+   //       name: 'First name',
+   //       selector: (row) => row.firstName,
+   //       sortable: true,
+   //    },
+   //    {
+   //       name: 'Last name',
+   //       selector: (row) => row.lastName,
+   //       sortable: true,
+   //    },
+   //    {
+   //       name: 'Maiden Name',
+   //       selector: (row) => row.maidenName,
+   //       sortable: true,
+   //    },
+   //    {
+   //       name: 'Age',
+   //       selector: (row) => row.age,
+   //       sortable: true,
+   //    },
+   //    {
+   //       name: 'Gender',
+   //       selector: (row) => row.gender,
+   //       sortable: true,
+   //    },
+   //    {
+   //       name: 'Phone',
+   //       selector: (row) => row.phone,
+   //       sortable: true,
+   //    },
+   //    {
+   //       name: 'Email',
+   //       selector: (row) => row.email,
+   //       sortable: true,
+   //    },
+   //    {
+   //       name: 'Action',
+   //       sortable: false,
+   //       cell: (record) => TableActions(handleEditClick, handleDelete, record),
+   //    },
+   // ];
 
    useEffect(() => {
       axios
@@ -91,11 +107,6 @@ function Customers() {
       setIsModalOpen(true);
    };
 
-   const handleEditClick = (record) => {
-      setCurrentRecord(record);
-      setIsModalOpen(true);
-   };
-
    const handleSave = (record) => {
       if (record.id) {
          setRecords(
@@ -105,14 +116,6 @@ function Customers() {
          const newRecord = { ...record, id: Date.now() };
          setRecords([...records, newRecord]);
       }
-   };
-
-   const handleDelete = (record) => {
-      if (records.length === 0) {
-         console.log('No records to delete');
-         return;
-      }
-      setRecords(records.filter((r) => r.id !== record.id));
    };
 
    function handleSearch(event) {

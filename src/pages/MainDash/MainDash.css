@@ -66,3 +66,32 @@
    align-self: stretch;
    height: 91%;
 }
+
+.form-panel-container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.form-panel {
+   width: max-content;
+   padding: 10px;
+   border: 1px solid black;
+   margin: 2rem 0;
+   background-color: #fff;
+}
+
+.title-panel {
+   padding: 10px;
+   font-size: 24px;
+   font-weight: bold;
+   text-align: center;
+}
+
+.form-control-input {
+   padding: 8px 0;
+}
+
+.form-control-btn {
+   margin: 10px;
+}
