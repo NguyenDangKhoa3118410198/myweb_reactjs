@@ -11,9 +11,9 @@ import Todolist from '../../components/Totolist/Totolist';
 import CircularProgressbarChart from '../../components/Charts/ChartTemplate/CircularProgressbarChart';
 import { searchBox } from '../../components/Table/TableActions/handleActions';
 import { columnsMainDash } from '../../Data/columns';
-import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 import './mainDash.css';
+import FormPanel from './FormPanel';
 
 const MainDash = () => {
    const [records, setRecords] = useState([]);
@@ -48,6 +48,12 @@ const MainDash = () => {
             console.log(error);
          });
    }, []);
+
+   const handleClose = () => {
+      handleSetFormData();
+      setIsAddPanelOpen(false);
+      setIsEditPanelOpen(false);
+   };
 
    const handleSetFormData = () => {
       setFormData({
@@ -168,113 +174,23 @@ const MainDash = () => {
          <MyCalendar />
 
          {isAddPanelOpen && (
-            <div className='form-panel-container'>
-               <div className='form-panel'>
-                  <p className='title-panel'>Add</p>
-                  <Form onSubmit={handleSubmit}>
-                     <FormGroup className='form-control-input'>
-                        <FormControl
-                           type='text'
-                           placeholder='Họ tên'
-                           name='name'
-                           value={formData.name}
-                           onChange={(e) => {
-                              setFormData({
-                                 ...formData,
-                                 name: e.target.value,
-                              });
-                           }}
-                        />
-                     </FormGroup>
-                     <FormGroup className='form-control-input'>
-                        <FormControl
-                           type='text'
-                           placeholder='Tên đăng nhập'
-                           name='username'
-                           value={formData.username}
-                           onChange={(e) => {
-                              setFormData({
-                                 ...formData,
-                                 username: e.target.value,
-                              });
-                           }}
-                        />
-                     </FormGroup>
-                     <FormGroup className='form-control-input'>
-                        <FormControl
-                           type='email'
-                           placeholder='Email'
-                           name='email'
-                           value={formData.email}
-                           onChange={(e) => {
-                              setFormData({
-                                 ...formData,
-                                 email: e.target.value,
-                              });
-                           }}
-                        />
-                     </FormGroup>
-                     <Button className='form-control-btn' type='submit'>
-                        Add
-                     </Button>
-                  </Form>
-               </div>
-            </div>
+            <FormPanel
+               title='Add'
+               handleSubmit={handleSubmit}
+               formData={formData}
+               setFormData={setFormData}
+               handleClose={handleClose}
+            />
          )}
 
          {isEditPanelOpen && (
-            <div className='form-panel-container'>
-               <div className='form-panel'>
-                  <p className='title-panel'>Edit</p>
-                  <Form onSubmit={handleEdit}>
-                     <FormGroup className='form-control-input'>
-                        <FormControl
-                           type='text'
-                           placeholder='Họ tên'
-                           name='name'
-                           value={formData.name}
-                           onChange={(e) => {
-                              setFormData({
-                                 ...formData,
-                                 name: e.target.value,
-                              });
-                           }}
-                        />
-                     </FormGroup>
-                     <FormGroup className='form-control-input'>
-                        <FormControl
-                           type='text'
-                           placeholder='Tên đăng nhập'
-                           name='username'
-                           value={formData.username}
-                           onChange={(e) => {
-                              setFormData({
-                                 ...formData,
-                                 username: e.target.value,
-                              });
-                           }}
-                        />
-                     </FormGroup>
-                     <FormGroup className='form-control-input'>
-                        <FormControl
-                           type='email'
-                           placeholder='Email'
-                           name='email'
-                           value={formData.email}
-                           onChange={(e) => {
-                              setFormData({
-                                 ...formData,
-                                 email: e.target.value,
-                              });
-                           }}
-                        />
-                     </FormGroup>
-                     <Button className='form-control-btn' type='submit'>
-                        Edit
-                     </Button>
-                  </Form>
-               </div>
-            </div>
+            <FormPanel
+               title='Edit'
+               handleSubmit={handleEdit}
+               formData={formData}
+               setFormData={setFormData}
+               handleClose={handleClose}
+            />
          )}
 
          <div

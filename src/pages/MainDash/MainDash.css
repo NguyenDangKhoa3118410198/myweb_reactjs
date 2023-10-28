@@ -67,6 +67,7 @@
    height: 91%;
 }
 
+/* FormPanel.jsx */
 .form-panel-container {
    display: flex;
    align-items: center;
@@ -94,4 +95,14 @@
 
 .form-control-btn {
    margin: 10px;
+}
+
+.button-group-form-panel {
+   display: flex;
+   flex-direction: row;
+}
+
+.button-group-form-panel {
+   display: flex;
+   flex-direction: row;
 }
