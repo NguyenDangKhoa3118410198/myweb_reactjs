@@ -49,7 +49,8 @@ const MainDash = () => {
          });
    }, []);
 
-   const handleClose = () => {
+   const handleClose = (e) => {
+      e.preventDefault();
       handleSetFormData();
       setIsAddPanelOpen(false);
       setIsEditPanelOpen(false);
