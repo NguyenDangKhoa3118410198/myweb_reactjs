@@ -65,8 +65,14 @@ const MainDash = () => {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      handleSave(null, formData);
-      handleSetFormData();
+      if (formData && Object.values(formData).some((value) => value !== null)) {
+         handleSave(null, formData);
+         handleSetFormData();
+      } else {
+         console.log(
+            'Không thể lưu dữ liệu vì formData rỗng hoặc chứa giá trị null.'
+         );
+      }
    };
 
    const handleEditClick = (record) => {
@@ -82,8 +88,14 @@ const MainDash = () => {
 
    const handleEdit = (e) => {
       e.preventDefault();
-      handleSave(currentRecordId, formData);
-      handleSetFormData();
+      if (formData && Object.values(formData).some((value) => value !== null)) {
+         handleSave(currentRecordId, formData);
+         handleSetFormData();
+      } else {
+         console.log(
+            'Không thể lưu dữ liệu vì formData rỗng hoặc chứa giá trị null.'
+         );
+      }
    };
 
    const handleSave = (currentRecordId, record) => {

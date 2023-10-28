@@ -26,6 +26,7 @@ function FormPanel({
                            name: e.target.value,
                         });
                      }}
+                     required
                   />
                </FormGroup>
                <FormGroup className='form-control-input'>
@@ -40,6 +41,7 @@ function FormPanel({
                            username: e.target.value,
                         });
                      }}
+                     required
                   />
                </FormGroup>
                <FormGroup className='form-control-input'>
@@ -54,6 +56,7 @@ function FormPanel({
                            email: e.target.value,
                         });
                      }}
+                     required
                   />
                </FormGroup>
                <div className='button-group-form-panel'>
