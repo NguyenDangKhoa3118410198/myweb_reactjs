@@ -89,7 +89,7 @@ input[type='search'] {
    border: 2px #000 solid;
    border-radius: 10px;
    font-size: 16px;
-   font-weight: 450;
+   font-weight: 500;
    color: black;
    background-color: var(--white);
    transition: all 0.2s ease-in-out;
@@ -170,4 +170,22 @@ button[type='cancel']:hover {
    color: #fff;
    background-color: var(--buttonCancelHover);
    border-color: #0062cc;
+}
+
+.table-actions {
+   background-color: #fff;
+   color: black;
+   border: none;
+
+   &.btn,
+   &.btn:active,
+   &.btn:hover,
+   &.btn.show {
+      background-color: #fff;
+      color: black;
+      border: none;
+   }
+   &::after {
+      content: none;
+   }
 }

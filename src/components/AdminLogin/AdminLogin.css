@@ -40,9 +40,9 @@
 }
 
 .btn-login {
-   border-radius: 25px !important;
+   font-size: large;
+   font-weight: 800;
    margin: 10px 0;
-   width: 70px !important;
 }
 
 .forgot-password {

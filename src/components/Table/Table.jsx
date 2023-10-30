@@ -4,11 +4,11 @@ import DataTable from 'react-data-table-component';
 import './table.css';
 import { TableCustomStyles } from './Custom/TableCustomStyles';
 
-const Table = ({ columns, data, searchBox }) => {
+const Table = ({ title, columns, data, searchBox }) => {
    return (
       <div className='wrapper'>
          <DataTable
-            title='Table list ...'
+            title={title ? title : 'List table ....'}
             subHeader
             subHeaderComponent={searchBox}
             columns={columns}

@@ -6,24 +6,6 @@
    width: 100%;
 }
 
-.table-actions {
-   background-color: #fff;
-   color: black;
-   border: none;
-
-   &.btn,
-   &.btn:active,
-   &.btn:hover,
-   &.btn.show {
-      background-color: #fff;
-      color: black;
-      border: none;
-   }
-   &::after {
-      content: none;
-   }
-}
-
 .item-action {
    padding: 10px;
 }

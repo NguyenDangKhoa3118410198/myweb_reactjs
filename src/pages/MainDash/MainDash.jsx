@@ -71,7 +71,9 @@ const MainDash = () => {
       );
 
       if (invalidEmail) {
-         console.log('Email exists - ', invalidEmail);
+         alert(
+            `The email "${formData.email}" already exists.\n Please use a different email address.`
+         );
          return;
       }
 
@@ -233,6 +235,7 @@ const MainDash = () => {
             </div>
 
             <Table
+               title='List of users'
                columns={columns}
                data={filterData(records)}
                searchBox={searchBox(searchTerm, handleSearch)}
