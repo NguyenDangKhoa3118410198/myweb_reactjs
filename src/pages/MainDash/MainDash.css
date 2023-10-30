@@ -69,16 +69,14 @@
 
 /* FormPanel.jsx */
 .form-panel-container {
-   display: flex;
-   align-items: center;
-   justify-content: center;
+   width: 100%;
 }
 
 .form-panel {
-   width: max-content;
+   width: 100%;
    padding: 10px;
-   border: 1px solid black;
    margin: 2rem 0;
+   border-radius: 15px;
    background-color: #fff;
 }
 
@@ -89,8 +87,16 @@
    text-align: center;
 }
 
+.form-container {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+}
+
 .form-control-input {
-   padding: 8px 0;
+   padding: 8px 5px;
 }
 
 .form-control-btn {
@@ -105,4 +111,12 @@
 .button-group-form-panel {
    display: flex;
    flex-direction: row;
+}
+
+@media screen and (max-width: 1068px) {
+   .form-container {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+   }
 }

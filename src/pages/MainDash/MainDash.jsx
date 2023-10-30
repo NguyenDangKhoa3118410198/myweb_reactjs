@@ -195,26 +195,6 @@ const MainDash = () => {
 
          <MyCalendar />
 
-         {isAddPanelOpen && (
-            <FormPanel
-               title='Add'
-               handleSubmit={handleSubmit}
-               formData={formData}
-               setFormData={setFormData}
-               handleClose={handleClose}
-            />
-         )}
-
-         {isEditPanelOpen && (
-            <FormPanel
-               title='Edit'
-               handleSubmit={handleEdit}
-               formData={formData}
-               setFormData={setFormData}
-               handleClose={handleClose}
-            />
-         )}
-
          <div
             style={{
                padding: '1rem',
@@ -230,6 +210,26 @@ const MainDash = () => {
                >
                   Add
                </button>
+            </div>
+            <div className='form-panel-action'>
+               {isAddPanelOpen && (
+                  <FormPanel
+                     title='Add'
+                     handleSubmit={handleSubmit}
+                     formData={formData}
+                     setFormData={setFormData}
+                     handleClose={handleClose}
+                  />
+               )}
+               {isEditPanelOpen && (
+                  <FormPanel
+                     title='Edit'
+                     handleSubmit={handleEdit}
+                     formData={formData}
+                     setFormData={setFormData}
+                     handleClose={handleClose}
+                  />
+               )}
             </div>
 
             <Table

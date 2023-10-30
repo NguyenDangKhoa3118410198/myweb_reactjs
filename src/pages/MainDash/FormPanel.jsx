@@ -13,7 +13,7 @@ function FormPanel({
       <div className='form-panel-container'>
          <div className='form-panel'>
             <p className='title-panel'>{title}</p>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} className='form-container'>
                <FormGroup className='form-control-input'>
                   <FormControl
                      type='text'

@@ -39,11 +39,6 @@
    font-weight: bold;
 }
 
-input[type='text'],
-input[type='password'] {
-   border-radius: 18px !important;
-}
-
 .btn-login {
    border-radius: 25px !important;
    margin: 10px 0;
