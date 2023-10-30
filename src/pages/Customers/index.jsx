@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CrudModal from '../../components/ReactModal/CrudModal';
 import Table from '../../components/Table/Table';
-import TableActions from '../../components/Table/TableActions/TableActions';
 import { v4 as uuidv4 } from 'uuid';
 import { searchBox } from '../../components/Table/TableActions/handleActions';
 import { columnsCustomer } from '../../Data/columns';
@@ -28,54 +27,6 @@ function Customers() {
    };
 
    const columns = columnsCustomer(handleEditClick, handleDelete);
-
-   // const columns = [
-   //    {
-   //       name: 'ID',
-   //       selector: (row) => row.id,
-   //       sortable: true,
-   //    },
-   //    {
-   //       name: 'First name',
-   //       selector: (row) => row.firstName,
-   //       sortable: true,
-   //    },
-   //    {
-   //       name: 'Last name',
-   //       selector: (row) => row.lastName,
-   //       sortable: true,
-   //    },
-   //    {
-   //       name: 'Maiden Name',
-   //       selector: (row) => row.maidenName,
-   //       sortable: true,
-   //    },
-   //    {
-   //       name: 'Age',
-   //       selector: (row) => row.age,
-   //       sortable: true,
-   //    },
-   //    {
-   //       name: 'Gender',
-   //       selector: (row) => row.gender,
-   //       sortable: true,
-   //    },
-   //    {
-   //       name: 'Phone',
-   //       selector: (row) => row.phone,
-   //       sortable: true,
-   //    },
-   //    {
-   //       name: 'Email',
-   //       selector: (row) => row.email,
-   //       sortable: true,
-   //    },
-   //    {
-   //       name: 'Action',
-   //       sortable: false,
-   //       cell: (record) => TableActions(handleEditClick, handleDelete, record),
-   //    },
-   // ];
 
    useEffect(() => {
       axios

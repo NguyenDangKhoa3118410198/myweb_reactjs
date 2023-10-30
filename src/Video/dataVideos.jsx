@@ -1,13 +1,15 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const videos = [
    {
-      id: '1',
+      id: uuidv4(),
       videoUrl:
          'https://drive.google.com/uc?export=download&id=1KX0qanBiQ7RJjW38DuNxAKkSRJQexLsg',
       title: 'Video 1',
       description: 'Description for Video 1',
    },
    {
-      id: '2',
+      id: uuidv4(),
       videoUrl:
          'https://www.youtube.com/embed/o0GYK5Whk80?showinfo=0&enablejsapi=1&origin=http://localhost:9000',
       //  videoUrl: "https://www.youtube.com/watch?v=R8CRG6iFi-Q",

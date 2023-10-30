@@ -10,8 +10,8 @@ function VideoPlayer() {
          <div className='grid-container'>
             {videos.map((video) =>
                video.weight === '500mbs' ? (
-                  <div className='grid-item'>
-                     <div className='container-video' key={video.id}>
+                  <div className='grid-item' key={video.id}>
+                     <div className='container-video'>
                         <div className='video'>
                            <iframe
                               title={video.title}
@@ -30,8 +30,8 @@ function VideoPlayer() {
                      </div>
                   </div>
                ) : (
-                  <div className='grid-item'>
-                     <div className='container-video' key={video.id}>
+                  <div className='grid-item' key={video.id}>
+                     <div className='container-video'>
                         <div className='video'>
                            <ReactPlayer
                               url={video.videoUrl}

@@ -106,6 +106,8 @@
 .button-group-form-panel {
    display: flex;
    flex-direction: row;
+   justify-content: center;
+   align-items: center;
 }
 
 .button-group-form-panel {
