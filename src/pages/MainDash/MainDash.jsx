@@ -66,7 +66,16 @@ const MainDash = () => {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      if (formData && Object.values(formData).some((value) => value !== null)) {
+      const invalidEmail = records.some(
+         (record) => record.email === formData.email
+      );
+
+      if (invalidEmail) {
+         console.log('Email exists - ', invalidEmail);
+         return;
+      }
+
+      if (Object.values(formData).some((value) => value !== null)) {
          handleSave(null, formData);
          handleSetFormData();
       } else {
@@ -135,7 +144,7 @@ const MainDash = () => {
          Object.values(row).some(
             (value) =>
                typeof value === 'string' &&
-               value.toLowerCase().includes(searchTerm.toLowerCase())
+               value.toLowerCase().includes(searchTerm.toLowerCase().trim())
          )
       );
    }
