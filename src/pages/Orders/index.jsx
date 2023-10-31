@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Table from '../../components/Table/Table';
-import TableActions from '../../components/Table/TableActions/TableActions';
+import { columnsOrder } from '../../Data/columns';
+
 import { v4 as uuidv4 } from 'uuid';
 import { searchBox } from '../../components/Table/TableActions/handleActions';
 import './orders.css';
 import FormPanel from './FormPanel';
 
 function Orders() {
-   const [isModalOpen, setIsModalOpen] = useState(false);
    const [records, setRecords] = useState([]);
    const [currentRecordId, setCurrentRecordId] = useState(null);
    const [searchTerm, setSearchTerm] = useState('');
@@ -16,39 +16,6 @@ function Orders() {
    // ------------------------------------
    const [isAddPanelOpen, setIsAddPanelOpen] = useState(false);
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
-
-   const columns = [
-      {
-         name: 'ID',
-         selector: (row) => row.id,
-         sortable: true,
-      },
-      {
-         name: 'Title',
-         selector: (row) => row.title,
-         sortable: true,
-      },
-      {
-         name: 'Amount',
-         selector: (row) => row.amount,
-         sortable: true,
-      },
-      {
-         name: 'Price',
-         selector: (row) => row.price,
-         sortable: true,
-      },
-      {
-         name: 'Total',
-         selector: (row) => row.total,
-         sortable: true,
-      },
-      {
-         name: 'Action',
-         sortable: false,
-         cell: (record) => TableActions(handleEditClick, handleDelete, record),
-      },
-   ];
 
    const [formData, setFormData] = useState({
       title: '',
@@ -183,6 +150,7 @@ function Orders() {
          )
       );
    }
+   const columns = columnsOrder(handleEditClick, handleDelete);
 
    return (
       <main className='Orders'>

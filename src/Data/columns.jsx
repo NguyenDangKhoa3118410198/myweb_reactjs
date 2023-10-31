@@ -98,3 +98,36 @@ export const columnsMainDash = (handleEditClick, handleDelete) => [
       cell: (record) => TableActions(handleEditClick, handleDelete, record),
    },
 ];
+
+export const columnsOrder = (handleEditClick, handleDelete) => [
+   {
+      name: 'ID',
+      selector: (row) => row.id,
+      sortable: true,
+   },
+   {
+      name: 'Title',
+      selector: (row) => row.title,
+      sortable: true,
+   },
+   {
+      name: 'Amount',
+      selector: (row) => row.amount,
+      sortable: true,
+   },
+   {
+      name: 'Price',
+      selector: (row) => row.price,
+      sortable: true,
+   },
+   {
+      name: 'Total',
+      selector: (row) => row.total,
+      sortable: true,
+   },
+   {
+      name: 'Action',
+      sortable: false,
+      cell: (record) => TableActions(handleEditClick, handleDelete, record),
+   },
+];
