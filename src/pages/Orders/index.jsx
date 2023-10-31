@@ -4,7 +4,10 @@ import Table from '../../components/Table/Table';
 import { columnsOrder } from '../../Data/columns';
 
 import { v4 as uuidv4 } from 'uuid';
-import { searchBox } from '../../components/Table/TableActions/handleActions';
+import {
+   removeExtraSpaces,
+   searchBox,
+} from '../../components/Table/TableActions/handleActions';
 import './orders.css';
 import FormPanel from './FormPanel';
 
@@ -73,10 +76,22 @@ function Orders() {
 
    const handleSubmit = (e) => {
       e.preventDefault();
+      caculateTotal(formData);
 
-      if (Object.values(formData).some((value) => value !== null)) {
-         caculateTotal(formData);
-         handleSave(null, formData);
+      const newFormData = {
+         ...formData,
+         title: removeExtraSpaces(formData.title),
+      };
+
+      if (
+         Object.values(newFormData).every(
+            (value) =>
+               value !== null &&
+               value !== undefined &&
+               removeExtraSpaces(value) !== ''
+         )
+      ) {
+         handleSave(null, newFormData);
          handleSetFormData();
       } else {
          alert(
@@ -99,9 +114,21 @@ function Orders() {
 
    const handleEdit = (e) => {
       e.preventDefault();
-      if (formData && Object.values(formData).some((value) => value !== null)) {
-         caculateTotal(formData);
-         handleSave(currentRecordId, formData);
+      caculateTotal(formData);
+      const newFormData = {
+         ...formData,
+         title: removeExtraSpaces(formData.title),
+      };
+      if (
+         formData &&
+         Object.values(newFormData).every(
+            (value) =>
+               value !== null &&
+               value !== undefined &&
+               removeExtraSpaces(value) !== ''
+         )
+      ) {
+         handleSave(currentRecordId, newFormData);
          handleSetFormData();
       } else {
          console.log(
@@ -146,7 +173,9 @@ function Orders() {
          Object.values(row).some(
             (value) =>
                typeof value === 'string' &&
-               value.toLowerCase().includes(searchTerm.toLowerCase())
+               value
+                  .toLowerCase()
+                  .includes(removeExtraSpaces(searchTerm.toLowerCase()))
          )
       );
    }

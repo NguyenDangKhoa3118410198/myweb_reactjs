@@ -9,3 +9,11 @@ export const searchBox = (searchTerm, handleSearch) => {
       />
    );
 };
+
+export const removeExtraSpaces = (text) => {
+   if (typeof text === 'string') {
+      return text.replace(/\s+/g, ' ').trim();
+   } else {
+      return text;
+   }
+};

@@ -9,7 +9,10 @@ import MyCalendar from '../../components/Calendar';
 import ContextualExample from '../../components/ProgressBar';
 import Todolist from '../../components/Totolist/Totolist';
 import CircularProgressbarChart from '../../components/Charts/ChartTemplate/CircularProgressbarChart';
-import { searchBox } from '../../components/Table/TableActions/handleActions';
+import {
+   searchBox,
+   removeExtraSpaces,
+} from '../../components/Table/TableActions/handleActions';
 import { columnsMainDash } from '../../Data/columns';
 import { v4 as uuidv4 } from 'uuid';
 import './mainDash.css';
@@ -66,19 +69,27 @@ const MainDash = () => {
 
    const handleSubmit = (e) => {
       e.preventDefault();
+
+      const newFormData = {
+         ...formData,
+         name: removeExtraSpaces(formData.name),
+         username: removeExtraSpaces(formData.username),
+         email: removeExtraSpaces(formData.email),
+      };
+
       const invalidEmail = records.some(
-         (record) => record.email === formData.email
+         (record) => record.email === newFormData.email
       );
 
       if (invalidEmail) {
          alert(
-            `The email "${formData.email}" already exists.\n Please use a different email address.`
+            `The email "${newFormData.email}" already exists.\n Please use a different email address.`
          );
          return;
       }
 
-      if (Object.values(formData).some((value) => value !== null)) {
-         handleSave(null, formData);
+      if (Object.values(newFormData).every((value) => value !== null)) {
+         handleSave(null, newFormData);
          handleSetFormData();
       } else {
          console.log(
@@ -100,8 +111,19 @@ const MainDash = () => {
 
    const handleEdit = (e) => {
       e.preventDefault();
-      if (formData && Object.values(formData).some((value) => value !== null)) {
-         handleSave(currentRecordId, formData);
+
+      const newFormData = {
+         ...formData,
+         name: removeExtraSpaces(formData.name),
+         username: removeExtraSpaces(formData.username),
+         email: removeExtraSpaces(formData.email),
+      };
+
+      if (
+         newFormData &&
+         Object.values(newFormData).every((value) => value !== null)
+      ) {
+         handleSave(currentRecordId, newFormData);
          handleSetFormData();
       } else {
          console.log(
@@ -146,7 +168,9 @@ const MainDash = () => {
          Object.values(row).some(
             (value) =>
                typeof value === 'string' &&
-               value.toLowerCase().includes(searchTerm.toLowerCase().trim())
+               value
+                  .toLowerCase()
+                  .includes(removeExtraSpaces(searchTerm.toLowerCase()))
          )
       );
    }
