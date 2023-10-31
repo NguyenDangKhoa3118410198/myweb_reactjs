@@ -13,7 +13,6 @@ import { searchBox } from '../../components/Table/TableActions/handleActions';
 import { columnsMainDash } from '../../Data/columns';
 import { v4 as uuidv4 } from 'uuid';
 import './mainDash.css';
-import FormPanel from './FormPanel';
 
 const MainDash = () => {
    const [records, setRecords] = useState([]);
@@ -213,32 +212,19 @@ const MainDash = () => {
                   Add
                </button>
             </div>
-            <div className='form-panel-action'>
-               {isAddPanelOpen && (
-                  <FormPanel
-                     title='Add'
-                     handleSubmit={handleSubmit}
-                     formData={formData}
-                     setFormData={setFormData}
-                     handleClose={handleClose}
-                  />
-               )}
-               {isEditPanelOpen && (
-                  <FormPanel
-                     title='Edit'
-                     handleSubmit={handleEdit}
-                     formData={formData}
-                     setFormData={setFormData}
-                     handleClose={handleClose}
-                  />
-               )}
-            </div>
 
             <Table
                title='List of users'
                columns={columns}
                data={filterData(records)}
                searchBox={searchBox(searchTerm, handleSearch)}
+               isAddPanelOpen={isAddPanelOpen}
+               isEditPanelOpen={isEditPanelOpen}
+               handleSubmit={handleSubmit}
+               handleEdit={handleEdit}
+               handleClose={handleClose}
+               formData={formData}
+               setFormData={setFormData}
             />
          </div>
       </main>
