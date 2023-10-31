@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import CrudModal from '../../components/ReactModal/CrudModal';
 import Table from '../../components/Table/Table';
 import TableActions from '../../components/Table/TableActions/TableActions';
 import { v4 as uuidv4 } from 'uuid';
 import { searchBox } from '../../components/Table/TableActions/handleActions';
 import './orders.css';
+import FormPanel from './FormPanel';
 
 function Orders() {
    const [isModalOpen, setIsModalOpen] = useState(false);
    const [records, setRecords] = useState([]);
-   const [currentRecord, setCurrentRecord] = useState(null);
+   const [currentRecordId, setCurrentRecordId] = useState(null);
    const [searchTerm, setSearchTerm] = useState('');
+
+   // ------------------------------------
+   const [isAddPanelOpen, setIsAddPanelOpen] = useState(false);
+   const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
 
    const columns = [
       {
@@ -25,8 +29,8 @@ function Orders() {
          sortable: true,
       },
       {
-         name: 'Quanlity',
-         selector: (row) => row.quantity,
+         name: 'Amount',
+         selector: (row) => row.amount,
          sortable: true,
       },
       {
@@ -46,6 +50,22 @@ function Orders() {
       },
    ];
 
+   const [formData, setFormData] = useState({
+      title: '',
+      amount: 1,
+      price: 1,
+      total: 0,
+   });
+
+   const handleSetFormData = () => {
+      setFormData({
+         title: '',
+         amount: 1,
+         price: 1,
+         total: 0,
+      });
+   };
+
    useEffect(() => {
       axios
          .get('https://dummyjson.com/carts')
@@ -59,7 +79,7 @@ function Orders() {
                         id: uuidv4(),
                         title: product.title,
                         price: product.price,
-                        quantity: product.quantity,
+                        amount: product.quantity,
                         total: product.total,
                      };
                   });
@@ -72,23 +92,72 @@ function Orders() {
          });
    }, []);
 
-   const handleAddClick = () => {
-      setCurrentRecord(null);
-      setIsModalOpen(true);
+   const handleClose = (e) => {
+      e.preventDefault();
+      handleSetFormData();
+      setIsAddPanelOpen(false);
+      setIsEditPanelOpen(false);
+   };
+
+   function caculateTotal(formData) {
+      const total = Number(formData.amount) * Number(formData.price);
+      formData.total = total;
+   }
+
+   const handleSubmit = (e) => {
+      e.preventDefault();
+
+      if (Object.values(formData).some((value) => value !== null)) {
+         caculateTotal(formData);
+         handleSave(null, formData);
+         handleSetFormData();
+      } else {
+         alert(
+            'Không thể lưu dữ liệu vì formData rỗng hoặc chứa giá trị null.'
+         );
+      }
    };
 
    const handleEditClick = (record) => {
-      setCurrentRecord(record);
-      setIsModalOpen(true);
+      setIsEditPanelOpen(true);
+      setIsAddPanelOpen(false);
+      setFormData({
+         title: record.title,
+         amount: record.amount,
+         price: record.price,
+         total: record.quanlity,
+      });
+      setCurrentRecordId(record.id);
    };
 
-   const handleSave = (record) => {
-      if (record.id) {
+   const handleEdit = (e) => {
+      e.preventDefault();
+      if (formData && Object.values(formData).some((value) => value !== null)) {
+         caculateTotal(formData);
+         handleSave(currentRecordId, formData);
+         handleSetFormData();
+      } else {
+         console.log(
+            'Không thể lưu dữ liệu vì formData rỗng hoặc chứa giá trị null.'
+         );
+      }
+   };
+
+   const handleSave = (currentRecordId, record) => {
+      if (currentRecordId) {
+         const currentRecord = records.find((r) => r.id === currentRecordId);
+         if (!currentRecord) {
+            alert('ID không tồn tại');
+            return;
+         }
+
          setRecords(
-            records.map((r) => (r.id === record.id ? { ...r, ...record } : r))
+            records.map((r) =>
+               r.id === currentRecordId ? { ...r, ...record } : r
+            )
          );
       } else {
-         const newRecord = { ...record, id: Date.now() };
+         const newRecord = { ...record, id: uuidv4() };
          setRecords([...records, newRecord]);
       }
    };
@@ -120,24 +189,28 @@ function Orders() {
          <div className='add-filter-wrapper'>
             <button
                className='btn btn-success btn-add'
-               onClick={() => handleAddClick()}
+               onClick={() => {
+                  setIsAddPanelOpen(true);
+                  setIsEditPanelOpen(false);
+               }}
             >
                Add
             </button>
          </div>
-         <CrudModal
-            record={currentRecord}
-            isOpen={isModalOpen}
-            onRequestClose={() => setIsModalOpen(false)}
-            shouldCloseOnOverlayClick={false}
-            onSave={handleSave}
-            onDelete={handleDelete}
-         />
 
          <Table
+            title='List of orders'
             columns={columns}
             data={filterData(records)}
             searchBox={searchBox(searchTerm, handleSearch)}
+            isAddPanelOpen={isAddPanelOpen}
+            isEditPanelOpen={isEditPanelOpen}
+            handleSubmit={handleSubmit}
+            handleEdit={handleEdit}
+            handleClose={handleClose}
+            formData={formData}
+            setFormData={setFormData}
+            FormPanel={FormPanel}
          />
       </main>
    );

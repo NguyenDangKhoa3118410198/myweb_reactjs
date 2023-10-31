@@ -3,7 +3,7 @@ import DataTable from 'react-data-table-component';
 
 import './table.css';
 import { TableCustomStyles } from './Custom/TableCustomStyles';
-import FormPanel from '../../pages/MainDash/FormPanel';
+// import FormPanel from '../../pages/MainDash/FormPanel';
 
 const Table = ({
    title,
@@ -17,6 +17,7 @@ const Table = ({
    handleSubmit,
    formData,
    setFormData,
+   FormPanel,
 }) => {
    return (
       <div className='wrapper'>

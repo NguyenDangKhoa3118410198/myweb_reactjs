@@ -13,6 +13,7 @@ import { searchBox } from '../../components/Table/TableActions/handleActions';
 import { columnsMainDash } from '../../Data/columns';
 import { v4 as uuidv4 } from 'uuid';
 import './mainDash.css';
+import FormPanel from './FormPanel';
 
 const MainDash = () => {
    const [records, setRecords] = useState([]);
@@ -225,6 +226,7 @@ const MainDash = () => {
                handleClose={handleClose}
                formData={formData}
                setFormData={setFormData}
+               FormPanel={FormPanel}
             />
          </div>
       </main>
