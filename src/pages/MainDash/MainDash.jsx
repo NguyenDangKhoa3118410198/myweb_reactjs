@@ -12,6 +12,7 @@ import CircularProgressbarChart from '../../components/Charts/ChartTemplate/Circ
 import {
    searchBox,
    removeExtraSpaces,
+   formDataObjectWithExtraSpacesRemoved,
 } from '../../components/Table/TableActions/handleActions';
 import { columnsMainDash } from '../../Data/columns';
 import { v4 as uuidv4 } from 'uuid';
@@ -70,25 +71,19 @@ const MainDash = () => {
    const handleSubmit = (e) => {
       e.preventDefault();
 
-      const newFormData = {
-         ...formData,
-         name: removeExtraSpaces(formData.name),
-         username: removeExtraSpaces(formData.username),
-         email: removeExtraSpaces(formData.email),
-      };
-
       const invalidEmail = records.some(
-         (record) => record.email === newFormData.email
+         (record) => record.email === formData.email
       );
 
       if (invalidEmail) {
          alert(
-            `The email "${newFormData.email}" already exists.\n Please use a different email address.`
+            `The email "${formData.email}" already exists.\n Please use a different email address.`
          );
          return;
       }
 
-      if (Object.values(newFormData).every((value) => value !== null)) {
+      if (Object.values(formData).every((value) => value !== null)) {
+         const newFormData = formDataObjectWithExtraSpacesRemoved(formData);
          handleSave(null, newFormData);
          handleSetFormData();
       } else {
@@ -112,17 +107,11 @@ const MainDash = () => {
    const handleEdit = (e) => {
       e.preventDefault();
 
-      const newFormData = {
-         ...formData,
-         name: removeExtraSpaces(formData.name),
-         username: removeExtraSpaces(formData.username),
-         email: removeExtraSpaces(formData.email),
-      };
-
       if (
-         newFormData &&
-         Object.values(newFormData).every((value) => value !== null)
+         formData &&
+         Object.values(formData).every((value) => value !== null)
       ) {
+         const newFormData = formDataObjectWithExtraSpacesRemoved(formData);
          handleSave(currentRecordId, newFormData);
          handleSetFormData();
       } else {

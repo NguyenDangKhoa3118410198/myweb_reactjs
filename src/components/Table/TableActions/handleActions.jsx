@@ -17,3 +17,11 @@ export const removeExtraSpaces = (text) => {
       return text;
    }
 };
+
+export const formDataObjectWithExtraSpacesRemoved = (formData) => {
+   const formDataWithExtraSpacesRemoved = {};
+   Object.entries(formData).forEach(([key, value]) => {
+      formDataWithExtraSpacesRemoved[key] = removeExtraSpaces(value);
+   });
+   return formDataWithExtraSpacesRemoved;
+};

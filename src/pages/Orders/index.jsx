@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {
    removeExtraSpaces,
    searchBox,
+   formDataObjectWithExtraSpacesRemoved,
 } from '../../components/Table/TableActions/handleActions';
 import './orders.css';
 import FormPanel from './FormPanel';
@@ -78,19 +79,15 @@ function Orders() {
       e.preventDefault();
       caculateTotal(formData);
 
-      const newFormData = {
-         ...formData,
-         title: removeExtraSpaces(formData.title),
-      };
-
       if (
-         Object.values(newFormData).every(
+         Object.values(formData).every(
             (value) =>
                value !== null &&
                value !== undefined &&
                removeExtraSpaces(value) !== ''
          )
       ) {
+         const newFormData = formDataObjectWithExtraSpacesRemoved(formData);
          handleSave(null, newFormData);
          handleSetFormData();
       } else {
@@ -115,19 +112,17 @@ function Orders() {
    const handleEdit = (e) => {
       e.preventDefault();
       caculateTotal(formData);
-      const newFormData = {
-         ...formData,
-         title: removeExtraSpaces(formData.title),
-      };
+
       if (
          formData &&
-         Object.values(newFormData).every(
+         Object.values(formData).every(
             (value) =>
                value !== null &&
                value !== undefined &&
                removeExtraSpaces(value) !== ''
          )
       ) {
+         const newFormData = formDataObjectWithExtraSpacesRemoved(formData);
          handleSave(currentRecordId, newFormData);
          handleSetFormData();
       } else {
