@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import { UilEllipsisV } from '@iconscout/react-unicons';
 import axios from 'axios';
 
-import Table from '../../components/Table/Table';
 import DashboardBoxChart from '../../components/Charts/DashboardBoxCharts';
 import MyCalendar from '../../components/Calendar';
 import ContextualExample from '../../components/ProgressBar';
@@ -18,6 +17,10 @@ import { columnsMainDash } from '../../Data/columns';
 import { v4 as uuidv4 } from 'uuid';
 import './mainDash.css';
 import FormPanel from './FormPanel';
+// const DashboardBoxChart = lazy(() =>
+//    import('../../components/Charts/DashboardBoxCharts')
+// );
+const Table = lazy(() => import('../../components/Table/Table'));
 
 const MainDash = () => {
    const [records, setRecords] = useState([]);
@@ -169,7 +172,10 @@ const MainDash = () => {
       <main
          className={`main-dashboard-container  ${darkMode ? 'darkmode' : ''}`}
       >
+         {/* <Suspense fallback={<div>Loading...</div>}> */}
          <DashboardBoxChart />
+         {/* </Suspense> */}
+
          <div className='combined-stats-container'>
             <div className='combined-stats-item'>
                <div className='combined-stats-header'>
@@ -226,21 +232,22 @@ const MainDash = () => {
                   Add
                </button>
             </div>
-
-            <Table
-               title='List of users'
-               columns={columns}
-               data={filterData(records)}
-               searchBox={searchBox(searchTerm, handleSearch)}
-               isAddPanelOpen={isAddPanelOpen}
-               isEditPanelOpen={isEditPanelOpen}
-               handleSubmit={handleSubmit}
-               handleEdit={handleEdit}
-               handleClose={handleClose}
-               formData={formData}
-               setFormData={setFormData}
-               FormPanel={FormPanel}
-            />
+            <Suspense fallback={<div>Loading...</div>}>
+               <Table
+                  title='List of users'
+                  columns={columns}
+                  data={filterData(records)}
+                  searchBox={searchBox(searchTerm, handleSearch)}
+                  isAddPanelOpen={isAddPanelOpen}
+                  isEditPanelOpen={isEditPanelOpen}
+                  handleSubmit={handleSubmit}
+                  handleEdit={handleEdit}
+                  handleClose={handleClose}
+                  formData={formData}
+                  setFormData={setFormData}
+                  FormPanel={FormPanel}
+               />
+            </Suspense>
          </div>
       </main>
    );

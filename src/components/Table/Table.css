@@ -17,50 +17,6 @@
       border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.btn:not(:disabled):not(.disabled) {
-   cursor: pointer;
-}
-
-.btn-primary {
-   color: #fff;
-   background-color: #28a745;
-   border-color: #28a745;
-}
-
-.btn-primary:hover {
-   color: #fff;
-   background-color: #218838;
-   border-color: #1e7e34;
-}
-
-.btn-success {
-   color: var(--white);
-   background-color: #007bff;
-   border-color: #007bff;
-}
-
-.btn-success:hover {
-   color: #fff;
-   background-color: #0069d9;
-   border-color: #0062cc;
-}
-
-.btn-danger {
-   color: #fff;
-   background-color: #dc3545;
-   border-color: #dc3545;
-}
-
-.btn-danger:hover {
-   color: #fff;
-   background-color: #c82333;
-   border-color: #bd2130;
-}
-
-.btn-spacing {
-   margin-right: 0.4rem;
-}
-
 .rdt_TableHeader {
    padding: 10px;
    border-top-left-radius: 15px;

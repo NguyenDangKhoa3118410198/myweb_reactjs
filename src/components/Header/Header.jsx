@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 
 import './header.css';
 import {
@@ -16,27 +16,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleDarkMode } from '../features/darkmode/darkModeSlice';
 
 const Header = ({ nameContent, toggleBurger }) => {
-   const [isMenuOpen, setIsMenuOpen] = useState(false);
-   const menuRef = useRef(null);
    const darkMode = useSelector((state) => state.darkMode);
    const dispatch = useDispatch();
-   // eslint-disable-next-line
-   const toggleMenu = () => {
-      setIsMenuOpen(!isMenuOpen);
-   };
-
-   const handleOutsideClick = (event) => {
-      if (!menuRef.current.contains(event.target)) {
-         setIsMenuOpen(false);
-      }
-   };
-
-   useEffect(() => {
-      document.addEventListener('mousedown', handleOutsideClick);
-      return () => {
-         document.removeEventListener('mousedown', handleOutsideClick);
-      };
-   }, [menuRef]);
 
    return (
       <header
@@ -50,7 +31,7 @@ const Header = ({ nameContent, toggleBurger }) => {
             <h1 className='name-tab'>{nameContent}</h1>
          </div>
 
-         <div ref={menuRef} className='nav-right'>
+         <div className='nav-right'>
             <nav>
                <div className='user-utilities'>
                   <div
