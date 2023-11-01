@@ -3,6 +3,7 @@ import { UilTrashAlt } from '@iconscout/react-unicons';
 
 import './todolist.css';
 import { v4 as uuidv4 } from 'uuid';
+
 function Todolist() {
    const [todo, setTodo] = useState('');
    const [todolist, setTodolist] = useState([
@@ -17,7 +18,8 @@ function Todolist() {
             ...prevTodolist,
             { id: uuidv4(), task: todo.trim(), completed: false },
          ]);
-      } else setTodo('');
+      }
+      setTodo('');
    };
 
    const handleToggleTodo = (id) => {
