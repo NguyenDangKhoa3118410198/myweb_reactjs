@@ -5,6 +5,7 @@ import Table from '../../components/Table/Table';
 import { v4 as uuidv4 } from 'uuid';
 import { searchBox } from '../../components/Table/TableActions/handleActions';
 import { columnsCustomer } from '../../Data/columns';
+import Cart from '../../components/Statistics/Carts/Card';
 import './customers.css';
 
 function Customers() {
@@ -85,6 +86,8 @@ function Customers() {
 
    return (
       <main className='Orders'>
+         <Cart />
+
          <div className='add-filter-wrapper'>
             <button
                className='btn btn-success btn-add'

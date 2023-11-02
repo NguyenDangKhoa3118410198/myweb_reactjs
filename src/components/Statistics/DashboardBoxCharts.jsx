@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './dashboardBoxCharts.css';
 // eslint-disable-next-line no-unused-vars
 import { Box, LargeBox } from './Box';
+import Cart from './Carts/Card';
 import {
    // eslint-disable-next-line no-unused-vars
    data,
@@ -33,6 +34,29 @@ function DashboardBoxCharts() {
       <div className='dashboard-charts-box-container'>
          <div className='dashboard-grid-container'>
             <div className='box box1'>
+               <Cart title={'Customers'} color={'color1'} />
+            </div>
+            <div className='box box2'>
+               <Cart title={'Products'} color={'color2'} />
+            </div>
+            <div className='box box3'>
+               <Cart title={'Orders'} color={'color3'} />
+            </div>
+            <div className='box box4'>
+               <Cart title={'Access'} color={'color4'} />
+            </div>
+            <div className='box box5'>
+               <LargeBox data={data} chartModel={'PieChartBox'} />
+            </div>
+
+            <div className='box box6'>
+               <LargeBox data={data} chartModel={'TotalChartBox'} />
+            </div>
+
+            <div className='box box7'>
+               <LargeBox data={data} chartModel={'RadialBarChartBox'} />
+            </div>
+            {/* <div className='box box1'>
                <Box
                   data={dataUser}
                   chartModel={'AreaChartBox'}
@@ -70,7 +94,7 @@ function DashboardBoxCharts() {
 
             <div className='box box7'>
                <LargeBox data={data} chartModel={'RadialBarChartBox'} />
-            </div>
+            </div> */}
          </div>
       </div>
    );
