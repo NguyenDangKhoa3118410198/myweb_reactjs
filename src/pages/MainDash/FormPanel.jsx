@@ -16,6 +16,7 @@ function FormPanel({
             <Form onSubmit={handleSubmit} className='form-container'>
                <FormGroup className='form-control-input'>
                   <FormControl
+                     className='form-panel-input'
                      type='text'
                      placeholder='Họ tên'
                      name='name'
@@ -31,6 +32,7 @@ function FormPanel({
                </FormGroup>
                <FormGroup className='form-control-input'>
                   <FormControl
+                     className='form-panel-input'
                      type='text'
                      placeholder='Tên đăng nhập'
                      name='username'
@@ -46,6 +48,7 @@ function FormPanel({
                </FormGroup>
                <FormGroup className='form-control-input'>
                   <FormControl
+                     className='form-panel-input'
                      type='email'
                      placeholder='Email'
                      name='email'

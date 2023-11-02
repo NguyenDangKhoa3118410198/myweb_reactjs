@@ -99,6 +99,11 @@
    padding: 8px 5px;
 }
 
+.form-panel-input {
+   max-width: max-content;
+   padding: 5px;
+}
+
 .form-control-btn {
    margin: 10px;
 }
