@@ -7,8 +7,8 @@
 }
 
 .admin-layout-container {
+   width: 100%;
    display: flex;
    flex-direction: column;
-   width: 100%;
    background-color: #e0e0e0;
 }

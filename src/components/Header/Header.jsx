@@ -7,8 +7,10 @@ import {
    UilQuestionCircle,
    UilSignout,
    UilBars,
+   UilBell,
+   UilCalendarAlt,
 } from '@iconscout/react-unicons';
-import { FaBell, FaCalendarCheck, FaQuestionCircle } from 'react-icons/fa';
+// import { FaBell, FaCalendarCheck, FaQuestionCircle } from 'react-icons/fa';
 import { BsSunFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -42,15 +44,6 @@ const Header = ({ nameContent, toggleBurger }) => {
                   >
                      <BsSunFill />
                   </div>
-                  <div className='icon-menu-item'>
-                     <FaBell />
-                  </div>
-                  <div className='icon-menu-item'>
-                     <FaCalendarCheck />
-                  </div>
-                  <div className='icon-menu-item'>
-                     <FaQuestionCircle />
-                  </div>
 
                   <Dropdown>
                      <Dropdown.Toggle className='user-profile'>
@@ -64,6 +57,19 @@ const Header = ({ nameContent, toggleBurger }) => {
                               <span className='name-menu-item'>Info</span>
                            </div>
                         </Dropdown.Item>
+                        <Dropdown.Item as={Link} to='/'>
+                           <div className='menu-item'>
+                              <UilBell className='icon-menu-item-dropdown' />
+                              <span className='name-menu-item'>Logout</span>
+                           </div>
+                        </Dropdown.Item>
+                        <Dropdown.Item as={Link} to='/'>
+                           <div className='menu-item'>
+                              <UilCalendarAlt className='icon-menu-item-dropdown' />
+                              <span className='name-menu-item'>Logout</span>
+                           </div>
+                        </Dropdown.Item>
+
                         <Dropdown.Item as={Link} to='/orders'>
                            <div className='menu-item'>
                               <UilQuestionCircle className='icon-menu-item-dropdown' />
