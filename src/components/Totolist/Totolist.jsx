@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Form, Button, Container } from 'react-bootstrap';
 import { UilTrashAlt } from '@iconscout/react-unicons';
 
 import './todolist.css';
@@ -35,19 +36,21 @@ function Todolist() {
    };
 
    return (
-      <div className='todolist-container'>
-         <form className='todo-form-container' onSubmit={handleAddTodo}>
-            <input
-               type='text'
-               className='new-todo-input'
-               placeholder='New todo'
-               value={todo}
-               onChange={(e) => setTodo(e.target.value)}
-            />
-            <button type='submit' className='add-todo'>
+      <Container className='todolist-container'>
+         <Form className='todo-form-container' onSubmit={handleAddTodo}>
+            <Form.Group controlId='newTodo'>
+               <Form.Control
+                  type='text'
+                  className='new-todo-input'
+                  placeholder='New todo'
+                  value={todo}
+                  onChange={(e) => setTodo(e.target.value)}
+               />
+            </Form.Group>
+            <Button type='submit' className='add-todo'>
                Add
-            </button>
-         </form>
+            </Button>
+         </Form>
          <div className='todolist'>
             {todolist.map((todo) => (
                <div className='todo' key={todo.id}>
@@ -57,7 +60,6 @@ function Todolist() {
                   >
                      {todo.task}
                   </span>
-
                   <div>
                      <UilTrashAlt
                         className='todo-delete'
@@ -67,7 +69,7 @@ function Todolist() {
                </div>
             ))}
          </div>
-      </div>
+      </Container>
    );
 }
 
