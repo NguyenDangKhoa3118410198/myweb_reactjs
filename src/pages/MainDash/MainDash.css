@@ -9,9 +9,10 @@
    margin-right: 0.5rem;
 }
 
-.searchBox {
+input[type='search'].searchBox {
+   max-width: 300px;
    margin: 0;
-   margin-bottom: 0.5rem;
+   margin-bottom: 1rem;
 }
 
 .add-filter-wrapper {

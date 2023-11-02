@@ -9,9 +9,8 @@ import {
    UilBars,
    UilBell,
    UilCalendarAlt,
+   UilSun,
 } from '@iconscout/react-unicons';
-// import { FaBell, FaCalendarCheck, FaQuestionCircle } from 'react-icons/fa';
-import { BsSunFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useDispatch, useSelector } from 'react-redux';
@@ -42,7 +41,7 @@ const Header = ({ nameContent, toggleBurger }) => {
                         dispatch(toggleDarkMode());
                      }}
                   >
-                     <BsSunFill />
+                     <UilSun />
                   </div>
 
                   <Dropdown>
