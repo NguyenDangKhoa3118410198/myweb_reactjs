@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 import { UilEllipsisV } from '@iconscout/react-unicons';
 import axios from 'axios';
 
-import DashboardBoxChart from '../../components/Charts/DashboardBoxCharts';
+import DashboardBoxChart from '../../components/Statistics/DashboardBoxCharts';
 import MyCalendar from '../../components/Calendar';
 import ContextualExample from '../../components/ProgressBar';
 import Todolist from '../../components/Totolist/Totolist';
-import CircularProgressbarChart from '../../components/Charts/ChartTemplate/CircularProgressbarChart';
+import CircularProgressbarChart from '../../components/Statistics/ChartTemplate/CircularProgressbarChart';
 import {
    searchBox,
    removeExtraSpaces,
@@ -17,9 +17,6 @@ import { columnsMainDash } from '../../Data/columns';
 import { v4 as uuidv4 } from 'uuid';
 import './mainDash.css';
 import FormPanel from './FormPanel';
-// const DashboardBoxChart = lazy(() =>
-//    import('../../components/Charts/DashboardBoxCharts')
-// );
 const Table = lazy(() => import('../../components/Table/Table'));
 
 const MainDash = () => {
