@@ -6,7 +6,7 @@ import Cart from './Carts/Card';
 import {
    // eslint-disable-next-line no-unused-vars
    data,
-   InfoBox,
+   infoCart,
    DataBoxUsers,
    DataBoxOrders,
    DataBoxProducts,
@@ -34,16 +34,16 @@ function DashboardBoxCharts() {
       <div className='dashboard-charts-box-container'>
          <div className='dashboard-grid-container'>
             <div className='box box1'>
-               <Cart title={'Customers'} color={'color1'} />
+               <Cart infoCart={infoCart[0]} />
             </div>
             <div className='box box2'>
-               <Cart title={'Products'} color={'color2'} />
+               <Cart infoCart={infoCart[1]} />
             </div>
             <div className='box box3'>
-               <Cart title={'Orders'} color={'color3'} />
+               <Cart infoCart={infoCart[2]} />
             </div>
             <div className='box box4'>
-               <Cart title={'Access'} color={'color4'} />
+               <Cart infoCart={infoCart[3]} />
             </div>
             <div className='box box5'>
                <LargeBox data={data} chartModel={'PieChartBox'} />
@@ -56,45 +56,6 @@ function DashboardBoxCharts() {
             <div className='box box7'>
                <LargeBox data={data} chartModel={'RadialBarChartBox'} />
             </div>
-            {/* <div className='box box1'>
-               <Box
-                  data={dataUser}
-                  chartModel={'AreaChartBox'}
-                  infoBox={InfoBox[0]}
-               />
-            </div>
-            <div className='box box2'>
-               <Box
-                  data={dataProducts}
-                  chartModel={'LineChartBox'}
-                  infoBox={InfoBox[1]}
-               />
-            </div>
-            <div className='box box3'>
-               <Box
-                  data={dataOrders}
-                  chartModel={'BarChartBox'}
-                  infoBox={InfoBox[2]}
-               />
-            </div>
-            <div className='box box4'>
-               <Box
-                  data={dataOrders}
-                  chartModel={'BarChartBox'}
-                  infoBox={InfoBox[2]}
-               />
-            </div>
-            <div className='box box5'>
-               <LargeBox data={data} chartModel={'PieChartBox'} />
-            </div>
-
-            <div className='box box6'>
-               <LargeBox data={data} chartModel={'TotalChartBox'} />
-            </div>
-
-            <div className='box box7'>
-               <LargeBox data={data} chartModel={'RadialBarChartBox'} />
-            </div> */}
          </div>
       </div>
    );

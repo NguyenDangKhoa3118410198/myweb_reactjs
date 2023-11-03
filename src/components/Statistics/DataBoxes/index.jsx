@@ -1,19 +1,27 @@
 import React from 'react';
-import { FaUser, FaShoppingCart, FaBox } from 'react-icons/fa';
+import { FaUser, FaShoppingCart, FaBox, FaHubspot } from 'react-icons/fa';
 import axios from 'axios';
 
-export const InfoBox = [
+export const infoCart = [
    {
       title: 'Customers',
+      color: 'color1',
       icon: <FaUser />,
    },
    {
       title: 'Products',
+      color: 'color2',
       icon: <FaShoppingCart />,
    },
    {
       title: 'Orders',
+      color: 'color3',
       icon: <FaBox />,
+   },
+   {
+      title: 'Access',
+      color: 'color4',
+      icon: <FaHubspot />,
    },
 ];
 

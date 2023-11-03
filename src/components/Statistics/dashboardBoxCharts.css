@@ -5,9 +5,9 @@
 
 .dashboard-grid-container {
    display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
    grid-template-rows: repeat(auto-fit, minmax(180px, 1fr));
-   gap: 15px;
+   gap: 10px;
    padding: 1.5rem 0;
 }
 
@@ -159,7 +159,7 @@
 @media screen and (max-width: 767px) {
    .dashboard-grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
       gap: 10px;
    }
 

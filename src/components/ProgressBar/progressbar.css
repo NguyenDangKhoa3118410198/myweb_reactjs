@@ -9,10 +9,34 @@
    font-weight: 600;
 }
 
-.custom-progress-bar {
-   background-color: #fff;
-   margin: 10px 0px;
-   font-weight: 600;
+.info-channel {
+   padding-bottom: 2rem;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+
+.channel-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   .icon-channel {
+      flex: 1;
+      color: #886afc;
+      padding-right: 5px;
+   }
+
+   .custom-progress-bar {
+      flex: 9;
+      background-color: #c8efdd;
+      margin: 10px 0px;
+      font-weight: 600;
+   }
+
+   .progress-bar {
+      background-color: #10cd69;
+   }
 }
 
 .progress-bar-content {

@@ -1,20 +1,13 @@
 import React from 'react';
 import './cart.css';
-import { FaUser, FaShoppingCart, FaBox, FaHubspot } from 'react-icons/fa';
 
-const Card = ({ title, icon, count, color = 'color1' }) => {
-   const cartIcon = {
-      Customers: <FaUser />,
-      Products: <FaBox />,
-      Orders: <FaShoppingCart />,
-      Access: <FaHubspot />,
-   };
-   const selectedCard = cartIcon[title] || null;
+const Card = ({ infoCart, count }) => {
+   const { title, icon, color } = infoCart;
 
    return (
       <div className='cart-container'>
          <div className='cart-left'>
-            <div className={`cart-icon ${color}`}>{selectedCard}</div>
+            <div className={`cart-icon ${color}`}>{icon}</div>
          </div>
 
          <div className='cart-right'>
