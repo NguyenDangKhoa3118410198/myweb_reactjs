@@ -64,3 +64,7 @@ input[type='text'].new-todo-input {
 .add-todo {
    background-color: #8758ff !important;
 }
+
+.add-todo:active {
+   transform: scale(0.9);
+}

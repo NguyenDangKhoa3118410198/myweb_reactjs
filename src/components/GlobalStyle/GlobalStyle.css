@@ -149,6 +149,11 @@ button[type='submit'] {
    cursor: pointer;
 }
 
+button[type='submit']:active,
+button[type='cancel']:active {
+   transform: scale(0.9);
+}
+
 button[type='submit']:hover {
    color: #fff;
    background-color: var(--buttonSubmitHover);
@@ -171,7 +176,13 @@ button[type='cancel'] {
 button[type='cancel']:hover {
    color: #fff;
    background-color: var(--buttonCancelHover);
-   border-color: #0062cc;
+}
+
+button[type='cancel']:active,
+:focus-visible {
+   background-color: var(--buttonCancel) !important;
+   border-color: var(--buttonCancel) !important;
+   box-shadow: var(--buttonCancelHover) !important;
 }
 
 .table-actions {

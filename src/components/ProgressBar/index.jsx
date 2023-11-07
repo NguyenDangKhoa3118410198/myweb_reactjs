@@ -68,6 +68,7 @@ function ContextualExample() {
                   </div>
 
                   <ProgressBar
+                     striped
                      now={countOfProgess}
                      label={`${countOfProgess}%`}
                      className='custom-progress-bar'
@@ -108,6 +109,7 @@ function ContextualExample() {
                      </svg>
                   </div>
                   <ProgressBar
+                     striped
                      now={countOfProgessSuccess}
                      label={`${countOfProgessSuccess}%`}
                      variant='custom'
@@ -137,6 +139,7 @@ function ContextualExample() {
                      </svg>
                   </div>
                   <ProgressBar
+                     striped
                      now={countOfProgessWarning}
                      label={`${countOfProgessWarning}%`}
                      variant='custom'
@@ -164,6 +167,7 @@ function ContextualExample() {
                      </svg>
                   </div>
                   <ProgressBar
+                     striped
                      variant='custom'
                      now={50}
                      className='custom-progress-bar'
