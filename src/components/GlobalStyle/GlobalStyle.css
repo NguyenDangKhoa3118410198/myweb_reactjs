@@ -179,7 +179,7 @@ button[type='cancel']:hover {
 }
 
 button[type='cancel']:active,
-:focus-visible {
+button[type='cancel']:focus-visible {
    background-color: var(--buttonCancel) !important;
    border-color: var(--buttonCancel) !important;
    box-shadow: var(--buttonCancelHover) !important;
