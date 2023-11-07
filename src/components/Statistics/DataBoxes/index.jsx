@@ -2,7 +2,7 @@ import React from 'react';
 import { FaUser, FaShoppingCart, FaBox, FaHubspot } from 'react-icons/fa';
 import axios from 'axios';
 
-export const infoCart = [
+export const infoCard = [
    {
       title: 'Customers',
       color: 'color1',

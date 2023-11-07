@@ -5,8 +5,27 @@
    overflow-y: scroll;
 }
 
-.btn-add {
-   margin-right: 0.5rem;
+button[type='button'].btn-add {
+   padding: 0.5rem 1rem;
+   border-radius: 10px;
+   font-size: 1.4rem;
+   font-weight: 450;
+   line-height: 1.5;
+   text-align: center;
+   color: var(--white);
+   background-color: var(--buttonSubmit);
+   border: none;
+   cursor: pointer;
+}
+
+button[type='button']:active.btn-add {
+   transform: scale(0.9);
+   background-color: var(--buttonSubmitHover);
+}
+
+button[type='button']:hover.btn-add {
+   color: #fff;
+   background-color: var(--buttonSubmitHover);
 }
 
 input[type='search'].searchBox {

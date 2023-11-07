@@ -220,7 +220,8 @@ const MainDash = () => {
          >
             <div className='add-filter-wrapper'>
                <button
-                  className='btn btn-success btn-add'
+                  type='button'
+                  className='btn btn-add'
                   onClick={() => {
                      setIsAddPanelOpen(true);
                      setIsEditPanelOpen(false);

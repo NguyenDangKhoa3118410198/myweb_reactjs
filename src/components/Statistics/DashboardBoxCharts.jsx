@@ -6,7 +6,7 @@ import Cart from './Carts/Card';
 import {
    // eslint-disable-next-line no-unused-vars
    data,
-   infoCart,
+   infoCard,
    DataBoxUsers,
    DataBoxOrders,
    DataBoxProducts,
@@ -34,16 +34,16 @@ function DashboardBoxCharts() {
       <div className='dashboard-charts-box-container'>
          <div className='dashboard-grid-container'>
             <div className='box box1'>
-               <Cart infoCart={infoCart[0]} />
+               <Cart infoCard={infoCard[0]} />
             </div>
             <div className='box box2'>
-               <Cart infoCart={infoCart[1]} />
+               <Cart infoCard={infoCard[1]} />
             </div>
             <div className='box box3'>
-               <Cart infoCart={infoCart[2]} />
+               <Cart infoCard={infoCard[2]} />
             </div>
             <div className='box box4'>
-               <Cart infoCart={infoCart[3]} />
+               <Cart infoCard={infoCard[3]} />
             </div>
             <div className='box box5'>
                <LargeBox data={data} chartModel={'PieChartBox'} />

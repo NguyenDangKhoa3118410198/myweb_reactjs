@@ -36,6 +36,10 @@
    font-weight: 500;
    color: #fff;
    background: #8758ff;
+
+   &:hover {
+      cursor: pointer;
+   }
 }
 
 .todo-edit,
