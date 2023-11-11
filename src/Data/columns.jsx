@@ -1,5 +1,32 @@
 import TableActions from '../components/Table/TableActions/TableActions';
 
+export const columnsProduct1 = [
+   {
+      name: 'ID',
+      selector: (row) => row.id,
+      sortable: true,
+      maxWidth: '100px',
+   },
+   {
+      name: 'Name',
+      selector: (row) => row.name,
+      sortable: true,
+      maxWidth: '250px',
+   },
+   {
+      name: 'Url path',
+      selector: (row) => row.urlPath,
+      sortable: true,
+      maxWidth: '250px',
+   },
+   {
+      name: 'Origin price',
+      selector: (row) => row.originPrice,
+      sortable: true,
+      center: true,
+   },
+];
+
 export const columnsProduct = [
    {
       name: 'ID',
