@@ -23,10 +23,12 @@ const MainDash = () => {
    const [records, setRecords] = useState([]);
    const [currentRecordId, setCurrentRecordId] = useState(null);
    const [searchTerm, setSearchTerm] = useState('');
+   const [viewCurrent, setViewCurrent] = useState({});
 
    const darkMode = useSelector((state) => state.darkMode);
    const [isAddPanelOpen, setIsAddPanelOpen] = useState(false);
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
+   const [isModalView, setModalView] = useState(false);
 
    const [formData, setFormData] = useState({
       name: '',
@@ -104,6 +106,11 @@ const MainDash = () => {
       setCurrentRecordId(record.id);
    };
 
+   const handleView = (record) => {
+      setModalView(true);
+      setViewCurrent(record);
+   };
+
    const handleEdit = (e) => {
       e.preventDefault();
 
@@ -163,7 +170,7 @@ const MainDash = () => {
          )
       );
    }
-   const columns = columnsMainDash(handleEditClick, handleDelete);
+   const columns = columnsMainDash(handleView, handleEditClick, handleDelete);
 
    return (
       <main
@@ -236,8 +243,12 @@ const MainDash = () => {
                   columns={columns}
                   data={filterData(records)}
                   searchBox={searchBox(searchTerm, handleSearch)}
+                  isModalView={isModalView}
+                  setModalView={setModalView}
+                  viewCurrent={viewCurrent}
                   isAddPanelOpen={isAddPanelOpen}
                   isEditPanelOpen={isEditPanelOpen}
+                  handleView={handleView}
                   handleSubmit={handleSubmit}
                   handleEdit={handleEdit}
                   handleClose={handleClose}

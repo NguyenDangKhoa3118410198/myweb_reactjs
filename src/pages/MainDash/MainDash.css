@@ -55,6 +55,7 @@ input[type='search'].searchBox {
 }
 
 .combined-stats-item {
+   min-width: 300px;
    padding: 20px;
    flex: 1;
    margin: 10px 0 10px 1rem;

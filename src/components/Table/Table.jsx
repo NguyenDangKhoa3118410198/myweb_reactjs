@@ -3,6 +3,7 @@ import DataTable from 'react-data-table-component';
 
 import './table.css';
 import { TableCustomStyles } from './Custom/TableCustomStyles';
+import ModalView from './ModalView';
 // import FormPanel from '../../pages/MainDash/FormPanel';
 
 const Table = ({
@@ -10,6 +11,9 @@ const Table = ({
    columns,
    data,
    searchBox,
+   isModalView,
+   setModalView,
+   viewCurrent,
    isAddPanelOpen,
    isEditPanelOpen,
    handleEdit,
@@ -22,6 +26,11 @@ const Table = ({
    return (
       <div className='wrapper'>
          <div className='form-panel-action'>
+            <ModalView
+               show={isModalView}
+               onHide={() => setModalView(false)}
+               viewcurrent={viewCurrent ? viewCurrent : 'Not Found'}
+            />
             {isAddPanelOpen && (
                <FormPanel
                   title='Add'

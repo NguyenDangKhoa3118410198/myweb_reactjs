@@ -3,7 +3,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
-function TableActions(handleEditClick, handleDelete, record) {
+function TableActions(handleView, handleEditClick, handleDelete, record) {
    return (
       <Dropdown>
          <Dropdown.Toggle className='table-actions'>
@@ -11,7 +11,12 @@ function TableActions(handleEditClick, handleDelete, record) {
          </Dropdown.Toggle>
 
          <Dropdown.Menu>
-            <Dropdown.Item className='item-action'>View</Dropdown.Item>
+            <Dropdown.Item
+               className='item-action'
+               onClick={() => handleView(record)}
+            >
+               View
+            </Dropdown.Item>
             <Dropdown.Item
                className='item-action'
                onClick={() => handleEditClick(record)}

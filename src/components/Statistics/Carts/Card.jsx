@@ -9,8 +9,6 @@ const Card = ({ infoCard }) => {
       color = 'color1',
    } = infoCard;
 
-   console.log('icon' + icon);
-
    return (
       <div className='cart-container'>
          <div className='cart-left'>

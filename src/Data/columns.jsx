@@ -98,7 +98,7 @@ export const columnsCustomer = (handleEditClick, handleDelete) => [
    },
 ];
 
-export const columnsMainDash = (handleEditClick, handleDelete) => [
+export const columnsMainDash = (handleView, handleEditClick, handleDelete) => [
    {
       name: 'ID',
       selector: (row) => row.id,
@@ -122,7 +122,8 @@ export const columnsMainDash = (handleEditClick, handleDelete) => [
    {
       name: 'Action',
       sortable: false,
-      cell: (record) => TableActions(handleEditClick, handleDelete, record),
+      cell: (record) =>
+         TableActions(handleView, handleEditClick, handleDelete, record),
    },
 ];
 
