@@ -176,9 +176,7 @@ const MainDash = () => {
       <main
          className={`main-dashboard-container  ${darkMode ? 'darkmode' : ''}`}
       >
-         {/* <Suspense fallback={<div>Loading...</div>}> */}
          <DashboardBoxChart />
-         {/* </Suspense> */}
 
          <div className='combined-stats-container'>
             <div className='combined-stats-item'>
@@ -244,15 +242,18 @@ const MainDash = () => {
                   columns={columns}
                   data={filterData(records)}
                   searchBox={searchBox(searchTerm, handleSearch)}
-                  isModalView={isModalView}
+                  tableActions={{
+                     isModalView,
+                     isAddPanelOpen,
+                     isEditPanelOpen,
+                  }}
+                  handleActions={{
+                     handleSubmit,
+                     handleEdit,
+                     handleClose,
+                  }}
                   setModalView={setModalView}
                   viewCurrent={viewCurrent}
-                  isAddPanelOpen={isAddPanelOpen}
-                  isEditPanelOpen={isEditPanelOpen}
-                  handleView={handleView}
-                  handleSubmit={handleSubmit}
-                  handleEdit={handleEdit}
-                  handleClose={handleClose}
                   formData={formData}
                   setFormData={setFormData}
                   FormPanel={FormPanel}

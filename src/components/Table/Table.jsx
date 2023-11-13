@@ -11,18 +11,17 @@ const Table = ({
    columns,
    data,
    searchBox,
-   isModalView,
    setModalView,
    viewCurrent,
-   isAddPanelOpen,
-   isEditPanelOpen,
-   handleEdit,
-   handleClose,
-   handleSubmit,
    formData,
    setFormData,
    FormPanel,
+   tableActions = {},
+   handleActions = {},
 }) => {
+   let { isModalView, isEditPanelOpen, isAddPanelOpen } = tableActions;
+   let { handleSubmit, handleEdit, handleClose } = handleActions;
+
    return (
       <div className='wrapper'>
          <div className='form-panel-action'>
