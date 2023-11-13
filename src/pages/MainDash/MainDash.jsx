@@ -225,19 +225,20 @@ const MainDash = () => {
                padding: '1rem',
             }}
          >
-            <div className='add-filter-wrapper'>
-               <button
-                  type='button'
-                  className='btn btn-add'
-                  onClick={() => {
-                     setIsAddPanelOpen(true);
-                     setIsEditPanelOpen(false);
-                  }}
-               >
-                  Add
-               </button>
-            </div>
             <Suspense fallback={<div>Loading...</div>}>
+               <div className='add-filter-wrapper'>
+                  <button
+                     type='button'
+                     className='btn btn-add'
+                     onClick={() => {
+                        setIsAddPanelOpen(true);
+                        setIsEditPanelOpen(false);
+                     }}
+                  >
+                     Add
+                  </button>
+               </div>
+
                <Table
                   title='List of users'
                   columns={columns}

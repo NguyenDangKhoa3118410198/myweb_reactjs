@@ -94,6 +94,7 @@ export const columnsCustomer = (handleEditClick, handleDelete) => [
    {
       name: 'Action',
       sortable: false,
+      maxWidth: 'max-content',
       cell: (record) => TableActions(handleEditClick, handleDelete, record),
    },
 ];
@@ -122,6 +123,7 @@ export const columnsMainDash = (handleView, handleEditClick, handleDelete) => [
    {
       name: 'Action',
       sortable: false,
+      maxWidth: 'max-content',
       cell: (record) =>
          TableActions(handleView, handleEditClick, handleDelete, record),
    },
@@ -156,6 +158,7 @@ export const columnsOrder = (handleEditClick, handleDelete) => [
    {
       name: 'Action',
       sortable: false,
+      maxWidth: 'max-content',
       cell: (record) => TableActions(handleEditClick, handleDelete, record),
    },
 ];
