@@ -19,7 +19,13 @@ const Table = ({
    tableActions = {},
    handleActions = {},
 }) => {
-   let { isModalView, isEditPanelOpen, isAddPanelOpen } = tableActions;
+   let {
+      isModalView,
+      isEditPanelOpen,
+      isAddPanelOpen,
+      setIsAddPanelOpen,
+      setIsEditPanelOpen,
+   } = tableActions;
    let { handleSubmit, handleEdit, handleClose } = handleActions;
 
    return (
@@ -52,10 +58,35 @@ const Table = ({
          <DataTable
             title={title ? title : 'List table ....'}
             subHeader
-            subHeaderComponent={searchBox}
+            subHeaderComponent={
+               <div
+                  style={{
+                     padding: '0px',
+                     width: '100%',
+                     display: 'flex',
+                     justifyContent: 'space-between',
+                     alignItems: 'center',
+                     marginBottom: '0',
+                  }}
+               >
+                  <button
+                     type='button'
+                     className='btn btn-add'
+                     onClick={() => {
+                        setIsAddPanelOpen(true);
+                        setIsEditPanelOpen(false);
+                     }}
+                  >
+                     Add
+                  </button>
+                  {searchBox}
+               </div>
+            }
             columns={columns}
             data={data}
             fixedHeaderScrollHeight='300px'
+            highlightOnHover
+            pointerOnHover
             pagination
             paginationPerPage={5}
             paginationResetDefaultPage={1}

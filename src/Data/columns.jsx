@@ -121,7 +121,7 @@ export const columnsMainDash = (handleView, handleEditClick, handleDelete) => [
       sortable: true,
    },
    {
-      name: 'Action',
+      name: 'Actions',
       sortable: false,
       maxWidth: 'max-content',
       cell: (record) =>

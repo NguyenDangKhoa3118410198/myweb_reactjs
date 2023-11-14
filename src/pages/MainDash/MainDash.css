@@ -30,8 +30,7 @@ button[type='button']:hover.btn-add {
 
 input[type='search'].searchBox {
    max-width: 300px;
-   margin: 0;
-   margin-bottom: 1rem;
+   margin: 0 0 0 5px;
 }
 
 .add-filter-wrapper {
