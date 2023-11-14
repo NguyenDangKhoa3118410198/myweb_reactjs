@@ -218,11 +218,7 @@ const MainDash = () => {
 
          <MyCalendar />
 
-         <div
-            style={{
-               padding: '1rem',
-            }}
-         >
+         <div>
             <Suspense fallback={<div>Loading...</div>}>
                <Table
                   title='List of users'

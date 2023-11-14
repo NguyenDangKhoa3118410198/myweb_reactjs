@@ -20,6 +20,8 @@ function Orders() {
    // ------------------------------------
    const [isAddPanelOpen, setIsAddPanelOpen] = useState(false);
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
+   const [viewCurrent, setViewCurrent] = useState({});
+   const [isModalView, setModalView] = useState(false);
 
    const [formData, setFormData] = useState({
       title: '',
@@ -70,6 +72,11 @@ function Orders() {
       setIsEditPanelOpen(false);
    };
 
+   const handleView = (record) => {
+      setModalView(true);
+      setViewCurrent(record);
+   };
+
    function caculateTotal(formData) {
       const total = Number(formData.amount) * Number(formData.price);
       formData.total = total;
@@ -115,12 +122,7 @@ function Orders() {
 
       if (
          formData &&
-         Object.values(formData).every(
-            (value) =>
-               value !== null &&
-               value !== undefined &&
-               removeExtraSpaces(value) !== ''
-         )
+         Object.values(formData).every((value) => value !== null)
       ) {
          const newFormData = formDataObjectWithExtraSpacesRemoved(formData);
          handleSave(currentRecordId, newFormData);
@@ -174,35 +176,32 @@ function Orders() {
          )
       );
    }
-   const columns = columnsOrder(handleEditClick, handleDelete);
+   const columns = columnsOrder(handleView, handleEditClick, handleDelete);
 
    return (
       <main className='Orders'>
-         <div className='add-filter-wrapper'>
-            <button
-               className='btn btn-success btn-add'
-               onClick={() => {
-                  setIsAddPanelOpen(true);
-                  setIsEditPanelOpen(false);
-               }}
-            >
-               Add
-            </button>
-         </div>
-
          <Table
             title='List of orders'
             columns={columns}
             data={filterData(records)}
             searchBox={searchBox(searchTerm, handleSearch)}
-            isAddPanelOpen={isAddPanelOpen}
-            isEditPanelOpen={isEditPanelOpen}
-            handleSubmit={handleSubmit}
-            handleEdit={handleEdit}
-            handleClose={handleClose}
             formData={formData}
             setFormData={setFormData}
             FormPanel={FormPanel}
+            setModalView={setModalView}
+            viewCurrent={viewCurrent}
+            tableActions={{
+               isModalView,
+               isAddPanelOpen,
+               isEditPanelOpen,
+               setIsAddPanelOpen,
+               setIsEditPanelOpen,
+            }}
+            handleActions={{
+               handleSubmit,
+               handleEdit,
+               handleClose,
+            }}
          />
       </main>
    );

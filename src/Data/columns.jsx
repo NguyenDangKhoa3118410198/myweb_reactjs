@@ -50,7 +50,7 @@ export const columnsProduct = [
    },
 ];
 
-export const columnsCustomer = (handleEditClick, handleDelete) => [
+export const columnsCustomer = (handleView, handleEditClick, handleDelete) => [
    {
       name: 'ID',
       selector: (row) => row.id,
@@ -95,7 +95,14 @@ export const columnsCustomer = (handleEditClick, handleDelete) => [
       name: 'Action',
       sortable: false,
       maxWidth: 'max-content',
-      cell: (record) => TableActions(handleEditClick, handleDelete, record),
+      cell: (record) => (
+         <TableActions
+            handleView={handleView}
+            handleEditClick={handleEditClick}
+            handleDelete={handleDelete}
+            record={record}
+         />
+      ),
    },
 ];
 
@@ -124,12 +131,18 @@ export const columnsMainDash = (handleView, handleEditClick, handleDelete) => [
       name: 'Actions',
       sortable: false,
       maxWidth: 'max-content',
-      cell: (record) =>
-         TableActions(handleView, handleEditClick, handleDelete, record),
+      cell: (record) => (
+         <TableActions
+            handleView={handleView}
+            handleEditClick={handleEditClick}
+            handleDelete={handleDelete}
+            record={record}
+         />
+      ),
    },
 ];
 
-export const columnsOrder = (handleEditClick, handleDelete) => [
+export const columnsOrder = (handleView, handleEditClick, handleDelete) => [
    {
       name: 'ID',
       selector: (row) => row.id,
@@ -159,6 +172,13 @@ export const columnsOrder = (handleEditClick, handleDelete) => [
       name: 'Action',
       sortable: false,
       maxWidth: 'max-content',
-      cell: (record) => TableActions(handleEditClick, handleDelete, record),
+      cell: (record) => (
+         <TableActions
+            handleView={handleView}
+            handleEditClick={handleEditClick}
+            handleDelete={handleDelete}
+            record={record}
+         />
+      ),
    },
 ];
