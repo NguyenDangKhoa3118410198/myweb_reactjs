@@ -62,10 +62,10 @@ const Header = ({ nameContent, toggleBurger }) => {
                               <span className='name-menu-item'>Logout</span>
                            </div>
                         </Dropdown.Item>
-                        <Dropdown.Item as={Link} to='/'>
+                        <Dropdown.Item as={Link} to='/contact'>
                            <div className='menu-item'>
                               <UilCalendarAlt className='icon-menu-item-dropdown' />
-                              <span className='name-menu-item'>Logout</span>
+                              <span className='name-menu-item'>Contact</span>
                            </div>
                         </Dropdown.Item>
 

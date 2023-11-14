@@ -1,25 +1,26 @@
-import MainDash from "../pages/MainDash/MainDash";
-import Orders from "../pages/Orders";
-import Customers from "../pages/Customers";
-import Products from "../pages/Products";
-import Analytics from "../pages/Analytics";
-import AdminLogin from "../components/AdminLogin";
-import VideoPlayer from "../pages/VideoPlayer";
+import MainDash from '../pages/MainDash/MainDash';
+import Orders from '../pages/Orders';
+import Customers from '../pages/Customers';
+import Products from '../pages/Products';
+import Analytics from '../pages/Analytics';
+import AdminLogin from '../components/AdminLogin';
+import VideoPlayer from '../pages/VideoPlayer';
 
-import NullLayout from "../Layouts/NullLayout";
-import AdminDefaultLayout from "../Layouts/DefaultLayout";
-import NotFoundComponent from "../Layouts/NotFoundComponent";
+import NullLayout from '../Layouts/NullLayout';
+import AdminDefaultLayout from '../Layouts/DefaultLayout';
+import NotFoundComponent from '../Layouts/NotFoundComponent';
+import Contact from '../pages/Contact/Contact';
 
 const publicRoutes = [
    {
-      name: "Admin Login",
-      path: "/login",
+      name: 'Admin Login',
+      path: '/login',
       component: AdminLogin,
       layout: NullLayout,
    },
    {
-      name: "Error 404",
-      path: "*",
+      name: 'Error 404',
+      path: '*',
       component: null,
       layout: NotFoundComponent,
    },
@@ -27,41 +28,47 @@ const publicRoutes = [
 
 const privateRoutes = [
    {
-      name: "Dashboard",
-      path: "/",
+      name: 'Dashboard',
+      path: '/',
       component: MainDash,
       layout: AdminDefaultLayout,
    },
    {
-      name: "Dashboard",
-      path: "/home",
+      name: 'Dashboard',
+      path: '/home',
       component: MainDash,
       layout: AdminDefaultLayout,
    },
    {
-      name: "Orders",
-      path: "/orders",
+      name: 'Orders',
+      path: '/orders',
       component: Orders,
    },
    {
-      name: "Customer",
-      path: "/customers",
+      name: 'Customer',
+      path: '/customers',
       component: Customers,
    },
    {
-      name: "Products",
-      path: "/products",
+      name: 'Products',
+      path: '/products',
       component: Products,
    },
    {
-      name: "Analytics",
-      path: "/analytics",
+      name: 'Analytics',
+      path: '/analytics',
       component: Analytics,
    },
    {
-      name: "Video",
-      path: "/video",
+      name: 'Video',
+      path: '/video',
       component: VideoPlayer,
+   },
+   {
+      name: 'Contact',
+      path: '/contact',
+      component: Contact,
+      layout: NullLayout,
    },
 ];
 
