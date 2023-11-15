@@ -155,10 +155,6 @@ const MainDash = () => {
       setRecords(records.filter((r) => r.id !== record.id));
    };
 
-   function handleSearch(event) {
-      setSearchTerm(event.target.value);
-   }
-
    function filterData(records) {
       return records.filter((row) =>
          Object.values(row).some(
@@ -224,7 +220,7 @@ const MainDash = () => {
                   title='List of users'
                   columns={columns}
                   data={filterData(records)}
-                  searchBox={searchBox(searchTerm, handleSearch)}
+                  searchBox={searchBox(searchTerm, setSearchTerm)}
                   tableActions={{
                      isModalView,
                      isAddPanelOpen,

@@ -52,32 +52,32 @@ const Header = ({ nameContent, toggleBurger }) => {
                      <Dropdown.Menu>
                         <Dropdown.Item as={Link} to='/'>
                            <div className='menu-item'>
-                              <UilInfoCircle className='icon-menu-item-dropdown' />
+                              <UilInfoCircle />
                               <span className='name-menu-item'>Info</span>
                            </div>
                         </Dropdown.Item>
                         <Dropdown.Item as={Link} to='/'>
                            <div className='menu-item'>
-                              <UilBell className='icon-menu-item-dropdown' />
+                              <UilBell />
                               <span className='name-menu-item'>Logout</span>
                            </div>
                         </Dropdown.Item>
                         <Dropdown.Item as={Link} to='/contact'>
                            <div className='menu-item'>
-                              <UilCalendarAlt className='icon-menu-item-dropdown' />
+                              <UilCalendarAlt />
                               <span className='name-menu-item'>Contact</span>
                            </div>
                         </Dropdown.Item>
 
                         <Dropdown.Item as={Link} to='/orders'>
                            <div className='menu-item'>
-                              <UilQuestionCircle className='icon-menu-item-dropdown' />
+                              <UilQuestionCircle />
                               <span className='name-menu-item'>Feedback</span>
                            </div>
                         </Dropdown.Item>
                         <Dropdown.Item as={Link} to='/login'>
                            <div className='menu-item'>
-                              <UilSignout className='icon-menu-item-dropdown' />
+                              <UilSignout />
                               <span className='name-menu-item'>Logout</span>
                            </div>
                         </Dropdown.Item>

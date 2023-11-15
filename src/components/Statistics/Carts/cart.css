@@ -45,6 +45,11 @@
    }
 }
 
+.cart-icon:hover {
+   transform: scale(1.1);
+   transition: all 280ms linear;
+}
+
 .cart-right {
    display: flex;
    flex-direction: column;

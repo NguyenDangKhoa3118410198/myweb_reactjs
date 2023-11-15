@@ -4,11 +4,16 @@ import axios from 'axios';
 import Table from '../../components/Table/Table';
 import { v4 as uuidv4 } from 'uuid';
 import { API } from '../../Data/API';
+import {
+   searchBox,
+   removeExtraSpaces,
+} from '../../components/Table/TableActions/handleActions';
 
 import './product.css';
 function Products() {
    const [records, setRecords] = useState([]);
    const [products, setProducts] = useState([]);
+   const [searchTerm, setSearchTerm] = useState('');
 
    useEffect(() => {
       const fetchData = async () => {
@@ -52,13 +57,34 @@ function Products() {
          });
    }, []);
 
+   function filterData(records) {
+      return records.filter((row) =>
+         Object.values(row).some(
+            (value) =>
+               typeof value === 'string' &&
+               value
+                  .toLowerCase()
+                  .includes(removeExtraSpaces(searchTerm.toLowerCase()))
+         )
+      );
+   }
+
    return (
       <main className='product-container'>
          <div className='product-table-item1'>
-            <Table columns={columnsProduct1} data={products} />
+            <Table
+               title={'List products'}
+               columns={columnsProduct1}
+               data={filterData(products)}
+               searchBox={searchBox(searchTerm, setSearchTerm)}
+            />
          </div>
          <div className='product-table-item2'>
-            <Table columns={columnsProduct} data={records} />
+            <Table
+               columns={columnsProduct}
+               data={filterData(records)}
+               searchBox={searchBox(searchTerm, setSearchTerm)}
+            />
          </div>
       </main>
    );

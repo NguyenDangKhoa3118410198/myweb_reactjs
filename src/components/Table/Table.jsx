@@ -16,7 +16,7 @@ const Table = ({
    formData,
    setFormData,
    FormPanel,
-   tableActions = {},
+   tableActions,
    handleActions = {},
 }) => {
    let {
@@ -25,7 +25,7 @@ const Table = ({
       isAddPanelOpen,
       setIsAddPanelOpen,
       setIsEditPanelOpen,
-   } = tableActions;
+   } = tableActions || {};
    let { handleSubmit, handleEdit, handleClose } = handleActions;
 
    return (
@@ -59,28 +59,32 @@ const Table = ({
             title={title ? title : 'List table ....'}
             subHeader
             subHeaderComponent={
-               <div
-                  style={{
-                     padding: '0px',
-                     width: '100%',
-                     display: 'flex',
-                     justifyContent: 'space-between',
-                     alignItems: 'center',
-                     marginBottom: '0',
-                  }}
-               >
-                  <button
-                     type='button'
-                     className='btn btn-add'
-                     onClick={() => {
-                        setIsAddPanelOpen(true);
-                        setIsEditPanelOpen(false);
+               tableActions ? (
+                  <div
+                     style={{
+                        padding: '0px',
+                        width: '100%',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginBottom: '0',
                      }}
                   >
-                     Add
-                  </button>
-                  {searchBox}
-               </div>
+                     <button
+                        type='button'
+                        className='btn btn-add'
+                        onClick={() => {
+                           setIsAddPanelOpen(true);
+                           setIsEditPanelOpen(false);
+                        }}
+                     >
+                        Add
+                     </button>
+                     {searchBox}
+                  </div>
+               ) : (
+                  searchBox
+               )
             }
             columns={columns}
             data={data}

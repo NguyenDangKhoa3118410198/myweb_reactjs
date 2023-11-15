@@ -1,4 +1,8 @@
-export const searchBox = (searchTerm, handleSearch) => {
+export const searchBox = (searchTerm, setSearchTerm) => {
+   function handleSearch(event) {
+      setSearchTerm(event.target.value);
+   }
+
    return (
       <input
          className='searchBox'
