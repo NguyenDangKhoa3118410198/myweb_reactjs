@@ -13,6 +13,7 @@ const TableCustomStyles = {
       style: {
          fontSize: '1.2rem',
          fontWeight: 'bold',
+         textTransform: 'capitalize',
       },
    },
 };

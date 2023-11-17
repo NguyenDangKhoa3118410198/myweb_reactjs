@@ -52,22 +52,36 @@ function Todolist() {
             </Button>
          </Form>
          <div className='todolist'>
-            {todolist.map((todo) => (
-               <div className='todo' key={todo.id}>
-                  <span
-                     onClick={() => handleToggleTodo(todo.id)}
-                     className={`${todo.completed ? 'completed' : ''}`}
-                  >
-                     {todo.task}
-                  </span>
-                  <div>
-                     <UilTrashAlt
-                        className='todo-delete'
-                        onClick={() => handleDeleteTodo(todo.id)}
-                     />
+            {todolist.length > 0 ? (
+               todolist.map((todo) => (
+                  <div className='todo' key={todo.id}>
+                     <span
+                        onClick={() => handleToggleTodo(todo.id)}
+                        className={`${todo.completed ? 'completed' : ''}`}
+                     >
+                        {todo.task}
+                     </span>
+                     <div>
+                        <UilTrashAlt
+                           className='todo-delete'
+                           onClick={() => handleDeleteTodo(todo.id)}
+                        />
+                     </div>
                   </div>
-               </div>
-            ))}
+               ))
+            ) : (
+               <p
+                  style={{
+                     padding: '10px',
+                     textTransform: 'capitalize',
+                     textAlign: 'center',
+                     fontWeight: '400',
+                     fontSize: '1.5rem',
+                  }}
+               >
+                  Nothing left to do. Your task is completed.
+               </p>
+            )}
          </div>
       </Container>
    );

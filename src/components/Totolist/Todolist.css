@@ -62,7 +62,8 @@ input[type='text'].new-todo-input {
 .new-todo-input:focus {
    border: none;
    outline: #8758ff solid 2px;
-   transition: all 0.2s ease-in-out;
+   transition: all 180ms ease-in-out;
+   box-shadow: none;
 }
 
 .add-todo {

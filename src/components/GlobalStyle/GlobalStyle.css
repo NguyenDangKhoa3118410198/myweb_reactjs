@@ -146,6 +146,7 @@ button[type='submit'] {
    color: var(--white);
    background-color: var(--buttonSubmit);
    border: none;
+   text-transform: capitalize;
    cursor: pointer;
 }
 
@@ -170,6 +171,7 @@ button[type='cancel'] {
    color: var(--white);
    background-color: var(--buttonCancel);
    border: none;
+   text-transform: capitalize;
    cursor: pointer;
 }
 
@@ -183,6 +185,10 @@ button[type='cancel']:focus-visible {
    background-color: var(--buttonCancel) !important;
    border-color: var(--buttonCancel) !important;
    box-shadow: var(--buttonCancelHover) !important;
+}
+
+button[type='button'] {
+   text-transform: capitalize;
 }
 
 .table-actions {

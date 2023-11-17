@@ -1,6 +1,10 @@
 import Modal from 'react-bootstrap/Modal';
 
 function ModalView(props) {
+   const capitalizeFirstLetter = (str) => {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+   };
+
    return (
       <Modal
          {...props}
@@ -10,16 +14,17 @@ function ModalView(props) {
       >
          <Modal.Header closeButton>
             <Modal.Title id='contained-modal-title-vcenter'>
-               Infomation
+               Details Infomation
             </Modal.Title>
          </Modal.Header>
          <Modal.Body>
-            <ul>
+            <ul style={{ listStyleType: 'none' }}>
                {Object.entries(props.viewcurrent).map(
                   ([key, value]) =>
                      key !== 'id' && (
                         <li key={key}>
-                           <strong>{key}:</strong> {value}
+                           <strong>{capitalizeFirstLetter(key)}:</strong>{' '}
+                           {value}
                         </li>
                      )
                )}
