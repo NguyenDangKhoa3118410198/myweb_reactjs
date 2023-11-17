@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
 import { columnsProduct, columnsProduct1 } from '../../Data/columns';
 import axios from 'axios';
 import Table from '../../components/Table/Table';
@@ -11,6 +13,8 @@ import {
 
 import './product.css';
 function Products() {
+   const darkMode = useSelector((state) => state.darkMode);
+
    const [records, setRecords] = useState([]);
    const [products, setProducts] = useState([]);
    const [searchTerm, setSearchTerm] = useState('');
@@ -70,7 +74,7 @@ function Products() {
    }
 
    return (
-      <main className='product-container'>
+      <main className={`product-wrapper  ${darkMode ? 'darkmode' : ''}`}>
          <div className='product-table-item1'>
             <Table
                title={'List products'}

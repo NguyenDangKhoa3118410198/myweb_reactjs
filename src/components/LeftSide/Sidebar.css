@@ -4,11 +4,13 @@
    left: -200px;
    background-color: #333;
    opacity: 1;
-   transition: transform 0.3s ease;
+   transition: all 250ms ease-in-out;
    width: 200px;
    height: 100%;
    overflow: hidden;
-   z-index: 25;
+   border-top-right-radius: 10px;
+   border-bottom-right-radius: 10px;
+   z-index: 1;
 }
 
 .side-menu.open {

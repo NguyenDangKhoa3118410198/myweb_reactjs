@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
 import axios from 'axios';
 import CrudModal from '../../components/ReactModal/CrudModal';
 import Table from '../../components/Table/Table';
@@ -8,6 +10,7 @@ import { columnsCustomer } from '../../Data/columns';
 import './customers.css';
 
 function Customers() {
+   const darkMode = useSelector((state) => state.darkMode);
    const [isModalOpen, setIsModalOpen] = useState(false);
    const [records, setRecords] = useState([]);
    const [currentRecord, setCurrentRecord] = useState(null);
@@ -84,7 +87,7 @@ function Customers() {
    }
 
    return (
-      <main className='Orders'>
+      <main className={`customer-wrapper ${darkMode ? 'darkmode' : ''} `}>
          <div className='add-filter-wrapper'>
             <button
                className='btn btn-success btn-add'

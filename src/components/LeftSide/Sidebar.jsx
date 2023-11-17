@@ -10,7 +10,9 @@ import {
    UilClipboardAlt,
    UilUsersAlt,
    UilPackage,
+   // eslint-disable-next-line no-unused-vars
    UilChart,
+   // eslint-disable-next-line no-unused-vars
    UilVideo,
 } from '@iconscout/react-unicons';
 
@@ -85,7 +87,7 @@ const Sidebar = ({ isMenuActive, toggleBurger, activeMenu }) => {
                   icon={<UilPackage />}
                   className='menuItem'
                />
-               <MenuItem
+               {/* <MenuItem
                   title='Analytics'
                   // dropdownLinks={dropdownLinks}
                   to='/analytics'
@@ -97,7 +99,7 @@ const Sidebar = ({ isMenuActive, toggleBurger, activeMenu }) => {
                   to='/video'
                   icon={<UilVideo />}
                   className='menuItem'
-               />
+               /> */}
 
                <div style={{ marginBottom: '2rem' }}></div>
             </Menu>

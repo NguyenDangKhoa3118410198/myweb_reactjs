@@ -125,6 +125,12 @@
    font-size: 18px;
    align-items: center;
    justify-content: space-between;
+   transition: transform 0.3s ease;
+}
+
+.icon-menu-item:active {
+   transform: rotate(360deg);
+   transition: rotate 250ms ease;
 }
 
 .menu-item {
