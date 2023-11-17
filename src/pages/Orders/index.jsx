@@ -5,9 +5,9 @@ import { columnsOrder } from '../../Data/columns';
 
 import { v4 as uuidv4 } from 'uuid';
 import {
-   removeExtraSpaces,
    searchBox,
-   formDataObjectWithExtraSpacesRemoved,
+   filterData,
+   isFormDataValid,
 } from '../../components/Table/TableActions/handleActions';
 import './orders.css';
 import FormPanel from './FormPanel';
@@ -37,6 +37,7 @@ function Orders() {
          price: 1,
          total: 0,
       });
+      setCurrentRecordId(null);
    };
 
    useEffect(() => {
@@ -86,20 +87,13 @@ function Orders() {
       e.preventDefault();
       caculateTotal(formData);
 
-      if (
-         Object.values(formData).every(
-            (value) =>
-               value !== null &&
-               value !== undefined &&
-               removeExtraSpaces(value) !== ''
-         )
-      ) {
-         const newFormData = formDataObjectWithExtraSpacesRemoved(formData);
+      const newFormData = isFormDataValid(formData);
+      if (newFormData) {
          handleSave(null, newFormData);
          handleSetFormData();
       } else {
          alert(
-            'Không thể lưu dữ liệu vì formData rỗng hoặc chứa giá trị null.'
+            'Unable to save data because formData is empty or contains a null value.'
          );
       }
    };
@@ -120,16 +114,17 @@ function Orders() {
       e.preventDefault();
       caculateTotal(formData);
 
-      if (
-         formData &&
-         Object.values(formData).every((value) => value !== null)
-      ) {
-         const newFormData = formDataObjectWithExtraSpacesRemoved(formData);
-         handleSave(currentRecordId, newFormData);
-         handleSetFormData();
+      const newFormData = isFormDataValid(formData);
+      if (newFormData) {
+         if (currentRecordId) {
+            handleSave(currentRecordId, newFormData);
+            handleSetFormData();
+         } else {
+            alert('Please select a record to edit.');
+         }
       } else {
-         console.log(
-            'Không thể lưu dữ liệu vì formData rỗng hoặc chứa giá trị null.'
+         alert(
+            'Unable to save data because formData is empty or contains a null value.'
          );
       }
    };
@@ -138,7 +133,7 @@ function Orders() {
       if (currentRecordId) {
          const currentRecord = records.find((r) => r.id === currentRecordId);
          if (!currentRecord) {
-            alert('ID không tồn tại');
+            alert('Invalid ID');
             return;
          }
 
@@ -161,17 +156,6 @@ function Orders() {
       setRecords(records.filter((r) => r.id !== record.id));
    };
 
-   function filterData(records) {
-      return records.filter((row) =>
-         Object.values(row).some(
-            (value) =>
-               typeof value === 'string' &&
-               value
-                  .toLowerCase()
-                  .includes(removeExtraSpaces(searchTerm.toLowerCase()))
-         )
-      );
-   }
    const columns = columnsOrder(handleView, handleEditClick, handleDelete);
 
    return (
@@ -179,14 +163,16 @@ function Orders() {
          <Table
             title='List of orders'
             columns={columns}
-            data={filterData(records)}
+            data={filterData(searchTerm, records)}
             searchBox={searchBox(searchTerm, setSearchTerm)}
             formData={formData}
             setFormData={setFormData}
             FormPanel={FormPanel}
-            setModalView={setModalView}
-            viewCurrent={viewCurrent}
+            // setModalView={setModalView}
+            // viewCurrent={viewCurrent}
             tableActions={{
+               setModalView,
+               viewCurrent,
                isModalView,
                isAddPanelOpen,
                isEditPanelOpen,

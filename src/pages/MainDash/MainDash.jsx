@@ -10,8 +10,8 @@ import Todolist from '../../components/Totolist/Totolist';
 import CircularProgressbarChart from '../../components/Statistics/ChartTemplate/CircularProgressbarChart';
 import {
    searchBox,
-   removeExtraSpaces,
-   formDataObjectWithExtraSpacesRemoved,
+   filterData,
+   isFormDataValid,
 } from '../../components/Table/TableActions/handleActions';
 import { columnsMainDash } from '../../Data/columns';
 import { v4 as uuidv4 } from 'uuid';
@@ -68,6 +68,7 @@ const MainDash = () => {
          username: '',
          email: '',
       });
+      setCurrentRecordId(null);
    };
 
    const handleSubmit = (e) => {
@@ -84,13 +85,13 @@ const MainDash = () => {
          return;
       }
 
-      if (Object.values(formData).every((value) => value !== null)) {
-         const newFormData = formDataObjectWithExtraSpacesRemoved(formData);
+      const newFormData = isFormDataValid(formData);
+      if (newFormData) {
          handleSave(null, newFormData);
          handleSetFormData();
       } else {
-         console.log(
-            'Không thể lưu dữ liệu vì formData rỗng hoặc chứa giá trị null.'
+         alert(
+            'Unable to save data because formData is empty or contains a null value.'
          );
       }
    };
@@ -114,16 +115,17 @@ const MainDash = () => {
    const handleEdit = (e) => {
       e.preventDefault();
 
-      if (
-         formData &&
-         Object.values(formData).every((value) => value !== null)
-      ) {
-         const newFormData = formDataObjectWithExtraSpacesRemoved(formData);
-         handleSave(currentRecordId, newFormData);
-         handleSetFormData();
+      const newFormData = isFormDataValid(formData);
+      if (newFormData) {
+         if (currentRecordId) {
+            handleSave(currentRecordId, newFormData);
+            handleSetFormData();
+         } else {
+            alert('Please select a record to edit.');
+         }
       } else {
-         console.log(
-            'Không thể lưu dữ liệu vì formData rỗng hoặc chứa giá trị null.'
+         alert(
+            'Unable to save data because formData is empty or contains a null value.'
          );
       }
    };
@@ -132,7 +134,7 @@ const MainDash = () => {
       if (currentRecordId) {
          const currentRecord = records.find((r) => r.id === currentRecordId);
          if (!currentRecord) {
-            alert('ID không tồn tại');
+            alert('Invalid ID');
             return;
          }
 
@@ -155,17 +157,6 @@ const MainDash = () => {
       setRecords(records.filter((r) => r.id !== record.id));
    };
 
-   function filterData(records) {
-      return records.filter((row) =>
-         Object.values(row).some(
-            (value) =>
-               typeof value === 'string' &&
-               value
-                  .toLowerCase()
-                  .includes(removeExtraSpaces(searchTerm.toLowerCase()))
-         )
-      );
-   }
    const columns = columnsMainDash(handleView, handleEditClick, handleDelete);
 
    return (
@@ -219,7 +210,7 @@ const MainDash = () => {
                <Table
                   title='List of users'
                   columns={columns}
-                  data={filterData(records)}
+                  data={filterData(searchTerm, records)}
                   searchBox={searchBox(searchTerm, setSearchTerm)}
                   tableActions={{
                      isModalView,

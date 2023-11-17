@@ -11,8 +11,6 @@ const Table = ({
    columns,
    data,
    searchBox,
-   setModalView,
-   viewCurrent,
    formData,
    setFormData,
    FormPanel,
@@ -20,6 +18,8 @@ const Table = ({
    handleActions = {},
 }) => {
    let {
+      setModalView,
+      viewCurrent,
       isModalView,
       isEditPanelOpen,
       isAddPanelOpen,

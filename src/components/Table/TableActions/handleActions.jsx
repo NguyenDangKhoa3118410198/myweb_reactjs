@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 export const searchBox = (searchTerm, setSearchTerm) => {
    function handleSearch(event) {
       setSearchTerm(event.target.value);
@@ -28,4 +29,37 @@ export const formDataObjectWithExtraSpacesRemoved = (formData) => {
       formDataWithExtraSpacesRemoved[key] = removeExtraSpaces(value);
    });
    return formDataWithExtraSpacesRemoved;
+};
+
+export const filterData = (searchTerm, records) => {
+   return records.filter((row) =>
+      Object.values(row).some(
+         (value) =>
+            typeof value === 'string' &&
+            value
+               .toLowerCase()
+               .includes(removeExtraSpaces(searchTerm.toLowerCase()))
+      )
+   );
+};
+
+filterData.propTypes = {
+   searchTerm: PropTypes.string.isRequired,
+   records: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+export const isFormDataValid = (formData) => {
+   if (
+      Object.values(formData).every(
+         (value) =>
+            value !== null &&
+            value !== undefined &&
+            removeExtraSpaces(value) !== ''
+      )
+   ) {
+      const newFormData = formDataObjectWithExtraSpacesRemoved(formData);
+      return newFormData;
+   }
+
+   return false;
 };
