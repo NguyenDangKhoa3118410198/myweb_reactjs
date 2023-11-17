@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Table from '../../components/Table/Table';
 import { columnsOrder } from '../../Data/columns';
@@ -16,6 +17,7 @@ function Orders() {
    const [records, setRecords] = useState([]);
    const [currentRecordId, setCurrentRecordId] = useState(null);
    const [searchTerm, setSearchTerm] = useState('');
+   const darkMode = useSelector((state) => state.darkMode);
 
    // ------------------------------------
    const [isAddPanelOpen, setIsAddPanelOpen] = useState(false);
@@ -159,7 +161,7 @@ function Orders() {
    const columns = columnsOrder(handleView, handleEditClick, handleDelete);
 
    return (
-      <main className='Orders'>
+      <main className={`Orders  ${darkMode ? 'darkmode' : ''}`}>
          <Table
             title='List of orders'
             columns={columns}
@@ -168,8 +170,6 @@ function Orders() {
             formData={formData}
             setFormData={setFormData}
             FormPanel={FormPanel}
-            // setModalView={setModalView}
-            // viewCurrent={viewCurrent}
             tableActions={{
                setModalView,
                viewCurrent,

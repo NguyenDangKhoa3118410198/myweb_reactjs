@@ -4,7 +4,6 @@ import './header.css';
 import {
    UilUser,
    UilInfoCircle,
-   UilQuestionCircle,
    UilSignout,
    UilBars,
    UilBell,
@@ -69,12 +68,6 @@ const Header = ({ nameContent, toggleBurger }) => {
                            </div>
                         </Dropdown.Item>
 
-                        <Dropdown.Item as={Link} to='/orders'>
-                           <div className='menu-item'>
-                              <UilQuestionCircle />
-                              <span className='name-menu-item'>Feedback</span>
-                           </div>
-                        </Dropdown.Item>
                         <Dropdown.Item as={Link} to='/login'>
                            <div className='menu-item'>
                               <UilSignout />
