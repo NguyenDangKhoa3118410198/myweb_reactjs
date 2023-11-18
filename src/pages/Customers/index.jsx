@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-
-import axios from 'axios';
+import {
+   searchBox,
+   filterData,
+} from '../../components/Table/TableActions/handleActions';
 import CrudModal from '../../components/ReactModal/CrudModal';
 import Table from '../../components/Table/Table';
-import { v4 as uuidv4 } from 'uuid';
-import { searchBox } from '../../components/Table/TableActions/handleActions';
 import { columnsCustomer } from '../../Data/columns';
+import { pageCustomers } from '../../Data/fetchData';
 import './customers.css';
 
 function Customers() {
@@ -31,30 +32,7 @@ function Customers() {
 
    const columns = columnsCustomer(handleEditClick, handleDelete);
 
-   useEffect(() => {
-      axios
-         .get('https://dummyjson.com/users')
-         .then((response) => {
-            const data = response.data;
-
-            const infoCustomers = data.users.map((user) => {
-               return {
-                  id: uuidv4(),
-                  firstName: user.firstName,
-                  lastName: user.lastName,
-                  maidenName: user.maidenName,
-                  age: user.age,
-                  gender: user.gender,
-                  email: user.email,
-                  phone: user.phone,
-               };
-            });
-            setRecords(infoCustomers);
-         })
-         .catch((error) => {
-            console.log(error);
-         });
-   }, []);
+   useEffect(() => pageCustomers(setRecords), []);
 
    const handleAddClick = () => {
       setCurrentRecord(null);
@@ -71,20 +49,6 @@ function Customers() {
          setRecords([...records, newRecord]);
       }
    };
-
-   function handleSearch(event) {
-      setSearchTerm(event.target.value);
-   }
-
-   function filterData(records) {
-      return records.filter((row) =>
-         Object.values(row).some(
-            (value) =>
-               typeof value === 'string' &&
-               value.toLowerCase().includes(searchTerm.toLowerCase())
-         )
-      );
-   }
 
    return (
       <main className={`customer-wrapper ${darkMode ? 'darkmode' : ''} `}>
@@ -107,8 +71,8 @@ function Customers() {
 
          <Table
             columns={columns}
-            data={filterData(records)}
-            searchBox={searchBox(searchTerm, handleSearch)}
+            data={filterData(searchTerm, records)}
+            searchBox={searchBox(searchTerm, setSearchTerm)}
          />
       </main>
    );

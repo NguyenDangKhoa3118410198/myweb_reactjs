@@ -25,8 +25,9 @@ const Table = ({
       isAddPanelOpen,
       setIsAddPanelOpen,
       setIsEditPanelOpen,
+      setCurrentRecordId,
    } = tableActions || {};
-   let { handleSubmit, handleEdit, handleClose } = handleActions;
+   let { handleSubmitAndEdit, handleClose } = handleActions;
 
    return (
       <div className='wrapper'>
@@ -39,7 +40,7 @@ const Table = ({
             {isAddPanelOpen && (
                <FormPanel
                   title='Add'
-                  handleSubmit={handleSubmit}
+                  handleSubmit={handleSubmitAndEdit}
                   formData={formData}
                   setFormData={setFormData}
                   handleClose={handleClose}
@@ -48,7 +49,7 @@ const Table = ({
             {isEditPanelOpen && (
                <FormPanel
                   title='Edit'
-                  handleSubmit={handleEdit}
+                  handleSubmit={handleSubmitAndEdit}
                   formData={formData}
                   setFormData={setFormData}
                   handleClose={handleClose}
@@ -76,6 +77,7 @@ const Table = ({
                         onClick={() => {
                            setIsAddPanelOpen(true);
                            setIsEditPanelOpen(false);
+                           setCurrentRecordId(null);
                         }}
                      >
                         Add

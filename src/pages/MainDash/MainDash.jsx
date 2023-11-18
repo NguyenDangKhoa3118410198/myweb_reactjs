@@ -1,7 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import { UilEllipsisV } from '@iconscout/react-unicons';
-import axios from 'axios';
+import { pageMainDash } from '../../Data/fetchData';
 
 import DashboardBoxChart from '../../components/Statistics/DashboardBoxCharts';
 import MyCalendar from '../../components/Calendar';
@@ -36,24 +36,7 @@ const MainDash = () => {
       email: '',
    });
 
-   useEffect(() => {
-      axios
-         .get('https://jsonplaceholder.typicode.com/users')
-         .then((response) => {
-            const updatedData = response.data.map((user) => {
-               return {
-                  id: uuidv4(),
-                  name: user.name,
-                  username: user.username,
-                  email: user.email,
-               };
-            });
-            setRecords(updatedData);
-         })
-         .catch((error) => {
-            console.log(error);
-         });
-   }, []);
+   useEffect(() => pageMainDash(setRecords), []);
 
    const handleClose = (e) => {
       e.preventDefault();
@@ -71,23 +54,31 @@ const MainDash = () => {
       setCurrentRecordId(null);
    };
 
-   const handleSubmit = (e) => {
+   const handleSubmitAndEdit = (e) => {
       e.preventDefault();
 
-      const invalidEmail = records.some(
-         (record) => record.email === formData.email
-      );
-
-      if (invalidEmail) {
-         alert(
-            `The email "${formData.email}" already exists.\n Please use a different email address.`
-         );
-         return;
-      }
-
       const newFormData = isFormDataValid(formData);
+
       if (newFormData) {
-         handleSave(null, newFormData);
+         if (currentRecordId && isEditPanelOpen) {
+            //edit exists record
+            handleSave(currentRecordId, newFormData);
+         } else if (!currentRecordId && !isEditPanelOpen) {
+            //create new record
+            const invalidEmail = records.some(
+               (record) => record.email === formData.email
+            );
+
+            if (invalidEmail) {
+               alert(
+                  `The email "${formData.email}" already exists.\n Please use a different email address.`
+               );
+               return;
+            }
+            handleSave(null, newFormData);
+         } else {
+            alert('Please select a record to edit.');
+         }
          handleSetFormData();
       } else {
          alert(
@@ -110,24 +101,6 @@ const MainDash = () => {
    const handleView = (record) => {
       setModalView(true);
       setViewCurrent(record);
-   };
-
-   const handleEdit = (e) => {
-      e.preventDefault();
-
-      const newFormData = isFormDataValid(formData);
-      if (newFormData) {
-         if (currentRecordId) {
-            handleSave(currentRecordId, newFormData);
-            handleSetFormData();
-         } else {
-            alert('Please select a record to edit.');
-         }
-      } else {
-         alert(
-            'Unable to save data because formData is empty or contains a null value.'
-         );
-      }
    };
 
    const handleSave = (currentRecordId, record) => {
@@ -212,23 +185,23 @@ const MainDash = () => {
                   columns={columns}
                   data={filterData(searchTerm, records)}
                   searchBox={searchBox(searchTerm, setSearchTerm)}
+                  setModalView={setModalView}
+                  viewCurrent={viewCurrent}
+                  formData={formData}
+                  setFormData={setFormData}
+                  FormPanel={FormPanel}
                   tableActions={{
                      isModalView,
                      isAddPanelOpen,
                      isEditPanelOpen,
                      setIsAddPanelOpen,
                      setIsEditPanelOpen,
+                     setCurrentRecordId,
                   }}
                   handleActions={{
-                     handleSubmit,
-                     handleEdit,
+                     handleSubmitAndEdit,
                      handleClose,
                   }}
-                  setModalView={setModalView}
-                  viewCurrent={viewCurrent}
-                  formData={formData}
-                  setFormData={setFormData}
-                  FormPanel={FormPanel}
                />
             </Suspense>
          </div>

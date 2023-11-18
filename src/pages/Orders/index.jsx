@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
 import Table from '../../components/Table/Table';
 import { columnsOrder } from '../../Data/columns';
-
+import { pageOrders } from '../../Data/fetchData';
 import { v4 as uuidv4 } from 'uuid';
 import {
    searchBox,
    filterData,
    isFormDataValid,
 } from '../../components/Table/TableActions/handleActions';
-import './orders.css';
 import FormPanel from './FormPanel';
+import './orders.css';
 
 function Orders() {
    const [records, setRecords] = useState([]);
@@ -24,6 +23,8 @@ function Orders() {
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
    const [viewCurrent, setViewCurrent] = useState({});
    const [isModalView, setModalView] = useState(false);
+
+   useEffect(() => pageOrders(setRecords), []);
 
    const [formData, setFormData] = useState({
       title: '',
@@ -42,32 +43,6 @@ function Orders() {
       setCurrentRecordId(null);
    };
 
-   useEffect(() => {
-      axios
-         .get('https://dummyjson.com/carts')
-         .then((response) => {
-            const data = response.data;
-
-            const infoProducts = data.carts
-               .map((cart) => {
-                  return cart.products.map((product) => {
-                     return {
-                        id: uuidv4(),
-                        title: product.title,
-                        price: product.price,
-                        amount: product.quantity,
-                        total: product.total,
-                     };
-                  });
-               })
-               .flat();
-            setRecords(infoProducts);
-         })
-         .catch((error) => {
-            console.log(error);
-         });
-   }, []);
-
    const handleClose = (e) => {
       e.preventDefault();
       handleSetFormData();
@@ -85,13 +60,20 @@ function Orders() {
       formData.total = total;
    }
 
-   const handleSubmit = (e) => {
+   const handleSubmitAndEdit = (e) => {
       e.preventDefault();
       caculateTotal(formData);
 
       const newFormData = isFormDataValid(formData);
+
       if (newFormData) {
-         handleSave(null, newFormData);
+         if (currentRecordId && isEditPanelOpen) {
+            handleSave(currentRecordId, newFormData);
+         } else if (!currentRecordId && !isEditPanelOpen) {
+            handleSave(null, newFormData);
+         } else {
+            alert('Please select a record to edit.');
+         }
          handleSetFormData();
       } else {
          alert(
@@ -110,25 +92,6 @@ function Orders() {
          total: record.quanlity,
       });
       setCurrentRecordId(record.id);
-   };
-
-   const handleEdit = (e) => {
-      e.preventDefault();
-      caculateTotal(formData);
-
-      const newFormData = isFormDataValid(formData);
-      if (newFormData) {
-         if (currentRecordId) {
-            handleSave(currentRecordId, newFormData);
-            handleSetFormData();
-         } else {
-            alert('Please select a record to edit.');
-         }
-      } else {
-         alert(
-            'Unable to save data because formData is empty or contains a null value.'
-         );
-      }
    };
 
    const handleSave = (currentRecordId, record) => {
@@ -178,10 +141,10 @@ function Orders() {
                isEditPanelOpen,
                setIsAddPanelOpen,
                setIsEditPanelOpen,
+               setCurrentRecordId,
             }}
             handleActions={{
-               handleSubmit,
-               handleEdit,
+               handleSubmitAndEdit,
                handleClose,
             }}
          />
