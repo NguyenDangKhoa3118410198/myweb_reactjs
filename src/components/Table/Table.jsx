@@ -4,6 +4,7 @@ import DataTable from 'react-data-table-component';
 import './table.css';
 import { TableCustomStyles } from './Custom/TableCustomStyles';
 import ModalView from './ModalView';
+import { CSVLink } from 'react-csv';
 // import FormPanel from '../../pages/MainDash/FormPanel';
 
 const Table = ({
@@ -56,6 +57,7 @@ const Table = ({
                />
             )}
          </div>
+
          <DataTable
             title={title ? title : 'List table ....'}
             subHeader
@@ -82,10 +84,35 @@ const Table = ({
                      >
                         Add
                      </button>
-                     {searchBox}
+                     <div className='right-data-table'>
+                        <button
+                           type='button'
+                           className='btn btn-add export-csv'
+                        >
+                           <CSVLink
+                              data={data}
+                              filename={title ? `${title}.csv` : 'data.csv'}
+                           >
+                              Export CSV
+                           </CSVLink>
+                        </button>
+
+                        {searchBox}
+                     </div>
                   </div>
                ) : (
-                  searchBox
+                  <div className='right-data-table'>
+                     <button type='button' className='btn btn-add export-csv'>
+                        <CSVLink
+                           data={data}
+                           filename={title ? `${title}.csv` : 'data.csv'}
+                        >
+                           Export CSV
+                        </CSVLink>
+                     </button>
+
+                     {searchBox}
+                  </div>
                )
             }
             columns={columns}

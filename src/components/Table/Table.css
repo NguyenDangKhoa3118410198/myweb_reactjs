@@ -41,3 +41,13 @@
    text-transform: capitalize;
    line-height: 1.5;
 }
+
+.right-data-table {
+   position: relative;
+}
+
+.export-csv {
+   position: relative;
+   display: block;
+   margin: 1rem 5px;
+}
