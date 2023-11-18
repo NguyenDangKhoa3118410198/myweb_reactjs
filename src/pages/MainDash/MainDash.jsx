@@ -23,12 +23,12 @@ const MainDash = () => {
    const [records, setRecords] = useState([]);
    const [currentRecordId, setCurrentRecordId] = useState(null);
    const [searchTerm, setSearchTerm] = useState('');
-   const [viewCurrent, setViewCurrent] = useState({});
 
    const darkMode = useSelector((state) => state.darkMode);
    const [isAddPanelOpen, setIsAddPanelOpen] = useState(false);
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
    const [isModalView, setModalView] = useState(false);
+   const [viewCurrent, setViewCurrent] = useState({});
 
    const [formData, setFormData] = useState({
       name: '',
@@ -186,11 +186,12 @@ const MainDash = () => {
                   data={filterData(searchTerm, records)}
                   searchBox={searchBox(searchTerm, setSearchTerm)}
                   setModalView={setModalView}
-                  viewCurrent={viewCurrent}
                   formData={formData}
                   setFormData={setFormData}
                   FormPanel={FormPanel}
                   tableActions={{
+                     setModalView,
+                     viewCurrent,
                      isModalView,
                      isAddPanelOpen,
                      isEditPanelOpen,
