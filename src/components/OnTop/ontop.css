@@ -1,0 +1,15 @@
+.on-top-container {
+   width: 4rem;
+   height: 4rem;
+   position: fixed;
+   right: 10px;
+   bottom: 10px;
+   border-radius: 50%;
+   background-color: #8758ff;
+   z-index: 10;
+   transition: all 250ms ease-in-out;
+}
+
+.on-top-container:active {
+   transform: scale(1.1);
+}

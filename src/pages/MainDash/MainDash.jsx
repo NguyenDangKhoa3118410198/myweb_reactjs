@@ -17,6 +17,7 @@ import { columnsMainDash } from '../../Data/columns';
 import { v4 as uuidv4 } from 'uuid';
 import './mainDash.css';
 import FormPanel from './FormPanel';
+import OnTopButton from '../../components/OnTop/OnTop';
 const Table = lazy(() => import('../../components/Table/Table'));
 
 const MainDash = () => {
@@ -131,11 +132,12 @@ const MainDash = () => {
    };
 
    const columns = columnsMainDash(handleView, handleEditClick, handleDelete);
-
    return (
       <main
          className={`main-dashboard-container  ${darkMode ? 'darkmode' : ''}`}
       >
+         <div id='top' style={{ opacity: '0' }}></div>
+
          <DashboardBoxChart />
 
          <div className='combined-stats-container'>
@@ -177,6 +179,7 @@ const MainDash = () => {
          </div>
 
          <MyCalendar />
+         <OnTopButton />
 
          <div>
             <Suspense fallback={<div>Loading...</div>}>

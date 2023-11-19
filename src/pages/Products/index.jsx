@@ -7,6 +7,7 @@ import {
    searchBox,
    removeExtraSpaces,
 } from '../../components/Table/TableActions/handleActions';
+import OnTopButton from '../../components/OnTop/OnTop';
 
 import './product.css';
 function Products() {
@@ -34,6 +35,8 @@ function Products() {
 
    return (
       <main className={`product-wrapper  ${darkMode ? 'darkmode' : ''}`}>
+         <div id='top' style={{ opacity: '0' }}></div>
+
          <div className='product-table-item1'>
             <Table
                title={'List products'}
@@ -49,6 +52,7 @@ function Products() {
                searchBox={searchBox(searchTerm, setSearchTerm)}
             />
          </div>
+         <OnTopButton />
       </main>
    );
 }

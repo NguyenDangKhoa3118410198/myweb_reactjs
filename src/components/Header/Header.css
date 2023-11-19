@@ -108,13 +108,13 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   height: 40px;
-   width: 40px;
-   border-radius: 50%;
+   height: 40px !important;
+   width: 40px !important;
+   border-radius: 50% !important;
 }
 
 .user-profile::after {
-   content: none;
+   content: none !important;
 }
 
 .icon-menu-item {

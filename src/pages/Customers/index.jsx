@@ -8,6 +8,7 @@ import CrudModal from '../../components/ReactModal/CrudModal';
 import Table from '../../components/Table/Table';
 import { columnsCustomer } from '../../Data/columns';
 import { pageCustomers } from '../../Data/fetchData';
+import OnTopButton from '../../components/OnTop/OnTop';
 import './customers.css';
 
 function Customers() {
@@ -52,6 +53,8 @@ function Customers() {
 
    return (
       <main className={`customer-wrapper ${darkMode ? 'darkmode' : ''} `}>
+         <div id='top' style={{ opacity: '0' }}></div>
+
          <div className='add-filter-wrapper'>
             <button
                className='btn btn-success btn-add'
@@ -74,6 +77,7 @@ function Customers() {
             data={filterData(searchTerm, records)}
             searchBox={searchBox(searchTerm, setSearchTerm)}
          />
+         <OnTopButton />
       </main>
    );
 }

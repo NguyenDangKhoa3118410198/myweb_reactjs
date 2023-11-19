@@ -11,6 +11,7 @@ import {
 } from '../../components/Table/TableActions/handleActions';
 import FormPanel from './FormPanel';
 import './orders.css';
+import OnTopButton from '../../components/OnTop/OnTop';
 
 function Orders() {
    const [records, setRecords] = useState([]);
@@ -125,6 +126,8 @@ function Orders() {
 
    return (
       <main className={`Orders  ${darkMode ? 'darkmode' : ''}`}>
+         <div id='top' style={{ opacity: '0' }}></div>
+
          <Table
             title='List of orders'
             columns={columns}
@@ -148,6 +151,8 @@ function Orders() {
                handleClose,
             }}
          />
+
+         <OnTopButton />
       </main>
    );
 }
