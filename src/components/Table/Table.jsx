@@ -1,6 +1,6 @@
 import React from 'react';
 import DataTable from 'react-data-table-component';
-
+import { headerCsv } from './TableActions/handleActions';
 import './table.css';
 import { TableCustomStyles } from './Custom/TableCustomStyles';
 import ModalView from './ModalView';
@@ -33,6 +33,8 @@ const Table = ({
       setCurrentRecordId,
    } = tableActions || {};
    let { handleSubmitAndEdit, handleClose } = handleActions;
+
+   const headers = headerCsv(data);
    return (
       <div className='wrapper'>
          <div className='form-panel-action'>
@@ -101,6 +103,7 @@ const Table = ({
                            className='btn btn-add export-csv'
                         >
                            <CSVLink
+                              headers={headers}
                               data={data}
                               filename={title ? `${title}.csv` : 'data.csv'}
                            >
@@ -115,6 +118,7 @@ const Table = ({
                   <div className='right-data-table'>
                      <button type='button' className='btn btn-add export-csv'>
                         <CSVLink
+                           headers={headers}
                            data={data}
                            filename={title ? `${title}.csv` : 'data.csv'}
                         >

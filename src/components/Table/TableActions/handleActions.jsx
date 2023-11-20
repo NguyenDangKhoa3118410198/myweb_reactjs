@@ -63,3 +63,18 @@ export const isFormDataValid = (formData) => {
 
    return false;
 };
+
+export const capitalizeFirstLetter = (string) => {
+   return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
+export const headerCsv = (data) => {
+   let headers;
+   if (data.length > 0) {
+      headers = Object.keys(data[0]).map((header) => ({
+         label: capitalizeFirstLetter(header),
+         key: header.toLowerCase(),
+      }));
+   }
+   return headers;
+};
