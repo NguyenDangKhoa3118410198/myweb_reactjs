@@ -73,7 +73,7 @@ export const headerCsv = (data) => {
    if (data.length > 0) {
       headers = Object.keys(data[0]).map((header) => ({
          label: capitalizeFirstLetter(header),
-         key: header.toLowerCase(),
+         key: header,
       }));
    }
    return headers;
