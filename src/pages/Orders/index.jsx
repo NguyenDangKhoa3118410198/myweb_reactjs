@@ -11,6 +11,7 @@ import {
 } from '../../components/Table/TableActions/handleActions';
 import FormPanel from './FormPanel';
 import './orders.css';
+import { pageReview } from '../../Data/fetchData';
 import OnTopButton from '../../components/OnTop/OnTop';
 
 function Orders() {
@@ -24,6 +25,9 @@ function Orders() {
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
    const [viewCurrent, setViewCurrent] = useState({});
    const [isModalView, setModalView] = useState(false);
+   const [isModalReview, setModalReview] = useState(false);
+
+   const [isListReviews, setIsListReviews] = useState([]);
 
    useEffect(() => pageOrders(setRecords), []);
 
@@ -122,7 +126,18 @@ function Orders() {
       setRecords(records.filter((r) => r.id !== record.id));
    };
 
-   const columns = columnsOrder(handleView, handleEditClick, handleDelete);
+   const handleReview = (record) => {
+      //missing recordID
+      pageReview(47321729, setIsListReviews);
+      setModalReview(true);
+   };
+
+   const columns = columnsOrder(
+      handleView,
+      handleEditClick,
+      handleDelete,
+      handleReview
+   );
 
    return (
       <main className={`Orders  ${darkMode ? 'darkmode' : ''}`}>
@@ -137,8 +152,11 @@ function Orders() {
             setFormData={setFormData}
             FormPanel={FormPanel}
             tableActions={{
-               setModalView,
                viewCurrent,
+               setModalReview,
+               setModalView,
+               isListReviews,
+               isModalReview,
                isModalView,
                isAddPanelOpen,
                isEditPanelOpen,

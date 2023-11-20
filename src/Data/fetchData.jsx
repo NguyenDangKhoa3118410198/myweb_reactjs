@@ -114,3 +114,26 @@ export const pageCustomers = (setRecords) => {
          console.log(error);
       });
 };
+
+export const pageReview = (productId, setRecords) => {
+   const fetchData = async () => {
+      try {
+         const response = await fetch(API.reviewAPI(productId));
+         const data = await response.json();
+
+         const reivewData = data.data.map((reivew) => ({
+            id: reivew.id,
+            title: reivew.title,
+            content: reivew.content,
+            rating: reivew.rating,
+            customerId: reivew.customer_id,
+         }));
+
+         setRecords(reivewData);
+      } catch (error) {
+         console.error('Error fetching data:', error);
+      }
+   };
+
+   fetchData();
+};

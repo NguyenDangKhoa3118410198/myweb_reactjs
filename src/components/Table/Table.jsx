@@ -5,6 +5,7 @@ import './table.css';
 import { TableCustomStyles } from './Custom/TableCustomStyles';
 import ModalView from './ModalView';
 import { CSVLink } from 'react-csv';
+import ModalReviews from './ModelReviews';
 // import FormPanel from '../../pages/MainDash/FormPanel';
 
 const Table = ({
@@ -19,20 +20,30 @@ const Table = ({
    handleActions = {},
 }) => {
    let {
+      setModalReview,
       setModalView,
       viewCurrent,
       isModalView,
       isEditPanelOpen,
       isAddPanelOpen,
+      isModalReview,
+      isListReviews,
       setIsAddPanelOpen,
       setIsEditPanelOpen,
       setCurrentRecordId,
    } = tableActions || {};
    let { handleSubmitAndEdit, handleClose } = handleActions;
-
    return (
       <div className='wrapper'>
          <div className='form-panel-action'>
+            {setModalReview && isListReviews && (
+               <ModalReviews
+                  show={isModalReview}
+                  onHide={() => setModalReview(false)}
+                  viewcurrent={viewCurrent ? viewCurrent : 'Not Found'}
+                  data={isListReviews}
+               />
+            )}
             <ModalView
                show={isModalView}
                onHide={() => setModalView(false)}

@@ -7,6 +7,7 @@ const TableActions = ({
    handleView,
    handleEditClick,
    handleDelete,
+   handleReview,
    record,
 }) => {
    return (
@@ -34,6 +35,14 @@ const TableActions = ({
             >
                Delete
             </Dropdown.Item>
+            {handleReview && (
+               <Dropdown.Item
+                  className='item-action'
+                  onClick={() => handleReview(record)}
+               >
+                  Review
+               </Dropdown.Item>
+            )}
          </Dropdown.Menu>
       </Dropdown>
    );

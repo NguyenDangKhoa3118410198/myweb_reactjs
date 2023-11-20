@@ -1,6 +1,6 @@
 import TableActions from '../components/Table/TableActions/TableActions';
 
-export const columnsProduct1 = [
+export const columnsProduct1 = (handleReview) => [
    {
       name: 'ID',
       selector: (row) => row.id,
@@ -25,9 +25,17 @@ export const columnsProduct1 = [
       sortable: true,
       center: true,
    },
+   {
+      name: 'Action',
+      sortable: false,
+      maxWidth: 'max-content',
+      cell: (record) => (
+         <TableActions handleReview={handleReview} record={record} />
+      ),
+   },
 ];
 
-export const columnsProduct = [
+export const columnsProduct2 = [
    {
       name: 'ID',
       selector: (row) => row.id,
@@ -142,7 +150,12 @@ export const columnsMainDash = (handleView, handleEditClick, handleDelete) => [
    },
 ];
 
-export const columnsOrder = (handleView, handleEditClick, handleDelete) => [
+export const columnsOrder = (
+   handleView,
+   handleEditClick,
+   handleDelete,
+   handleReview
+) => [
    {
       name: 'ID',
       selector: (row) => row.id,
@@ -177,6 +190,7 @@ export const columnsOrder = (handleView, handleEditClick, handleDelete) => [
             handleView={handleView}
             handleEditClick={handleEditClick}
             handleDelete={handleDelete}
+            handleReview={handleReview}
             record={record}
          />
       ),
