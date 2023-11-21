@@ -1,27 +1,42 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { UilFacebook, UilGoogle, UilTwitter } from '@iconscout/react-unicons';
 import './adminLogin.css';
+import adminACC from '../../Data/adminACC';
 
 const Login = () => {
+   const navigate = useNavigate();
+
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [username, setUsername] = useState('');
    const [active, setActive] = useState(false);
+   const [isLoginPage, setIsLoginPage] = useState(false);
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(
-         `Email: ${email}, Password: ${password}, ${
-            username ? `Username: ${username}` : null
-         }`
-      );
+
+      if (isLoginPage) {
+         if (email === adminACC.username && password === adminACC.password) {
+            localStorage.setItem('user', JSON.stringify({ email, password }));
+            localStorage.setItem('isAuthenticated', 'true');
+            navigate('/home');
+            console.log('Đăng nhập thành công!');
+         } else {
+            console.log('Đăng nhập thất bại. Sai tên đăng nhập hoặc mật khẩu.');
+         }
+      } else {
+         console.log('Đăng ký thành công!');
+      }
       cleanInform();
    };
 
    const cleanInform = () => {
       setEmail('');
       setPassword('');
-      setUsername('');
+      if (!isLoginPage) {
+         setUsername('');
+      }
    };
 
    return (
@@ -112,7 +127,10 @@ const Login = () => {
                      <button
                         className='hidden'
                         id='login'
-                        onClick={() => setActive(!active)}
+                        onClick={() => {
+                           setActive(!active);
+                           setIsLoginPage(true);
+                        }}
                      >
                         Sign In
                      </button>
@@ -126,7 +144,10 @@ const Login = () => {
                      <button
                         className='hidden'
                         id='register'
-                        onClick={() => setActive(!active)}
+                        onClick={() => {
+                           setActive(!active);
+                           setIsLoginPage(false);
+                        }}
                      >
                         Sign Up
                      </button>
