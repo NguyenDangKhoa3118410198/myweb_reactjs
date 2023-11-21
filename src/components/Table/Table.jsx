@@ -4,9 +4,8 @@ import { headerCsv } from './TableActions/handleActions';
 import './table.css';
 import { TableCustomStyles } from './Custom/TableCustomStyles';
 import ModalView from './ModalView';
-import { CSVLink } from 'react-csv';
 import ModalReviews from './ModelReviews';
-// import FormPanel from '../../pages/MainDash/FormPanel';
+import ExportCSV from './ExportCSV';
 
 const Table = ({
    title,
@@ -78,12 +77,14 @@ const Table = ({
                tableActions ? (
                   <div
                      style={{
+                        position: 'relative',
                         padding: '0px',
                         width: '100%',
                         display: 'flex',
                         justifyContent: 'space-between',
-                        alignItems: 'center',
+                        alignItems: 'flex-start',
                         marginBottom: '0',
+                        top: '0',
                      }}
                   >
                      <button
@@ -98,34 +99,17 @@ const Table = ({
                         Add
                      </button>
                      <div className='right-data-table'>
-                        <button
-                           type='button'
-                           className='btn btn-add export-csv'
-                        >
-                           <CSVLink
-                              headers={headers}
-                              data={data}
-                              filename={title ? `${title}.csv` : 'data.csv'}
-                           >
-                              Export CSV
-                           </CSVLink>
-                        </button>
-
+                        <ExportCSV
+                           headers={headers}
+                           title={title}
+                           data={data}
+                        />
                         {searchBox}
                      </div>
                   </div>
                ) : (
                   <div className='right-data-table'>
-                     <button type='button' className='btn btn-add export-csv'>
-                        <CSVLink
-                           headers={headers}
-                           data={data}
-                           filename={title ? `${title}.csv` : 'data.csv'}
-                        >
-                           Export CSV
-                        </CSVLink>
-                     </button>
-
+                     <ExportCSV headers={headers} title={title} data={data} />
                      {searchBox}
                   </div>
                )

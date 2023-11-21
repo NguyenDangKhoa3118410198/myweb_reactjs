@@ -131,7 +131,11 @@ const MainDash = () => {
       setRecords(records.filter((r) => r.id !== record.id));
    };
 
-   const columns = columnsMainDash(handleView, handleEditClick, handleDelete);
+   const columns = columnsMainDash({
+      handleView,
+      handleEditClick,
+      handleDelete,
+   });
    return (
       <main
          className={`main-dashboard-container  ${darkMode ? 'darkmode' : ''}`}

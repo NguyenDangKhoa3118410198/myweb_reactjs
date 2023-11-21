@@ -132,12 +132,12 @@ function Orders() {
       setModalReview(true);
    };
 
-   const columns = columnsOrder(
+   const columns = columnsOrder({
       handleView,
       handleEditClick,
       handleDelete,
-      handleReview
-   );
+      handleReview,
+   });
 
    return (
       <main className={`Orders  ${darkMode ? 'darkmode' : ''}`}>

@@ -42,12 +42,23 @@
    line-height: 1.5;
 }
 
+/* -------------Export CSV------------------ */
+
 .right-data-table {
+   position: relative;
+   width: max-content;
+}
+
+.export-search-container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 5px;
    position: relative;
 }
 
 .export-csv {
    position: relative;
    display: block;
-   margin: 1rem 5px;
+   margin: 0 5px 8px 5px;
 }

@@ -1,6 +1,11 @@
 import TableActions from '../components/Table/TableActions/TableActions';
 
-export const columnsProduct1 = (handleReview) => [
+export const columnsProduct1 = ({
+   handleView,
+   handleEditClick,
+   handleDelete,
+   handleReview,
+}) => [
    {
       name: 'ID',
       selector: (row) => row.id,
@@ -30,7 +35,12 @@ export const columnsProduct1 = (handleReview) => [
       sortable: false,
       maxWidth: 'max-content',
       cell: (record) => (
-         <TableActions handleReview={handleReview} record={record} />
+         <TableActions
+            handleView={handleView}
+            handleEditClick={handleEditClick}
+            handleDelete={handleDelete}
+            record={record}
+         />
       ),
    },
 ];
@@ -58,12 +68,11 @@ export const columnsProduct2 = [
    },
 ];
 
-export const columnsCustomer = (handleView, handleEditClick, handleDelete) => [
-   {
-      name: 'ID',
-      selector: (row) => row.id,
-      sortable: true,
-   },
+export const columnsCustomer = ({
+   handleView,
+   handleEditClick,
+   handleDelete,
+}) => [
    {
       name: 'First name',
       selector: (row) => row.firstName,
@@ -114,7 +123,11 @@ export const columnsCustomer = (handleView, handleEditClick, handleDelete) => [
    },
 ];
 
-export const columnsMainDash = (handleView, handleEditClick, handleDelete) => [
+export const columnsMainDash = ({
+   handleView,
+   handleEditClick,
+   handleDelete,
+}) => [
    {
       name: 'ID',
       selector: (row) => row.id,
@@ -150,12 +163,12 @@ export const columnsMainDash = (handleView, handleEditClick, handleDelete) => [
    },
 ];
 
-export const columnsOrder = (
+export const columnsOrder = ({
    handleView,
    handleEditClick,
    handleDelete,
-   handleReview
-) => [
+   handleReview,
+}) => [
    {
       name: 'ID',
       selector: (row) => row.id,

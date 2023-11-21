@@ -4,7 +4,6 @@ import {
    searchBox,
    filterData,
 } from '../../components/Table/TableActions/handleActions';
-import CrudModal from '../../components/ReactModal/CrudModal';
 import Table from '../../components/Table/Table';
 import { columnsCustomer } from '../../Data/columns';
 import { pageCustomers } from '../../Data/fetchData';
@@ -31,46 +30,21 @@ function Customers() {
       setRecords(records.filter((r) => r.id !== record.id));
    };
 
-   const columns = columnsCustomer(handleEditClick, handleDelete);
+   const handleView = () => {
+      console.log('View');
+   };
+
+   const columns = columnsCustomer({
+      handleView,
+      handleEditClick,
+      handleDelete,
+   });
 
    useEffect(() => pageCustomers(setRecords), []);
-
-   const handleAddClick = () => {
-      setCurrentRecord(null);
-      setIsModalOpen(true);
-   };
-
-   const handleSave = (record) => {
-      if (record.id) {
-         setRecords(
-            records.map((r) => (r.id === record.id ? { ...r, ...record } : r))
-         );
-      } else {
-         const newRecord = { ...record, id: Date.now() };
-         setRecords([...records, newRecord]);
-      }
-   };
 
    return (
       <main className={`customer-wrapper ${darkMode ? 'darkmode' : ''} `}>
          <div id='top' style={{ opacity: '0' }}></div>
-
-         <div className='add-filter-wrapper'>
-            <button
-               className='btn btn-success btn-add'
-               onClick={() => handleAddClick()}
-            >
-               Add
-            </button>
-         </div>
-         <CrudModal
-            record={currentRecord}
-            isOpen={isModalOpen}
-            onRequestClose={() => setIsModalOpen(false)}
-            shouldCloseOnOverlayClick={false}
-            onSave={handleSave}
-            onDelete={handleDelete}
-         />
 
          <Table
             columns={columns}
