@@ -48,6 +48,24 @@
    cursor: pointer;
 }
 
+@keyframes shake {
+   0%,
+   100% {
+      transform: translateX(0);
+   }
+   25%,
+   75% {
+      transform: translateX(-2px);
+   }
+   50% {
+      transform: translateX(2px);
+   }
+}
+
+.todo-delete:hover {
+   animation: shake 0.5s;
+}
+
 .completed {
    text-decoration: line-through;
    color: black;
