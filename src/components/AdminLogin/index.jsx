@@ -11,7 +11,7 @@ const Login = () => {
    const [password, setPassword] = useState('');
    const [username, setUsername] = useState('');
    const [active, setActive] = useState(false);
-   const [isLoginPage, setIsLoginPage] = useState(false);
+   const [isLoginPage, setIsLoginPage] = useState(true);
 
    const handleSubmit = (e) => {
       e.preventDefault();
@@ -21,12 +21,12 @@ const Login = () => {
             localStorage.setItem('user', JSON.stringify({ email, password }));
             localStorage.setItem('isAuthenticated', 'true');
             navigate('/home');
-            console.log('Đăng nhập thành công!');
+            alert('Đăng nhập thành công!');
          } else {
-            console.log('Đăng nhập thất bại. Sai tên đăng nhập hoặc mật khẩu.');
+            alert('Đăng nhập thất bại. Sai tên đăng nhập hoặc mật khẩu.');
          }
       } else {
-         console.log('Đăng ký thành công!');
+         alert('Đăng ký thành công!');
       }
       cleanInform();
    };
@@ -128,8 +128,8 @@ const Login = () => {
                         className='hidden'
                         id='login'
                         onClick={() => {
-                           setActive(!active);
                            setIsLoginPage(true);
+                           setActive(!active);
                         }}
                      >
                         Sign In

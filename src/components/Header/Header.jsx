@@ -19,6 +19,11 @@ const Header = ({ nameContent, toggleBurger }) => {
    const darkMode = useSelector((state) => state.darkMode);
    const dispatch = useDispatch();
 
+   const deleteLocalStorage = () => {
+      localStorage.removeItem('isAuthenticated');
+      localStorage.removeItem('user');
+   };
+
    return (
       <header
          className={`nav-user-header-container ${darkMode ? 'darkmode' : ''}`}
@@ -58,7 +63,7 @@ const Header = ({ nameContent, toggleBurger }) => {
                         <Dropdown.Item as={Link} to='/'>
                            <div className='menu-item'>
                               <UilBell />
-                              <span className='name-menu-item'>Logout</span>
+                              <span className='name-menu-item'>Nofity</span>
                            </div>
                         </Dropdown.Item>
                         <Dropdown.Item as={Link} to='/contact'>
@@ -68,7 +73,11 @@ const Header = ({ nameContent, toggleBurger }) => {
                            </div>
                         </Dropdown.Item>
 
-                        <Dropdown.Item as={Link} to='/login'>
+                        <Dropdown.Item
+                           as={Link}
+                           to='/login'
+                           onClick={deleteLocalStorage}
+                        >
                            <div className='menu-item'>
                               <UilSignout />
                               <span className='name-menu-item'>Logout</span>
