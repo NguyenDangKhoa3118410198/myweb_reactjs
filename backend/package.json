@@ -1,0 +1,27 @@
+{
+   "name": "backend",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+      "start": "nodemon index.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/NguyenDangKhoa3118410198/myweb_reactjs.git"
+   },
+   "keywords": [
+      "nodejs"
+   ],
+   "author": "nguyenkhoa",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/NguyenDangKhoa3118410198/myweb_reactjs/issues"
+   },
+   "homepage": "https://github.com/NguyenDangKhoa3118410198/myweb_reactjs#readme",
+   "dependencies": {
+      "express": "^4.18.2",
+      "nodemon": "^3.0.1"
+   }
+}
