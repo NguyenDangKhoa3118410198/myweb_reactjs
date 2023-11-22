@@ -1,0 +1,49 @@
+.info-web-container {
+   text-align: center;
+}
+
+.info-web-header {
+   background-color: #333;
+   color: white;
+   padding: 1rem;
+}
+
+.info-web-section {
+   max-width: 800px;
+   margin: 2rem auto;
+   text-align: left;
+   padding: 20px;
+   background-color: #f8f8f8;
+   border-radius: 5px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-web-section h2 {
+   color: #333;
+   border-bottom: 2px solid #333;
+   padding-bottom: 8px;
+   margin-top: 16px;
+}
+
+.info-web-section p {
+   font-size: 1.2rem;
+   line-height: 1.5;
+}
+
+.info-web-section ul {
+   list-style-type: none;
+   padding: 0;
+}
+
+.info-web-section li {
+   margin-bottom: 8px;
+}
+
+.info-web-section a {
+   color: #007bff;
+   text-decoration: none;
+}
+
+.info-web-section a:hover {
+   text-decoration: underline;
+}

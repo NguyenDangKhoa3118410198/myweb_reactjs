@@ -12,15 +12,10 @@ import './customers.css';
 
 function Customers() {
    const darkMode = useSelector((state) => state.darkMode);
-   const [isModalOpen, setIsModalOpen] = useState(false);
    const [records, setRecords] = useState([]);
-   const [currentRecord, setCurrentRecord] = useState(null);
    const [searchTerm, setSearchTerm] = useState('');
-
-   const handleEditClick = (record) => {
-      setCurrentRecord(record);
-      setIsModalOpen(true);
-   };
+   const [isModalView, setModalView] = useState(false);
+   const [viewCurrent, setViewCurrent] = useState({});
 
    const handleDelete = (record) => {
       if (records.length === 0) {
@@ -30,13 +25,13 @@ function Customers() {
       setRecords(records.filter((r) => r.id !== record.id));
    };
 
-   const handleView = () => {
-      console.log('View');
+   const handleView = (record) => {
+      setModalView(true);
+      setViewCurrent(record);
    };
 
    const columns = columnsCustomer({
       handleView,
-      handleEditClick,
       handleDelete,
    });
 
@@ -50,6 +45,11 @@ function Customers() {
             columns={columns}
             data={filterData(searchTerm, records)}
             searchBox={searchBox(searchTerm, setSearchTerm)}
+            tableActions={{
+               viewCurrent,
+               setModalView,
+               isModalView,
+            }}
          />
          <OnTopButton />
       </main>

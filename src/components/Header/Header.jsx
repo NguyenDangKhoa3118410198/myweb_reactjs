@@ -6,7 +6,6 @@ import {
    UilInfoCircle,
    UilSignout,
    UilBars,
-   UilBell,
    UilCalendarAlt,
    UilSun,
 } from '@iconscout/react-unicons';
@@ -54,18 +53,13 @@ const Header = ({ nameContent, toggleBurger }) => {
                      </Dropdown.Toggle>
 
                      <Dropdown.Menu>
-                        <Dropdown.Item as={Link} to='/'>
+                        <Dropdown.Item as={Link} to='/info'>
                            <div className='menu-item'>
                               <UilInfoCircle />
                               <span className='name-menu-item'>Info</span>
                            </div>
                         </Dropdown.Item>
-                        <Dropdown.Item as={Link} to='/'>
-                           <div className='menu-item'>
-                              <UilBell />
-                              <span className='name-menu-item'>Nofity</span>
-                           </div>
-                        </Dropdown.Item>
+
                         <Dropdown.Item as={Link} to='/contact'>
                            <div className='menu-item'>
                               <UilCalendarAlt />

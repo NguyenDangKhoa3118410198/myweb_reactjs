@@ -17,24 +17,33 @@ const TableActions = ({
          </Dropdown.Toggle>
 
          <Dropdown.Menu>
-            <Dropdown.Item
-               className='item-action'
-               onClick={() => handleView(record)}
-            >
-               View
-            </Dropdown.Item>
-            <Dropdown.Item
-               className='item-action'
-               onClick={() => handleEditClick(record)}
-            >
-               Edit
-            </Dropdown.Item>
-            <Dropdown.Item
-               className='item-action'
-               onClick={() => handleDelete(record)}
-            >
-               Delete
-            </Dropdown.Item>
+            {handleView && (
+               <Dropdown.Item
+                  className='item-action'
+                  onClick={() => handleView(record)}
+               >
+                  View
+               </Dropdown.Item>
+            )}
+
+            {handleEditClick && (
+               <Dropdown.Item
+                  className='item-action'
+                  onClick={() => handleEditClick(record)}
+               >
+                  Edit
+               </Dropdown.Item>
+            )}
+
+            {handleDelete && (
+               <Dropdown.Item
+                  className='item-action'
+                  onClick={() => handleDelete(record)}
+               >
+                  Delete
+               </Dropdown.Item>
+            )}
+
             {handleReview && (
                <Dropdown.Item
                   className='item-action'

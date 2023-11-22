@@ -42,22 +42,7 @@ function Products() {
       setModalReview(true);
    };
 
-   const handleView = () => {
-      console.log('View');
-   };
-
-   const handleEditClick = (record) => {
-      console.log('Edit');
-   };
-
-   const handleDelete = (record) => {
-      console.log('Delete');
-   };
-
    const columns = columnsProduct1({
-      handleView,
-      handleEditClick,
-      handleDelete,
       handleReview,
    });
 

@@ -10,6 +10,7 @@ import NullLayout from '../Layouts/NullLayout';
 import AdminDefaultLayout from '../Layouts/DefaultLayout';
 import NotFoundComponent from '../Layouts/NotFoundComponent';
 import Contact from '../pages/Contact/Contact';
+import InfoWeb from '../pages/InfoWeb';
 
 const publicRoutes = [
    {
@@ -68,6 +69,12 @@ const privateRoutes = [
       name: 'Contact',
       path: '/contact',
       component: Contact,
+      layout: NullLayout,
+   },
+   {
+      name: 'Info',
+      path: '/info',
+      component: InfoWeb,
       layout: NullLayout,
    },
 ];

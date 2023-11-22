@@ -35,12 +35,7 @@ export const columnsProduct1 = ({
       sortable: false,
       maxWidth: 'max-content',
       cell: (record) => (
-         <TableActions
-            handleView={handleView}
-            handleEditClick={handleEditClick}
-            handleDelete={handleDelete}
-            record={record}
-         />
+         <TableActions handleReview={handleReview} record={record} />
       ),
    },
 ];
@@ -115,7 +110,7 @@ export const columnsCustomer = ({
       cell: (record) => (
          <TableActions
             handleView={handleView}
-            handleEditClick={handleEditClick}
+            // handleEditClick={handleEditClick}
             handleDelete={handleDelete}
             record={record}
          />
