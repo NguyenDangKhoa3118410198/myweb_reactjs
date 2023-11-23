@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const app = express();
-const port = 4000;
+require('dotenv').config();
+const port = process.env.PORT || 4000;
 
 // Cấu hình CORS
 const corsOptions = {
@@ -13,7 +13,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions)); // Sử dụng middleware cors
-app.use(bodyParser.json());
+app.use(express.json());
 
 const registeredUsers = [{ email: 'Admin@123', password: '123' }];
 
