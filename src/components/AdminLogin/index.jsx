@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UilFacebook, UilGoogle, UilTwitter } from '@iconscout/react-unicons';
 import './adminLogin.css';
-import adminACC from '../../Data/adminACC';
+import axios from 'axios';
 
 const Login = () => {
    const navigate = useNavigate();
@@ -13,22 +13,45 @@ const Login = () => {
    const [active, setActive] = useState(false);
    const [isLoginPage, setIsLoginPage] = useState(true);
 
-   const handleSubmit = (e) => {
-      e.preventDefault();
+   useEffect(() => {
+      localStorage.removeItem('user');
+      localStorage.removeItem('isAuthenticated');
+   }, []);
 
-      if (isLoginPage) {
-         if (email === adminACC.username && password === adminACC.password) {
+   const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+         if (isLoginPage) {
+            await handleApiCall('login', { email, password });
+         } else {
+            await handleApiCall('register', { email, password, username });
+         }
+      } catch (error) {
+         console.error(error);
+      }
+
+      cleanInform();
+   };
+
+   const handleApiCall = async (apiEndpoint, requestData) => {
+      try {
+         const response = await axios.post(
+            `http://localhost:4000/api/${apiEndpoint}`,
+            requestData
+         );
+         const data = response.data;
+
+         if (data.success) {
             localStorage.setItem('user', JSON.stringify({ email, password }));
             localStorage.setItem('isAuthenticated', 'true');
             navigate('/home');
-            alert('Đăng nhập thành công!');
+            alert(data.message);
          } else {
-            alert('Đăng nhập thất bại. Sai tên đăng nhập hoặc mật khẩu.');
+            alert(data.message);
          }
-      } else {
-         alert('Đăng ký thành công!');
+      } catch (error) {
+         console.error('Lỗi khi gọi API:', error);
       }
-      cleanInform();
    };
 
    const cleanInform = () => {
