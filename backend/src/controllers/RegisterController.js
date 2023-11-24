@@ -1,4 +1,11 @@
 const registeredUsers = require('../models/users');
+const bcrypt = require('bcrypt');
+const saltRounds = process.env.SALT_ROUNDS || 10;
+
+const hashPassword = (password) => {
+   const salt = bcrypt.genSaltSync(Number(saltRounds));
+   return bcrypt.hashSync(password, salt);
+};
 
 const register = (req, res) => {
    const { email, password, username } = req.body;
@@ -14,7 +21,9 @@ const register = (req, res) => {
       });
    }
 
-   registeredUsers.push({ email, password, username });
+   let hashedPassword = hashPassword(password);
+
+   registeredUsers.push({ email, password: hashedPassword, username });
 
    console.log('Registration successful!');
    res.json({
@@ -22,5 +31,4 @@ const register = (req, res) => {
       message: 'Registration successful!',
    });
 };
-
 module.exports = { register };

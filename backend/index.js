@@ -25,12 +25,6 @@ app.use((req, res, next) => {
    next();
 });
 
-// ---------------------------------------------------Handle------------------------------------------
-
-const registeredUsers = [{ email: 'Admin@123', password: '123' }];
-
-const loginAttemptsMap = new Map();
-
 route(app);
 
 app.listen(port, () => {

@@ -10,5 +10,14 @@ function route(app) {
    app.use('/api/products', productRouter);
    app.use('/auth/login', loginRouter);
    app.use('/auth/register', registerRouter);
+
+   app.use((req, res) => {
+      res.status(404).send('Page not found');
+   });
+
+   app.use((err, req, res, next) => {
+      console.error(err.stack);
+      res.status(500).send('Something went wrong!');
+   });
 }
 module.exports = route;
