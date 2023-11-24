@@ -20,7 +20,7 @@ const Header = ({ nameContent, toggleBurger }) => {
 
    const deleteLocalStorage = () => {
       localStorage.removeItem('isAuthenticated');
-      localStorage.removeItem('user');
+      localStorage.removeItem('authToken');
    };
 
    return (

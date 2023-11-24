@@ -1,5 +1,7 @@
 const registeredUsers = require('../models/users');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 const loginAttemptsMap = new Map();
 
 const authenticate = (req, res) => {
@@ -33,7 +35,16 @@ const authenticate = (req, res) => {
    if (existingUser) {
       // Nếu đăng nhập thành công, đặt lại thông tin đăng nhập cho người dùng
       loginAttemptsMap.set(email, { attempts: 0, lastAttemptTime: 0 });
-      res.json({ success: true, message: 'Login successful!' });
+
+      const token = jwt.sign(
+         { email: existingUser.email },
+         process.env.SECRETKEY,
+         {
+            expiresIn: '1h',
+         }
+      );
+
+      res.json({ success: true, message: 'Login successful!', token });
    } else {
       // Nếu đăng nhập thất bại, cập nhật thông tin đăng nhập của người dùng
       const updatedLoginInfo = {

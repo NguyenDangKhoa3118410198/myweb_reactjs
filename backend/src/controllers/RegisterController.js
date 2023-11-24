@@ -1,5 +1,6 @@
 const registeredUsers = require('../models/users');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const saltRounds = process.env.SALT_ROUNDS || 10;
 
 const hashPassword = (password) => {
@@ -25,10 +26,18 @@ const register = (req, res) => {
 
    registeredUsers.push({ email, password: hashedPassword, username });
 
+   const token = jwt.sign(
+      { email: existingUser.email },
+      process.env.SECRETKEY,
+      {
+         expiresIn: '1h',
+      }
+   );
    console.log('Registration successful!');
    res.json({
       success: true,
       message: 'Registration successful!',
+      token,
    });
 };
 module.exports = { register };
