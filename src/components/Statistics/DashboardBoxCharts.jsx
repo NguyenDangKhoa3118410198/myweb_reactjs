@@ -13,8 +13,11 @@ import {
 } from './DataBoxes';
 
 function DashboardBoxCharts() {
+   // eslint-disable-next-line no-unused-vars
    const [dataUser, setDataUser] = useState(null);
+   // eslint-disable-next-line no-unused-vars
    const [dataOrders, setDataOrders] = useState(null);
+   // eslint-disable-next-line no-unused-vars
    const [dataProducts, setDataProducts] = useState(null);
 
    useEffect(() => {

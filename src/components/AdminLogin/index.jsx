@@ -36,7 +36,7 @@ const Login = () => {
    const handleApiCall = async (apiEndpoint, requestData) => {
       try {
          const response = await axios.post(
-            `http://localhost:4000/api/${apiEndpoint}`,
+            `http://localhost:4000/auth/${apiEndpoint}`,
             requestData
          );
          const data = response.data;

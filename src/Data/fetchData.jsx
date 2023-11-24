@@ -31,11 +31,7 @@ export const pageOrders = (setRecords) => {
 
 export const pageMainDash = async (setRecords) => {
    try {
-      const response = await axios.get(
-         'http://localhost:4000/user/getAllUsers'
-      );
-
-      console.log(response.data);
+      const response = await axios.get('http://localhost:4000/api/users');
       setRecords(response.data);
    } catch (error) {
       console.error('Error fetching data:', error);
