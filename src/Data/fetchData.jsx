@@ -29,23 +29,17 @@ export const pageOrders = (setRecords) => {
       });
 };
 
-export const pageMainDash = (setRecords) => {
-   axios
-      .get('https://jsonplaceholder.typicode.com/users')
-      .then((response) => {
-         const updatedData = response.data.map((user) => {
-            return {
-               id: uuidv4(),
-               name: user.name,
-               username: user.username,
-               email: user.email,
-            };
-         });
-         setRecords(updatedData);
-      })
-      .catch((error) => {
-         console.log(error);
-      });
+export const pageMainDash = async (setRecords) => {
+   try {
+      const response = await axios.get(
+         'http://localhost:4000/user/getAllUsers'
+      );
+
+      console.log(response.data);
+      setRecords(response.data);
+   } catch (error) {
+      console.error('Error fetching data:', error);
+   }
 };
 
 export const pageProducts1 = (setRecords) => {

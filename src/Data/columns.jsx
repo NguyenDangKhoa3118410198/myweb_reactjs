@@ -123,11 +123,11 @@ export const columnsMainDash = ({
    handleEditClick,
    handleDelete,
 }) => [
-   {
-      name: 'ID',
-      selector: (row) => row.id,
-      sortable: true,
-   },
+   // {
+   //    name: 'ID',
+   //    selector: (row) => row.id,
+   //    sortable: true,
+   // },
    {
       name: 'Name',
       selector: (row) => row.name,

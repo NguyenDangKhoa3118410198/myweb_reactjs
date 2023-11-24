@@ -37,7 +37,9 @@ const MainDash = () => {
       email: '',
    });
 
-   useEffect(() => pageMainDash(setRecords), []);
+   useEffect(() => {
+      pageMainDash(setRecords);
+   }, []);
 
    const handleClose = (e) => {
       e.preventDefault();

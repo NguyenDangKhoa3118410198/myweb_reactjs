@@ -2,8 +2,6 @@ import React from 'react';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import './custom-breadcrumb.css';
 
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
 function BreadcrumbExample() {
    return (
       <Breadcrumb>
