@@ -90,6 +90,7 @@ const Login = () => {
                      placeholder='Name'
                      value={username}
                      onChange={(e) => setUsername(e.target.value)}
+                     autoFocus
                      required
                   />
                   <input
@@ -129,6 +130,7 @@ const Login = () => {
                      placeholder='Email'
                      value={email}
                      onChange={(e) => setEmail(e.target.value)}
+                     autoFocus
                      required
                   />
                   <input

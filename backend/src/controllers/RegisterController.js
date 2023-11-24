@@ -18,7 +18,7 @@ const register = (req, res) => {
    if (existingUser) {
       return res.json({
          success: false,
-         message: 'User already exists.',
+         message: 'Email already exists.',
       });
    }
 
@@ -26,13 +26,9 @@ const register = (req, res) => {
 
    registeredUsers.push({ email, password: hashedPassword, username });
 
-   const token = jwt.sign(
-      { email: existingUser.email },
-      process.env.SECRETKEY,
-      {
-         expiresIn: '1h',
-      }
-   );
+   const token = jwt.sign({ email }, process.env.SECRETKEY, {
+      expiresIn: '1h',
+   });
    console.log('Registration successful!');
    res.json({
       success: true,
@@ -40,4 +36,5 @@ const register = (req, res) => {
       token,
    });
 };
+
 module.exports = { register };
