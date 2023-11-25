@@ -51,7 +51,7 @@ const login = (req, res) => {
       resetLoginAttempts(email);
 
       const token = jwt.sign(
-         { email: existingUser.email },
+         { email: existingUser.email, role: existingUser.role },
          process.env.SECRET_KEY,
          {
             expiresIn: '1h',
