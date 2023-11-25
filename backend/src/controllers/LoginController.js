@@ -1,6 +1,6 @@
 const registeredUsers = require('../models/users');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const { generateAccessToken, generateRefreshToken } = require('../ulti/token');
 
 const loginAttemptsMap = new Map();
 
@@ -23,10 +23,8 @@ const resetLoginAttempts = (email) => {
 const login = (req, res) => {
    const { email, password } = req.body;
 
-   // Lấy thông tin đăng nhập của người dùng từ loginAttemptsMap
    const userLoginInfo = getUserLoginInfo(email);
 
-   // Kiểm tra xem người dùng đã đăng nhập quá số lần quy định trong khoảng thời gian nhất định chưa
    if (
       userLoginInfo.attempts >= 5 &&
       Date.now() - userLoginInfo.lastAttemptTime < 30000
@@ -40,27 +38,24 @@ const login = (req, res) => {
       });
    }
 
-   // Tiến hành kiểm tra thông tin đăng nhập
    const existingUser = registeredUsers.find(
       (user) =>
          user.email === email && bcrypt.compareSync(password, user.password)
    );
 
    if (existingUser) {
-      // Nếu đăng nhập thành công, đặt lại thông tin đăng nhập cho người dùng
       resetLoginAttempts(email);
 
-      const token = jwt.sign(
-         { email: existingUser.email, role: existingUser.role },
-         process.env.SECRET_KEY,
-         {
-            expiresIn: '1h',
-         }
-      );
+      const accessToken = generateAccessToken(existingUser);
+      const refreshToken = generateRefreshToken(existingUser);
 
-      res.json({ success: true, message: 'Login successful!', token });
+      res.json({
+         success: true,
+         message: 'Login successful!',
+         accessToken,
+         refreshToken,
+      });
    } else {
-      // Nếu đăng nhập thất bại, cập nhật thông tin đăng nhập của người dùng
       updateLoginAttempts(email, userLoginInfo);
 
       res.json({

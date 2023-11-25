@@ -1,6 +1,7 @@
 const registeredUsers = require('../models/users');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const { generateAccessToken, generateRefreshToken } = require('../ulti/token');
+
 const saltRounds = process.env.SALT_ROUNDS || 10;
 
 const hashPassword = (password) => {
@@ -23,17 +24,20 @@ const register = (req, res) => {
    }
 
    let hashedPassword = hashPassword(password);
-   const role = 'user';
-   registeredUsers.push({ email, password: hashedPassword, username, role });
 
-   const token = jwt.sign({ email, role }, process.env.SECRET_KEY, {
-      expiresIn: '1h',
-   });
+   const role = 'user';
+   const newUser = { email, password: hashedPassword, username, role };
+   registeredUsers.push(newUser);
+
+   const accessToken = generateAccessToken(existingUser);
+   const refreshToken = generateRefreshToken(existingUser);
+
    console.log('Registration successful!');
    res.json({
       success: true,
       message: 'Registration successful!',
-      token,
+      accessToken,
+      refreshToken,
    });
 };
 

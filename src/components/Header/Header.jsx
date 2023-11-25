@@ -19,8 +19,9 @@ const Header = ({ nameContent, toggleBurger }) => {
    const dispatch = useDispatch();
 
    const deleteLocalStorage = () => {
-      localStorage.removeItem('isAuthenticated');
       localStorage.removeItem('authToken');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('isAuthenticated');
    };
 
    return (

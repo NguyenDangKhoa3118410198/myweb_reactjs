@@ -15,6 +15,7 @@ const Login = () => {
 
    useEffect(() => {
       localStorage.removeItem('authToken');
+      localStorage.removeItem('refreshToken');
       localStorage.removeItem('isAuthenticated');
    }, []);
 
@@ -42,8 +43,12 @@ const Login = () => {
          const data = response.data;
 
          if (data.success) {
-            const token = data.token;
-            localStorage.setItem('authToken', token);
+            const accessToken = data.accessToken;
+            const refreshToken = data.refreshToken;
+
+            localStorage.setItem('authToken', accessToken);
+            localStorage.setItem('refreshToken', refreshToken);
+
             localStorage.setItem('isAuthenticated', 'true');
 
             navigate('/home');

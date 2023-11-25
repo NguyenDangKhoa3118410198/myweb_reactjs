@@ -30,8 +30,13 @@ export const pageOrders = (setRecords) => {
 };
 
 export const pageMainDash = async (setRecords) => {
+   const token = localStorage.getItem('authToken');
    try {
-      const response = await axios.get('http://localhost:4000/api/users');
+      const response = await axios.get('http://localhost:4000/api/users', {
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+      });
       setRecords(response.data);
    } catch (error) {
       console.error('Error fetching data:', error);
