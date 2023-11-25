@@ -20,7 +20,7 @@ const resetLoginAttempts = (email) => {
    loginAttemptsMap.set(email, { attempts: 0, lastAttemptTime: 0 });
 };
 
-const authenticate = (req, res) => {
+const login = (req, res) => {
    const { email, password } = req.body;
 
    // Lấy thông tin đăng nhập của người dùng từ loginAttemptsMap
@@ -52,7 +52,7 @@ const authenticate = (req, res) => {
 
       const token = jwt.sign(
          { email: existingUser.email },
-         process.env.SECRETKEY,
+         process.env.SECRET_KEY,
          {
             expiresIn: '1h',
          }
@@ -70,4 +70,4 @@ const authenticate = (req, res) => {
    }
 };
 
-module.exports = { authenticate };
+module.exports = { login };

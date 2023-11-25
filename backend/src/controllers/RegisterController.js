@@ -23,10 +23,10 @@ const register = (req, res) => {
    }
 
    let hashedPassword = hashPassword(password);
+   const role = 'user';
+   registeredUsers.push({ email, password: hashedPassword, username, role });
 
-   registeredUsers.push({ email, password: hashedPassword, username });
-
-   const token = jwt.sign({ email }, process.env.SECRETKEY, {
+   const token = jwt.sign({ email, role }, process.env.SECRET_KEY, {
       expiresIn: '1h',
    });
    console.log('Registration successful!');

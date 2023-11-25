@@ -4,10 +4,12 @@ const productRouter = require('./product');
 const loginRouter = require('./login');
 const registerRouter = require('./register');
 
+const authenticateToken = require('../middleware/authenticateToken');
+
 function route(app) {
-   app.use('/api/users', userRouter);
-   app.use('/api/orders', orderRouter);
-   app.use('/api/products', productRouter);
+   app.use('/api/users', authenticateToken, userRouter);
+   app.use('/api/orders', authenticateToken, orderRouter);
+   app.use('/api/products', authenticateToken, productRouter);
    app.use('/auth/login', loginRouter);
    app.use('/auth/register', registerRouter);
 
