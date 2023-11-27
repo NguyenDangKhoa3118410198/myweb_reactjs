@@ -29,8 +29,40 @@ export const sendRequest = async (
       });
       return response.data;
    } catch (error) {
+      if (error.response && error.response.status === 403) {
+         try {
+            await refreshToken();
+            const retryResponse = await axios({
+               method,
+               url: `${apiUrl}/${endpoint}`,
+               data,
+               headers: {
+                  Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+                  ...headers,
+               },
+            });
+            return retryResponse.data;
+         } catch (refreshError) {
+            console.error('Error refreshing token:', refreshError);
+            return null;
+         }
+      }
       console.error('Error sending request:', error);
+
       throw error;
+   }
+};
+
+const refreshToken = async () => {
+   try {
+      const refreshResponse = await axios.post(
+         'http://localhost:4000/auth/refreshToken',
+         { refreshToken: localStorage.getItem('refreshToken') }
+      );
+      localStorage.setItem('authToken', refreshResponse.data.accessToken);
+   } catch (refreshError) {
+      // console.error('Error refreshing token:', refreshError);
+      // throw refreshError;
    }
 };
 

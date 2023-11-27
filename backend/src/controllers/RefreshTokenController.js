@@ -2,8 +2,7 @@ const jwt = require('jsonwebtoken');
 const { generateAccessToken } = require('../ulti/token');
 
 const isValidRefreshToken = async (req, res) => {
-   const authHeader = req.header('Authorization');
-   const refreshToken = authHeader.split(' ')[1];
+   const refreshToken = req.body.refreshToken;
 
    if (!refreshToken) {
       return res
