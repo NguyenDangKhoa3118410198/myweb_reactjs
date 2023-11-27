@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const registeredUsers = require('../models/users');
 
 const authenticateToken = (req, res, next) => {
    const authHeader = req.header('Authorization');
@@ -20,6 +21,17 @@ const authenticateToken = (req, res, next) => {
 
    try {
       const decoded = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
+      const { email, role } = decoded;
+
+      const existingUser = registeredUsers.some(
+         (user) => user.email === email && user.role === role
+      );
+
+      if (!existingUser) {
+         return res
+            .status(403)
+            .json({ success: false, message: 'Forbidden: User not found' });
+      }
 
       req.user = decoded;
       next();
