@@ -3,6 +3,7 @@ const orderRouter = require('./order');
 const productRouter = require('./product');
 const loginRouter = require('./login');
 const registerRouter = require('./register');
+const refreshTokenRouter = require('./refreshToken');
 
 const authenticateToken = require('../middleware/authenticateToken');
 
@@ -12,6 +13,7 @@ function route(app) {
    app.use('/api/products', authenticateToken, productRouter);
    app.use('/auth/login', loginRouter);
    app.use('/auth/register', registerRouter);
+   app.use('/auth/refreshToken', refreshTokenRouter);
 
    app.use((req, res) => {
       res.status(404).send('Page not found');

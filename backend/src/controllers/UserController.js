@@ -2,6 +2,7 @@ const axios = require('axios');
 
 const getUsers = async (req, res) => {
    try {
+      console.log(req.user);
       const response = await axios.get(
          'https://jsonplaceholder.typicode.com/users'
       );

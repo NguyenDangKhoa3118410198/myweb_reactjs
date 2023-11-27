@@ -9,7 +9,6 @@ const authenticateToken = (req, res, next) => {
          .json({ success: false, message: 'Unauthorized: No token provided' });
    }
 
-   // Kiểm tra xem chuỗi bắt đầu có phải là 'Bearer'
    if (!authHeader.startsWith('Bearer ')) {
       return res.status(401).json({
          success: false,
@@ -17,7 +16,6 @@ const authenticateToken = (req, res, next) => {
       });
    }
 
-   // Tách 'Bearer' và lấy phần token
    const token = authHeader.split(' ')[1];
 
    try {

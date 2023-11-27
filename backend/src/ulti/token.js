@@ -13,7 +13,10 @@ const generateAccessToken = (user) => {
 const generateRefreshToken = (user) => {
    return jwt.sign(
       { email: user.email, role: user.role },
-      process.env.REFRESH_TOKEN_SECRET_KEY
+      process.env.REFRESH_TOKEN_SECRET_KEY,
+      {
+         expiresIn: '2h',
+      }
    );
 };
 

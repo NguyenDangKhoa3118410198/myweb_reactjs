@@ -29,8 +29,8 @@ const register = (req, res) => {
    const newUser = { email, password: hashedPassword, username, role };
    registeredUsers.push(newUser);
 
-   const accessToken = generateAccessToken(existingUser);
-   const refreshToken = generateRefreshToken(existingUser);
+   const accessToken = generateAccessToken(newUser);
+   const refreshToken = generateRefreshToken(newUser);
 
    console.log('Registration successful!');
    res.json({

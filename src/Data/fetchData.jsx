@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { API } from './API';
-import { generateAuthHeader } from '../ulti/sendHeaderRequest';
+import { sendRequest } from '../ulti/sendHeaderRequest';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -32,11 +32,8 @@ export const pageOrders = (setRecords) => {
 
 export const pageMainDash = async (setRecords) => {
    try {
-      const response = await axios.get(
-         'http://localhost:4000/api/users',
-         generateAuthHeader()
-      );
-      setRecords(response.data);
+      const records = await sendRequest('GET', 'api/users');
+      setRecords(records);
    } catch (error) {
       console.error('Error fetching data:', error);
    }
