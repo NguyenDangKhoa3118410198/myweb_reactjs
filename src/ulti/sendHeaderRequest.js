@@ -2,7 +2,9 @@ import axios from 'axios';
 const apiUrl = 'http://localhost:4000';
 const token = localStorage.getItem('authToken');
 
-export const generateAuthHeader = (token) => {
+export const generateAuthHeader = () => {
+   const token = localStorage.getItem('authToken');
+
    return {
       headers: {
          Authorization: `Bearer ${token}`,
