@@ -3,6 +3,7 @@ const { generateAccessToken } = require('../ulti/token');
 
 const isValidRefreshToken = async (req, res) => {
    const refreshToken = req.body.refreshToken;
+   console.log('server refreshToken: ', refreshToken);
 
    if (!refreshToken) {
       return res
@@ -21,6 +22,7 @@ const isValidRefreshToken = async (req, res) => {
          }
 
          const newAccessToken = generateAccessToken(user);
+         console.log('Server New Token: ' + newAccessToken);
 
          res.json({ accessToken: newAccessToken });
       }

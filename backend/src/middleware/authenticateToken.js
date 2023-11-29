@@ -3,6 +3,7 @@ const registeredUsers = require('../models/users');
 
 const authenticateToken = (req, res, next) => {
    const authHeader = req.header('Authorization');
+   console.log('Middleware: ', authHeader);
 
    if (!authHeader) {
       return res

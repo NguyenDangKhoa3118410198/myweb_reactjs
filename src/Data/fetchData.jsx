@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { API } from './API';
-import { sendRequest } from '../ulti/sendHeaderRequest';
+import { getUsers } from '../ulti/sendHeaderRequest';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -32,7 +32,8 @@ export const pageOrders = (setRecords) => {
 
 export const pageMainDash = async (setRecords) => {
    try {
-      const records = await sendRequest('GET', 'api/users');
+      let records = [{}];
+      records = await getUsers();
       setRecords(records);
    } catch (error) {
       console.error('Error fetching data:', error);
