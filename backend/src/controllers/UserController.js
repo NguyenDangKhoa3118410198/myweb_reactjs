@@ -33,6 +33,7 @@ const addUser = (req, res) => {
 
       newUser.id = lastElementId + 1;
       users.push(newUser);
+      console.log(users);
 
       res.json({
          success: true,
