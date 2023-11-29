@@ -33,7 +33,6 @@ export const pageOrders = (setRecords) => {
 export const pageMainDash = async (setRecords) => {
    try {
       let records = [{}];
-      // records = await getUsers();
       records = await sendRequest('GET', 'api/users');
       setRecords(records);
    } catch (error) {

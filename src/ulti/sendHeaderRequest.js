@@ -100,7 +100,6 @@ export const sendRequest = async (method, path, data = {}) => {
       const response = await api[method.toLowerCase()](path, data);
 
       if (response.status >= 200 && response.status < 300) {
-         console.log('Response data:', response.data);
          return response.data;
       } else {
          console.error(

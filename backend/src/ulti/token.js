@@ -15,7 +15,7 @@ const generateRefreshToken = (user) => {
       { email: user.email, role: user.role },
       process.env.REFRESH_TOKEN_SECRET_KEY,
       {
-         expiresIn: '2h',
+         expiresIn: '2m',
       }
    );
 };
