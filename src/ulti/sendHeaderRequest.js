@@ -7,6 +7,7 @@ const api = axios.create({
 });
 
 let isRefreshingToken = false;
+let shouldSendRequest = true;
 
 const checkAndRefreshToken = async () => {
    const token = localStorage.getItem('authToken');
@@ -44,8 +45,13 @@ const checkAndRefreshToken = async () => {
 
             if (currentTime > decodedToken.exp) {
                console.log('client refresh token expried');
-               redirectToLogin();
-               return;
+               const response = await api.post('auth/logout');
+               if (response.data.success) {
+                  console.log('you are logout');
+                  shouldSendRequest = false;
+                  redirectToLogin();
+                  return;
+               }
             }
          }
 
@@ -59,6 +65,7 @@ const checkAndRefreshToken = async () => {
       }
    } catch (error) {
       console.log('logout now');
+      shouldSendRequest = false;
    } finally {
       isRefreshingToken = false;
    }
@@ -67,10 +74,14 @@ const checkAndRefreshToken = async () => {
 api.interceptors.request.use(
    async (config) => {
       await checkAndRefreshToken();
-
-      config.headers.Authorization = `Bearer ${localStorage.getItem(
-         'authToken'
-      )}`;
+      console.log('shouldSendRequest:', shouldSendRequest);
+      if (shouldSendRequest) {
+         config.headers.Authorization = `Bearer ${localStorage.getItem(
+            'authToken'
+         )}`;
+      } else {
+         return Promise.reject('Request canceled');
+      }
 
       return config;
    },
@@ -81,6 +92,7 @@ api.interceptors.request.use(
 
 const redirectToLogin = () => {
    console.log('Refresh token is missing. Redirecting to login.');
+   alert('You need to log in again. Sorry for the inconvenience');
    window.location.href = '/login';
 };
 
