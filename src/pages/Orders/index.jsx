@@ -30,7 +30,9 @@ function Orders() {
    // const [isModalReview, setModalReview] = useState(false);
    // const [isListReviews, setIsListReviews] = useState([]);
 
-   useEffect(() => pageOrders(setRecords), []);
+   useEffect(() => {
+      pageOrders(setRecords);
+   }, []);
 
    const [formData, setFormData] = useState({
       title: '',

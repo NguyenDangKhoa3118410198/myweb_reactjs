@@ -1,33 +1,17 @@
 import axios from 'axios';
 import { API } from './API';
-import { getUsers, sendRequest } from '../ulti/sendHeaderRequest';
+import { sendRequest } from '../ulti/sendHeaderRequest';
 
 import { v4 as uuidv4 } from 'uuid';
 
-export const pageOrders = (setRecords) => {
-   axios
-      .get('https://dummyjson.com/carts')
-      .then((response) => {
-         const data = response.data;
-
-         const infoProducts = data.carts
-            .map((cart) => {
-               return cart.products.map((product) => {
-                  return {
-                     id: uuidv4(),
-                     title: product.title,
-                     price: product.price,
-                     amount: product.quantity,
-                     total: product.total,
-                  };
-               });
-            })
-            .flat();
-         setRecords(infoProducts);
-      })
-      .catch((error) => {
-         console.log(error);
-      });
+export const pageOrders = async (setRecords) => {
+   try {
+      let records = [{}];
+      records = await sendRequest('GET', 'api/orders');
+      setRecords(records);
+   } catch (error) {
+      console.error('Error fetching data:', error);
+   }
 };
 
 export const pageMainDash = async (setRecords) => {
