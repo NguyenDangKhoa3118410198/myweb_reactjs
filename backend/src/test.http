@@ -64,3 +64,13 @@ Content-Type: application/json
       "amount": 10,
       "total": 50000
 }
+
+
+############
+GET http://localhost:4000/api/customers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQDEyMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAxNTc4NzQyLCJleHAiOjE3MDE1ODIzNDJ9.ZyYb4Z4motqiHn4uofF3exRh86As4xZKOs27TtdXrX8
+
+
+####################
+DELETE  http://localhost:4000/api/customers/29
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQDEyMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAxNTc4NzQyLCJleHAiOjE3MDE1ODIzNDJ9.ZyYb4Z4motqiHn4uofF3exRh86As4xZKOs27TtdXrX8

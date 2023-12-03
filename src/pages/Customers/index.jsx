@@ -8,6 +8,8 @@ import Table from '../../components/Table/Table';
 import { columnsCustomer } from '../../Data/columns';
 import { pageCustomers } from '../../Data/fetchData';
 import OnTopButton from '../../components/OnTop/OnTop';
+import { sendRequest } from '../../ulti/sendHeaderRequest';
+
 import './customers.css';
 
 function Customers() {
@@ -17,12 +19,31 @@ function Customers() {
    const [isModalView, setModalView] = useState(false);
    const [viewCurrent, setViewCurrent] = useState({});
 
-   const handleDelete = (record) => {
-      if (records.length === 0) {
-         console.log('No records to delete');
-         return;
+   const handleDelete = async (record) => {
+      try {
+         const customerId = record.id;
+
+         if (records.length === 0) {
+            console.log('No records to delete');
+            return;
+         }
+
+         const response = await sendRequest(
+            'DELETE',
+            `api/customers/${customerId}`
+         );
+
+         if (response.success) {
+            setRecords((prevRecords) =>
+               prevRecords.filter((r) => r.id !== record.id)
+            );
+            console.log('Customer deleted successfully');
+         } else {
+            console.error('Error deleting customer:', response.message);
+         }
+      } catch (error) {
+         console.error('Failed to delete customer:', error.message);
       }
-      setRecords(records.filter((r) => r.id !== record.id));
    };
 
    const handleView = (record) => {
@@ -35,13 +56,16 @@ function Customers() {
       handleDelete,
    });
 
-   useEffect(() => pageCustomers(setRecords), []);
+   useEffect(() => {
+      pageCustomers(setRecords);
+   }, []);
 
    return (
       <main className={`customer-wrapper ${darkMode ? 'darkmode' : ''} `}>
          <div id='top' style={{ opacity: '0' }}></div>
 
          <Table
+            title='List table Customers'
             columns={columns}
             data={filterData(searchTerm, records)}
             searchBox={searchBox(searchTerm, setSearchTerm)}

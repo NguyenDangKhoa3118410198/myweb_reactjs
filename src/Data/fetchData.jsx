@@ -66,29 +66,14 @@ export const pageProducts2 = (setRecords) => {
       });
 };
 
-export const pageCustomers = (setRecords) => {
-   axios
-      .get('https://dummyjson.com/users')
-      .then((response) => {
-         const data = response.data;
-
-         const infoCustomers = data.users.map((user) => {
-            return {
-               id: uuidv4(),
-               firstName: user.firstName,
-               lastName: user.lastName,
-               maidenName: user.maidenName,
-               age: user.age,
-               gender: user.gender,
-               email: user.email,
-               phone: user.phone,
-            };
-         });
-         setRecords(infoCustomers);
-      })
-      .catch((error) => {
-         console.log(error);
-      });
+export const pageCustomers = async (setRecords) => {
+   try {
+      let records = [{}];
+      records = await sendRequest('GET', 'api/customers');
+      setRecords(records);
+   } catch (error) {
+      console.error('Error fetching data:', error);
+   }
 };
 
 export const pageReview = (productId, setRecords) => {

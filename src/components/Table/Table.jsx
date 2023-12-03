@@ -87,17 +87,19 @@ const Table = ({
                         top: '0',
                      }}
                   >
-                     <button
-                        type='button'
-                        className='btn btn-add'
-                        onClick={() => {
-                           setIsAddPanelOpen(true);
-                           setIsEditPanelOpen(false);
-                           setCurrentRecordId(null);
-                        }}
-                     >
-                        Add
-                     </button>
+                     {setIsAddPanelOpen ? (
+                        <button
+                           type='button'
+                           className='btn btn-add'
+                           onClick={() => {
+                              setIsAddPanelOpen(true);
+                              setIsEditPanelOpen(false);
+                              setCurrentRecordId(null);
+                           }}
+                        >
+                           Add
+                        </button>
+                     ) : null}
                      <div className='right-data-table'>
                         <ExportCSV
                            headers={headers}
