@@ -2,7 +2,7 @@ const axios = require('axios');
 const orders = [];
 
 const getOrders = async (req, res) => {
-   console.log('get orders');
+   console.log('--------------- Get orders -------------------');
 
    try {
       const response = await axios.get('https://dummyjson.com/carts');
@@ -50,6 +50,8 @@ const addOrder = async (req, res) => {
 };
 
 const deleteOrder = (req, res) => {
+   console.log('--------------- Delete order -------------------');
+
    try {
       const orderId = parseInt(req.params.id, 10);
       console.log('delete orderId : ', orderId);
@@ -81,6 +83,8 @@ const deleteOrder = (req, res) => {
 };
 
 const editOrder = (req, res) => {
+   console.log('--------------- Edit order -------------------');
+
    try {
       const orderId = parseInt(req.params.id, 10);
       const updatedOrderData = req.body;

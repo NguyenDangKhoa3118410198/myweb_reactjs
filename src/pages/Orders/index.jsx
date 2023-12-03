@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Table from '../../components/Table/Table';
 import { columnsOrder } from '../../Data/columns';
 import { pageOrders } from '../../Data/fetchData';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import {
    searchBox,
    filterData,
@@ -11,8 +11,8 @@ import {
 } from '../../components/Table/TableActions/handleActions';
 import FormPanel from './FormPanel';
 import './orders.css';
-// import { pageReview } from '../../Data/fetchData';
 import OnTopButton from '../../components/OnTop/OnTop';
+import { sendRequest } from '../../ulti/sendHeaderRequest';
 
 function Orders() {
    const [records, setRecords] = useState([]);
@@ -102,31 +102,97 @@ function Orders() {
       setCurrentRecordId(record.id);
    };
 
-   const handleSave = (currentRecordId, record) => {
+   const handleSave = async (currentRecordId, record) => {
       if (currentRecordId) {
          const currentRecord = records.find((r) => r.id === currentRecordId);
+
          if (!currentRecord) {
             alert('Invalid ID');
             return;
          }
 
-         setRecords(
-            records.map((r) =>
-               r.id === currentRecordId ? { ...r, ...record } : r
-            )
-         );
+         try {
+            const response = await sendRequest(
+               'POST',
+               `api/orders/${currentRecordId}/edit`,
+               record
+            );
+
+            if (response.success) {
+               setRecords(
+                  records.map((r) =>
+                     r.id === currentRecordId ? { ...r, ...record } : r
+                  )
+               );
+               console.log('Updated order successfully');
+            } else {
+               console.error('Error updating order:', response.message);
+            }
+         } catch (error) {
+            console.error('Error sending request:', error.message);
+         }
       } else {
-         const newRecord = { ...record, id: uuidv4() };
-         setRecords([...records, newRecord]);
+         try {
+            const response = await sendRequest(
+               'POST',
+               'api/orders/add',
+               record
+            );
+
+            if (response.success) {
+               const newRecord = response.newOrder;
+               setRecords([...records, newRecord]);
+               console.log('New order added successfully:', newRecord);
+            } else {
+               console.error('Error adding new order:', response.message);
+            }
+         } catch (error) {
+            console.error('Error sending request:', error.message);
+         }
       }
    };
 
-   const handleDelete = (record) => {
-      if (records.length === 0) {
-         console.log('No records to delete');
-         return;
+   // const handleSave = (currentRecordId, record) => {
+   //    if (currentRecordId) {
+   //       const currentRecord = records.find((r) => r.id === currentRecordId);
+   //       if (!currentRecord) {
+   //          alert('Invalid ID');
+   //          return;
+   //       }
+
+   //       setRecords(
+   //          records.map((r) =>
+   //             r.id === currentRecordId ? { ...r, ...record } : r
+   //          )
+   //       );
+   //    } else {
+   //       const newRecord = { ...record, id: uuidv4() };
+   //       setRecords([...records, newRecord]);
+   //    }
+   // };
+
+   const handleDelete = async (record) => {
+      try {
+         const orderId = record.id;
+
+         if (records.length === 0) {
+            console.log('No records to delete');
+            return;
+         }
+
+         const response = await sendRequest('DELETE', `api/orders/${orderId}`);
+
+         if (response.success) {
+            setRecords((prevRecords) =>
+               prevRecords.filter((r) => r.id !== record.id)
+            );
+            console.log('Order deleted successfully');
+         } else {
+            console.error('Error deleting order:', response.message);
+         }
+      } catch (error) {
+         console.error('Failed to delete order:', error.message);
       }
-      setRecords(records.filter((r) => r.id !== record.id));
    };
 
    // const handleReview = (record) => {

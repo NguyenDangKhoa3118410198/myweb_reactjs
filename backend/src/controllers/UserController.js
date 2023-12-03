@@ -2,6 +2,8 @@ const axios = require('axios');
 const users = [];
 
 const getUsers = async (req, res) => {
+   console.log('--------------- Get users -------------------');
+
    try {
       const response = await axios.get(
          'https://jsonplaceholder.typicode.com/users'
@@ -25,6 +27,8 @@ const getUsers = async (req, res) => {
 };
 
 const addUser = (req, res) => {
+   console.log('--------------- Add user -------------------');
+
    try {
       const newUser = req.body;
 
@@ -51,6 +55,8 @@ const addUser = (req, res) => {
 };
 
 const deleteUser = (req, res) => {
+   console.log('--------------- Delete user -------------------');
+
    try {
       const userId = parseInt(req.params.id, 10);
       console.log('delete userId : ', userId);
@@ -82,6 +88,8 @@ const deleteUser = (req, res) => {
 };
 
 const editUser = (req, res) => {
+   console.log('--------------- Edit user -------------------');
+
    try {
       const userId = parseInt(req.params.id, 10);
       const updatedUserData = req.body;
