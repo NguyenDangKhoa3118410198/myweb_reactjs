@@ -7,11 +7,12 @@ const getOrders = async (req, res) => {
    try {
       const response = await axios.get('https://dummyjson.com/carts');
       const data = response.data.carts;
-      const updatedData = data
+      const orderData = data
          .map((order) => {
+            let idOrder = order.id;
             return order.products.map((product) => {
                return {
-                  id: product.id,
+                  id: idOrder + '-' + product.id,
                   title: product.title,
                   price: product.price,
                   amount: product.quantity,
@@ -20,8 +21,8 @@ const getOrders = async (req, res) => {
             });
          })
          .flat();
-      orders.push(...updatedData);
-      res.json(orders);
+      orders.push(...orderData);
+      res.json(orderData);
    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -53,7 +54,21 @@ const deleteOrder = (req, res) => {
    console.log('--------------- Delete order -------------------');
 
    try {
-      const orderId = parseInt(req.params.id, 10);
+      const id = req.params.id;
+      let orderId;
+
+      if (id.includes('-')) {
+         orderId = id;
+      } else {
+         orderId = parseInt(id, 10);
+
+         if (isNaN(orderId)) {
+            return res.status(400).json({
+               success: false,
+               message: 'Invalid order ID format',
+            });
+         }
+      }
       console.log('delete orderId : ', orderId);
 
       const orderIndex = orders.findIndex((order) => order.id === orderId);
@@ -86,7 +101,21 @@ const editOrder = (req, res) => {
    console.log('--------------- Edit order -------------------');
 
    try {
-      const orderId = parseInt(req.params.id, 10);
+      const id = req.params.id;
+      let orderId;
+
+      if (id.includes('-')) {
+         orderId = id;
+      } else {
+         orderId = parseInt(id, 10);
+
+         if (isNaN(orderId)) {
+            return res.status(400).json({
+               success: false,
+               message: 'Invalid order ID format',
+            });
+         }
+      }
       const updatedOrderData = req.body;
 
       const orderIndex = orders.findIndex((order) => order.id === orderId);

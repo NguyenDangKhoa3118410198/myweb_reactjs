@@ -33,7 +33,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQ
 
 ############
 GET http://localhost:4000/api/orders
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQDEyMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAxNDE0NzA5LCJleHAiOjE3MDE0MTgzMDl9.Yu0TZxeGG6CkQ8vthkMPna_MHvj6EJG_85Abf3vJBJw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQDEyMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAxNjEyMDU2LCJleHAiOjE3MDE2MTU2NTZ9.BTlWbTaketBCPwuGLF-i_78FbpmWkEmRha13vDJlj38
+
 
 ##############
 POST http://localhost:4000/api/orders/add
@@ -74,3 +75,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQ
 ####################
 DELETE  http://localhost:4000/api/customers/29
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQDEyMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAxNTc4NzQyLCJleHAiOjE3MDE1ODIzNDJ9.ZyYb4Z4motqiHn4uofF3exRh86As4xZKOs27TtdXrX8
+
+
+############
+GET http://localhost:4000/api/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQDEyMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAxNjA3MTE5LCJleHAiOjE3MDE2MTA3MTl9.OvLMuOfElRZw04ONB_iJGX10DXWGz2rtFHLtqGjNyC0
+
+
+############
+GET http://localhost:4000/api/products/252939311/review
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQDEyMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAxNjEwODE2LCJleHAiOjE3MDE2MTQ0MTZ9.FvhtensX0bfgp-LQ8AUCvmyU5hrLfPueREkdF4qkiwg

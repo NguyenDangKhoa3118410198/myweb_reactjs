@@ -21,9 +21,13 @@ function Products() {
    const [isModalReview, setModalReview] = useState(false);
    const [isListReviews, setIsListReviews] = useState([]);
 
-   useEffect(() => pageProducts1(setProducts), []);
+   useEffect(() => {
+      pageProducts1(setProducts);
+   }, []);
 
-   useEffect(() => pageProducts2(setRecords), []);
+   useEffect(() => {
+      pageProducts2(setRecords);
+   }, []);
 
    function filterData(records) {
       return records.filter((row) =>

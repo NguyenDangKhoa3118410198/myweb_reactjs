@@ -6,7 +6,7 @@ const getCustomers = async (req, res) => {
    try {
       const response = await axios.get('https://dummyjson.com/users');
       const data = response.data.users;
-      const infoCustomers = data.map((user) => {
+      const customerData = data.map((user) => {
          return {
             id: user.id,
             firstName: user.firstName,
@@ -18,9 +18,9 @@ const getCustomers = async (req, res) => {
             phone: user.phone,
          };
       });
-      customers.push(...infoCustomers);
-      res.json(infoCustomers);
-      console.log(customers);
+      customers.push(...customerData);
+      res.json(customerData);
+      // console.log(customers);
    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });

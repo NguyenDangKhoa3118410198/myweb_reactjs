@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import Table from '../../components/Table/Table';
 import { columnsOrder } from '../../Data/columns';
 import { pageOrders } from '../../Data/fetchData';
-// import { v4 as uuidv4 } from 'uuid';
 import {
    searchBox,
    filterData,
@@ -151,25 +150,6 @@ function Orders() {
          }
       }
    };
-
-   // const handleSave = (currentRecordId, record) => {
-   //    if (currentRecordId) {
-   //       const currentRecord = records.find((r) => r.id === currentRecordId);
-   //       if (!currentRecord) {
-   //          alert('Invalid ID');
-   //          return;
-   //       }
-
-   //       setRecords(
-   //          records.map((r) =>
-   //             r.id === currentRecordId ? { ...r, ...record } : r
-   //          )
-   //       );
-   //    } else {
-   //       const newRecord = { ...record, id: uuidv4() };
-   //       setRecords([...records, newRecord]);
-   //    }
-   // };
 
    const handleDelete = async (record) => {
       try {

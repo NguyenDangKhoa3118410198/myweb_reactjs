@@ -19,7 +19,7 @@ const getUsers = async (req, res) => {
          return updatedUser;
       });
       res.json(updatedData);
-      console.log(users);
+      // console.log(users);
    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
