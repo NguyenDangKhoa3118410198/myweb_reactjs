@@ -31,7 +31,7 @@ const getReviewsByProductId = async (req, res) => {
    try {
       const productId = req.params.id;
       const response = await axios.get(API.reviewAPI(productId));
-      console.log('url: ', API.reviewAPI(productId));
+      // console.log('url: ', API.reviewAPI(productId));
 
       const reivewData = response.data.data.map((reivew) => {
          const reviewInfo = {
