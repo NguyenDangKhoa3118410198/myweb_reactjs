@@ -14,6 +14,7 @@ export const pageMainDash = async (setRecords) => {
    try {
       let records = [{}];
       records = await sendRequest('GET', 'api/users');
+      // console.log(records);
       setRecords(records);
    } catch (error) {
       console.error('Error fetching data:', error);

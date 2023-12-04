@@ -1,6 +1,7 @@
 ########## Get All Users
 GET http://localhost:4000/api/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQDEyMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAxNDEwOTgyLCJleHAiOjE3MDE0MTQ1ODJ9._LJfv8MVb8FgDc88v70Ms7Js9HqrnYhyVAjqQT-KKC4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQDEyMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAxNjk2OTM4LCJleHAiOjE3MDE3MDA1Mzh9.qBUmRPOajbmb7bDGSFc7nqxI8wWLbcfDFnLUITGnVa0
+
 
 ###############
 DELETE http://localhost:4000/api/users/10
