@@ -66,6 +66,23 @@ const MainDash = () => {
       if (newFormData) {
          if (currentRecordId && isEditPanelOpen) {
             //edit exists record
+
+            const currentRecord = records.find(
+               (record) => record.id === currentRecordId
+            );
+
+            const invalidEmail = records.some(
+               (record) =>
+                  record.email === formData.email &&
+                  formData.email !== currentRecord.email
+            );
+
+            if (invalidEmail) {
+               alert(
+                  `The email "${formData.email}" already exists.\n Please use a different email address.`
+               );
+               return;
+            }
             handleSave(currentRecordId, newFormData);
          } else if (!currentRecordId && !isEditPanelOpen) {
             //create new record

@@ -114,7 +114,10 @@ const editUser = async (req, res) => {
          });
       }
 
-      if (updatedUserData.email) {
+      if (
+         updatedUserData.email &&
+         updatedUserData.email !== existingUser.email
+      ) {
          const emailExists = await User.findOne({
             email: updatedUserData.email,
          });
