@@ -1,6 +1,6 @@
-const registeredUsers = require('../models/users');
 const bcrypt = require('bcrypt');
 const { generateAccessToken, generateRefreshToken } = require('../ulti/token');
+const User = require('../models/User');
 
 const loginAttemptsMap = new Map();
 
@@ -20,47 +20,65 @@ const resetLoginAttempts = (email) => {
    loginAttemptsMap.set(email, { attempts: 0, lastAttemptTime: 0 });
 };
 
-const login = (req, res) => {
-   const { email, password } = req.body;
+const login = async (req, res) => {
+   try {
+      const { email, password } = req.body;
 
-   const userLoginInfo = getUserLoginInfo(email);
+      const userLoginInfo = getUserLoginInfo(email);
 
-   if (
-      userLoginInfo.attempts >= 5 &&
-      Date.now() - userLoginInfo.lastAttemptTime < 30000
-   ) {
-      const timeRemaining = Math.ceil(
-         (30000 - (Date.now() - userLoginInfo.lastAttemptTime)) / 1000
+      if (
+         userLoginInfo.attempts >= 5 &&
+         Date.now() - userLoginInfo.lastAttemptTime < 30000
+      ) {
+         const timeRemaining = Math.ceil(
+            (30000 - (Date.now() - userLoginInfo.lastAttemptTime)) / 1000
+         );
+         return res.json({
+            success: false,
+            message: `Too many login attempts. Please try again in ${timeRemaining} seconds.`,
+         });
+      }
+
+      const existingUser = await User.findOne({ email });
+
+      if (!existingUser || existingUser === null) {
+         updateLoginAttempts(email, userLoginInfo);
+
+         return res.json({
+            success: false,
+            message: 'Login failed. Incorrect username or password.',
+         });
+      }
+
+      const passwordMatch = await bcrypt.compare(
+         password,
+         existingUser.password
       );
-      return res.json({
+
+      if (passwordMatch) {
+         resetLoginAttempts(email);
+
+         const accessToken = generateAccessToken(existingUser);
+         const refreshToken = generateRefreshToken(existingUser);
+
+         res.json({
+            success: true,
+            message: 'Login successful!',
+            accessToken,
+            refreshToken,
+         });
+      } else {
+         res.json({
+            success: false,
+            message: 'Login failed. Incorrect password.',
+         });
+      }
+   } catch (error) {
+      console.error('Error during login:', error);
+      res.status(500).json({
          success: false,
-         message: `Too many login attempts. Please try again in ${timeRemaining} seconds.`,
-      });
-   }
-
-   const existingUser = registeredUsers.find(
-      (user) =>
-         user.email === email && bcrypt.compareSync(password, user.password)
-   );
-
-   if (existingUser) {
-      resetLoginAttempts(email);
-
-      const accessToken = generateAccessToken(existingUser);
-      const refreshToken = generateRefreshToken(existingUser);
-
-      res.json({
-         success: true,
-         message: 'Login successful!',
-         accessToken,
-         refreshToken,
-      });
-   } else {
-      updateLoginAttempts(email, userLoginInfo);
-
-      res.json({
-         success: false,
-         message: 'Login failed. Incorrect username or password.',
+         message:
+            'Internal Server Error: An unexpected error occurred during login.',
       });
    }
 };

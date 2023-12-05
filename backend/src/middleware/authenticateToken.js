@@ -1,20 +1,14 @@
 const jwt = require('jsonwebtoken');
-const registeredUsers = require('../models/users');
+const User = require('../models/User');
 
-const authenticateToken = (req, res, next) => {
+const authenticateToken = async (req, res, next) => {
    const authHeader = req.header('Authorization');
    console.log('Middleware: ', authHeader);
 
-   if (!authHeader) {
-      return res
-         .status(401)
-         .json({ success: false, message: 'Unauthorized: No token provided' });
-   }
-
-   if (!authHeader.startsWith('Bearer ')) {
-      return res.status(401).json({
+   if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(400).json({
          success: false,
-         message: 'Unauthorized: Invalid token format',
+         message: 'Bad Request: Middleware invalid token format',
       });
    }
 
@@ -24,22 +18,24 @@ const authenticateToken = (req, res, next) => {
       const decoded = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
       const { email, role } = decoded;
 
-      const existingUser = registeredUsers.some(
-         (user) => user.email === email && user.role === role
-      );
+      const existingUser = await User.findOne({ email, role });
 
       if (!existingUser) {
-         return res
-            .status(403)
-            .json({ success: false, message: 'Forbidden: User not found' });
+         return res.status(403).json({
+            success: false,
+            message:
+               'Forbidden: Middleware you do not have permission to access this resource.',
+         });
       }
 
       req.user = decoded;
       next();
    } catch (error) {
-      return res
-         .status(403)
-         .json({ success: false, message: 'Forbidden: Invalid token' });
+      return res.status(403).json({
+         success: false,
+         message: 'Forbidden: Middleware invalid token',
+         error: error.message,
+      });
    }
 };
 
