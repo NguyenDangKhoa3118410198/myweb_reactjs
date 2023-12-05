@@ -24,9 +24,21 @@ const addUser = async (req, res) => {
 
    try {
       const { name, email } = req.body;
-      const newUser = req.body;
       const hashedPassword = hashPasswordByNameAndEmail(name, email);
+
+      const newUser = req.body;
       newUser.password = hashedPassword;
+
+      if (email) {
+         const emailExists = await User.findOne({ email });
+
+         if (emailExists) {
+            return res.status(400).json({
+               success: false,
+               message: 'Email already exists',
+            });
+         }
+      }
 
       const createdUser = await User.create(newUser);
 
@@ -100,6 +112,19 @@ const editUser = async (req, res) => {
             success: false,
             message: 'User not found',
          });
+      }
+
+      if (updatedUserData.email) {
+         const emailExists = await User.findOne({
+            email: updatedUserData.email,
+         });
+
+         if (emailExists) {
+            return res.status(400).json({
+               success: false,
+               message: 'Email already exists',
+            });
+         }
       }
 
       existingUser.set(updatedUserData);
