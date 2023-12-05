@@ -1,15 +1,5 @@
 const User = require('../models/User');
-// const axios = require('axios');
-// const users = [];
-
-// ------------------------Delete-------------------
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
-const hashPassword = (name, email) => {
-   const combinedString = `${name}${email}`;
-   const salt = bcrypt.genSaltSync(saltRounds);
-   return bcrypt.hashSync(combinedString, salt);
-};
+const { hashPasswordByNameAndEmail } = require('../ulti/bcrypt');
 
 const getUsers = async (req, res) => {
    console.log('--------------- Get users -------------------');
@@ -23,22 +13,6 @@ const getUsers = async (req, res) => {
          email: user.email,
       }));
       res.json(simplifiedUsers);
-
-      // const response = await axios.get(
-      //    'https://jsonplaceholder.typicode.com/users'
-      // );
-      // const updatedData = response.data.map((user) => {
-      //    const updatedUser = {
-      //       id: user.id,
-      //       name: user.name,
-      //       username: user.username,
-      //       email: user.email,
-      //    };
-      //    users.push(updatedUser);
-      //    return updatedUser;
-      // });
-      // res.json(updatedData);
-      // console.log(users);
    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -51,7 +25,7 @@ const addUser = async (req, res) => {
    try {
       const { name, email } = req.body;
       const newUser = req.body;
-      const hashedPassword = hashPassword(name, email);
+      const hashedPassword = hashPasswordByNameAndEmail(name, email);
       newUser.password = hashedPassword;
 
       const createdUser = await User.create(newUser);

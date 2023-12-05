@@ -7,9 +7,11 @@ import axios from 'axios';
 const Login = () => {
    const navigate = useNavigate();
 
+   const [name, setName] = useState('');
+   const [username, setUsername] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
-   const [username, setUsername] = useState('');
+
    const [active, setActive] = useState(false);
    const [isLoginPage, setIsLoginPage] = useState(true);
 
@@ -25,7 +27,12 @@ const Login = () => {
          if (isLoginPage) {
             await handleApiCall('login', { email, password });
          } else {
-            await handleApiCall('register', { email, password, username });
+            await handleApiCall('register', {
+               email,
+               password,
+               username,
+               name,
+            });
          }
       } catch (error) {
          console.error(error);
@@ -66,6 +73,7 @@ const Login = () => {
       setPassword('');
       if (!isLoginPage) {
          setUsername('');
+         setName('');
       }
    };
 
@@ -93,6 +101,14 @@ const Login = () => {
                   <input
                      type='text'
                      placeholder='Name'
+                     value={name}
+                     onChange={(e) => setName(e.target.value)}
+                     autoFocus
+                     required
+                  />
+                  <input
+                     type='text'
+                     placeholder='Username'
                      value={username}
                      onChange={(e) => setUsername(e.target.value)}
                      autoFocus
