@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { UilArrowUp } from '@iconscout/react-unicons';
 import './ontop.css';
 
 const OnTopButton = () => {
+   const [isHidden, setIsHidden] = useState(false);
+
    const onTop = () => {
       const container = document.getElementById('top');
       if (container) {
@@ -10,10 +12,19 @@ const OnTopButton = () => {
       }
    };
 
+   const handleClose = () => {
+      setIsHidden(true);
+   };
+
    return (
-      <button className='on-top-container' onClick={onTop}>
-         <UilArrowUp />
-      </button>
+      <div className={`on-top-wrapper ${isHidden ? 'hidden-on-top' : ''}`}>
+         <button className='on-top-container' onClick={onTop}>
+            <UilArrowUp />
+         </button>
+         <div className='on-top-close' onClick={handleClose}>
+            X
+         </div>
+      </div>
    );
 };
 

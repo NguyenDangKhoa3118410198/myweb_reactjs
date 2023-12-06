@@ -1,4 +1,4 @@
-.on-top-container {
+.on-top-wrapper {
    width: 4rem;
    height: 4rem;
    position: fixed;
@@ -10,6 +10,39 @@
    transition: all 250ms ease-in-out;
 }
 
-.on-top-container:active {
+.on-top-wrapper:active {
    transform: scale(1.1);
+}
+
+.on-top-wrapper:hover {
+   .on-top-close {
+      opacity: 1;
+   }
+}
+
+.on-top-container {
+   width: 100%;
+   height: 100%;
+   align-items: center;
+   justify-content: center;
+   background-color: transparent;
+}
+
+.on-top-close {
+   opacity: 0;
+}
+
+.on-top-close {
+   width: max-content;
+   height: max-content;
+   padding: 2px;
+   position: absolute;
+   right: 5px;
+   top: -8px;
+   font-weight: bold;
+   cursor: pointer;
+}
+
+.on-top-wrapper.hidden-on-top {
+   display: none;
 }

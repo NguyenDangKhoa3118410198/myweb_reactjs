@@ -64,8 +64,9 @@ const checkAndRefreshToken = async () => {
          localStorage.setItem('authToken', newToken);
       }
    } catch (error) {
-      console.log('logout now');
       shouldSendRequest = false;
+      console.log('logout now');
+      redirectToLogin();
    } finally {
       isRefreshingToken = false;
    }
