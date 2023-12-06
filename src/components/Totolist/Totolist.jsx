@@ -1,29 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { UilTrashAlt } from '@iconscout/react-unicons';
+import {
+   todoList,
+   addTodo,
+   deleteTodo,
+   isCompletedTodo,
+} from '../../Data/fetchData';
 
 import './todolist.css';
-import { v4 as uuidv4 } from 'uuid';
 
 function Todolist() {
    const [todo, setTodo] = useState('');
-   const [todolist, setTodolist] = useState([
-      { id: uuidv4(), task: 'Homework', completed: false },
-      { id: uuidv4(), task: 'Running', completed: true },
-   ]);
+   const [todolist, setTodolist] = useState();
 
-   const handleAddTodo = (e) => {
+   useEffect(() => {
+      todoList(setTodolist);
+   }, []);
+
+   const handleAddTodo = async (e) => {
       e.preventDefault();
-      if (todo.trim().length !== 0) {
-         setTodolist((prevTodolist) => [
-            ...prevTodolist,
-            { id: uuidv4(), task: todo.trim(), completed: false },
-         ]);
+      const task = todo.trim();
+      if (task.length !== 0) {
+         const response = await addTodo({ task });
+         setTodolist((prevTodolist) => [...prevTodolist, response]);
       }
       setTodo('');
    };
 
    const handleToggleTodo = (id) => {
+      isCompletedTodo(id);
       setTodolist(
          todolist.map((todo) =>
             todo.id === id ? { ...todo, completed: !todo.completed } : todo
@@ -32,6 +38,7 @@ function Todolist() {
    };
 
    const handleDeleteTodo = (id) => {
+      deleteTodo(id);
       setTodolist(todolist.filter((todo) => todo.id !== id));
    };
 
@@ -52,7 +59,7 @@ function Todolist() {
             </Button>
          </Form>
          <div className='todolist'>
-            {todolist.length > 0 ? (
+            {todolist && todolist.length > 0 ? (
                todolist.map((todo) => (
                   <div className='todo' key={todo.id}>
                      <span

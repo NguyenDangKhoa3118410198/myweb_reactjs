@@ -60,3 +60,41 @@ export const pageReview = async (productId, setRecords) => {
       console.error('Error fetching data:', error);
    }
 };
+
+export const todoList = async (setRecords) => {
+   try {
+      let records = [{}];
+      records = await sendRequest('GET', 'api/todo');
+      // console.log(records);
+      setRecords(records);
+   } catch (error) {
+      console.error('Error fetching data:', error);
+   }
+};
+
+export const addTodo = async (task) => {
+   try {
+      const response = await sendRequest('POST', 'api/todo/add', task);
+      return response;
+   } catch (error) {
+      console.error('Error fetching data:', error);
+   }
+};
+
+export const deleteTodo = async (idTodo) => {
+   try {
+      const response = await sendRequest('DELETE', `api/todo/${idTodo}`);
+      return response;
+   } catch (error) {
+      console.error('Error fetching data:', error);
+   }
+};
+
+export const isCompletedTodo = async (idTodo) => {
+   try {
+      const response = await sendRequest('PATCH', `api/todo/${idTodo}/edit`);
+      return response;
+   } catch (error) {
+      console.error('Error fetching data:', error);
+   }
+};

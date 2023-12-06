@@ -2,6 +2,7 @@ const userRouter = require('./user');
 const orderRouter = require('./order');
 const productRouter = require('./product');
 const customerRouter = require('./customer');
+const todoRouter = require('./todo');
 const loginRouter = require('./login');
 const logoutRouter = require('./logout');
 const registerRouter = require('./register');
@@ -14,6 +15,7 @@ function route(app) {
    app.use('/api/orders', authenticateToken, orderRouter);
    app.use('/api/products', authenticateToken, productRouter);
    app.use('/api/customers', authenticateToken, customerRouter);
+   app.use('/api/todo', authenticateToken, todoRouter);
    app.use('/auth/login', loginRouter);
    app.use('/auth/logout', logoutRouter);
    app.use('/auth/register', registerRouter);
