@@ -1,26 +1,60 @@
-const axios = require('axios');
+const Customer = require('../models/Customer');
+
 const customers = [];
 
 const getCustomers = async (req, res) => {
    console.log('--------------- Get customers -------------------');
    try {
-      const response = await axios.get('https://dummyjson.com/users');
-      const data = response.data.users;
-      const customerData = data.map((user) => {
-         return {
-            id: user.id,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            maidenName: user.maidenName,
-            age: user.age,
-            gender: user.gender,
-            email: user.email,
-            phone: user.phone,
-         };
-      });
-      customers.push(...customerData);
-      res.json(customerData);
-      // console.log(customers);
+      const customersDB = await Customer.find({});
+
+      if (!customersDB || customersDB.length === 0) {
+         return res.status(404).json({ error: 'No customers found' });
+      }
+
+      const filteredCustomers = customersDB.map((customer) => ({
+         id: customer._id,
+         userId: customer.user,
+         address: customer.address,
+         phone: customer.phone,
+         dateOfBirth: customer.dateOfBirth,
+         gender: customer.gender,
+         avatar: customer.avatar,
+      }));
+
+      res.json(filteredCustomers);
+   } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+   }
+};
+
+const editCustomers = async (req, res) => {
+   const idCustomers = req.params.id;
+
+   try {
+      if (!idCustomers) {
+         return res.status(400).json({ error: 'Invalid customer ID' });
+      }
+
+      const customerDB = await Customer.findOne({ _id: idCustomers });
+
+      if (!customerDB) {
+         return res.status(404).json({ error: 'Customer not found' });
+      }
+
+      const { address, phone, dateOfBirth, gender, avatar } = req.body;
+
+      // ?? (nullish coalescing operator) để kiểm tra giá trị của req.body
+      //và chỉ cập nhật các trường nếu giá trị từ req.body là truthy (không phải null hoặc undefined).
+      customerDB.address = address ?? customerDB.address;
+      customerDB.phone = phone ?? customerDB.phone;
+      customerDB.dateOfBirth = dateOfBirth ?? customerDB.dateOfBirth;
+      customerDB.gender = gender ?? customerDB.gender;
+      customerDB.avatar = avatar ?? customerDB.avatar;
+
+      await customerDB.save();
+
+      res.json(customerDB);
    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -62,4 +96,4 @@ const deleteCustomer = (req, res) => {
    }
 };
 
-module.exports = { getCustomers, deleteCustomer };
+module.exports = { getCustomers, editCustomers, deleteCustomer };

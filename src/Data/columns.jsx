@@ -69,28 +69,13 @@ export const columnsCustomer = ({
    handleDelete,
 }) => [
    {
-      name: 'First name',
-      selector: (row) => row.firstName,
+      name: 'UserId',
+      selector: (row) => row.userId,
       sortable: true,
    },
    {
-      name: 'Last name',
-      selector: (row) => row.lastName,
-      sortable: true,
-   },
-   {
-      name: 'Maiden Name',
-      selector: (row) => row.maidenName,
-      sortable: true,
-   },
-   {
-      name: 'Age',
-      selector: (row) => row.age,
-      sortable: true,
-   },
-   {
-      name: 'Gender',
-      selector: (row) => row.gender,
+      name: 'Address',
+      selector: (row) => row.address,
       sortable: true,
    },
    {
@@ -99,8 +84,18 @@ export const columnsCustomer = ({
       sortable: true,
    },
    {
-      name: 'Email',
-      selector: (row) => row.email,
+      name: 'dateOfBirth',
+      selector: (row) => row.dateOfBirth,
+      sortable: true,
+   },
+   {
+      name: 'Gender',
+      selector: (row) => row.gender,
+      sortable: true,
+   },
+   {
+      name: 'avatar',
+      selector: (row) => row.avatar,
       sortable: true,
    },
    {

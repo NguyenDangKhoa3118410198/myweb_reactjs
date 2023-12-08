@@ -103,3 +103,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQ
 ##################
 GET http://localhost:4000/api/orders/6572bf2973b7600e8da68e41/detail
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQDEyMyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwMjAxOTM2NiwiZXhwIjoxNzAyMDIyOTY2fQ.fAL6a1jojVbQchdX--B2u_blr7vWfhaMcNvlvMnPhUM
+
+
+############
+GET http://localhost:4000/api/customers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQDEyMyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwMjA0NzI1MSwiZXhwIjoxNzAyMDUwODUxfQ.785GIpYww2kVQBC9ZkaOubYMl5Sa1timGAOX4yJ-eYk
