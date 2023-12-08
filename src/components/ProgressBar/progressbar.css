@@ -16,6 +16,24 @@
    justify-content: space-between;
 }
 
+@keyframes shake {
+   0% {
+      transform: translateX(0);
+   }
+   25% {
+      transform: translateX(-5px) rotate(5deg);
+   }
+   50% {
+      transform: translateX(5px) rotate(-5deg);
+   }
+   75% {
+      transform: translateX(-5px) rotate(5deg);
+   }
+   100% {
+      transform: translateX(0);
+   }
+}
+
 .channel-container {
    display: flex;
    justify-content: center;
@@ -25,12 +43,10 @@
       flex: 1;
       color: #886afc;
       padding-right: 5px;
-      transition: transform 200ms ease-in-out;
    }
 
    .icon-channel:hover {
-      transform: scale(1.2) rotate(360deg);
-      transition: transform 300ms ease-in-out;
+      animation: shake 0.5s ease-in-out infinite;
    }
 
    .custom-progress-bar {

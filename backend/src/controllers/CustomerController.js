@@ -63,9 +63,9 @@ const editCustomers = async (req, res) => {
 
 const deleteCustomer = (req, res) => {
    console.log('--------------- Delete customer -------------------');
-
+   //Chưa sửa code
    try {
-      const customerId = parseInt(req.params.id, 10);
+      const customerId = req.params.id;
       console.log('delete userId : ', customerId);
 
       const customerIndex = customers.findIndex(
