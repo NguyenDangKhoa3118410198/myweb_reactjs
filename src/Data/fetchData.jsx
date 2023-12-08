@@ -51,11 +51,20 @@ export const pageCustomers = async (setRecords) => {
    }
 };
 
-export const pageReview = async (productId, setRecords) => {
+export const pageReviewProduct = async (productId, setRecords) => {
    try {
       let records = [{}];
       records = await sendRequest('GET', `api/products/${productId}/review`);
       setRecords(records);
+   } catch (error) {
+      console.error('Error fetching data:', error);
+   }
+};
+
+export const pageDetailOrder = async (orderId) => {
+   try {
+      const response = await sendRequest('GET', `api/orders/${orderId}/detail`);
+      return response;
    } catch (error) {
       console.error('Error fetching data:', error);
    }

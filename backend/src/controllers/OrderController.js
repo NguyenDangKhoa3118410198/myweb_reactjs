@@ -1,3 +1,6 @@
+const Order = require('../models/Order');
+const ProductOfOrder = require('../models/ProductOfOrder');
+
 const axios = require('axios');
 const orders = [];
 
@@ -5,24 +8,16 @@ const getOrders = async (req, res) => {
    console.log('--------------- Get orders -------------------');
 
    try {
-      const response = await axios.get('https://dummyjson.com/carts');
-      const data = response.data.carts;
-      const orderData = data
-         .map((order) => {
-            let idOrder = order.id;
-            return order.products.map((product) => {
-               return {
-                  id: idOrder + '-' + product.id,
-                  title: product.title,
-                  price: product.price,
-                  amount: product.quantity,
-                  total: product.total,
-               };
-            });
-         })
-         .flat();
-      orders.push(...orderData);
-      res.json(orderData);
+      const ordersDB = await Order.find({});
+      const simplifiedOrders = ordersDB.map((order) => ({
+         id: order._id,
+         userId: order.userId,
+         total: order.total,
+         discountedTotal: order.discountedTotal,
+         totalProducts: order.totalProducts,
+         totalQuantity: order.totalQuantity,
+      }));
+      res.json(simplifiedOrders);
    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -147,4 +142,88 @@ const editOrder = (req, res) => {
    }
 };
 
-module.exports = { getOrders, addOrder, deleteOrder, editOrder };
+const saveOrder = async (req, res) => {
+   console.log('--------------- Save orders -------------------');
+   try {
+      const response = await axios.get('https://dummyjson.com/carts');
+      const jsonDataArray = response.data.carts;
+
+      // Lặp qua mảng đơn hàng
+      for (const jsonData of jsonDataArray) {
+         // Tạo đối tượng Order từ thông tin chung của đơn hàng
+         const orderData = {
+            userId: jsonData.userId,
+            total: jsonData.total,
+            discountedTotal: jsonData.discountedTotal,
+            totalProducts: jsonData.totalProducts,
+            totalQuantity: jsonData.totalQuantity,
+         };
+
+         const savedOrder = await Order.create(orderData);
+
+         for (const productData of jsonData.products) {
+            const productOfOrderData = {
+               id: productData.id,
+               title: productData.title,
+               price: productData.price,
+               quantity: productData.quantity,
+               total: productData.total,
+               discountPercentage: productData.discountPercentage,
+               discountedPrice: productData.discountedPrice,
+               thumbnail: productData.thumbnail,
+               orderId: savedOrder._id,
+            };
+
+            await ProductOfOrder.create(productOfOrderData);
+         }
+      }
+
+      console.log('Dữ liệu đã được lưu vào cơ sở dữ liệu.');
+   } catch (error) {
+      console.error(error);
+   }
+};
+
+const getDetailOrderByOrderId = async (req, res) => {
+   console.log(
+      '--------------- Get detail order by order id -------------------'
+   );
+   const orderId = req.params.id;
+
+   try {
+      if (!orderId) {
+         return res.status(400).json({ error: 'Invalid orderId' });
+      }
+
+      const detailOrderDB = await ProductOfOrder.find({ orderId });
+
+      if (!detailOrderDB || detailOrderDB.length === 0) {
+         return res.status(404).json({ error: 'Order not found' });
+      }
+      const simplifiedOrders = detailOrderDB.map((detailOrder) => ({
+         id: detailOrder.id,
+         title: detailOrder.title,
+         price: detailOrder.price,
+         quantity: detailOrder.quantity,
+         total: detailOrder.total,
+         discountPercentage: detailOrder.discountPercentage,
+         discountedPrice: detailOrder.discountedPrice,
+         thumbnail: detailOrder.thumbnail,
+      }));
+
+      res.json(simplifiedOrders);
+   } catch (error) {
+      console.error(error);
+
+      res.status(500).json({ error: 'Internal Server Error' });
+   }
+};
+
+module.exports = {
+   getOrders,
+   addOrder,
+   deleteOrder,
+   editOrder,
+   getDetailOrderByOrderId,
+   saveOrder,
+};

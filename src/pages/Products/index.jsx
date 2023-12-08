@@ -8,7 +8,7 @@ import {
    removeExtraSpaces,
 } from '../../components/Table/TableActions/handleActions';
 import OnTopButton from '../../components/OnTop/OnTop';
-import { pageReview } from '../../Data/fetchData';
+import { pageReviewProduct } from '../../Data/fetchData';
 
 import './product.css';
 function Products() {
@@ -37,7 +37,7 @@ function Products() {
    }
 
    const handleReview = (record) => {
-      pageReview(record.id, setIsListReviews);
+      pageReviewProduct(record.id, setIsListReviews);
       setModalReview(true);
    };
 

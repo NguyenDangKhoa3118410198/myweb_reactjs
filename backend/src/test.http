@@ -86,3 +86,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQ
 ############
 GET http://localhost:4000/api/products/252939311/review
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQDEyMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAxNjEwODE2LCJleHAiOjE3MDE2MTQ0MTZ9.FvhtensX0bfgp-LQ8AUCvmyU5hrLfPueREkdF4qkiwg
+
+
+
+##################
+GET http://localhost:4000/api/orders/save
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQDEyMyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwMjAxODgxMSwiZXhwIjoxNzAyMDIyNDExfQ.vPNUH0RMdJsc38PQguxCXjRKQUCfD3gHLYpOQcqL1Jg
+
+
+##################
+GET http://localhost:4000/api/orders/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQDEyMyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwMjAxNTUyMCwiZXhwIjoxNzAyMDE5MTIwfQ.SZql7QXl5Q-6uxUFAfqhk5BKhqJoXQkD5yJkiufZRZM
+
+
+
+##################
+GET http://localhost:4000/api/orders/6572bf2973b7600e8da68e41/detail
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQDEyMyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwMjAxOTM2NiwiZXhwIjoxNzAyMDIyOTY2fQ.fAL6a1jojVbQchdX--B2u_blr7vWfhaMcNvlvMnPhUM

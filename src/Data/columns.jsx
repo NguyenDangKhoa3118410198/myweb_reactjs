@@ -170,18 +170,19 @@ export const columnsOrder = ({
       sortable: true,
    },
    {
-      name: 'Title',
-      selector: (row) => row.title,
+      name: 'TotalProducts',
+      selector: (row) => row.totalProducts,
       sortable: true,
    },
    {
-      name: 'Amount',
-      selector: (row) => row.amount,
+      name: 'TotalQuantity',
+      selector: (row) => row.totalQuantity,
       sortable: true,
    },
+
    {
-      name: 'Price',
-      selector: (row) => row.price,
+      name: 'DiscountedTotal',
+      selector: (row) => row.discountedTotal,
       sortable: true,
    },
    {
@@ -189,6 +190,12 @@ export const columnsOrder = ({
       selector: (row) => row.total,
       sortable: true,
    },
+   {
+      name: 'UserID',
+      selector: (row) => row.userId,
+      sortable: true,
+   },
+
    {
       name: 'Action',
       sortable: false,

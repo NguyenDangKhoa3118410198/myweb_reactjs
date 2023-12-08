@@ -35,12 +35,17 @@ export const filterData = (searchTerm, records) => {
    return records.filter((row) =>
       Object.values(row).some(
          (value) =>
-            typeof value === 'string' &&
+            canConvertToString(value) &&
             value
+               .toString()
                .toLowerCase()
                .includes(removeExtraSpaces(searchTerm.toLowerCase()))
       )
    );
+};
+
+const canConvertToString = (value) => {
+   return typeof value === 'string' || typeof value === 'number';
 };
 
 filterData.propTypes = {

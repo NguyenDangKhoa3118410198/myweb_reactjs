@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectToDatabase = async () => {
    try {
-      await mongoose.connect('mongodb://localhost:27017/my_web_reactjs');
+      await mongoose.connect(process.env.URL_MONGODB);
       console.log('Connected to MongoDB');
    } catch (error) {
       console.error('MongoDB connection error: ', error);
