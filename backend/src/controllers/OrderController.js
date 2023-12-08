@@ -16,6 +16,7 @@ const getOrders = async (req, res) => {
          discountedTotal: order.discountedTotal,
          totalProducts: order.totalProducts,
          totalQuantity: order.totalQuantity,
+         status: order.status,
       }));
       res.json(simplifiedOrders);
    } catch (error) {

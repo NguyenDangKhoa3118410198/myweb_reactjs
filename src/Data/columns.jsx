@@ -191,6 +191,11 @@ export const columnsOrder = ({
       sortable: true,
    },
    {
+      name: 'Status',
+      selector: (row) => row.status,
+      sortable: true,
+   },
+   {
       name: 'UserID',
       selector: (row) => row.userId,
       sortable: true,
