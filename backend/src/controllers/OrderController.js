@@ -11,7 +11,7 @@ const getOrders = async (req, res) => {
       const ordersDB = await Order.find({});
       const simplifiedOrders = ordersDB.map((order) => ({
          id: order._id,
-         userId: order.userId,
+         customerId: order.customerId,
          total: order.total,
          discountedTotal: order.discountedTotal,
          totalProducts: order.totalProducts,

@@ -50,6 +50,13 @@ const login = async (req, res) => {
          });
       }
 
+      if (!existingUser.isActive) {
+         return res.json({
+            success: false,
+            message: 'Login failed. User account is not active.',
+         });
+      }
+
       const passwordMatch = await bcrypt.compare(
          password,
          existingUser.password

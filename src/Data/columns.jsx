@@ -191,8 +191,8 @@ export const columnsOrder = ({
       sortable: true,
    },
    {
-      name: 'UserID',
-      selector: (row) => row.userId,
+      name: 'CustomerId',
+      selector: (row) => row.customerId,
       sortable: true,
    },
 
