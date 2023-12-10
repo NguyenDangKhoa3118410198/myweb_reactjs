@@ -11,6 +11,7 @@ const getUsers = async (req, res) => {
          name: user.name,
          username: user.username,
          email: user.email,
+         isActive: user.isActive.toString(),
       }));
       res.json(simplifiedUsers);
    } catch (error) {
@@ -67,7 +68,7 @@ const addUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-   console.log('--------------- Delete user -------------------');
+   console.log('--------------- Deactivated  user -------------------');
 
    try {
       const userId = req.params.id;
@@ -81,15 +82,16 @@ const deleteUser = async (req, res) => {
          });
       }
 
-      await existingUser.deleteOne();
+      existingUser.isActive = false;
+      await existingUser.save();
 
       res.json({
          success: true,
-         message: 'User deleted successfully',
+         message: 'User deactivated successfully',
          deletedUser: existingUser,
       });
    } catch (error) {
-      console.error('Error deleting user:', error);
+      console.error('Error deactivated user:', error);
       res.status(500).json({
          success: false,
          message: 'Internal server error',

@@ -139,6 +139,11 @@ export const columnsMainDash = ({
       sortable: true,
    },
    {
+      name: 'Active',
+      selector: (row) => row.isActive,
+      sortable: true,
+   },
+   {
       name: 'Actions',
       sortable: false,
       maxWidth: 'max-content',

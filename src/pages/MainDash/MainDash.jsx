@@ -184,14 +184,16 @@ const MainDash = () => {
 
          if (response.success) {
             setRecords((prevRecords) =>
-               prevRecords.filter((r) => r.id !== record.id)
+               prevRecords.map((r) =>
+                  r.id === record.id ? { ...r, isActive: 'false' } : r
+               )
             );
-            console.log('User deleted successfully');
+            console.log('User deactivated successfully');
          } else {
-            console.error('Error deleting user:', response.message);
+            console.error('Error deactivated user:', response.message);
          }
       } catch (error) {
-         console.error('Failed to delete user:', error.message);
+         console.error('Failed to deactivated user:', error.message);
       }
    };
 
