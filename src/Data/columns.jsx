@@ -116,7 +116,8 @@ export const columnsCustomer = ({
 export const columnsMainDash = ({
    handleView,
    handleEditClick,
-   handleDelete,
+   handleDeactivate,
+   handleActivate,
 }) => [
    // {
    //    name: 'ID',
@@ -151,7 +152,8 @@ export const columnsMainDash = ({
          <TableActions
             handleView={handleView}
             handleEditClick={handleEditClick}
-            handleDelete={handleDelete}
+            handleDeactivate={handleDeactivate}
+            handleActivate={handleActivate}
             record={record}
          />
       ),

@@ -8,6 +8,8 @@ const TableActions = ({
    handleEditClick,
    handleDelete,
    handleReview,
+   handleDeactivate,
+   handleActivate,
    record,
 }) => {
    return (
@@ -50,6 +52,24 @@ const TableActions = ({
                   onClick={() => handleReview(record)}
                >
                   Review
+               </Dropdown.Item>
+            )}
+
+            {handleDeactivate && (
+               <Dropdown.Item
+                  className='item-action'
+                  onClick={() => handleDeactivate(record)}
+               >
+                  Deactivate
+               </Dropdown.Item>
+            )}
+
+            {handleActivate && (
+               <Dropdown.Item
+                  className='item-action'
+                  onClick={() => handleActivate(record)}
+               >
+                  Active
                </Dropdown.Item>
             )}
          </Dropdown.Menu>

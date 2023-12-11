@@ -50,6 +50,7 @@ const addUser = async (req, res) => {
          name: createdUser.name,
          username: createdUser.username,
          email: createdUser.email,
+         isActive: createdUser.isActive.toString(),
       };
 
       res.json({
@@ -59,39 +60,6 @@ const addUser = async (req, res) => {
       });
    } catch (error) {
       console.error('Error adding user:', error);
-      res.status(500).json({
-         success: false,
-         message: 'Internal server error',
-         error: error.message,
-      });
-   }
-};
-
-const deleteUser = async (req, res) => {
-   console.log('--------------- Deactivated  user -------------------');
-
-   try {
-      const userId = req.params.id;
-
-      const existingUser = await User.findById(userId);
-
-      if (!existingUser) {
-         return res.status(404).json({
-            success: false,
-            message: 'User not found',
-         });
-      }
-
-      existingUser.isActive = false;
-      await existingUser.save();
-
-      res.json({
-         success: true,
-         message: 'User deactivated successfully',
-         deletedUser: existingUser,
-      });
-   } catch (error) {
-      console.error('Error deactivated user:', error);
       res.status(500).json({
          success: false,
          message: 'Internal server error',
@@ -150,4 +118,70 @@ const editUser = async (req, res) => {
    }
 };
 
-module.exports = { getUsers, addUser, deleteUser, editUser };
+const deactivateUser = async (req, res) => {
+   console.log('--------------- Deactivated  user -------------------');
+
+   try {
+      const userId = req.params.id;
+
+      const existingUser = await User.findById(userId);
+
+      if (!existingUser) {
+         return res.status(404).json({
+            success: false,
+            message: 'User not found',
+         });
+      }
+
+      existingUser.isActive = false;
+      await existingUser.save();
+
+      res.json({
+         success: true,
+         message: 'User deactivated successfully',
+         deletedUser: existingUser,
+      });
+   } catch (error) {
+      console.error('Error deactivated user:', error);
+      res.status(500).json({
+         success: false,
+         message: 'Internal server error',
+         error: error.message,
+      });
+   }
+};
+
+const activateUser = async (req, res) => {
+   console.log('--------------- Activated  user -------------------');
+
+   try {
+      const userId = req.params.id;
+
+      const existingUser = await User.findById(userId);
+
+      if (!existingUser) {
+         return res.status(404).json({
+            success: false,
+            message: 'User not found',
+         });
+      }
+
+      existingUser.isActive = true;
+      await existingUser.save();
+
+      res.json({
+         success: true,
+         message: 'User activated successfully',
+         deletedUser: existingUser,
+      });
+   } catch (error) {
+      console.error('Error activated user:', error);
+      res.status(500).json({
+         success: false,
+         message: 'Internal server error',
+         error: error.message,
+      });
+   }
+};
+
+module.exports = { getUsers, addUser, editUser, deactivateUser, activateUser };

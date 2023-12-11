@@ -171,16 +171,19 @@ const MainDash = () => {
       }
    };
 
-   const handleDelete = async (record) => {
+   const handleDeactivate = async (record) => {
       try {
          const userId = record.id;
 
          if (records.length === 0) {
-            console.log('No records to delete');
+            console.log('No records available for operation');
             return;
          }
 
-         const response = await sendRequest('DELETE', `api/users/${userId}`);
+         const response = await sendRequest(
+            'PATCH',
+            `api/users/${userId}/deactivate`
+         );
 
          if (response.success) {
             setRecords((prevRecords) =>
@@ -197,10 +200,41 @@ const MainDash = () => {
       }
    };
 
+   const handleActivate = async (record) => {
+      try {
+         const userId = record.id;
+
+         if (records.length === 0) {
+            console.log('No records available for operation');
+            return;
+         }
+
+         const response = await sendRequest(
+            'PATCH',
+            `api/users/${userId}/activate`
+         );
+
+         if (response.success) {
+            setRecords((prevRecords) =>
+               prevRecords.map((r) =>
+                  r.id === record.id ? { ...r, isActive: 'true' } : r
+               )
+            );
+            console.log('User activated successfully');
+         } else {
+            console.error('Error activated user:', response.message);
+         }
+      } catch (error) {
+         console.error('Failed to activated user:', error.message);
+      }
+   };
+
    const columns = columnsMainDash({
       handleView,
       handleEditClick,
-      handleDelete,
+      // handleDelete,
+      handleDeactivate,
+      handleActivate,
    });
    return (
       <main
