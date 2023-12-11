@@ -55,21 +55,21 @@ const TableActions = ({
                </Dropdown.Item>
             )}
 
-            {handleDeactivate && (
-               <Dropdown.Item
-                  className='item-action'
-                  onClick={() => handleDeactivate(record)}
-               >
-                  Deactivate
-               </Dropdown.Item>
-            )}
-
             {handleActivate && (
                <Dropdown.Item
                   className='item-action'
                   onClick={() => handleActivate(record)}
                >
                   Active
+               </Dropdown.Item>
+            )}
+
+            {handleDeactivate && (
+               <Dropdown.Item
+                  className='item-action'
+                  onClick={() => handleDeactivate(record)}
+               >
+                  Deactivate
                </Dropdown.Item>
             )}
          </Dropdown.Menu>

@@ -28,6 +28,14 @@ const authenticateToken = async (req, res, next) => {
          });
       }
 
+      if (!existingUser.isActive) {
+         return res.status(403).json({
+            success: false,
+            requestLoginAgain: true,
+            message: 'Forbidden: Middleware user is not active',
+         });
+      }
+
       req.user = decoded;
       next();
    } catch (error) {
