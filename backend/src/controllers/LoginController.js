@@ -91,4 +91,63 @@ const login = async (req, res) => {
    }
 };
 
-module.exports = { login };
+const loginRoleAdmin = async (req, res) => {
+   try {
+      const { email, password } = req.body;
+
+      const existingUser = await User.findOne({ email });
+
+      if (!existingUser || existingUser === null) {
+         return res.json({
+            success: false,
+            message: 'Login failed. Incorrect username or password.',
+         });
+      }
+
+      if (existingUser.role !== 'admin') {
+         return res.json({
+            success: false,
+            message: 'Login failed. User does not have admin role.',
+         });
+      }
+
+      if (!existingUser.isActive) {
+         return res.json({
+            success: false,
+            message: 'Login failed. User account is not active.',
+         });
+      }
+
+      const passwordMatch = await bcrypt.compare(
+         password,
+         existingUser.password
+      );
+
+      if (passwordMatch) {
+         const accessToken = generateAccessToken(existingUser);
+         const refreshToken = generateRefreshToken(existingUser);
+
+         res.json({
+            success: true,
+            message: 'Login successful!',
+            username: existingUser.username,
+            accessToken,
+            refreshToken,
+         });
+      } else {
+         res.json({
+            success: false,
+            message: 'Login failed. Incorrect password.',
+         });
+      }
+   } catch (error) {
+      console.error('Error during login:', error);
+      res.status(500).json({
+         success: false,
+         message:
+            'Internal Server Error: An unexpected error occurred during login.',
+      });
+   }
+};
+
+module.exports = { login, loginRoleAdmin };

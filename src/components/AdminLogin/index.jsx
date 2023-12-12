@@ -24,7 +24,7 @@ const Login = () => {
       e.preventDefault();
       try {
          if (isLoginPage) {
-            await handleApiCall('login', { email, password });
+            await handleApiCall('login/admin', { email, password });
          } else {
             await handleApiCall('register', {
                email,
@@ -63,7 +63,7 @@ const Login = () => {
             alert(data.message);
          }
       } catch (error) {
-         console.error('Lỗi khi gọi API:', error);
+         console.error('Error call API:', error);
       }
    };
 
