@@ -7,26 +7,25 @@ import {
    // eslint-disable-next-line no-unused-vars
    data,
    infoCard,
-   DataBoxUsers,
-   DataBoxOrders,
-   DataBoxProducts,
+   countingProducts,
+   countingUsers,
+   countingOrders,
 } from './DataBoxes';
 
 function DashboardBoxCharts() {
-   // eslint-disable-next-line no-unused-vars
-   const [dataUser, setDataUser] = useState(null);
-   // eslint-disable-next-line no-unused-vars
+   const [dataUsers, setDataUser] = useState(null);
    const [dataOrders, setDataOrders] = useState(null);
-   // eslint-disable-next-line no-unused-vars
    const [dataProducts, setDataProducts] = useState(null);
+   const [dataAccess, setDataAccess] = useState(null);
 
    useEffect(() => {
-      Promise.all([DataBoxUsers(), DataBoxOrders(), DataBoxProducts()])
+      Promise.all([countingUsers(), countingOrders(), countingProducts()])
          .then((results) => {
-            const [boxUsers, boxOrders, boxProducts] = results;
-            setDataUser(boxUsers.flat());
-            setDataOrders(boxOrders.flat());
-            setDataProducts(boxProducts.flat());
+            const [users, orders, products] = results;
+            setDataUser(users);
+            setDataOrders(orders);
+            setDataProducts(products);
+            setDataAccess(users);
          })
          .catch((error) => {
             console.error('Error:', error);
@@ -37,16 +36,16 @@ function DashboardBoxCharts() {
       <div className='dashboard-charts-box-container'>
          <div className='dashboard-grid-container'>
             <div className='box box1'>
-               <Cart infoCard={infoCard[0]} />
+               <Cart infoCard={infoCard[0]} data={dataUsers} />
             </div>
             <div className='box box2'>
-               <Cart infoCard={infoCard[1]} />
+               <Cart infoCard={infoCard[1]} data={dataOrders} />
             </div>
             <div className='box box3'>
-               <Cart infoCard={infoCard[2]} />
+               <Cart infoCard={infoCard[2]} data={dataProducts} />
             </div>
             <div className='box box4'>
-               <Cart infoCard={infoCard[3]} />
+               <Cart infoCard={infoCard[3]} data={dataAccess} />
             </div>
             <div className='box box5'>
                <LargeBox data={data} chartModel={'PieChartBox'} />

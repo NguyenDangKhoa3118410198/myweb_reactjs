@@ -2,7 +2,7 @@ import React from 'react';
 import './cart.css';
 import { FaQuestion } from 'react-icons/fa';
 
-const Card = ({ infoCard }) => {
+const Card = ({ infoCard, data }) => {
    const {
       title = 'Default title',
       icon = <FaQuestion />,
@@ -17,7 +17,7 @@ const Card = ({ infoCard }) => {
 
          <div className='cart-right'>
             <h1 className='cart-title'>{title ? title : ''}</h1>
-            <h1 className='cart-count'>$1000</h1>
+            <h1 className='cart-count'>{data ?? '...Loading'}</h1>
             <div className='cart-up'>up 10%</div>
          </div>
       </div>

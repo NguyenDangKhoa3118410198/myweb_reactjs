@@ -97,17 +97,6 @@ const redirectToLogin = () => {
    window.location.href = '/login';
 };
 
-// export const getUsers = async () => {
-//    try {
-//       const response = await api.get('/api/users');
-//       console.log('Users data:', response.data);
-//       return response.data;
-//    } catch (error) {
-//       console.error('Error fetching users:', error);
-//       throw error;
-//    }
-// };
-
 export const sendRequest = async (method, path, data = {}) => {
    try {
       const response = await api[method.toLowerCase()](path, data);

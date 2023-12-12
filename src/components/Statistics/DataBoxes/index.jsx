@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaUser, FaShoppingCart, FaBox, FaHubspot } from 'react-icons/fa';
 import axios from 'axios';
+import { sendRequest } from '../../../ulti/sendHeaderRequest';
 
 export const infoCard = [
    {
@@ -100,26 +101,36 @@ export async function DataBoxOrders() {
       });
 }
 
-export async function DataBoxProducts() {
+export const countingProducts = async () => {
    return await axios
       .get('https://dummyjson.com/products')
       .then((response) => {
          const products = response.data.products;
          const totalProducts = products.length;
-         const updatedData = products.map((user) => {
-            return {
-               id: user.id,
-               amount: user.stock,
-            };
-         });
-         return [
-            {
-               count: totalProducts,
-            },
-            ...updatedData,
-         ];
+
+         return totalProducts;
       })
       .catch((error) => {
          throw error;
       });
-}
+};
+
+export const countingUsers = async () => {
+   try {
+      let records = [{}];
+      records = await sendRequest('GET', 'api/users');
+      return records.length;
+   } catch (error) {
+      console.error('Error fetching data:', error);
+   }
+};
+
+export const countingOrders = async () => {
+   try {
+      let records = [{}];
+      records = await sendRequest('GET', 'api/orders');
+      return records.length;
+   } catch (error) {
+      console.error('Error fetching data:', error);
+   }
+};
