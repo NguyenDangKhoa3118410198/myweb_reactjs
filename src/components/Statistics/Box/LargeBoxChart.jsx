@@ -25,7 +25,7 @@ function LargeBoxChart({ data, chartModel }) {
       const today = new Date();
       const month = today.getMonth() + 1;
       const year = today.getFullYear();
-      return `${month}/${year}`;
+      return `${month}/ ${year}`;
    };
 
    return (
