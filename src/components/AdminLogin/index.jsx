@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { UilFacebook, UilGoogle, UilTwitter } from '@iconscout/react-unicons';
 import './adminLogin.css';
 import axios from 'axios';
+import { deleteLocalStorage } from '../../ulti';
 
 const Login = () => {
    const navigate = useNavigate();
@@ -16,9 +17,7 @@ const Login = () => {
    const [isLoginPage, setIsLoginPage] = useState(true);
 
    useEffect(() => {
-      localStorage.removeItem('authToken');
-      localStorage.removeItem('refreshToken');
-      localStorage.removeItem('isAuthenticated');
+      deleteLocalStorage();
    }, []);
 
    const handleSubmit = async (e) => {
@@ -57,7 +56,7 @@ const Login = () => {
             localStorage.setItem('refreshToken', refreshToken);
 
             localStorage.setItem('isAuthenticated', 'true');
-
+            localStorage.setItem('username', data.username);
             navigate('/home');
             alert(data.message);
          } else {

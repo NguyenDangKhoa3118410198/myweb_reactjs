@@ -168,6 +168,10 @@
    color: white;
 }
 
+.header-username {
+   padding: 0 0.5rem;
+}
+
 @media (max-width: 767px) {
    .slider.round {
       margin-left: 10px;

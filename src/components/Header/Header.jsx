@@ -1,6 +1,4 @@
 import React from 'react';
-
-import './header.css';
 import {
    UilUser,
    UilInfoCircle,
@@ -13,16 +11,14 @@ import { Link } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleDarkMode } from '../features/darkmode/darkModeSlice';
+import { deleteLocalStorage } from '../../ulti';
+import './header.css';
 
 const Header = ({ nameContent, toggleBurger }) => {
    const darkMode = useSelector((state) => state.darkMode);
-   const dispatch = useDispatch();
+   const username = localStorage.getItem('username');
 
-   const deleteLocalStorage = () => {
-      localStorage.removeItem('authToken');
-      localStorage.removeItem('refreshToken');
-      localStorage.removeItem('isAuthenticated');
-   };
+   const dispatch = useDispatch();
 
    return (
       <header
@@ -47,6 +43,7 @@ const Header = ({ nameContent, toggleBurger }) => {
                   >
                      <UilSun />
                   </div>
+                  <span className='header-username'> {username}</span>
 
                   <Dropdown>
                      <Dropdown.Toggle className='user-profile'>

@@ -43,6 +43,7 @@ const register = async (req, res) => {
       res.json({
          success: true,
          message: 'Registration successful!',
+         username: newUser.username,
          accessToken,
          refreshToken,
       });
