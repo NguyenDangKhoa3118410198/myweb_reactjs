@@ -140,6 +140,11 @@ export const columnsMainDash = ({
       sortable: true,
    },
    {
+      name: 'Role',
+      selector: (row) => row.role,
+      sortable: true,
+   },
+   {
       name: 'Active',
       selector: (row) => row.isActive,
       sortable: true,

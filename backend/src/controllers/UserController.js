@@ -46,40 +46,43 @@ const addUser = async (req, res) => {
    console.log('--------------- Add user -------------------');
 
    try {
-      const { name, email } = req.body;
-      const hashedPassword = hashPasswordByNameAndEmail(name, email);
+      if (req.user && req.user.role === 'admin') {
+         const { name, email } = req.body;
+         const hashedPassword = hashPasswordByNameAndEmail(name, email);
 
-      const newUser = req.body;
-      newUser.password = hashedPassword;
+         const newUser = req.body;
+         newUser.password = hashedPassword;
 
-      if (email) {
-         const emailExists = await User.findOne({ email });
+         if (email) {
+            const emailExists = await User.findOne({ email });
 
-         if (emailExists) {
-            return res.status(400).json({
-               success: false,
-               message: 'Email already exists',
-            });
+            if (emailExists) {
+               return res.status(400).json({
+                  success: false,
+                  message: 'Email already exists',
+               });
+            }
          }
+
+         const createdUser = await User.create(newUser);
+
+         console.log('Created user:', createdUser);
+
+         const simplifiedUser = {
+            id: createdUser._id,
+            name: createdUser.name,
+            username: createdUser.username,
+            email: createdUser.email,
+            role: createdUser.role,
+            isActive: createdUser.isActive.toString(),
+         };
+
+         res.json({
+            success: true,
+            message: 'User added successfully!',
+            newUser: simplifiedUser,
+         });
       }
-
-      const createdUser = await User.create(newUser);
-
-      console.log('Created user:', createdUser);
-
-      const simplifiedUser = {
-         id: createdUser._id,
-         name: createdUser.name,
-         username: createdUser.username,
-         email: createdUser.email,
-         isActive: createdUser.isActive.toString(),
-      };
-
-      res.json({
-         success: true,
-         message: 'User added successfully!',
-         newUser: simplifiedUser,
-      });
    } catch (error) {
       console.error('Error adding user:', error);
       res.status(500).json({
@@ -94,43 +97,45 @@ const editUser = async (req, res) => {
    console.log('--------------- Edit user -------------------');
 
    try {
-      const userId = req.params.id;
-      const updatedUserData = req.body;
+      if (req.user && req.user.role === 'admin') {
+         const userId = req.params.id;
+         const updatedUserData = req.body;
 
-      const existingUser = await User.findById(userId);
+         const existingUser = await User.findById(userId);
 
-      if (!existingUser) {
-         return res.status(404).json({
-            success: false,
-            message: 'User not found',
-         });
-      }
-
-      if (
-         updatedUserData.email &&
-         updatedUserData.email !== existingUser.email
-      ) {
-         const emailExists = await User.findOne({
-            email: updatedUserData.email,
-         });
-
-         if (emailExists) {
-            return res.status(400).json({
+         if (!existingUser) {
+            return res.status(404).json({
                success: false,
-               message: 'Email already exists',
+               message: 'User not found',
             });
          }
+
+         if (
+            updatedUserData.email &&
+            updatedUserData.email !== existingUser.email
+         ) {
+            const emailExists = await User.findOne({
+               email: updatedUserData.email,
+            });
+
+            if (emailExists) {
+               return res.status(400).json({
+                  success: false,
+                  message: 'Email already exists',
+               });
+            }
+         }
+
+         existingUser.set(updatedUserData);
+         await existingUser.save();
+
+         console.log('Updated user:', existingUser);
+
+         res.json({
+            success: true,
+            message: 'User updated successfully',
+         });
       }
-
-      existingUser.set(updatedUserData);
-      await existingUser.save();
-
-      console.log('Updated user:', existingUser);
-
-      res.json({
-         success: true,
-         message: 'User updated successfully',
-      });
    } catch (error) {
       console.error('Error editing user:', error.message);
       res.status(500).json({
