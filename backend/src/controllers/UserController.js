@@ -5,15 +5,37 @@ const getUsers = async (req, res) => {
    console.log('--------------- Get users -------------------');
 
    try {
-      const usersDB = await User.find({});
-      const simplifiedUsers = usersDB.map((user) => ({
-         id: user._id,
-         name: user.name,
-         username: user.username,
-         email: user.email,
-         isActive: user.isActive.toString(),
-      }));
-      res.json(simplifiedUsers);
+      let usersDB;
+
+      if (req.user && req.user.role === 'admin') {
+         usersDB = await User.find(
+            {},
+            { password: 0, createdAt: 0, updatedAt: 0, __v: 0 }
+         );
+      } else {
+         usersDB = await User.find(
+            { role: 'user' },
+            { name: 1, username: 1, email: 1 }
+         );
+      }
+
+      let filteredUsers = usersDB.map((user) => {
+         const filteredUser = {
+            name: user.name,
+            username: user.username,
+            email: user.email,
+         };
+
+         if (req.user && req.user.role === 'admin') {
+            filteredUser.id = user._id;
+            filteredUser.role = user.role;
+            filteredUser.isActive = user.isActive.toString();
+         }
+
+         return filteredUser;
+      });
+
+      res.json(filteredUsers);
    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -139,7 +161,6 @@ const deactivateUser = async (req, res) => {
       res.json({
          success: true,
          message: 'User deactivated successfully',
-         deletedUser: existingUser,
       });
    } catch (error) {
       console.error('Error deactivated user:', error);
@@ -172,7 +193,6 @@ const activateUser = async (req, res) => {
       res.json({
          success: true,
          message: 'User activated successfully',
-         deletedUser: existingUser,
       });
    } catch (error) {
       console.error('Error activated user:', error);

@@ -47,4 +47,17 @@ const authenticateToken = async (req, res, next) => {
    }
 };
 
-module.exports = authenticateToken;
+const checkAdminRole = (req, res, next) => {
+   if (req.user && req.user.role === 'admin') {
+      next();
+   } else {
+      console.error(
+         `Access denied for ${
+            req.user ? req.user.email : 'Unknown User'
+         } with role ${req.user ? req.user.role : 'Unknown Role'}`
+      );
+      res.status(403).json({ message: 'Forbidden: You need role Admin' });
+   }
+};
+
+module.exports = { authenticateToken, checkAdminRole };

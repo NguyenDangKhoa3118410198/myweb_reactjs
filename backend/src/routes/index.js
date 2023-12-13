@@ -8,7 +8,7 @@ const logoutRouter = require('./logout');
 const registerRouter = require('./register');
 const refreshTokenRouter = require('./refreshToken');
 
-const authenticateToken = require('../middleware/authenticateToken');
+const { authenticateToken } = require('../middleware');
 
 function route(app) {
    app.use('/api/users', authenticateToken, userRouter);
