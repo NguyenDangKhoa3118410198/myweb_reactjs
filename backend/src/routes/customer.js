@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 const customerController = require('../controllers/CustomerController');
+const { checkAdminRole } = require('../middleware');
 
-router.get('/', customerController.getCustomers);
-router.post('/:id/edit', customerController.editCustomers);
-router.delete('/:id', customerController.deleteCustomer);
+router.get('/', checkAdminRole, customerController.getCustomers);
+router.post('/:id/edit', checkAdminRole, customerController.editCustomers);
+router.delete('/:id', checkAdminRole, customerController.deleteCustomer);
 
 module.exports = router;

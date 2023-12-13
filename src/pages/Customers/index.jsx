@@ -19,6 +19,10 @@ function Customers() {
    const [isModalView, setModalView] = useState(false);
    const [viewCurrent, setViewCurrent] = useState({});
 
+   useEffect(() => {
+      pageCustomers(setRecords);
+   }, []);
+
    const handleDelete = async (record) => {
       try {
          const customerId = record.id;
@@ -55,10 +59,6 @@ function Customers() {
       handleView,
       handleDelete,
    });
-
-   useEffect(() => {
-      pageCustomers(setRecords);
-   }, []);
 
    return (
       <main className={`customer-wrapper ${darkMode ? 'darkmode' : ''} `}>
