@@ -18,7 +18,7 @@ function FormPanel({
                   <FormControl
                      className='form-panel-input'
                      type='text'
-                     placeholder='Họ tên'
+                     placeholder='Name'
                      name='name'
                      value={formData.name}
                      onChange={(e) => {
@@ -34,7 +34,7 @@ function FormPanel({
                   <FormControl
                      className='form-panel-input'
                      type='text'
-                     placeholder='Tên đăng nhập'
+                     placeholder='Username'
                      name='username'
                      value={formData.username}
                      onChange={(e) => {
