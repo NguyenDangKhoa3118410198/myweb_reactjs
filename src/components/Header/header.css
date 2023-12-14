@@ -43,6 +43,7 @@
 .nav-left,
 .nav-right {
    color: black;
+   position: relative;
 }
 
 .user-utilities {
@@ -176,5 +177,9 @@
    .slider.round {
       margin-left: 10px;
       width: 60px;
+   }
+
+   .name-tab {
+      font-size: 1.4rem;
    }
 }
