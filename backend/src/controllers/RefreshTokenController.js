@@ -17,7 +17,7 @@ const isValidRefreshToken = async (req, res) => {
          process.env.REFRESH_TOKEN_SECRET_KEY
       );
 
-      const statusUser = await User.findOne({ email: decoded.email });
+      const statusUser = await User.findOne({ _id: decoded._id });
 
       if (!statusUser.isActive) {
          return res.status(403).json({

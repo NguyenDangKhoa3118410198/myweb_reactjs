@@ -16,9 +16,9 @@ const authenticateToken = async (req, res, next) => {
 
    try {
       const decoded = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
-      const { id, role } = decoded;
+      const { _id, role } = decoded;
 
-      const existingUser = await User.findOne({ _id: id, role });
+      const existingUser = await User.findOne({ _id, role });
 
       if (!existingUser) {
          return res.status(403).json({

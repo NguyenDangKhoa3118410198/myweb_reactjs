@@ -232,7 +232,6 @@ const MainDash = () => {
    const columns = columnsMainDash({
       handleView,
       handleEditClick,
-      // handleDelete,
       handleDeactivate,
       handleActivate,
    });

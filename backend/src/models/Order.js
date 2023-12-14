@@ -10,7 +10,7 @@ const orderSchema = new Schema(
       totalQuantity: { type: Number, required: true, min: 0 },
       status: {
          type: String,
-         enum: ['Pending', 'Processing', 'Shipped', 'Delivered'],
+         enum: ['Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled'],
          default: 'Pending',
       },
    },
