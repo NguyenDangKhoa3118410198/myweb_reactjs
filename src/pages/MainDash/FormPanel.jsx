@@ -60,6 +60,7 @@ function FormPanel({
                         });
                      }}
                      required
+                     disabled={title === 'Edit' ? true : false}
                   />
                </FormGroup>
                <div className='button-group-form-panel'>
