@@ -60,8 +60,10 @@ const checkAndRefreshToken = async () => {
          });
 
          const newToken = response.data.accessToken;
+         const newRefreshToken = response.data.refreshToken;
 
          localStorage.setItem('authToken', newToken);
+         localStorage.setItem('refreshToken', newRefreshToken);
       }
    } catch (error) {
       shouldSendRequest = false;

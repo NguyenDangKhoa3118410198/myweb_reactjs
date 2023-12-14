@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-const { generateAccessToken } = require('../ulti/token');
+const { generateAccessToken, generateRefreshToken } = require('../ulti/token');
 
 const isValidRefreshToken = async (req, res) => {
    const refreshToken = req.body.refreshToken;
@@ -25,9 +25,11 @@ const isValidRefreshToken = async (req, res) => {
          });
       }
       const newAccessToken = generateAccessToken(decoded);
+      const newRefreshToken = generateRefreshToken(decoded);
+
       console.log('Server New Token: ' + newAccessToken);
 
-      res.json({ accessToken: newAccessToken });
+      res.json({ accessToken: newAccessToken, refreshToken: newRefreshToken });
    } catch (error) {
       return res
          .status(403)
