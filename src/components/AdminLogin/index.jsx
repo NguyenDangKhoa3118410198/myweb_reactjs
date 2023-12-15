@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { UilFacebook, UilGoogle, UilTwitter } from '@iconscout/react-unicons';
 import axios from 'axios';
 import { deleteLocalStorage } from '../../ulti';
-import './adminLogin.scss';
+import './adminLogin.css';
 import AdminImage from './3.png';
 
 const Login = () => {
