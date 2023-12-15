@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UilFacebook, UilGoogle, UilTwitter } from '@iconscout/react-unicons';
-import './adminLogin.css';
 import axios from 'axios';
 import { deleteLocalStorage } from '../../ulti';
+import './adminLogin.scss';
 import AdminImage from './3.png';
 
 const Login = () => {
