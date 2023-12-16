@@ -10,7 +10,7 @@ const logoutRouter = require('./logout');
 const registerRouter = require('./register');
 const refreshTokenRouter = require('./refreshToken');
 
-const { authenticateToken } = require('../middleware');
+const { authenticateToken, checkAdminRole } = require('../middleware');
 
 function route(app) {
    app.use('/api/users', authenticateToken, userRouter);
@@ -19,7 +19,7 @@ function route(app) {
    app.use('/api/customers', authenticateToken, customerRouter);
    app.use('/api/todo', authenticateToken, todoRouter);
 
-   app.use('/auth/email', emailRouter);
+   app.use('/auth/email', checkAdminRole, emailRouter);
    app.use('/auth/login', loginRouter);
    app.use('/auth/logout', logoutRouter);
    app.use('/auth/register', registerRouter);
