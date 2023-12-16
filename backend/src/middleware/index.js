@@ -52,6 +52,11 @@ const checkAdminRole = async (req, res, next) => {
       try {
          if (req.user.role === 'admin') {
             next();
+         } else {
+            console.error(
+               `Access denied for ${req.user.email} with role ${req.user.role}`
+            );
+            res.status(403).json({ message: 'Forbidden: You need role Admin' });
          }
       } catch (error) {
          console.error(
