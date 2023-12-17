@@ -20,6 +20,9 @@ function Products() {
    const [isModalReview, setModalReview] = useState(false);
    const [isListReviews, setIsListReviews] = useState([]);
 
+   const [isModalView, setModalView] = useState(false);
+   const [viewCurrent, setViewCurrent] = useState({});
+
    useEffect(() => {
       pageProducts1(setProducts);
    }, []);
@@ -41,7 +44,13 @@ function Products() {
       setModalReview(true);
    };
 
+   const handleView = (record) => {
+      setModalView(true);
+      setViewCurrent(record);
+   };
+
    const columns = columnsProduct1({
+      handleView,
       handleReview,
    });
 
@@ -54,7 +63,11 @@ function Products() {
             columns={columns}
             data={filterData(products)}
             searchBox={searchBox(searchTerm, setSearchTerm)}
+            setModalView={setModalView}
             tableActions={{
+               setModalView,
+               viewCurrent,
+               isModalView,
                setModalReview,
                isListReviews,
                isModalReview,

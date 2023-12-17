@@ -18,6 +18,8 @@ function Orders() {
 
    const [isModalReview, setModalReview] = useState(false);
    const [isListReviews, setIsListReviews] = useState([]);
+   const [isModalView, setModalView] = useState(false);
+   const [viewCurrent, setViewCurrent] = useState({});
 
    useEffect(() => {
       pageOrders(setRecords);
@@ -31,7 +33,13 @@ function Orders() {
       setModalReview(true);
    };
 
+   const handleView = (record) => {
+      setModalView(true);
+      setViewCurrent(record);
+   };
+
    const columns = columnsOrder({
+      handleView,
       handleReview,
    });
 
@@ -44,7 +52,11 @@ function Orders() {
             columns={columns}
             data={filterData(searchTerm, records)}
             searchBox={searchBox(searchTerm, setSearchTerm)}
+            setModalView={setModalView}
             tableActions={{
+               setModalView,
+               viewCurrent,
+               isModalView,
                setModalReview,
                isModalReview,
                isListReviews,

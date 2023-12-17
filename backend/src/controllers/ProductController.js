@@ -13,7 +13,9 @@ const getProducts = async (req, res) => {
             id: product.id,
             sku: product.sku,
             name: product.name,
+            brandName: product.brand_name,
             urlPath: product.url_path,
+            urlKey: product.url_key,
             originPrice: product.original_price,
          };
          products.push(productInfo);

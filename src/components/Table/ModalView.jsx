@@ -18,11 +18,11 @@ function ModalView(props) {
             </Modal.Title>
          </Modal.Header>
          <Modal.Body>
-            <ul style={{ listStyleType: 'none' }}>
+            <ul style={{ listStyleType: 'none', padding: '2px' }}>
                {Object.entries(props.viewcurrent).map(
                   ([key, value]) =>
                      key !== 'id' && (
-                        <li key={key}>
+                        <li key={key} style={{ marginBottom: '8px' }}>
                            <strong>{capitalizeFirstLetter(key)}:</strong>{' '}
                            {value}
                         </li>

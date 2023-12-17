@@ -6,12 +6,12 @@ export const columnsProduct1 = ({
    handleDelete,
    handleReview,
 }) => [
-   {
-      name: 'ID',
-      selector: (row) => row.id,
-      sortable: true,
-      maxWidth: '100px',
-   },
+   // {
+   //    name: 'ID',
+   //    selector: (row) => row.id,
+   //    sortable: true,
+   //    maxWidth: '100px',
+   // },
    {
       name: 'Name',
       selector: (row) => row.name,
@@ -22,7 +22,6 @@ export const columnsProduct1 = ({
       name: 'Url path',
       selector: (row) => row.urlPath,
       sortable: true,
-      maxWidth: '250px',
    },
    {
       name: 'Origin price',
@@ -35,7 +34,11 @@ export const columnsProduct1 = ({
       sortable: false,
       maxWidth: 'max-content',
       cell: (record) => (
-         <TableActions handleReview={handleReview} record={record} />
+         <TableActions
+            handleReview={handleReview}
+            handleView={handleView}
+            record={record}
+         />
       ),
    },
 ];
