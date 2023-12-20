@@ -65,7 +65,7 @@ const deleteCustomer = async (req, res) => {
    console.log('--------------- Delete customer -------------------');
    try {
       const customerId = req.params.id;
-      console.log('delete userId : ', customerId);
+      console.log('delete customerId : ', customerId);
 
       const existingCustomer = await Customer.findOneAndDelete({
          _id: customerId,

@@ -22,6 +22,7 @@ function Customers() {
    const [viewCurrent, setViewCurrent] = useState({});
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
    const [currentRecordId, setCurrentRecordId] = useState(null);
+   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
    const [formData, setFormData] = useState({
       address: '',
@@ -42,9 +43,9 @@ function Customers() {
       setCurrentRecordId(null);
    };
 
-   const handleDelete = async (record) => {
+   const handleDeleteConfirmed = async () => {
       try {
-         const customerId = record.id;
+         const customerId = currentRecordId;
 
          if (records.length === 0) {
             console.log('No records to delete');
@@ -58,14 +59,33 @@ function Customers() {
 
          if (response.success) {
             setRecords((prevRecords) =>
-               prevRecords.filter((r) => r.id !== record.id)
+               prevRecords.filter((r) => r.id !== customerId)
             );
             console.log('Customer deleted successfully');
          } else {
             console.error('Error deleting customer:', response.message);
          }
+         console.log('delete records', customerId);
       } catch (error) {
          console.error('Failed to delete customer:', error.message);
+      } finally {
+         setShowDeleteModal(false);
+      }
+   };
+
+   const handleDelete = async (record) => {
+      try {
+         const customerId = record.id;
+
+         if (records.length === 0) {
+            console.log('No records to delete');
+            return;
+         }
+
+         setShowDeleteModal(true);
+         setCurrentRecordId(customerId);
+      } catch (error) {
+         console.error('Failed to initiate delete:', error.message);
       }
    };
 
@@ -143,7 +163,7 @@ function Customers() {
    const columns = columnsCustomer({
       handleView,
       handleEditClick,
-      // handleDelete,
+      handleDelete,
    });
 
    return (
@@ -163,11 +183,14 @@ function Customers() {
                setModalView,
                isModalView,
                isEditPanelOpen,
-
                setIsEditPanelOpen,
                setCurrentRecordId,
+
+               showDeleteModal,
+               setShowDeleteModal,
             }}
             handleActions={{
+               handleDeleteConfirmed,
                handleSubmitAndEdit,
                handleClose,
             }}
