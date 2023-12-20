@@ -1,7 +1,5 @@
 const Customer = require('../models/Customer');
 
-const customers = [];
-
 const getCustomers = async (req, res) => {
    console.log('--------------- Get customers -------------------');
    try {
@@ -29,6 +27,8 @@ const getCustomers = async (req, res) => {
 };
 
 const editCustomers = async (req, res) => {
+   console.log('--------------- Edit customer -------------------');
+
    const idCustomers = req.params.id;
 
    try {
@@ -54,37 +54,33 @@ const editCustomers = async (req, res) => {
 
       await customerDB.save();
 
-      res.json(customerDB);
+      res.json({ success: true, message: 'Customer updated successfully' });
    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
    }
 };
 
-const deleteCustomer = (req, res) => {
+const deleteCustomer = async (req, res) => {
    console.log('--------------- Delete customer -------------------');
-   //Chưa sửa code
    try {
       const customerId = req.params.id;
       console.log('delete userId : ', customerId);
 
-      const customerIndex = customers.findIndex(
-         (customer) => customer.id === customerId
-      );
+      const existingCustomer = await Customer.findOneAndDelete({
+         _id: customerId,
+      });
 
-      if (customerIndex === -1) {
+      if (!existingCustomer) {
          return res.status(404).json({
             success: false,
             message: 'Customer not found',
          });
       }
 
-      const deletedUser = customers.splice(customerIndex, 1)[0];
-
       res.json({
          success: true,
          message: 'Customer deleted successfully',
-         deletedUser,
       });
    } catch (error) {
       console.error('Error deleting customer:', error);

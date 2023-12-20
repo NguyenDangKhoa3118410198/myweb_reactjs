@@ -9,6 +9,8 @@ import { columnsCustomer } from '../../Data/columns';
 import { pageCustomers } from '../../Data/fetchData';
 import OnTopButton from '../../components/OnTop/OnTop';
 import { sendRequest } from '../../ulti/sendHeaderRequest';
+import FormPanel from './FormPanel';
+import { isFormDataValid } from '../../components/Table/TableActions/handleActions';
 
 import './customers.css';
 
@@ -18,10 +20,27 @@ function Customers() {
    const [searchTerm, setSearchTerm] = useState('');
    const [isModalView, setModalView] = useState(false);
    const [viewCurrent, setViewCurrent] = useState({});
+   const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
+   const [currentRecordId, setCurrentRecordId] = useState(null);
+
+   const [formData, setFormData] = useState({
+      address: '',
+      phone: '',
+      gender: '',
+   });
 
    useEffect(() => {
       pageCustomers(setRecords);
    }, []);
+
+   const handleSetFormData = () => {
+      setFormData({
+         address: '',
+         phone: '',
+         gender: '',
+      });
+      setCurrentRecordId(null);
+   };
 
    const handleDelete = async (record) => {
       try {
@@ -55,9 +74,76 @@ function Customers() {
       setViewCurrent(record);
    };
 
+   const handleEditClick = (record) => {
+      setIsEditPanelOpen(true);
+      setFormData({
+         address: record.address,
+         phone: record.phone,
+         gender: record.gender,
+      });
+      setCurrentRecordId(record.id);
+   };
+
+   const handleSave = async (currentRecordId, record) => {
+      if (currentRecordId) {
+         const currentRecord = records.find((r) => r.id === currentRecordId);
+
+         if (!currentRecord) {
+            alert('Invalid ID');
+            return;
+         }
+
+         try {
+            const response = await sendRequest(
+               'PATCH',
+               `api/customers/${currentRecordId}/edit/admin`,
+               record
+            );
+
+            if (response.success) {
+               setRecords(
+                  records.map((r) =>
+                     r.id === currentRecordId ? { ...r, ...record } : r
+                  )
+               );
+               console.log('Updated customer successfully');
+            } else {
+               console.error('Error updating customer:', response.message);
+            }
+         } catch (error) {
+            console.error('Error sending request:', error.message);
+         }
+      }
+   };
+
+   const handleSubmitAndEdit = (e) => {
+      e.preventDefault();
+      const newFormData = isFormDataValid(formData);
+
+      if (newFormData) {
+         if (currentRecordId && isEditPanelOpen) {
+            handleSave(currentRecordId, newFormData);
+         } else {
+            alert('Please select a record to edit.');
+         }
+         handleSetFormData();
+      } else {
+         alert(
+            'Unable to save data because formData is empty or contains a null value.'
+         );
+      }
+   };
+
+   const handleClose = (e) => {
+      e.preventDefault();
+      handleSetFormData();
+      setIsEditPanelOpen(false);
+   };
+
    const columns = columnsCustomer({
       handleView,
-      handleDelete,
+      handleEditClick,
+      // handleDelete,
    });
 
    return (
@@ -69,10 +155,21 @@ function Customers() {
             columns={columns}
             data={filterData(searchTerm, records)}
             searchBox={searchBox(searchTerm, setSearchTerm)}
+            formData={formData}
+            setFormData={setFormData}
+            FormPanel={FormPanel}
             tableActions={{
                viewCurrent,
                setModalView,
                isModalView,
+               isEditPanelOpen,
+
+               setIsEditPanelOpen,
+               setCurrentRecordId,
+            }}
+            handleActions={{
+               handleSubmitAndEdit,
+               handleClose,
             }}
          />
          <OnTopButton />

@@ -108,7 +108,7 @@ export const columnsCustomer = ({
       cell: (record) => (
          <TableActions
             handleView={handleView}
-            // handleEditClick={handleEditClick}
+            handleEditClick={handleEditClick}
             handleDelete={handleDelete}
             record={record}
          />
