@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
@@ -72,4 +73,30 @@ const checkAdminRole = async (req, res, next) => {
    });
 };
 
-module.exports = { authenticateToken, checkAdminRole };
+const allowUserEditOwnProfile = (modelName) => async (req, res, next) => {
+   try {
+      const userIdFromToken = req.user?._id;
+      const modelInstance = await mongoose
+         .model(modelName)
+         .findById(req.params.id);
+
+      if (!modelInstance) {
+         return res.status(404).json({ message: 'Object not found' });
+      }
+
+      const modelUserId = modelInstance.user?.toString();
+
+      if (userIdFromToken && userIdFromToken === modelUserId) {
+         return next();
+      }
+
+      res.status(403).json({
+         message: 'Forbidden: Insufficient access rights',
+      });
+   } catch (error) {
+      console.error(`Error checking ${modelName} permission:`, error.message);
+      res.status(500).json({ message: 'Internal Server Error' });
+   }
+};
+
+module.exports = { authenticateToken, checkAdminRole, allowUserEditOwnProfile };
