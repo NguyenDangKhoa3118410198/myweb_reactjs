@@ -11,7 +11,12 @@ import OnTopButton from '../../components/OnTop/OnTop';
 import { sendRequest } from '../../ulti/sendHeaderRequest';
 import FormPanel from './FormPanel';
 import { isFormDataValid } from '../../components/Table/TableActions/handleActions';
-import { alertMessage, alertMessageError } from '../../ulti/modals';
+import {
+   alertMessage,
+   alertMessageError,
+   alertConfirmDelete,
+   alertSuccess,
+} from '../../ulti/modals';
 
 import './customers.css';
 
@@ -23,7 +28,6 @@ function Customers() {
    const [viewCurrent, setViewCurrent] = useState({});
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
    const [currentRecordId, setCurrentRecordId] = useState(null);
-   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
    const [formData, setFormData] = useState({
       address: '',
@@ -44,9 +48,9 @@ function Customers() {
       setCurrentRecordId(null);
    };
 
-   const handleDeleteConfirmed = async () => {
+   const handleDeleteConfirmed = async (customerId) => {
       try {
-         const customerId = currentRecordId;
+         // const customerId = currentRecordId;
 
          if (records.length === 0) {
             console.log('No records to delete');
@@ -69,8 +73,6 @@ function Customers() {
          console.log('delete records', customerId);
       } catch (error) {
          console.error('Failed to delete customer:', error.message);
-      } finally {
-         setShowDeleteModal(false);
       }
    };
 
@@ -83,8 +85,15 @@ function Customers() {
             return;
          }
 
-         setShowDeleteModal(true);
-         setCurrentRecordId(customerId);
+         const result = await alertConfirmDelete();
+
+         if (result.isConfirmed) {
+            setCurrentRecordId(customerId);
+            handleDeleteConfirmed(customerId);
+            alertMessage(`Deleting record with ID: ${customerId}`);
+         } else {
+            console.log('Cancelled delete');
+         }
       } catch (error) {
          console.error('Failed to initiate delete:', error.message);
       }
@@ -127,7 +136,7 @@ function Customers() {
                      r.id === currentRecordId ? { ...r, ...record } : r
                   )
                );
-               console.log('Updated customer successfully');
+               alertSuccess('Updated customer successfully');
             } else {
                console.error('Error updating customer:', response.message);
             }
@@ -186,12 +195,8 @@ function Customers() {
                isEditPanelOpen,
                setIsEditPanelOpen,
                setCurrentRecordId,
-
-               showDeleteModal,
-               setShowDeleteModal,
             }}
             handleActions={{
-               handleDeleteConfirmed,
                handleSubmitAndEdit,
                handleClose,
             }}

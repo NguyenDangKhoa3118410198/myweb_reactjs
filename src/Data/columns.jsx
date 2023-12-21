@@ -22,6 +22,7 @@ export const columnsProduct1 = ({
       name: 'Url path',
       selector: (row) => row.urlPath,
       sortable: true,
+      maxWidth: '300px',
    },
    {
       name: 'Origin price',

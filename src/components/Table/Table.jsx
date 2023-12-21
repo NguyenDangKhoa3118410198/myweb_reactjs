@@ -5,7 +5,6 @@ import './table.css';
 import { TableCustomStyles } from './Custom/TableCustomStyles';
 import ModalView from './ModalView';
 import ModalReviews from './ModelReviews';
-import ModalPopupDelete from './ModalPopupDelete';
 import ExportCSV from './ExportCSV';
 
 const Table = ({
@@ -31,23 +30,13 @@ const Table = ({
       setIsAddPanelOpen,
       setIsEditPanelOpen,
       setCurrentRecordId,
-      showDeleteModal,
-      setShowDeleteModal,
    } = tableActions || {};
-   let { handleSubmitAndEdit, handleClose, handleDeleteConfirmed } =
-      handleActions;
+   let { handleSubmitAndEdit, handleClose } = handleActions;
 
    const headers = headerCsv(data);
    return (
       <div className='wrapper'>
          <div className='form-panel-action'>
-            {showDeleteModal && (
-               <ModalPopupDelete
-                  onHide={() => setShowDeleteModal(false)}
-                  handleDeleteConfirmed={handleDeleteConfirmed}
-               />
-            )}
-
             {setModalReview && isListReviews && (
                <ModalReviews
                   show={isModalReview}

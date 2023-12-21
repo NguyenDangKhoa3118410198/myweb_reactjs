@@ -18,7 +18,11 @@ import './mainDash.css';
 import FormPanel from './FormPanel';
 import OnTopButton from '../../components/OnTop/OnTop';
 import { sendRequest } from '../../ulti/sendHeaderRequest';
-import { alertMessage, alertMessageError } from '../../ulti/modals';
+import {
+   alertMessage,
+   alertMessageError,
+   alertSuccess,
+} from '../../ulti/modals';
 
 const Table = lazy(() => import('../../components/Table/Table'));
 
@@ -92,7 +96,7 @@ const MainDash = () => {
             );
 
             if (invalidEmail) {
-               alertMessage(
+               alertMessageError(
                   `The email "${formData.email}" already exists.\n Please use a different email address.`
                );
                return;
@@ -104,7 +108,7 @@ const MainDash = () => {
          }
          handleSetFormData();
       } else {
-         alertMessage(
+         alertMessageError(
             'Unable to save data because formData is empty or contains a null value.'
          );
       }
@@ -148,6 +152,7 @@ const MainDash = () => {
                      r.id === currentRecordId ? { ...r, ...record } : r
                   )
                );
+               alertSuccess('Updated user successfully');
                console.log('Updated user successfully');
             } else {
                console.error('Error updating user:', response.message);
@@ -162,6 +167,7 @@ const MainDash = () => {
             if (response.success) {
                const newRecord = response.newUser;
                setRecords([...records, newRecord]);
+               alertSuccess('New user added successfully');
                console.log('New user added successfully:', newRecord);
             } else {
                console.error('Error adding new user:', response.message);
@@ -192,6 +198,7 @@ const MainDash = () => {
                   r.id === record.id ? { ...r, isActive: 'false' } : r
                )
             );
+            alertSuccess('User deactivated successfully');
             console.log('User deactivated successfully');
          } else {
             console.error('Error deactivated user:', response.message);
@@ -221,6 +228,7 @@ const MainDash = () => {
                   r.id === record.id ? { ...r, isActive: 'true' } : r
                )
             );
+            alertSuccess('User activated successfully');
             console.log('User activated successfully');
          } else {
             console.error('Error activated user:', response.message);
