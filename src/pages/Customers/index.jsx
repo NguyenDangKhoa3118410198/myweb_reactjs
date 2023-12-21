@@ -11,6 +11,7 @@ import OnTopButton from '../../components/OnTop/OnTop';
 import { sendRequest } from '../../ulti/sendHeaderRequest';
 import FormPanel from './FormPanel';
 import { isFormDataValid } from '../../components/Table/TableActions/handleActions';
+import { alertMessage, alertMessageError } from '../../ulti/modals';
 
 import './customers.css';
 
@@ -109,7 +110,7 @@ function Customers() {
          const currentRecord = records.find((r) => r.id === currentRecordId);
 
          if (!currentRecord) {
-            alert('Invalid ID');
+            alertMessageError('Invalid ID');
             return;
          }
 
@@ -144,11 +145,11 @@ function Customers() {
          if (currentRecordId && isEditPanelOpen) {
             handleSave(currentRecordId, newFormData);
          } else {
-            alert('Please select a record to edit.');
+            alertMessage('Please select a record to edit.');
          }
          handleSetFormData();
       } else {
-         alert(
+         alertMessageError(
             'Unable to save data because formData is empty or contains a null value.'
          );
       }

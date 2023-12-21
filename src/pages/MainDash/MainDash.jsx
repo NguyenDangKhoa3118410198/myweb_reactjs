@@ -18,6 +18,7 @@ import './mainDash.css';
 import FormPanel from './FormPanel';
 import OnTopButton from '../../components/OnTop/OnTop';
 import { sendRequest } from '../../ulti/sendHeaderRequest';
+import { alertMessage, alertMessageError } from '../../ulti/modals';
 
 const Table = lazy(() => import('../../components/Table/Table'));
 
@@ -78,7 +79,7 @@ const MainDash = () => {
             );
 
             if (invalidEmail) {
-               alert(
+               alertMessageError(
                   `The email "${formData.email}" already exists.\n Please use a different email address.`
                );
                return;
@@ -91,7 +92,7 @@ const MainDash = () => {
             );
 
             if (invalidEmail) {
-               alert(
+               alertMessage(
                   `The email "${formData.email}" already exists.\n Please use a different email address.`
                );
                return;
@@ -99,11 +100,11 @@ const MainDash = () => {
             handleSave(null, newFormData);
             // console.log(newFormData);
          } else {
-            alert('Please select a record to edit.');
+            alertMessage('Please select a record to edit.');
          }
          handleSetFormData();
       } else {
-         alert(
+         alertMessage(
             'Unable to save data because formData is empty or contains a null value.'
          );
       }
@@ -130,7 +131,7 @@ const MainDash = () => {
          const currentRecord = records.find((r) => r.id === currentRecordId);
 
          if (!currentRecord) {
-            alert('Invalid ID');
+            alertMessageError('Invalid ID');
             return;
          }
 

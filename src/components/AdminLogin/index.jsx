@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { UilFacebook, UilGoogle, UilTwitter } from '@iconscout/react-unicons';
 import axios from 'axios';
 import { deleteLocalStorage } from '../../ulti';
-import './adminLogin.css';
+import { loginSuccess, loginFailure } from '../../ulti/modals';
+
 import AdminImage from './3.png';
+import './adminLogin.css';
 
 const Login = () => {
    const navigate = useNavigate();
@@ -45,9 +47,9 @@ const Login = () => {
             localStorage.setItem('isAuthenticated', 'true');
             localStorage.setItem('username', data.username);
             navigate('/home');
-            alert(data.message);
+            loginSuccess(data.message);
          } else {
-            alert(data.message);
+            loginFailure(data.message);
          }
       } catch (error) {
          console.error('Error call API:', error);

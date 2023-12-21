@@ -208,3 +208,7 @@ button[type='button'] {
       content: none;
    }
 }
+
+.swal2-popup {
+   font-size: 16px;
+}

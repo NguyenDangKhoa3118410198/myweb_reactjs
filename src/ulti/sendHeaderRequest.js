@@ -1,5 +1,6 @@
 import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
+import { alertMessage } from '../ulti/modals';
 const apiUrl = 'http://localhost:4000';
 
 const api = axios.create({
@@ -95,7 +96,7 @@ api.interceptors.request.use(
 
 const redirectToLogin = () => {
    console.log('Refresh token is missing. Redirecting to login.');
-   alert('You need to log in again. Sorry for the inconvenience');
+   alertMessage('You need to log in again. Sorry for the inconvenience');
    window.location.href = '/login';
 };
 
