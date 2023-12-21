@@ -202,3 +202,7 @@
 .admin-login-container.active .toggle-right {
    transform: translateX(200%);
 }
+
+.btn-sign-in:active {
+   transform: scale(1.1);
+}
