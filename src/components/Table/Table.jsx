@@ -130,6 +130,7 @@ const Table = ({
                rangeSeparatorText: 'out of',
             }}
             customStyles={TableCustomStyles}
+            striped
             className='react-table'
          />
       </div>

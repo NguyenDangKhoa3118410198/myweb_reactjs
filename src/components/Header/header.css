@@ -1,4 +1,5 @@
 .nav-user-header-container {
+   position: relative;
    display: flex;
    flex-direction: row;
    align-items: center;
@@ -10,7 +11,6 @@
    padding-bottom: 0.1rem;
    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
    background-color: #fff;
-   position: relative;
 }
 
 .nav-user-header-container {
@@ -23,7 +23,7 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   margin: 0 10px 6px 10px;
+   margin: 10px;
    border-radius: 5px;
    padding: 1rem;
    scale: 1.1;
@@ -47,10 +47,12 @@
 }
 
 .user-utilities {
-   padding-left: 10px;
+   width: 12rem;
    display: flex;
    flex-direction: row;
    align-items: center;
+   justify-content: space-evenly;
+   padding: 0 5px;
 }
 
 .user-header {
@@ -120,12 +122,10 @@
 
 .icon-menu-item {
    cursor: pointer;
-   margin-right: 10px;
    padding: 10px;
    display: flex;
    font-size: 18px;
    align-items: center;
-   justify-content: space-between;
    transition: transform 0.3s ease;
 }
 
@@ -155,6 +155,7 @@
 }
 
 .name-tab {
+   margin-bottom: 0;
    text-align: center;
    font-weight: bold;
 }
@@ -170,7 +171,7 @@
 }
 
 .header-username {
-   padding: 0 0.5rem;
+   padding: 0 1rem;
 }
 
 @media (max-width: 767px) {
@@ -181,5 +182,16 @@
 
    .name-tab {
       font-size: 1.4rem;
+   }
+}
+
+@media (max-width: 365px) {
+   .slider.round {
+      margin-left: 10px;
+      width: 60px;
+   }
+
+   .name-tab {
+      display: none;
    }
 }

@@ -44,6 +44,6 @@ export const alertSuccess = (data) => {
       icon: 'success',
       title: data,
       showConfirmButton: false,
-      timer: 1200,
+      timer: 1100,
    });
 };

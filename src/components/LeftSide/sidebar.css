@@ -4,13 +4,13 @@
    left: -200px;
    background-color: #333;
    opacity: 1;
-   transition: all 250ms ease-in-out;
    width: 200px;
    height: 100%;
    overflow: hidden;
    border-top-right-radius: 10px;
    border-bottom-right-radius: 10px;
    z-index: 10;
+   transition: all 250ms ease-in-out;
 }
 
 .side-menu.open {
@@ -69,14 +69,5 @@
 .close-button:hover {
    color: #fff;
    opacity: 0.5;
+   transition: all 250ms ease-in-out;
 }
-
-/* @media (max-width: 800px) {
-    .sidebar {
-        display: none;
-    }
-
-    .btn-toggle {
-        display: block;
-    }
-} */
