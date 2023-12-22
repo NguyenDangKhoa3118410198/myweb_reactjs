@@ -57,6 +57,14 @@ const login = async (req, res) => {
          });
       }
 
+      if (!existingUser.isVerified) {
+         return res.json({
+            success: false,
+            message:
+               'Email not verified. Please check your email for verification instructions.',
+         });
+      }
+
       const passwordMatch = await bcrypt.compare(
          password,
          existingUser.password
