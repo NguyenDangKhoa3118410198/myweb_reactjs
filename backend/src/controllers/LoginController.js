@@ -1,5 +1,8 @@
 const bcrypt = require('bcrypt');
 const { generateAccessToken, generateRefreshToken } = require('../ulti/token');
+const { hashPassword, generateVerificationCode } = require('../ulti/bcrypt');
+const { sendResetEmail } = require('../ulti/sendEmail');
+
 const User = require('../models/User');
 
 const loginAttemptsMap = new Map();
@@ -158,4 +161,60 @@ const loginRoleAdmin = async (req, res) => {
    }
 };
 
-module.exports = { login, loginRoleAdmin };
+const resetPassword = async (req, res) => {
+   const { email } = req.body;
+   const user = await User.findOne({ email });
+
+   if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+   }
+
+   const resetCode = generateVerificationCode();
+   user.resetCode = resetCode;
+
+   await user.save();
+
+   const resetLink = `http://localhost:3000/home`; // gửi đến giao diện nhập password mới
+
+   try {
+      await sendResetEmail(email, resetLink, resetCode);
+      res.status(200).json({ message: 'Reset email sent successfully' });
+   } catch (error) {
+      console.error('Failed to send email:', error);
+      res.status(500).json({ message: 'Failed to send email' });
+   }
+};
+
+const confirmResetPassword = async (req, res) => {
+   const { code, newPassword } = req.body;
+
+   try {
+      const user = await User.findOne({ resetCode: code });
+
+      if (user) {
+         user.password = hashPassword(newPassword);
+         user.resetCode = undefined;
+         await user.save();
+
+         res.status(200).json({
+            success: true,
+            message: 'Password reset successful',
+         });
+      } else {
+         res.status(400).json({
+            success: false,
+            message: 'Invalid verification code or email not confirmed',
+         });
+      }
+   } catch (error) {
+      console.error('Error during password reset confirmation:', error);
+      res.status(500).json({ message: 'Internal server error' });
+   }
+};
+
+module.exports = {
+   login,
+   loginRoleAdmin,
+   resetPassword,
+   confirmResetPassword,
+};

@@ -11,6 +11,7 @@ const userSchema = new Schema(
       isActive: { type: Boolean, default: true },
       verificationCode: { type: String },
       isVerified: { type: Boolean, default: false },
+      resetCode: { type: String },
    },
    { timestamps: true }
 );
