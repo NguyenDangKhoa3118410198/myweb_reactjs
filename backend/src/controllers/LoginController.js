@@ -191,24 +191,36 @@ const confirmResetPassword = async (req, res) => {
    try {
       const user = await User.findOne({ resetCode: code });
 
-      if (user) {
-         user.password = hashPassword(newPassword);
-         user.resetCode = undefined;
-         await user.save();
-
-         res.status(200).json({
-            success: true,
-            message: 'Password reset successful',
-         });
-      } else {
-         res.status(400).json({
+      if (!user) {
+         return res.status(400).json({
             success: false,
             message: 'Invalid verification code or email not confirmed',
          });
       }
+
+      const hashedPassword = hashPassword(newPassword);
+
+      if (
+         typeof hashedPassword === 'string' &&
+         hashedPassword.includes('Error')
+      ) {
+         return res.status(400).json({
+            success: false,
+            message: hashedPassword,
+         });
+      }
+
+      user.password = hashedPassword;
+      user.resetCode = undefined;
+      await user.save();
+
+      return res.status(200).json({
+         success: true,
+         message: 'Password reset successful',
+      });
    } catch (error) {
       console.error('Error during password reset confirmation:', error);
-      res.status(500).json({ message: 'Internal server error' });
+      return res.status(500).json({ message: 'Internal server error' });
    }
 };
 

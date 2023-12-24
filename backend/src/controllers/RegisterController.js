@@ -23,7 +23,14 @@ const register = async (req, res) => {
       });
    }
 
-   let hashedPassword = hashPassword(password);
+   const hashedPassword = hashPassword(password);
+
+   if (typeof hashedPassword === 'string' && hashedPassword.includes('Error')) {
+      return res.status(400).json({
+         success: false,
+         message: hashedPassword,
+      });
+   }
 
    const role = 'user';
    const verificationCode = generateVerificationCode();
