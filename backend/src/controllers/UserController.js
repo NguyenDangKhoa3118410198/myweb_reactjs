@@ -52,6 +52,7 @@ const addUser = async (req, res) => {
 
          const newUser = req.body;
          newUser.password = hashedPassword;
+         newUser.isVerified = true;
 
          if (email) {
             const emailExists = await User.findOne({ email });
