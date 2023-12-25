@@ -39,16 +39,17 @@
 }
 
 .admin-login-container button {
-   background-color: #512da8;
+   background-color: #5930b9;
    color: #fff;
    font-size: 12px;
-   padding: 10px 45px;
-   border: 1px solid transparent;
+   padding: 12px 48px;
    border-radius: 8px;
    font-weight: 600;
    letter-spacing: 0.5px;
    text-transform: uppercase;
    margin-top: 10px;
+   transition: ease-out 0.2s;
+   overflow: hidden;
    cursor: pointer;
 }
 
@@ -205,4 +206,9 @@
 
 .btn-sign-in:active {
    transform: scale(1.1);
+   background-color: #4410c0;
+}
+
+.btn-sign-in:hover {
+   box-shadow: inset 150px 0 0 0 #4410c0;
 }

@@ -25,25 +25,25 @@
 .box1 {
    grid-column: span 1;
    grid-row: span 1;
-   background: linear-gradient(to right, #6240df, #694ddb, #866ee4);
+   background: linear-gradient(to right, #5832e0, #6e53db, #9e88f5);
 }
 
 .box2 {
    grid-column: span 1;
    grid-row: span 1;
-   background: linear-gradient(to right, #4381f9, #578aee, #6d9ef3);
+   background: linear-gradient(to right, #1f56c4, #4a7ada, #6d9ef3);
 }
 
 .box3 {
    grid-column: span 1;
    grid-row: span 1;
-   background: linear-gradient(to right, #62cbf9, #6fc9f0, #94ddfc);
+   background: linear-gradient(to right, #1684b3, #56b3db, #96dcfa);
 }
 
 .box4 {
    grid-column: span 1;
    grid-row: span 1;
-   background: linear-gradient(to right, #1ccc9a, #42d1ab, #87ebd0);
+   background: linear-gradient(to right, #16d39d, #4eddb7, #a8f7e2);
 }
 
 .box5 {

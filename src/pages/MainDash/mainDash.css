@@ -17,6 +17,7 @@ button[type='button'].btn-add {
    background-color: var(--buttonSubmit);
    border: none;
    cursor: pointer;
+   transition: background-color 0.5s;
 }
 
 button[type='button']:active.btn-add {

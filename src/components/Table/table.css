@@ -61,4 +61,5 @@
    position: relative;
    display: block;
    margin: 0 5px 8px 5px;
+   transition: background-color 0.5s;
 }
