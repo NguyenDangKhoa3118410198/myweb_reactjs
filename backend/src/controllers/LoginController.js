@@ -162,6 +162,7 @@ const loginRoleAdmin = async (req, res) => {
 };
 
 const resetPassword = async (req, res) => {
+   console.log('--------------- Request reset password -------------------');
    const { email } = req.body;
    const user = await User.findOne({ email });
 
@@ -174,25 +175,31 @@ const resetPassword = async (req, res) => {
 
    await user.save();
 
-   const resetLink = `http://localhost:3000/home`; // gửi đến giao diện nhập password mới
+   const resetLink = `http://localhost:3000/new-password`;
 
    try {
       await sendResetEmail(email, resetLink, resetCode);
-      res.status(200).json({ message: 'Reset email sent successfully' });
+      res.status(200).json({
+         success: true,
+         message:
+            'Request reset password successfully. Please check your email.',
+      });
    } catch (error) {
       console.error('Failed to send email:', error);
-      res.status(500).json({ message: 'Failed to send email' });
+      res.status(500).json({ success: false, message: 'Failed to send email' });
    }
 };
 
 const confirmResetPassword = async (req, res) => {
+   console.log('--------------- Confirm reset password -------------------');
+
    const { code, newPassword } = req.body;
 
    try {
       const user = await User.findOne({ resetCode: code });
 
       if (!user) {
-         return res.status(400).json({
+         return res.json({
             success: false,
             message: 'Invalid verification code or email not confirmed',
          });
@@ -204,7 +211,7 @@ const confirmResetPassword = async (req, res) => {
          typeof hashedPassword === 'string' &&
          hashedPassword.includes('Error')
       ) {
-         return res.status(400).json({
+         return res.json({
             success: false,
             message: hashedPassword,
          });

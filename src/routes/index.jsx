@@ -11,6 +11,8 @@ import AdminDefaultLayout from '../Layouts/DefaultLayout';
 import NotFoundComponent from '../Layouts/NotFoundComponent';
 import Contact from '../pages/Contact/Contact';
 import InfoWeb from '../pages/InfoWeb';
+import ForgotPassword from '../components/ForgotPass/ForgotPassword';
+import NewPassword from '../components/ForgotPass/NewPassword';
 
 const publicRoutes = [
    {
@@ -24,6 +26,18 @@ const publicRoutes = [
       path: '*',
       component: null,
       layout: NotFoundComponent,
+   },
+   {
+      name: 'Forgot Password',
+      path: '/forgot-password',
+      component: ForgotPassword,
+      layout: NullLayout,
+   },
+   {
+      name: 'New Password',
+      path: '/new-password',
+      component: NewPassword,
+      layout: NullLayout,
    },
 ];
 
