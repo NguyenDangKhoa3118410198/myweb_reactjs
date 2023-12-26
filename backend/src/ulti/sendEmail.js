@@ -18,7 +18,11 @@ const sendVerificationEmail = async (email, verificationCode) => {
       from: emailUser,
       to: email,
       subject: 'Account Verification',
-      text: `Hello ${email},\n\nPlease verify your registration by clicking on the following link:\n${verificationLink}`,
+      html: `
+      <p>Hello ${email},</p>
+      <p>Please verify your registration by clicking on the following link:</p>
+      <a href="${verificationLink}" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: #fff; text-decoration: none; border-radius: 5px;">Verify Account</a>
+   `,
    };
 
    return new Promise((resolve, reject) => {
@@ -50,7 +54,15 @@ const sendResetEmail = async (email, resetLink, resetCode) => {
       from: emailUser,
       to: email,
       subject: 'Reset Your Password',
-      text: `Click on the following link to reset your password: ${resetLink} and your reset code: ${resetCode}`,
+      html: `
+      <p>Hello,</p>
+      <p>You have requested to reset your password. Please click the button below to set a new password:</p>
+      <a href="${resetLink}" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: #fff; text-decoration: none; border-radius: 5px;">Reset Password</a>
+      <p>If you didn't request this, please ignore this email.</p>
+      <p>Verification Code: <span style="background-color: #777; color: #ffffff; padding: 5px; border-radius: 5px;">${resetCode}</span></p>
+      <p>Best regards,</p>
+      <p>Your App Team</p>
+  `,
    };
 
    return new Promise((resolve, reject) => {
