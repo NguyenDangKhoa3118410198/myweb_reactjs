@@ -46,12 +46,11 @@ function FormPanel({
                      required
                   />
                </FormGroup>
+
                <FormGroup className='form-control-input'>
-                  <FormControl
-                     className='form-panel-input'
-                     type='text'
-                     placeholder='Gender'
-                     name='gender'
+                  <Form.Select
+                     aria-label='Gender'
+                     className='form-panel-input-select'
                      value={formData.gender}
                      onChange={(e) => {
                         setFormData({
@@ -59,9 +58,12 @@ function FormPanel({
                            gender: e.target.value,
                         });
                      }}
-                     required
-                  />
+                  >
+                     <option value='Male'>Male</option>
+                     <option value='Female'>Female</option>
+                  </Form.Select>
                </FormGroup>
+
                <div className='button-group-form-panel'>
                   <Button className='form-control-btn' type='submit'>
                      {title}

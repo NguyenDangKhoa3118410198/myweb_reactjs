@@ -47,7 +47,7 @@
 
 .cart-icon:hover {
    transform: scale(1.1);
-   transition: all 280ms linear;
+   transition: all 0.15s linear;
 }
 
 .cart-right {

@@ -122,8 +122,23 @@ input[type='search'].searchBox {
 }
 
 .form-panel-input {
-   max-width: max-content;
+   max-width: 120px;
+   min-width: 80px;
    padding: 5px;
+}
+
+.form-panel-input-select {
+   outline: none;
+   width: 100%;
+   max-width: 100%;
+   min-width: 150px;
+   padding: 5px 15px;
+   font-size: 16px;
+   font-weight: 500;
+   color: black;
+   background-color: white;
+   border: 1px #0000006b solid;
+   border-radius: 10px;
 }
 
 .form-control-btn {
