@@ -163,21 +163,27 @@ const loginRoleAdmin = async (req, res) => {
 
 const resetPassword = async (req, res) => {
    console.log('--------------- Request reset password -------------------');
-   const { email } = req.body;
-   const user = await User.findOne({ email });
-
-   if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-   }
-
-   const resetCode = generateVerificationCode();
-   user.resetCode = resetCode;
-
-   await user.save();
-
-   const resetLink = `http://localhost:3000/new-password`;
-
    try {
+      const { email } = req.body;
+      const user = await User.findOne({ email });
+
+      if (!user) {
+         return res.status(404).json({ message: 'User not found' });
+      }
+
+      const resetCode = generateVerificationCode();
+      if (!resetCode) {
+         return res.json({
+            success: false,
+            message: 'Failed to generate verification code',
+         });
+      }
+      user.resetCode = resetCode;
+
+      await user.save();
+
+      const resetLink = `http://localhost:3000/new-password`;
+
       await sendResetEmail(email, resetLink, resetCode);
       res.status(200).json({
          success: true,
@@ -185,17 +191,18 @@ const resetPassword = async (req, res) => {
             'Request reset password successfully. Please check your email.',
       });
    } catch (error) {
-      console.error('Failed to send email:', error);
-      res.status(500).json({ success: false, message: 'Failed to send email' });
+      console.error('Error during password reset request:', error);
+      res.status(500).json({
+         success: false,
+         message: 'Internal server error',
+      });
    }
 };
 
 const confirmResetPassword = async (req, res) => {
    console.log('--------------- Confirm reset password -------------------');
-
-   const { code, newPassword } = req.body;
-
    try {
+      const { code, newPassword } = req.body;
       const user = await User.findOne({ resetCode: code });
 
       if (!user) {

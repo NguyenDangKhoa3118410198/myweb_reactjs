@@ -8,6 +8,11 @@ const NewPassword = () => {
    const [newPassword, setNewPassword] = useState('');
    const [code, setCode] = useState('');
 
+   const clearForm = () => {
+      setNewPassword('');
+      setCode('');
+   };
+
    const handleSubmit = async (e) => {
       e.preventDefault();
 
@@ -19,6 +24,7 @@ const NewPassword = () => {
 
          if (response.data.success) {
             alertSuccess('Password reset successful');
+            clearForm();
          } else {
             alertMessageError(response.data.message);
          }
