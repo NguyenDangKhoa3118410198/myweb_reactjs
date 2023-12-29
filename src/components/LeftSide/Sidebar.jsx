@@ -10,10 +10,6 @@ import {
    UilClipboardAlt,
    UilUsersAlt,
    UilPackage,
-   // eslint-disable-next-line no-unused-vars
-   UilChart,
-   // eslint-disable-next-line no-unused-vars
-   UilVideo,
 } from '@iconscout/react-unicons';
 
 const Sidebar = ({ isMenuActive, toggleBurger, activeMenu }) => {

@@ -18,7 +18,7 @@ function ModalView(props) {
             </Modal.Title>
          </Modal.Header>
          <Modal.Body>
-            <ul style={{ listStyleType: 'none', padding: '2px' }}>
+            <ul style={{ listStyleType: 'none', padding: '4px' }}>
                {Object.entries(props.viewcurrent).map(
                   ([key, value]) =>
                      key !== 'id' && (

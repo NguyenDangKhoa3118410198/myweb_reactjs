@@ -14,7 +14,7 @@ export const alertMessageError = (data) => {
 };
 
 export const loginSuccess = (data) => {
-   Swal.fire({ position: 'top', fontSize: '16px', text: data });
+   Swal.fire({ position: 'top', text: data });
 };
 
 export const loginFailure = (data) => {

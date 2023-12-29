@@ -4,7 +4,6 @@ import { UilEllipsisV } from '@iconscout/react-unicons';
 import { pageMainDash } from '../../Data/fetchData';
 
 import DashboardBoxChart from '../../components/Statistics/DashboardBoxCharts';
-import MyCalendar from '../../components/Calendar';
 import ContextualExample from '../../components/ProgressBar';
 import Todolist from '../../components/Totolist/Totolist';
 import CircularProgressbarChart from '../../components/Statistics/ChartTemplate/CircularProgressbarChart';
@@ -14,7 +13,6 @@ import {
    isFormDataValid,
 } from '../../components/Table/TableActions/handleActions';
 import { columnsMainDash } from '../../Data/columns';
-import './mainDash.css';
 import FormPanel from './FormPanel';
 import OnTopButton from '../../components/OnTop/OnTop';
 import { sendRequest } from '../../ulti/sendHeaderRequest';
@@ -23,7 +21,9 @@ import {
    alertMessageError,
    alertSuccess,
 } from '../../ulti/modals';
+import './mainDash.css';
 
+const MyCalendar = lazy(() => import('../../components/Calendar'));
 const Table = lazy(() => import('../../components/Table/Table'));
 
 const MainDash = () => {
