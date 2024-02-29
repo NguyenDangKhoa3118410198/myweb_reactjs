@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './dashboardBoxCharts.css';
 // eslint-disable-next-line no-unused-vars
-import { Box, LargeBox } from './Box';
+import { useDispatch, useSelector } from 'react-redux';
+import { LargeBox } from './Box';
 import Cart from './Carts/Card';
 import {
    // eslint-disable-next-line no-unused-vars
@@ -11,26 +12,40 @@ import {
    countingUsers,
    countingOrders,
 } from './DataBoxes';
+import {
+   setDataUsers,
+   setDataOrders,
+   setDataProducts,
+   setDataAccess,
+} from '../features/appInformation/appInformationSlice';
 
 function DashboardBoxCharts() {
-   const [dataUsers, setDataUser] = useState(null);
-   const [dataOrders, setDataOrders] = useState(null);
-   const [dataProducts, setDataProducts] = useState(null);
-   const [dataAccess, setDataAccess] = useState(null);
+   const dispatch = useDispatch();
+
+   const dataUsers = useSelector((state) => state.appInformation.dataUsers);
+   const dataProducts = useSelector(
+      (state) => state.appInformation.dataProducts
+   );
+   const dataOrders = useSelector((state) => state.appInformation.dataOrders);
+   const dataAccess = useSelector((state) => state.appInformation.dataUsers);
 
    useEffect(() => {
       Promise.all([countingUsers(), countingOrders(), countingProducts()])
          .then((results) => {
             const [users, orders, products] = results;
-            setDataUser(users);
-            setDataOrders(orders);
-            setDataProducts(products);
-            setDataAccess(users);
+            console.log('Fetching app information and dispatching it');
+
+            if (users && orders && products) {
+               dispatch(setDataUsers(users));
+               dispatch(setDataProducts(products));
+               dispatch(setDataOrders(orders));
+               dispatch(setDataAccess(users));
+            }
          })
          .catch((error) => {
             console.error('Error:', error);
          });
-   }, []);
+   }, [dispatch]);
 
    return (
       <div className='dashboard-charts-box-container'>
