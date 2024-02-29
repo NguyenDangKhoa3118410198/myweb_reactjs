@@ -4,7 +4,7 @@
    left: -200px;
    background-color: #333;
    opacity: 1;
-   width: 200px;
+   width: 210px;
    height: 100%;
    overflow: hidden;
    border-top-right-radius: 10px;
@@ -19,6 +19,7 @@
 
 .sidebar {
    height: 100%;
+   padding-left: 10px;
    color: var(--white);
    background-color: var(--backgroundSidebar);
 }
