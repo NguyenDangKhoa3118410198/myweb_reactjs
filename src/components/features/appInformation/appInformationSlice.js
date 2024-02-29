@@ -14,6 +14,9 @@ const appInformationSlice = createSlice({
       setDataUsers: (state, action) => {
          state.dataUsers = action.payload;
       },
+      updateCountingUsers: (state, action) => {
+         state.dataUsers += 1;
+      },
       setDataOrders: (state, action) => {
          state.dataOrders = action.payload;
       },
@@ -26,6 +29,11 @@ const appInformationSlice = createSlice({
    },
 });
 
-export const { setDataUsers, setDataOrders, setDataProducts, setDataAccess } =
-   appInformationSlice.actions;
+export const {
+   setDataUsers,
+   updateCountingUsers,
+   setDataOrders,
+   setDataProducts,
+   setDataAccess,
+} = appInformationSlice.actions;
 export default appInformationSlice.reducer;

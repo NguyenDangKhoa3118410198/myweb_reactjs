@@ -1,5 +1,5 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { UilEllipsisV } from '@iconscout/react-unicons';
 import { pageMainDash } from '../../Data/fetchData';
 
@@ -22,6 +22,7 @@ import {
    alertSuccess,
 } from '../../ulti/modals';
 import './mainDash.css';
+import { updateCountingUsers } from '../../components/features/appInformation/appInformationSlice';
 
 const MyCalendar = lazy(() => import('../../components/Calendar'));
 const Table = lazy(() => import('../../components/Table/Table'));
@@ -36,6 +37,8 @@ const MainDash = () => {
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
    const [isModalView, setModalView] = useState(false);
    const [viewCurrent, setViewCurrent] = useState({});
+
+   const dispatch = useDispatch();
 
    const [formData, setFormData] = useState({
       name: '',
@@ -167,8 +170,9 @@ const MainDash = () => {
             if (response.success) {
                const newRecord = response.newUser;
                setRecords([...records, newRecord]);
-               alertSuccess('New user added successfully');
-               console.log('New user added successfully:', newRecord);
+               dispatch(updateCountingUsers());
+               alertSuccess('User added successfully');
+               console.log('User added successfully:', newRecord);
             } else {
                console.error('Error adding new user:', response.message);
             }
