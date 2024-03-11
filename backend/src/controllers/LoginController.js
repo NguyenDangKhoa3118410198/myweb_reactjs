@@ -36,7 +36,7 @@ const login = async (req, res) => {
          const timeRemaining = Math.ceil(
             (30000 - (Date.now() - userLoginInfo.lastAttemptTime)) / 1000
          );
-         return res.json({
+         return res.status(429).json({
             success: false,
             message: `Too many login attempts. Please try again in ${timeRemaining} seconds.`,
          });
@@ -47,21 +47,21 @@ const login = async (req, res) => {
       if (!existingUser || existingUser === null) {
          updateLoginAttempts(email, userLoginInfo);
 
-         return res.json({
+         return res.status(401).json({
             success: false,
             message: 'Login failed. Incorrect username or password.',
          });
       }
 
       if (!existingUser.isActive) {
-         return res.json({
+         return res.status(401).json({
             success: false,
             message: 'Login failed. User account is not active.',
          });
       }
 
       if (!existingUser.isVerified) {
-         return res.json({
+         return res.status(401).json({
             success: false,
             message:
                'Email not verified. Please check your email for verification instructions.',
@@ -87,7 +87,9 @@ const login = async (req, res) => {
             refreshToken,
          });
       } else {
-         res.json({
+         updateLoginAttempts(email, userLoginInfo);
+
+         return res.status(401).json({
             success: false,
             message: 'Login failed. Incorrect password.',
          });
@@ -109,21 +111,21 @@ const loginRoleAdmin = async (req, res) => {
       const existingUser = await User.findOne({ email });
 
       if (!existingUser || existingUser === null) {
-         return res.json({
+         return res.status(401).json({
             success: false,
             message: 'Login failed. Incorrect username or password.',
          });
       }
 
       if (existingUser.role !== 'admin') {
-         return res.json({
+         return res.status(403).json({
             success: false,
             message: 'Login failed. User does not have admin role.',
          });
       }
 
       if (!existingUser.isActive) {
-         return res.json({
+         return res.status(401).json({
             success: false,
             message: 'Login failed. User account is not active.',
          });
@@ -146,7 +148,7 @@ const loginRoleAdmin = async (req, res) => {
             refreshToken,
          });
       } else {
-         res.json({
+         return res.status(401).json({
             success: false,
             message: 'Login failed. Incorrect password.',
          });
@@ -168,12 +170,14 @@ const resetPassword = async (req, res) => {
       const user = await User.findOne({ email });
 
       if (!user) {
-         return res.json({ success: false, message: 'Email not found' });
+         return res
+            .status(404)
+            .json({ success: false, message: 'Email not found' });
       }
 
       const resetCode = generateVerificationCode();
       if (!resetCode) {
-         return res.json({
+         return res.status(500).json({
             success: false,
             message: 'Failed to generate verification code',
          });
@@ -206,7 +210,7 @@ const confirmResetPassword = async (req, res) => {
       const user = await User.findOne({ resetCode: code });
 
       if (!user) {
-         return res.json({
+         return res.status(400).json({
             success: false,
             message: 'Invalid verification code or email not confirmed',
          });
@@ -218,7 +222,7 @@ const confirmResetPassword = async (req, res) => {
          typeof hashedPassword === 'string' &&
          hashedPassword.includes('Error')
       ) {
-         return res.json({
+         return res.status(500).json({
             success: false,
             message: hashedPassword,
          });

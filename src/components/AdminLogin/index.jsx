@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { UilFacebook, UilGoogle, UilTwitter } from '@iconscout/react-unicons';
 import axios from 'axios';
 import { deleteLocalStorage } from '../../ulti';
-import { loginSuccess, loginFailure } from '../../ulti/modals';
+import { loginSuccess } from '../../ulti/modals';
 
 import AdminImage from './3.png';
 import './adminLogin.css';
@@ -48,11 +48,12 @@ const Login = () => {
             localStorage.setItem('username', data.username);
             navigate('/home');
             loginSuccess(data.message);
-         } else {
-            loginFailure(data.message);
          }
       } catch (error) {
-         console.error('Error call API:', error);
+         console.error(
+            'Server responded with an error:',
+            error.response.data.message
+         );
       }
    };
 

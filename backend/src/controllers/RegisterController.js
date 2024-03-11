@@ -17,7 +17,7 @@ const register = async (req, res) => {
    const existingUser = await User.findOne({ email });
 
    if (existingUser) {
-      return res.json({
+      return res.status(400).json({
          success: false,
          message: 'Email already exists.',
       });
@@ -49,7 +49,7 @@ const register = async (req, res) => {
 
       await sendVerificationEmail(email, verificationCode);
 
-      res.json({
+      res.status(201).json({
          success: true,
          message: 'Registration successful! Check your email for verification.',
       });
@@ -79,7 +79,7 @@ const verifyEmail = async (req, res) => {
          const accessToken = generateAccessToken(user);
          const refreshToken = generateRefreshToken(user);
 
-         res.json({
+         res.status(200).json({
             success: true,
             message: 'Email verification successful!',
             username: user.username,
@@ -87,7 +87,7 @@ const verifyEmail = async (req, res) => {
             refreshToken,
          });
       } else {
-         res.json({
+         res.status(400).json({
             success: false,
             message:
                'Email verification unsuccessful. Invalid verification code.',
