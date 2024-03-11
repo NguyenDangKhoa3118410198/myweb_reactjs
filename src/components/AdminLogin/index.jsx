@@ -88,22 +88,25 @@ const Login = () => {
             </div>
             <div className='admin-form-container admin-sign-in'>
                <form onSubmit={handleSubmit}>
-                  <h1>Sign In</h1>
-                  <div className='social-icons'>
-                     <div className='icon'>
-                        <UilFacebook />
+                  <div className='base-inform-login'>
+                     <h1>Sign In</h1>
+                     <div className='social-icons'>
+                        <div className='icon'>
+                           <UilFacebook />
+                        </div>
+                        <div className='icon'>
+                           <UilGoogle />
+                        </div>
+                        <div className='icon'>
+                           <UilTwitter />
+                        </div>
                      </div>
-                     <div className='icon'>
-                        <UilGoogle />
-                     </div>
-                     <div className='icon'>
-                        <UilTwitter />
-                     </div>
+                     <span>or use your email password</span>
                   </div>
-                  <span>or use your email password</span>
+
                   <input
                      type='email'
-                     placeholder='Email'
+                     placeholder='Enter email'
                      value={email}
                      onChange={(e) => setEmail(e.target.value)}
                      autoFocus
@@ -111,12 +114,16 @@ const Login = () => {
                   />
                   <input
                      type='password'
-                     placeholder='Password'
+                     placeholder='Enter password'
                      value={password}
                      onChange={(e) => setPassword(e.target.value)}
                      required
                   />
-                  <div>Forget Your Password?</div>
+                  <div className='forgot-password-container'>
+                     <a href='google.com' className='forgot-password'>
+                        Forgot Your Password?
+                     </a>
+                  </div>
                   <button className='btn-sign-in'>Sign In</button>
                </form>
             </div>

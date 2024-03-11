@@ -5,7 +5,7 @@
    align-items: center;
    height: 100vh;
    padding: 1rem;
-   background-color: #dddee3;
+   background-color: #9d9ea8;
 }
 
 .admin-login-container {
@@ -39,7 +39,7 @@
 }
 
 .admin-login-container button {
-   background-color: #5930b9;
+   background-color: #007aff;
    color: #fff;
    font-size: 12px;
    padding: 12px 48px;
@@ -69,7 +69,7 @@
 }
 
 .admin-login-container input {
-   background-color: #eee;
+   background-color: #f2f2f2 !important;
    border: none;
    margin: 8px 0;
    padding: 10px 15px;
@@ -206,9 +206,35 @@
 
 .btn-sign-in:active {
    transform: scale(1.1);
-   background-color: #4410c0;
+   background-color: #036ee0;
 }
 
 .btn-sign-in:hover {
-   box-shadow: inset 150px 0 0 0 #4410c0;
+   box-shadow: inset 150px 0 0 0 #036ee0;
+}
+
+.forgot-password-container {
+   display: flex;
+   justify-content: flex-end;
+   width: 100%;
+}
+
+.forgot-password-container > a {
+   font-weight: 600;
+}
+
+.forgot-password-container > a:link {
+   color: #8ac2ff;
+}
+
+.forgot-password-container > a:visited {
+   color: #007aff;
+}
+
+.base-inform-login {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin: 10px 5px;
 }

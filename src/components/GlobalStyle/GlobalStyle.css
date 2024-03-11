@@ -87,11 +87,10 @@ input[type='number'] {
    width: 100%;
    max-width: 100%;
    min-width: 150px;
-   height: 40px;
-   padding: 0 15px;
-   border: 1px #0000006b solid;
-   border-radius: 10px;
-   font-size: 16px;
+   height: 45px;
+   padding: 5px 15px;
+   border-radius: 8px;
+   font-size: 15px;
    font-weight: 500;
    color: black;
    background-color: var(--white);
