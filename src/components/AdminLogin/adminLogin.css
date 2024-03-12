@@ -11,7 +11,7 @@
 .admin-login-container {
    background-color: #fff;
    border-radius: 30px;
-   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.35);
    position: relative;
    overflow: hidden;
    width: 768px;
@@ -212,13 +212,23 @@
    box-shadow: inset 150px 0 0 0 #036ee0;
 }
 
+.more-action-login-form {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 20px;
+}
+
 .forgot-password-container {
    display: flex;
    justify-content: flex-end;
    width: 100%;
+   flex: 1;
+   padding: 0 5px;
 }
 
 .forgot-password-container > a {
+   width: max-content;
    font-weight: 600;
 }
 
@@ -236,4 +246,17 @@
    flex-direction: column;
    align-items: center;
    margin: 10px 5px;
+   padding: 0 5px;
+}
+
+.rememeber-checkbox-container {
+   display: flex;
+   justify-content: flex-start;
+   width: 100%;
+   flex: 1;
+}
+
+.rememeber-checkbox-container input[type='checkbox'] {
+   width: max-content;
+   margin: 0 5px 0 0px;
 }

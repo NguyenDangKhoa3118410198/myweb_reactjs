@@ -119,10 +119,17 @@ const Login = () => {
                      onChange={(e) => setPassword(e.target.value)}
                      required
                   />
-                  <div className='forgot-password-container'>
-                     <a href='google.com' className='forgot-password'>
-                        Forgot Your Password?
-                     </a>
+                  <div className='more-action-login-form'>
+                     <div className='rememeber-checkbox-container'>
+                        <input type='checkbox' id='rememberCheckbox' />
+                        <label htmlFor='rememberCheckbox'>Remember me</label>
+                     </div>
+
+                     <div className='forgot-password-container'>
+                        <a href='google.com' className='forgot-password'>
+                           Forgot Your Password?
+                        </a>
+                     </div>
                   </div>
                   <button className='btn-sign-in'>Sign In</button>
                </form>
