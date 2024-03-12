@@ -5,7 +5,7 @@
    right: 10px;
    bottom: 10px;
    border-radius: 50%;
-   background-color: #4d90fe;
+   background-color: #007aff;
    z-index: 10;
    transition: transform 250ms ease, background-color 500ms ease-in-out;
 }
@@ -15,7 +15,7 @@
 }
 
 .on-top-wrapper:hover {
-   background-color: #3568cf;
+   background-color: #2c5bb9;
 
    .on-top-close {
       opacity: 1;

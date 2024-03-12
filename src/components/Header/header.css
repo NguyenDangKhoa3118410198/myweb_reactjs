@@ -114,6 +114,8 @@
    height: 40px !important;
    width: 40px !important;
    border-radius: 50% !important;
+   padding-left: 10px;
+   padding-right: 10px;
 }
 
 .user-profile::after {

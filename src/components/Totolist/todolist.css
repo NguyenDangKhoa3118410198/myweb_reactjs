@@ -45,7 +45,7 @@
 
 .todo-edit,
 .todo-delete {
-   margin: 0 2px;
+   margin: 0 5px;
    cursor: pointer;
 }
 
