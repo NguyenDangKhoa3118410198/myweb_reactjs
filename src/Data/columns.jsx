@@ -31,6 +31,12 @@ export const columnsProduct1 = ({
       center: true,
    },
    {
+      name: 'Price',
+      selector: (row) => row.price,
+      sortable: true,
+      center: true,
+   },
+   {
       name: 'Action',
       sortable: false,
       maxWidth: 'max-content',

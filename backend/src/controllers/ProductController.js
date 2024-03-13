@@ -8,20 +8,27 @@ const getProducts = async (req, res) => {
 
    try {
       const response = await axios.get(API.productAPI);
+
       const productData = response.data.data.map((product) => {
          const productInfo = {
             id: product.id,
-            sku: product.sku,
             name: product.name,
             brandName: product.brand_name,
-            urlPath: product.url_path,
-            urlKey: product.url_key,
-            originPrice: product.original_price,
+            price: product.price,
          };
+
+         if (req.user && req.user.role === 'admin') {
+            productInfo.sku = product.sku;
+            productInfo.urlPath = product.url_path;
+            productInfo.urlKey = product.url_key;
+            productInfo.originPrice = product.original_price;
+         }
+
          products.push(productInfo);
          return productInfo;
       });
-      res.json(productData);
+
+      res.status(200).json(productData);
    } catch (error) {
       console.error('Error fetching data:', error);
    }
@@ -35,7 +42,7 @@ const getReviewsByProductId = async (req, res) => {
       const response = await axios.get(API.reviewAPI(productId));
       // console.log('url: ', API.reviewAPI(productId));
 
-      const reivewData = response.data.data.map((reivew) => {
+      const reviewData = response.data.data.map((reivew) => {
          const reviewInfo = {
             id: reivew.id,
             title: reivew.title,
@@ -47,7 +54,7 @@ const getReviewsByProductId = async (req, res) => {
          return reviewInfo;
       });
       // console.log(reviews);
-      res.json(reivewData);
+      res.status(200).json(reviewData);
    } catch (error) {
       console.error('Error fetching data:', error);
    }
