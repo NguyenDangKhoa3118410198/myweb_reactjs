@@ -35,7 +35,7 @@ const getUsers = async (req, res) => {
          return filteredUser;
       });
 
-      res.json(filteredUsers);
+      res.status(200).json(filteredUsers);
    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -78,7 +78,7 @@ const addUser = async (req, res) => {
             isActive: createdUser.isActive.toString(),
          };
 
-         res.json({
+         res.status(201).json({
             success: true,
             message: 'User added successfully!',
             newUser: simplifiedUser,
@@ -132,7 +132,7 @@ const editUser = async (req, res) => {
 
          console.log('Updated user:', existingUser);
 
-         res.json({
+         res.status(200).json({
             success: true,
             message: 'User updated successfully',
          });
@@ -164,7 +164,7 @@ const deactivateUser = async (req, res) => {
       existingUser.isActive = false;
       await existingUser.save();
 
-      res.json({
+      res.status(200).json({
          success: true,
          message: 'User deactivated successfully',
       });
@@ -196,7 +196,7 @@ const activateUser = async (req, res) => {
       existingUser.isActive = true;
       await existingUser.save();
 
-      res.json({
+      res.status(200).json({
          success: true,
          message: 'User activated successfully',
       });
