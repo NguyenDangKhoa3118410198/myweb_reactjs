@@ -19,7 +19,7 @@ const getCustomers = async (req, res) => {
          avatar: customer.avatar,
       }));
 
-      res.json(filteredCustomers);
+      res.status(200).json(filteredCustomers);
    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -54,7 +54,10 @@ const editCustomers = async (req, res) => {
 
       await customerDB.save();
 
-      res.json({ success: true, message: 'Customer updated successfully' });
+      res.status(200).json({
+         success: true,
+         message: 'Customer updated successfully',
+      });
    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -78,7 +81,7 @@ const deleteCustomer = async (req, res) => {
          });
       }
 
-      res.json({
+      res.status(200).json({
          success: true,
          message: 'Customer deleted successfully',
       });

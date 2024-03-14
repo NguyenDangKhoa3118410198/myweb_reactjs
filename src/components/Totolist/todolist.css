@@ -16,7 +16,7 @@
 
 .add-todo {
    margin-left: 10px;
-   background-color: #8758ff;
+   background-color: #1e84f0;
 }
 
 .todolist {
@@ -33,10 +33,10 @@
    padding: 0.75rem 1rem;
    border-radius: 5px;
    margin-bottom: 1rem;
-   font-size: 15px;
+   font-size: 14px;
    font-weight: 600;
    color: #fff;
-   background: #8758ff;
+   background: #1e84f0;
 
    &:hover {
       cursor: pointer;
@@ -80,13 +80,13 @@ input[type='text'].new-todo-input {
 
 .new-todo-input:focus {
    border: none;
-   outline: #8758ff solid 2px;
+   outline: #1e84f0 solid 2px;
    transition: all 180ms ease-in-out;
    box-shadow: none;
 }
 
 .add-todo {
-   background-color: #8758ff !important;
+   background-color: #1e84f0 !important;
 }
 
 .add-todo:active {

@@ -14,7 +14,12 @@ export const alertMessageError = (data) => {
 };
 
 export const loginSuccess = (data) => {
-   Swal.fire({ position: 'top', icon: 'success', text: data });
+   Swal.fire({
+      position: 'top',
+      icon: 'success',
+      confirmButtonColor: '#007AFF',
+      text: data,
+   });
 };
 
 export const loginFailure = (data) => {
@@ -44,6 +49,6 @@ export const alertSuccess = (data) => {
       icon: 'success',
       title: data,
       showConfirmButton: false,
-      timer: 1100,
+      timer: 1000,
    });
 };

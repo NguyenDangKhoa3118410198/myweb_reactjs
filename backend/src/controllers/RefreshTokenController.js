@@ -29,7 +29,10 @@ const isValidRefreshToken = async (req, res) => {
 
       console.log('Server New Token: ' + newAccessToken);
 
-      res.json({ accessToken: newAccessToken, refreshToken: newRefreshToken });
+      res.status(201).json({
+         accessToken: newAccessToken,
+         refreshToken: newRefreshToken,
+      });
    } catch (error) {
       return res
          .status(403)

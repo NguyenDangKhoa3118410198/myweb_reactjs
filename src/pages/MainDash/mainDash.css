@@ -121,6 +121,10 @@ input[type='search'].searchBox {
    padding: 8px 5px;
 }
 
+.form-control-input > input {
+   background-color: #fff !important;
+}
+
 .form-panel-input {
    max-width: 120px;
    min-width: 80px;
