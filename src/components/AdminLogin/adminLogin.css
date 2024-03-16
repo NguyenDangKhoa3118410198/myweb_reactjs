@@ -260,3 +260,16 @@
    width: max-content;
    margin: 0 5px 0 0px;
 }
+
+.container-hidden-pwd {
+   width: 100%;
+   position: relative;
+}
+
+.btn-hidden-pwd {
+   position: absolute;
+   right: 10px;
+   top: 50%;
+   transform: translateY(-50%);
+   cursor: pointer;
+}

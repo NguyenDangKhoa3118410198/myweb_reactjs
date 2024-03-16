@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UilFacebook, UilGoogle, UilTwitter } from '@iconscout/react-unicons';
+import {
+   UilFacebook,
+   UilGoogle,
+   UilTwitter,
+   UilEyeSlash,
+   UilEye,
+} from '@iconscout/react-unicons';
 import axios from 'axios';
 import { deleteLocalStorage } from '../../ulti';
 import { loginSuccess } from '../../ulti/modals';
@@ -13,6 +19,7 @@ const Login = () => {
 
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
+   const [showPassword, setShowPassword] = useState(false);
 
    useEffect(() => {
       deleteLocalStorage();
@@ -112,13 +119,21 @@ const Login = () => {
                      autoFocus
                      required
                   />
-                  <input
-                     type='password'
-                     placeholder='Enter password'
-                     value={password}
-                     onChange={(e) => setPassword(e.target.value)}
-                     required
-                  />
+                  <div className='container-hidden-pwd'>
+                     <input
+                        type={showPassword ? 'text' : 'password'}
+                        placeholder='Enter password'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                     />
+                     <div
+                        className='btn-hidden-pwd'
+                        onClick={() => setShowPassword(!showPassword)}
+                     >
+                        {showPassword ? <UilEyeSlash /> : <UilEye />}
+                     </div>
+                  </div>
                   <div className='more-action-login-form'>
                      <div className='rememeber-checkbox-container'>
                         <input type='checkbox' id='rememberCheckbox' />
