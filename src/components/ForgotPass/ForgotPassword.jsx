@@ -29,12 +29,15 @@ const ForgotPasswordForm = () => {
    return (
       <div className='forgot-password-form-container'>
          <form onSubmit={handleSubmit} className='forgot-password-form'>
-            <label>
-               Email:
+            <h2>Forgot Password</h2>
+            <label className='lbl-reset-pwd'>
+               You need to enter a valid email to reset your password
                <input
+                  className='input-reset-pwd'
                   type='email'
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  placeholder='Enter Email'
                   required
                />
             </label>

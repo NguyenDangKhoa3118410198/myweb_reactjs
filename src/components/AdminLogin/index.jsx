@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
    UilFacebook,
    UilGoogle,
@@ -141,9 +141,9 @@ const Login = () => {
                      </div>
 
                      <div className='forgot-password-container'>
-                        <a href='google.com' className='forgot-password'>
+                        <Link to='/forgot-password' className='forgot-password'>
                            Forgot Your Password?
-                        </a>
+                        </Link>
                      </div>
                   </div>
                   <button className='btn-sign-in'>Sign In</button>
