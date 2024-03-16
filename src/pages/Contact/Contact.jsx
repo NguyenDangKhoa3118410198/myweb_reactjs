@@ -5,11 +5,15 @@ import backgroundImage from './bg1.png';
 function Contact() {
    return (
       <div className='contact-form'>
-         <h1>Contact Us</h1>
+         <h1>
+            <strong>We will address your issues</strong>
+         </h1>
          <div className='container-contact'>
             <div className='main-contact'>
                <div className='content-contact'>
-                  <h2>Contact Us</h2>
+                  <h2>
+                     <strong>Contact Us</strong>
+                  </h2>
                   <form action='#' method='post'>
                      <input
                         type='text'
