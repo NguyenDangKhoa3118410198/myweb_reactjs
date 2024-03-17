@@ -62,10 +62,13 @@ function Todolist() {
             {todolist && todolist.length > 0 ? (
                todolist.map((todo) => (
                   <div className='todo' key={todo.id}>
-                     <span
-                        onClick={() => handleToggleTodo(todo.id)}
-                        className={`${todo.completed ? 'completed' : ''}`}
-                     >
+                     <input
+                        className='todo-checkbox'
+                        type='checkbox'
+                        onChange={() => handleToggleTodo(todo.id)}
+                        checked={todo.completed}
+                     />
+                     <span className={`${todo.completed ? 'completed' : ''}`}>
                         {todo.task}
                      </span>
                      <div>
