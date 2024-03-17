@@ -256,14 +256,23 @@
    flex: 1;
 }
 
-.rememeber-checkbox-container input[type='checkbox'] {
+.rememeber-checkbox-container > input[type='checkbox'] {
    width: max-content;
    margin: 0 5px 0 0px;
+}
+
+#rememberCheckbox {
+   cursor: pointer;
 }
 
 .container-hidden-pwd {
    width: 100%;
    position: relative;
+
+   & > input[type='password'],
+   input[type='text'] {
+      margin-left: 0;
+   }
 }
 
 .btn-hidden-pwd {

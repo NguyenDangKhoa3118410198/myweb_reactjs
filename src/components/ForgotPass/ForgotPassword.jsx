@@ -18,11 +18,9 @@ const ForgotPasswordForm = () => {
 
          if (response.data.success) {
             alertMessage(response.data.message);
-         } else {
-            alertMessageError(response.data.message);
          }
       } catch (error) {
-         console.error('An error occurred:', error.message);
+         alertMessageError(error.response.data.message);
       }
    };
 

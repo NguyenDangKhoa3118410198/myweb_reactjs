@@ -9,7 +9,7 @@ import {
 } from '@iconscout/react-unicons';
 import axios from 'axios';
 import { deleteLocalStorage } from '../../ulti';
-import { loginSuccess } from '../../ulti/modals';
+import { loginSuccess, loginFailure } from '../../ulti/modals';
 
 import AdminImage from './3.png';
 import './adminLogin.css';
@@ -57,10 +57,7 @@ const Login = () => {
             loginSuccess(data.message);
          }
       } catch (error) {
-         console.error(
-            'Server responded with an error:',
-            error.response.data.message
-         );
+         loginFailure(error.response.data.message);
       }
    };
 

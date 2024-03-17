@@ -57,7 +57,7 @@
 }
 
 .close-button {
-   margin-left: 20px;
+   margin: 0 15px;
    width: 30px;
    height: 30px;
    font-size: 14px;
