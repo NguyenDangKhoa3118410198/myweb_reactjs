@@ -83,7 +83,8 @@ const Table = ({
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'flex-start',
-                        marginBottom: '0',
+                        margin: '10px 10px 20px 5px',
+
                         top: '0',
                      }}
                   >
