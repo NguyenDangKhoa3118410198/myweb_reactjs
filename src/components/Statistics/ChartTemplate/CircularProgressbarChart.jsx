@@ -13,8 +13,8 @@ function CircularProgressbarChart() {
                   value={percentage}
                   text={`${percentage}%`}
                   styles={buildStyles({
-                     textColor: '#8758FF',
-                     pathColor: '#8758FF',
+                     textColor: '#4B9BEF',
+                     pathColor: '#4B9BEF',
                      trailColor: '#E7E9EB',
                   })}
                />

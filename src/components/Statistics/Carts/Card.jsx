@@ -16,7 +16,9 @@ const Card = ({ infoCard, data }) => {
          </div>
 
          <div className='cart-right'>
-            <h1 className='cart-title'>{title ? title : ''}</h1>
+            <h1 className='cart-title'>
+               <strong>{title ? title : ''}</strong>
+            </h1>
             <h1 className='cart-count'>{data ?? '...Loading'}</h1>
             <div className='cart-up'>up 10%</div>
          </div>

@@ -47,7 +47,7 @@
 
 .cart-icon:hover {
    transform: scale(1.1);
-   transition: all 0.15s linear;
+   transition: transform 0.15s linear;
 }
 
 .cart-right {
@@ -58,8 +58,8 @@
    padding: 10px 0;
 
    .cart-title {
-      font-size: large;
       font-weight: bold;
+      font-size: 24px;
    }
 
    .cart-count {
@@ -69,7 +69,7 @@
 
    .cart-up {
       border-radius: 20px;
-      padding: 10px;
+      padding: 8px;
       background-color: rgb(255, 255, 255, 0.5);
       color: #fff;
       font-size: large;
