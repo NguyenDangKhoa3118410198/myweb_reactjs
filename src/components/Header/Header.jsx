@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
    UilUser,
    UilInfoCircle,
@@ -15,8 +15,21 @@ import { deleteLocalStorage } from '../../ulti';
 import './header.css';
 
 const Header = ({ nameContent, toggleBurger }) => {
+   const [avatarUrl, setAvatarUrl] = useState('');
    const darkMode = useSelector((state) => state.darkMode);
    const username = localStorage.getItem('username');
+
+   useEffect(() => {
+      if (!localStorage.getItem('avatarUrl')) {
+         localStorage.setItem(
+            'avatarUrl',
+            'https://cdn.tuoitre.vn/471584752817336320/2023/1/6/screenshot-2023-01-06-152423-16729934769782082638601.png'
+         );
+         setAvatarUrl(
+            'https://cdn.tuoitre.vn/471584752817336320/2023/1/6/screenshot-2023-01-06-152423-16729934769782082638601.png'
+         );
+      } else setAvatarUrl(localStorage.getItem('avatarUrl'));
+   }, []);
 
    const dispatch = useDispatch();
 
@@ -47,7 +60,20 @@ const Header = ({ nameContent, toggleBurger }) => {
 
                   <Dropdown>
                      <Dropdown.Toggle className='user-profile'>
-                        <UilUser />
+                        {avatarUrl ? (
+                           <img
+                              style={{
+                                 width: '40px',
+                                 height: '40px',
+                                 objectFit: 'cover',
+                                 borderRadius: '50%',
+                              }}
+                              src={avatarUrl}
+                              alt='error'
+                           />
+                        ) : (
+                           <UilUser />
+                        )}
                      </Dropdown.Toggle>
 
                      <Dropdown.Menu>

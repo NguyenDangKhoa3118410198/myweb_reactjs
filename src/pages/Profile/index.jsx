@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './profile.css';
 
@@ -7,9 +7,18 @@ function Profile() {
    const [username, setUsername] = useState('johndoe');
    const [email, setEmail] = useState('johndoe@example.com');
    const [password, setPassword] = useState('');
-   const [avatarUrl, setAvatarUrl] = useState(
-      'https://cdn.tuoitre.vn/471584752817336320/2023/1/6/screenshot-2023-01-06-152423-16729934769782082638601.png'
-   );
+   const [oldPassword, setOldPassword] = useState('');
+
+   const [avatarUrl, setAvatarUrl] = useState('');
+
+   useEffect(() => {
+      const avatar = localStorage.getItem('avatarUrl');
+      setAvatarUrl(avatar);
+   }, []);
+
+   const storeImageUrlToLocalStorage = (imageUrl) => {
+      localStorage.setItem('avatarUrl', imageUrl);
+   };
 
    const handleChangePassword = () => {
       console.log('Đã thay đổi mật khẩu');
@@ -21,6 +30,7 @@ function Profile() {
 
       reader.onloadend = () => {
          setAvatarUrl(reader.result);
+         storeImageUrlToLocalStorage(reader.result);
       };
 
       if (file) {
@@ -35,7 +45,7 @@ function Profile() {
                Back
             </Link>
             <div className='infomation-profile'>
-               <h2 className='title-profile'>Thông tin người dùng</h2>
+               <h2 className='title-profile'>Information</h2>
                <div className='avatar-profile-container'>
                   <div className='avatar-image-container'>
                      <img
@@ -45,7 +55,7 @@ function Profile() {
                      />
                   </div>
                   <label htmlFor='avatar-input' className='avatar-label'>
-                     Chọn ảnh
+                     Upload image
                   </label>
                   <input
                      type='file'
@@ -74,19 +84,27 @@ function Profile() {
                </div>
             </div>
             <div className='change-pwd-profile'>
-               <h2 className='title-profile'>Chỉnh sửa mật khẩu</h2>
+               <h2 className='title-profile'>Change Password</h2>
                <form>
                   <input
                      type='password'
-                     placeholder='Nhập mật khẩu mới'
+                     placeholder='Enter old password'
+                     value={oldPassword}
+                     onChange={(e) => setOldPassword(e.target.value)}
+                     required
+                  />
+                  <input
+                     type='password'
+                     placeholder='Enter new password'
                      value={password}
                      onChange={(e) => setPassword(e.target.value)}
+                     required
                   />
                   <button
                      className='btn-change-pwd-profile'
                      onClick={handleChangePassword}
                   >
-                     Thay đổi mật khẩu
+                     Submit
                   </button>
                </form>
             </div>

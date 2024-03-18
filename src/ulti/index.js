@@ -3,4 +3,5 @@ export const deleteLocalStorage = () => {
    localStorage.removeItem('refreshToken');
    localStorage.removeItem('isAuthenticated');
    localStorage.removeItem('username');
+   localStorage.removeItem('avatarUrl');
 };
