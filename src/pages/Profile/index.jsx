@@ -65,7 +65,7 @@ function Profile() {
                      style={{ display: 'none' }}
                   />
                </div>
-               <div className='info-text-proflie'>
+               <div className='info-text-profile'>
                   <p className='info-basic'>
                      <strong>Name:</strong> {name}
                   </p>

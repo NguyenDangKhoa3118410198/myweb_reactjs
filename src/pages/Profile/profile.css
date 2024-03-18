@@ -111,3 +111,9 @@ h2.title-profile {
       text-decoration: underline;
    }
 }
+
+.info-text-profile {
+   width: 60%;
+   min-width: 280px;
+   padding: 10px;
+}

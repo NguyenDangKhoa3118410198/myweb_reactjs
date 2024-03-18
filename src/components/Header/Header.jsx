@@ -63,9 +63,12 @@ const Header = ({ nameContent, toggleBurger }) => {
                         {avatarUrl ? (
                            <img
                               style={{
-                                 width: '40px',
-                                 height: '40px',
+                                 width: '50px',
+                                 height: '50px',
                                  objectFit: 'cover',
+                                 display: 'flex',
+                                 justifyContent: 'center',
+                                 alignItems: 'center',
                                  borderRadius: '50%',
                               }}
                               src={avatarUrl}
