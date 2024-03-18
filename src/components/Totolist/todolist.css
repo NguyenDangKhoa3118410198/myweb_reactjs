@@ -35,7 +35,8 @@
    margin: 0 1rem 1rem 0;
    font-size: 17px;
    color: #fff;
-   background: #4b9bef;
+   background: rgb(75, 155, 239);
+   box-shadow: 3px 4px rgba(75, 155, 239, 0.4);
 
    & > span {
       font-family: 'Inter';
@@ -60,6 +61,10 @@
 
    &:checked {
       background-color: rgb(163, 160, 160);
+   }
+
+   &:active {
+      transform: scale(1.2);
    }
 }
 

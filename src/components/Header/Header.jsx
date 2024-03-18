@@ -58,6 +58,13 @@ const Header = ({ nameContent, toggleBurger }) => {
                            </div>
                         </Dropdown.Item>
 
+                        <Dropdown.Item as={Link} to='/profile'>
+                           <div className='menu-item'>
+                              <UilInfoCircle />
+                              <span className='name-menu-item'>Profile</span>
+                           </div>
+                        </Dropdown.Item>
+
                         <Dropdown.Item as={Link} to='/contact'>
                            <div className='menu-item'>
                               <UilCalendarAlt />

@@ -11,6 +11,7 @@ import AdminDefaultLayout from '../Layouts/DefaultLayout';
 import NotFoundComponent from '../Layouts/NotFoundComponent';
 import Contact from '../pages/Contact/Contact';
 import InfoWeb from '../pages/InfoWeb';
+import Profile from '../pages/Profile';
 import ForgotPassword from '../components/ForgotPass/ForgotPassword';
 import NewPassword from '../components/ForgotPass/NewPassword';
 
@@ -83,6 +84,12 @@ const privateRoutes = [
       name: 'Contact',
       path: '/contact',
       component: Contact,
+      layout: NullLayout,
+   },
+   {
+      name: 'Profile',
+      path: '/profile',
+      component: Profile,
       layout: NullLayout,
    },
    {
