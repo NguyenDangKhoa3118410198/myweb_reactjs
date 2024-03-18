@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaCamera } from 'react-icons/fa';
 import './profile.css';
 
 function Profile() {
@@ -45,7 +46,7 @@ function Profile() {
                Back
             </Link>
             <div className='infomation-profile'>
-               <h2 className='title-profile'>Information</h2>
+               <h1 className='title-profile'>Information</h1>
                <div className='avatar-profile-container'>
                   <div className='avatar-image-container'>
                      <img
@@ -55,7 +56,7 @@ function Profile() {
                      />
                   </div>
                   <label htmlFor='avatar-input' className='avatar-label'>
-                     Upload image
+                     <FaCamera />
                   </label>
                   <input
                      type='file'
@@ -66,21 +67,46 @@ function Profile() {
                   />
                </div>
                <div className='info-text-profile'>
-                  <p className='info-basic'>
-                     <strong>Name:</strong> {name}
-                  </p>
-                  <p className='info-basic'>
-                     <strong>Username:</strong> {username}
-                  </p>
-                  <p className='info-basic'>
-                     <strong>Email:</strong> {email}
-                  </p>
-                  <p className='info-basic'>
-                     <strong>Address:</strong> {email}
-                  </p>
-                  <p className='info-basic'>
-                     <strong>Birthday:</strong> {email}
-                  </p>
+                  <div className='group-items-profile'>
+                     <div className='item-profile'>
+                        <label>Name</label>
+                        <input type='text' value='ChiPu' readOnly />
+                     </div>
+
+                     <div className='item-profile'>
+                        <label>Username</label>
+                        <input type='text' value='Đóa hoa hồng' readOnly />
+                     </div>
+                  </div>
+
+                  <div className='group-items-profile'>
+                     <div className='item-profile'>
+                        <label>Email</label>
+                        <input
+                           type='email'
+                           value='roseCipu@gmail.com'
+                           readOnly
+                        />
+                     </div>
+                  </div>
+
+                  <div className='group-items-profile'>
+                     <div className='item-profile'>
+                        <label>Phone</label>
+                        <input type='email' value='0251452658' readOnly />
+                     </div>
+
+                     <div className='item-profile'>
+                        <label>Address</label>
+                        <input type='text' value='HCM city' readOnly />
+                     </div>
+                  </div>
+                  <div className='group-items-profile'>
+                     <div className='item-profile'>
+                        <label>Password</label>
+                        <input type='text' value='rosecipu' readOnly />
+                     </div>
+                  </div>
                </div>
             </div>
             <div className='change-pwd-profile'>
