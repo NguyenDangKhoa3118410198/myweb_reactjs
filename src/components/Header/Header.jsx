@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleDarkMode } from '../features/darkmode/darkModeSlice';
-import { deleteLocalStorage } from '../../ulti';
+import { deleteLocalStorage, getObjectFromLocalStorage } from '../../ulti';
 import './header.css';
 
 const Header = ({ nameContent, toggleBurger }) => {
@@ -20,15 +20,8 @@ const Header = ({ nameContent, toggleBurger }) => {
    const username = localStorage.getItem('username');
 
    useEffect(() => {
-      if (!localStorage.getItem('avatarUrl')) {
-         localStorage.setItem(
-            'avatarUrl',
-            'https://cdn.tuoitre.vn/471584752817336320/2023/1/6/screenshot-2023-01-06-152423-16729934769782082638601.png'
-         );
-         setAvatarUrl(
-            'https://cdn.tuoitre.vn/471584752817336320/2023/1/6/screenshot-2023-01-06-152423-16729934769782082638601.png'
-         );
-      } else setAvatarUrl(localStorage.getItem('avatarUrl'));
+      const customerObject = getObjectFromLocalStorage('customerInfo');
+      setAvatarUrl(customerObject.avatar);
    }, []);
 
    const dispatch = useDispatch();
@@ -89,7 +82,7 @@ const Header = ({ nameContent, toggleBurger }) => {
 
                         <Dropdown.Item as={Link} to='/profile'>
                            <div className='menu-item'>
-                              <UilInfoCircle />
+                              <UilUser />
                               <span className='name-menu-item'>Profile</span>
                            </div>
                         </Dropdown.Item>

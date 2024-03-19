@@ -4,6 +4,7 @@ const { hashPassword, generateVerificationCode } = require('../ulti/bcrypt');
 const { sendResetEmail } = require('../ulti/sendEmail');
 
 const User = require('../models/User');
+const Customer = require('../models/Customer');
 
 const loginAttemptsMap = new Map();
 
@@ -137,6 +138,17 @@ const loginRoleAdmin = async (req, res) => {
       );
 
       if (passwordMatch) {
+         const customerFilter = await Customer.findOne({
+            user: existingUser._id,
+         }).select({ user: 0, _id: 0 });
+
+         const customerInfo = {
+            ...customerFilter.toObject(),
+            name: existingUser.name,
+            email: existingUser.email,
+            username: existingUser.username,
+         };
+
          const accessToken = generateAccessToken(existingUser);
          const refreshToken = generateRefreshToken(existingUser);
 
@@ -144,6 +156,7 @@ const loginRoleAdmin = async (req, res) => {
             success: true,
             message: 'Login successful!',
             username: existingUser.username,
+            customerInfo,
             accessToken,
             refreshToken,
          });

@@ -47,12 +47,14 @@ const Login = () => {
          if (data.success) {
             const accessToken = data.accessToken;
             const refreshToken = data.refreshToken;
+            const customerInfo = JSON.stringify(data.customerInfo);
 
             localStorage.setItem('authToken', accessToken);
             localStorage.setItem('refreshToken', refreshToken);
 
             localStorage.setItem('isAuthenticated', 'true');
             localStorage.setItem('username', data.username);
+            localStorage.setItem('customerInfo', customerInfo);
             navigate('/home');
             loginSuccess(data.message);
          }

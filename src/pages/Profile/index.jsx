@@ -2,23 +2,39 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaCamera } from 'react-icons/fa';
 import './profile.css';
+import { getObjectFromLocalStorage } from '../../ulti';
 
 function Profile() {
-   const [name, setName] = useState('John Doe');
-   const [username, setUsername] = useState('johndoe');
-   const [email, setEmail] = useState('johndoe@example.com');
+   const [name, setName] = useState('');
+   const [username, setUsername] = useState('');
+   const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [oldPassword, setOldPassword] = useState('');
+   const [phone, setPhone] = useState('');
+   const [address, setAddress] = useState('');
 
    const [avatarUrl, setAvatarUrl] = useState('');
 
    useEffect(() => {
-      const avatar = localStorage.getItem('avatarUrl');
-      setAvatarUrl(avatar);
+      const customerInfo = localStorage.getItem('customerInfo');
+      if (customerInfo) {
+         const customerObject = JSON.parse(customerInfo);
+         setEmail(customerObject.email || '');
+         setPassword(customerObject.password || '');
+         setName(customerObject.name || '');
+         setUsername(customerObject.username || '');
+         setAvatarUrl(customerObject.avatar || '');
+         setPhone(customerObject.phone || '');
+         setAddress(customerObject.address || '');
+      }
    }, []);
 
    const storeImageUrlToLocalStorage = (imageUrl) => {
-      localStorage.setItem('avatarUrl', imageUrl);
+      const customerInfo = getObjectFromLocalStorage('customerInfo');
+      customerInfo.avatar = imageUrl;
+
+      const updatedJsonString = JSON.stringify(customerInfo);
+      localStorage.setItem('customerInfo', updatedJsonString);
    };
 
    const handleChangePassword = () => {
@@ -70,41 +86,37 @@ function Profile() {
                   <div className='group-items-profile'>
                      <div className='item-profile'>
                         <label>Name</label>
-                        <input type='text' value='ChiPu' readOnly />
+                        <input type='text' value={name} readOnly />
                      </div>
 
                      <div className='item-profile'>
                         <label>Username</label>
-                        <input type='text' value='Đóa hoa hồng' readOnly />
+                        <input type='text' value={username} readOnly />
                      </div>
                   </div>
 
                   <div className='group-items-profile'>
                      <div className='item-profile'>
                         <label>Email</label>
-                        <input
-                           type='email'
-                           value='roseCipu@gmail.com'
-                           readOnly
-                        />
+                        <input type='email' value={email} readOnly />
                      </div>
                   </div>
 
                   <div className='group-items-profile'>
                      <div className='item-profile'>
                         <label>Phone</label>
-                        <input type='email' value='0251452658' readOnly />
+                        <input type='email' value={phone} readOnly />
                      </div>
 
                      <div className='item-profile'>
                         <label>Address</label>
-                        <input type='text' value='HCM city' readOnly />
+                        <input type='text' value={address} readOnly />
                      </div>
                   </div>
                   <div className='group-items-profile'>
                      <div className='item-profile'>
                         <label>Password</label>
-                        <input type='text' value='rosecipu' readOnly />
+                        <input type='password' value='rosecipu' readOnly />
                      </div>
                   </div>
                </div>
