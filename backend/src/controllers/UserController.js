@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const { hashPasswordByNameAndEmail } = require('../ulti/bcrypt');
+const Customer = require('../models/Customer');
 
 const getUsers = async (req, res) => {
    console.log('--------------- Get users -------------------');
@@ -19,21 +20,35 @@ const getUsers = async (req, res) => {
          );
       }
 
-      let filteredUsers = usersDB.map((user) => {
-         const filteredUser = {
-            name: user.name,
-            username: user.username,
-            email: user.email,
-         };
+      const filteredUsers = await Promise.all(
+         usersDB.map(async (user) => {
+            const filteredUser = {
+               name: user.name,
+               username: user.username,
+               email: user.email,
+            };
 
-         if (req.user && req.user.role === 'admin') {
-            filteredUser.id = user._id;
-            filteredUser.role = user.role;
-            filteredUser.isActive = user.isActive.toString();
-         }
+            if (req.user && req.user.role === 'admin') {
+               filteredUser.id = user._id;
+               filteredUser.role = user.role;
+               filteredUser.isActive = user.isActive.toString();
 
-         return filteredUser;
-      });
+               const customerFilter = await Customer.findOne({
+                  user: user._id,
+               }).select({ user: 0, _id: 0 });
+
+               if (customerFilter) {
+                  filteredUser.address = customerFilter.address;
+                  filteredUser.phone = customerFilter.phone;
+                  filteredUser.dateOfBirth = customerFilter.dateOfBirth;
+                  filteredUser.gender = customerFilter.gender;
+                  filteredUser.avatar = customerFilter.avatar;
+               }
+            }
+
+            return filteredUser;
+         })
+      );
 
       res.status(200).json(filteredUsers);
    } catch (error) {

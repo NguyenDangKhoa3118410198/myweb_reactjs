@@ -1,4 +1,32 @@
 import Modal from 'react-bootstrap/Modal';
+import styled from 'styled-components';
+
+const ImageUser = styled.img`
+   width: 180px;
+   height: 200px;
+   padding: 10px;
+`;
+
+const ContainerModalView = styled.div`
+   display: flex;
+   flex-direction: row;
+   gap: 10px;
+
+   @media (max-width: 300px) {
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+   }
+`;
+
+const ContainerListItems = styled.ul`
+   list-style-type: none;
+   padding: 4px;
+`;
+
+const ItemInfo = styled.li`
+   margin-bottom: 8px;
+`;
 
 function ModalView(props) {
    const capitalizeFirstLetter = (str) => {
@@ -18,17 +46,21 @@ function ModalView(props) {
             </Modal.Title>
          </Modal.Header>
          <Modal.Body>
-            <ul style={{ listStyleType: 'none', padding: '4px' }}>
-               {Object.entries(props.viewcurrent).map(
-                  ([key, value]) =>
-                     key !== 'id' && (
-                        <li key={key} style={{ marginBottom: '8px' }}>
-                           <strong>{capitalizeFirstLetter(key)}:</strong>{' '}
-                           {value}
-                        </li>
-                     )
-               )}
-            </ul>
+            <ContainerModalView>
+               <ImageUser src={props.viewcurrent.avatar} alt='Image error' />
+               <ContainerListItems>
+                  {Object.entries(props.viewcurrent).map(
+                     ([key, value]) =>
+                        key !== 'id' &&
+                        key !== 'avatar' && (
+                           <ItemInfo key={key}>
+                              <strong>{capitalizeFirstLetter(key)}:</strong>{' '}
+                              {value}
+                           </ItemInfo>
+                        )
+                  )}
+               </ContainerListItems>
+            </ContainerModalView>
          </Modal.Body>
       </Modal>
    );

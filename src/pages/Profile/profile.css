@@ -69,9 +69,10 @@
    flex: 1;
 }
 
-h1.title-profile {
+.title-profile {
    text-align: center;
    font-weight: 600;
+   font-size: 24px;
 }
 
 .info-basic {

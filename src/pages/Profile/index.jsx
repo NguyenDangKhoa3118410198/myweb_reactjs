@@ -122,9 +122,20 @@ function Profile() {
                </div>
             </div>
             <div className='change-pwd-profile'>
-               <h2 className='title-profile'>Change Password</h2>
                <form>
+                  <label className='title-profile' htmlFor='status-profile'>
+                     Status
+                  </label>
+                  <textarea
+                     id='status-profile'
+                     value='hom nay troi dep the nho'
+                     readOnly
+                  />
+                  <label className='title-profile' htmlFor='old-pwd-proflie'>
+                     Change Password
+                  </label>
                   <input
+                     id='old-pwd-proflie'
                      type='password'
                      placeholder='Enter old password'
                      value={oldPassword}
