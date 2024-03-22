@@ -11,7 +11,9 @@
 }
 
 .on-top-wrapper:active {
-   transform: scale(1.1);
+   transform: scale(1.05);
+   outline: 2px solid #3680e0;
+   outline-offset: 2px;
 
    & .on-top-effect {
       animation: flyUp 1s linear infinite;

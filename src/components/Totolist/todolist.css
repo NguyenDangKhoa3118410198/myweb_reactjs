@@ -60,7 +60,7 @@
    background-position: center;
 
    &:checked {
-      background-color: #88dbf0;
+      background-color: #82ecc0;
    }
 
    &:active {
