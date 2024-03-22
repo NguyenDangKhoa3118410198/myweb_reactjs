@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import './review.css';
+import '../review.css';
 
 function ModalReviews(props) {
    const [loading, setLoading] = useState(true);

@@ -1,6 +1,6 @@
 import React from 'react';
 import './contact.css';
-import backgroundImage from './bg1.png';
+import backgroundImage from '../../imgs/background-contact.png';
 
 function Contact() {
    return (

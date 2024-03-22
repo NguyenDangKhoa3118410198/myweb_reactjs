@@ -1,11 +1,11 @@
 import React from 'react';
 import DataTable from 'react-data-table-component';
 import { headerCsv } from './TableActions/handleActions';
-import './table.css';
 import { TableCustomStyles } from './Custom/TableCustomStyles';
-import ModalView from './ModalView';
-import ModalReviews from './ModelReviews';
+import ModalView from './Modals/ModalView';
+import ModalReviews from './Modals/ModalReviews';
 import ExportCSV from './ExportCSV';
+import './table.css';
 
 const Table = ({
    title,
