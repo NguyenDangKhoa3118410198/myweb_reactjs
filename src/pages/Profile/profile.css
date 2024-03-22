@@ -27,7 +27,7 @@
 .infomation-profile {
    position: relative;
    padding: 10px;
-   flex: 2;
+   flex: 1;
    display: grid;
    place-items: center;
 }
