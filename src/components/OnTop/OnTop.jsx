@@ -19,7 +19,9 @@ const OnTopButton = () => {
    return (
       <div className={`on-top-wrapper ${isHidden ? 'hidden-on-top' : ''}`}>
          <button className='on-top-container' onClick={onTop}>
-            <UilArrowUp />
+            <div className='on-top-effect'>
+               <UilArrowUp />
+            </div>
          </button>
          <div className='on-top-close' onClick={handleClose}>
             X

@@ -12,6 +12,31 @@
 
 .on-top-wrapper:active {
    transform: scale(1.1);
+
+   & .on-top-effect {
+      animation: flyUp 1s linear infinite;
+   }
+}
+
+@keyframes flyUp {
+   0% {
+      transform: translateY(20px);
+   }
+   50% {
+      transform: translateY(0);
+   }
+
+   75% {
+      transform: translateY(-20px);
+   }
+   90% {
+      opacity: 0;
+      transform: translateY(-20px);
+   }
+   100% {
+      opacity: 0;
+      transform: translateY(0);
+   }
 }
 
 .on-top-wrapper:hover {
