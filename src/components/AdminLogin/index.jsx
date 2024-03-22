@@ -111,6 +111,7 @@ const Login = () => {
                   </div>
 
                   <input
+                     className='input-email-login-admin'
                      type='email'
                      placeholder='Enter email'
                      value={email}
@@ -120,6 +121,7 @@ const Login = () => {
                   />
                   <div className='container-hidden-pwd'>
                      <input
+                        className='input-pwd-login-admin'
                         type={showPassword ? 'text' : 'password'}
                         placeholder='Enter password'
                         value={password}

@@ -249,6 +249,17 @@
    align-items: center;
    margin: 10px 5px;
    padding: 0 5px;
+   font-weight: 500;
+
+   & > h1 {
+      font-size: 30px;
+      font-weight: 700;
+      text-transform: uppercase;
+   }
+
+   & > span {
+      font-size: 14px;
+   }
 }
 
 .rememeber-checkbox-container {
@@ -284,6 +295,12 @@
    top: 50%;
    transform: translateY(-50%);
    cursor: pointer;
+}
+
+.input-email-login-admin:focus,
+.input-pwd-login-admin:focus {
+   border-color: #e0e0e0;
+   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 @media screen and (max-width: 750px) {
