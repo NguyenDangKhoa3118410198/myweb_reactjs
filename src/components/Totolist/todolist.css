@@ -12,6 +12,7 @@
    flex-direction: row;
    align-items: center;
    justify-content: center;
+   margin: 10px 0;
 }
 
 .add-todo {
@@ -35,7 +36,7 @@
    margin: 0 1rem 1rem 0;
    font-size: 17px;
    color: #fff;
-   background: rgb(75, 155, 239);
+   background: rgb(87, 156, 230);
    box-shadow: 3px 4px rgba(75, 155, 239, 0.4);
 
    & > span {
@@ -60,7 +61,7 @@
    background-position: center;
 
    &:checked {
-      background-color: #82ecc0;
+      background-color: #09c088;
    }
 
    &:active {

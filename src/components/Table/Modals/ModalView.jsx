@@ -47,12 +47,18 @@ function ModalView(props) {
          </Modal.Header>
          <Modal.Body>
             <ContainerModalView>
-               <ImageUser src={props.viewcurrent.avatar} alt='Image error' />
+               <ImageUser
+                  src={
+                     props.viewcurrent.avatar || props.viewcurrent.thumbnailUrl
+                  }
+                  alt='Image error'
+               />
                <ContainerListItems>
                   {Object.entries(props.viewcurrent).map(
                      ([key, value]) =>
                         key !== 'id' &&
-                        key !== 'avatar' && (
+                        key !== 'avatar' &&
+                        key !== 'thumbnailUrl' && (
                            <ItemInfo key={key}>
                               <strong>{capitalizeFirstLetter(key)}:</strong>{' '}
                               {value}

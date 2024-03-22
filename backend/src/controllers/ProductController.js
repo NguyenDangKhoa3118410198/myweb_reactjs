@@ -22,6 +22,7 @@ const getProducts = async (req, res) => {
             productInfo.urlPath = product.url_path;
             productInfo.urlKey = product.url_key;
             productInfo.originPrice = product.original_price;
+            productInfo.thumbnailUrl = product.thumbnail_url;
          }
 
          products.push(productInfo);
@@ -40,16 +41,17 @@ const getReviewsByProductId = async (req, res) => {
    try {
       const productId = req.params.id;
       const response = await axios.get(API.reviewAPI(productId));
-      // console.log('url: ', API.reviewAPI(productId));
 
-      const reviewData = response.data.data.map((reivew) => {
+      const reviewData = response.data.data.map((review) => {
          const reviewInfo = {
-            id: reivew.id,
-            title: reivew.title,
-            content: reivew.content,
-            rating: reivew.rating,
-            customerId: reivew.customer_id,
+            id: review.id,
+            title: review.title,
+            content: review.content,
+            rating: review.rating,
+            customerId: review.customer_id,
+            image: review.images.length > 0 ? review.images[0].full_path : null,
          };
+
          reviews.push(reviewInfo);
          return reviewInfo;
       });
