@@ -47,12 +47,15 @@ function ModalView(props) {
          </Modal.Header>
          <Modal.Body>
             <ContainerModalView>
-               <ImageUser
-                  src={
-                     props.viewcurrent.avatar || props.viewcurrent.thumbnailUrl
-                  }
-                  alt='Image error'
-               />
+               {props.viewcurrent.avatar || props.viewcurrent.thumbnailUrl ? (
+                  <ImageUser
+                     src={
+                        props.viewcurrent.avatar ||
+                        props.viewcurrent.thumbnailUrl
+                     }
+                     alt='Image error'
+                  />
+               ) : null}
                <ContainerListItems>
                   {Object.entries(props.viewcurrent).map(
                      ([key, value]) =>
