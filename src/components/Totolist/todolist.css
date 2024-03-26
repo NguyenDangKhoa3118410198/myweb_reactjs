@@ -48,8 +48,8 @@
    margin: 0 0.1rem 1rem 0;
    padding: 1.2rem;
    font-size: 16px;
-   font-weight: normal;
    color: #fff;
+   font-weight: normal;
    background: rgb(101, 167, 238);
    box-shadow: 2px 2px rgba(111, 159, 211, 0.5);
    filter: drop-shadow(0 0 1rem 0 rgba(255, 255, 255, 0.5));
@@ -151,6 +151,7 @@ input[type='text'].new-todo-input {
    width: 12px;
    height: 12px;
    margin-top: 2px;
+   color: #eee;
 }
 
 .time-todo {
@@ -158,6 +159,7 @@ input[type='text'].new-todo-input {
    margin-bottom: 0;
    padding: 0;
    text-align: left;
+   color: #eee;
 }
 
 .container-todo {

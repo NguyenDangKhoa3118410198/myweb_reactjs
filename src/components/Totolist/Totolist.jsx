@@ -82,7 +82,9 @@ function Todolist() {
                            </div>
 
                            <span
-                              className={`${todo.completed ? 'completed' : ''}`}
+                              className={`${
+                                 todo.completed ? 'completed' : ''
+                              } `}
                            >
                               {todo.task}
                            </span>
