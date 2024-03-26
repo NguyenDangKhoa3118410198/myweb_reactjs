@@ -133,6 +133,13 @@
    border: 2px solid #eee;
    border-radius: 10px;
    box-shadow: 1px 1px 1px rgba(100, 97, 97, 0.2);
+
+   &:hover {
+      box-shadow: 0 0 0.8rem rgb(30, 132, 240);
+      outline: #007aff solid 2px;
+      color: #fff;
+      background-color: #248af7;
+   }
 }
 
 .social-icons a {
@@ -303,12 +310,6 @@
    top: 50%;
    transform: translateY(-50%);
    cursor: pointer;
-}
-
-.input-email-login-admin:focus,
-.input-pwd-login-admin:focus {
-   border-color: #e0e0e0;
-   box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
 @media screen and (max-width: 750px) {

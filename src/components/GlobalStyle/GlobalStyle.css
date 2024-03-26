@@ -94,8 +94,18 @@ input[type='number'] {
    font-size: 15px;
    font-weight: 500;
    color: black;
-   background-color: #f2f2f2;
+   background-color: #edeff2;
    transition: all 0.2s ease-in-out;
+
+   &:hover {
+      background-color: #d0d4d9;
+   }
+
+   &:focus {
+      outline: rgb(71, 156, 247) solid 2px;
+      box-shadow: 0 0 0.8rem rgba(30, 132, 240, 0.8);
+      background-color: #ffffff;
+   }
 }
 
 input[type='search']::-webkit-search-cancel-button {
@@ -110,7 +120,6 @@ input[type='search']::-webkit-search-cancel-button {
 input[type='search']:focus {
    transform: scale(1.04);
    border-color: #4b9bef;
-   box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
 input[type='submit'] {
@@ -217,4 +226,9 @@ button[type='button'] {
 
 .swal2-popup {
    font-size: 16px;
+}
+
+.form-control:focus {
+   box-shadow: none;
+   border-color: transparent;
 }
