@@ -124,7 +124,15 @@
 
 .social-icons {
    display: flex;
-   margin: 20px 0;
+   margin: 2rem 0;
+   gap: 3rem;
+}
+
+.admin-platform-icon {
+   padding: 1rem;
+   border: 1px solid #eee;
+   border-radius: 10px;
+   filter: drop-shadow(0 0 0.1rem #8a8484);
 }
 
 .social-icons a {

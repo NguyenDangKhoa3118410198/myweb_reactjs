@@ -97,13 +97,13 @@ const Login = () => {
                   <div className='base-inform-login'>
                      <h1>Sign In</h1>
                      <div className='social-icons'>
-                        <div className='icon'>
+                        <div className='admin-platform-icon'>
                            <UilFacebook />
                         </div>
-                        <div className='icon'>
+                        <div className='admin-platform-icon'>
                            <UilGoogle />
                         </div>
-                        <div className='icon'>
+                        <div className='admin-platform-icon'>
                            <UilTwitter />
                         </div>
                      </div>
