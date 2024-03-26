@@ -7,7 +7,8 @@ import {
    deleteTodo,
    isCompletedTodo,
 } from '../../Data/fetchData';
-
+import { formattedDate } from '../../ulti';
+import { FaCalendar } from 'react-icons/fa';
 import './todolist.css';
 
 function Todolist() {
@@ -45,7 +46,10 @@ function Todolist() {
    return (
       <Container className='todolist-container'>
          <Form className='todo-form-container' onSubmit={handleAddTodo}>
-            <Form.Group controlId='newTodo'>
+            <Form.Group
+               controlId='newTodo'
+               className='container-new-todo-input'
+            >
                <Form.Control
                   type='text'
                   className='new-todo-input'
@@ -69,11 +73,20 @@ function Todolist() {
                            onChange={() => handleToggleTodo(todo.id)}
                            checked={todo.completed}
                         />
-                        <span
-                           className={`${todo.completed ? 'completed' : ''}`}
-                        >
-                           {todo.task}
-                        </span>
+                        <div className='container-todo'>
+                           <div className='container-todo-daytime'>
+                              <FaCalendar className='icon-todo' />
+                              <p className='time-todo'>
+                                 {formattedDate(todo.created)}
+                              </p>
+                           </div>
+
+                           <span
+                              className={`${todo.completed ? 'completed' : ''}`}
+                           >
+                              {todo.task}
+                           </span>
+                        </div>
                      </div>
                      <div>
                         <UilTrashAlt

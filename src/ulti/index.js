@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const deleteLocalStorage = () => {
    localStorage.removeItem('authToken');
    localStorage.removeItem('refreshToken');
@@ -25,4 +27,8 @@ export const getObjectFromLocalStorage = (key) => {
       );
       return null;
    }
+};
+
+export const formattedDate = (datetime) => {
+   return moment(datetime).format('YYYY-MM-DD HH:mm:ss');
 };

@@ -8,6 +8,7 @@ const getTodolist = async (req, res) => {
          id: todo._id,
          task: todo.task,
          completed: todo.completed,
+         created: todo.createAt,
       }));
       res.json(newTodoList);
    } catch (error) {
