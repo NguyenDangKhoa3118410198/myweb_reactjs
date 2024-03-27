@@ -72,23 +72,11 @@ const Login = () => {
       <div className='wrapper-admin-login'>
          <div className={`admin-login-container`} id='admin-login-container'>
             <div className='admin-form-container admin-sign-up'>
-               <div
-                  style={{
-                     backgroundColor: 'transparent',
-                     width: '100%',
-                     height: '100%',
-                     position: 'relative',
-                     overflow: 'hidden',
-                  }}
-               >
+               <div className='right-admin-form-container'>
                   <img
+                     className='image-admin-form'
                      src={AdminImage}
-                     alt=''
-                     width='100%'
-                     height='100%'
-                     style={{
-                        objectFit: 'cover',
-                     }}
+                     alt='Error'
                   />
                </div>
             </div>
@@ -96,6 +84,7 @@ const Login = () => {
                <form onSubmit={handleSubmit}>
                   <div className='base-inform-login'>
                      <h1>Sign In</h1>
+                     <p>Welcome back</p>
                      <div className='social-icons'>
                         <div className='admin-platform-icon'>
                            <UilFacebook />
@@ -107,7 +96,7 @@ const Login = () => {
                            <UilTwitter />
                         </div>
                      </div>
-                     <span>or use your email password</span>
+                     <p>or use your email password</p>
                   </div>
 
                   <input
