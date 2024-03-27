@@ -26,7 +26,7 @@
    &:hover {
       transform: translate(0, -5px) scale(1.01);
       box-shadow: none;
-      filter: drop-shadow(0 0 0.4rem rgb(0, 0, 0));
+      filter: drop-shadow(0 0 0.4rem rgba(0, 0, 0, 0.6));
    }
 }
 
