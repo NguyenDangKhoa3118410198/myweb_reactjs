@@ -1,5 +1,6 @@
 import Modal from 'react-bootstrap/Modal';
 import styled from 'styled-components';
+import { formattedBirthDay } from '../../../ulti';
 
 const ImageUser = styled.img`
    width: 180px;
@@ -64,7 +65,9 @@ function ModalView(props) {
                         key !== 'thumbnailUrl' && (
                            <ItemInfo key={key}>
                               <strong>{capitalizeFirstLetter(key)}:</strong>{' '}
-                              {value}
+                              {key === 'dateOfBirth'
+                                 ? formattedBirthDay(value)
+                                 : value}
                            </ItemInfo>
                         )
                   )}

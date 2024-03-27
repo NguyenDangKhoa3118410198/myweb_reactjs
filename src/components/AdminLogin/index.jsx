@@ -98,23 +98,29 @@ const Login = () => {
                      </div>
                      <p>or use your email password</p>
                   </div>
-
-                  <input
-                     type='email'
-                     placeholder='Enter email'
-                     value={email}
-                     onChange={(e) => setEmail(e.target.value)}
-                     autoFocus
-                     required
-                  />
-                  <div className='container-hidden-pwd'>
+                  <div class='floating-label'>
                      <input
-                        type={showPassword ? 'text' : 'password'}
-                        placeholder='Enter password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        id='admin-email'
+                        type='email'
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder=''
+                        autoFocus
                         required
                      />
+                     <label for='admin-email'>Email</label>
+                  </div>
+
+                  <div className='container-hidden-pwd floating-label'>
+                     <input
+                        id='admin-password'
+                        type={showPassword ? 'text' : 'password'}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder=''
+                        required
+                     />
+                     <label for='admin-password'>Password</label>
                      <div
                         className='btn-hidden-pwd'
                         onClick={() => setShowPassword(!showPassword)}

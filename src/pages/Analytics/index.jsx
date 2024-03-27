@@ -1,5 +1,4 @@
 import { useState, useEffect, Fragment } from 'react';
-import BreadcrumbExample from '../../components/Breadcrumb';
 import './analytics.css';
 
 function Analytics() {
@@ -32,7 +31,6 @@ function Analytics() {
 
    return (
       <Fragment>
-         <BreadcrumbExample />;
          <main className='product-list'>
             <h1>Product List of : {products.length}</h1>
             <ul>

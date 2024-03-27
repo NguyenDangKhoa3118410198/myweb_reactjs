@@ -228,7 +228,33 @@ button[type='button'] {
    font-size: 16px;
 }
 
-.form-control:focus {
-   box-shadow: none;
-   border-color: transparent;
+.floating-label {
+   width: 100%;
+   margin: 1rem 0.5rem;
+   position: relative;
+}
+
+.floating-label input {
+   margin: 0;
+}
+
+.floating-label label {
+   position: absolute;
+   left: 1.1rem;
+   top: 1rem;
+   transition: top 0.3s, left 0.3s, font-size 0.3s;
+   color: black;
+}
+
+.floating-label input:not(:placeholder-shown) + label {
+   top: -0.8rem;
+   left: 1rem;
+   font-size: 14px;
+   color: #007bff;
+   background-color: #fff;
+   padding: 0 0.1rem;
+}
+
+.floating-label input:not(:focus):not(:placeholder-shown) + label {
+   display: none;
 }
