@@ -29,6 +29,7 @@ import {
 } from '../../ulti/modals';
 import './mainDash.css';
 import { updateCountingUsers } from '../../components/features/appInformation/appInformationSlice';
+import TopPlaceholder from '../../components/TopPlaceholder';
 
 const MyCalendar = lazy(() => import('../../components/Calendar'));
 const Table = lazy(() => import('../../components/Table/Table'));
@@ -264,7 +265,7 @@ const MainDash = () => {
       <main
          className={`main-dashboard-container  ${darkMode ? 'darkmode' : ''}`}
       >
-         <div id='top' style={{ opacity: '0' }}></div>
+         <TopPlaceholder />
 
          <Suspense fallback={<div>Loading...</div>}>
             <DashboardBoxChart />

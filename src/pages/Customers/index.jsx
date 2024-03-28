@@ -19,6 +19,7 @@ import {
 } from '../../ulti/modals';
 
 import './customers.css';
+import TopPlaceholder from '../../components/TopPlaceholder';
 
 function Customers() {
    const darkMode = useSelector((state) => state.darkMode);
@@ -178,7 +179,7 @@ function Customers() {
 
    return (
       <main className={`customer-wrapper ${darkMode ? 'darkmode' : ''} `}>
-         <div id='top' style={{ opacity: '0' }}></div>
+         <TopPlaceholder />
 
          <Table
             title='List table Customers'
