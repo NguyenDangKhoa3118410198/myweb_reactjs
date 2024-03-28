@@ -4,13 +4,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Fragment } from 'react';
 import PrivateRoute from './routes/PrivateRoute/PrivateRoute';
 
-// Import các component cần lazy load
 const LazyAdminDefaultLayout = lazy(() => import('./Layouts/DefaultLayout'));
 
 function App() {
    const renderComponentAndLayout = (route) => {
       const PageCurrent = route.component || Fragment;
-      const Layout = route.layout || LazyAdminDefaultLayout; // Sử dụng LazyAdminDefaultLayout
+      const Layout = route.layout || LazyAdminDefaultLayout;
       return { PageCurrent, Layout };
    };
 
