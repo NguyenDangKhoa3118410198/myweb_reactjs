@@ -3,6 +3,7 @@ import { privateRoutes, publicRoutes } from './routes';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Fragment } from 'react';
 import PrivateRoute from './routes/PrivateRoute/PrivateRoute';
+import Loading from './components/Loading';
 
 const LazyAdminDefaultLayout = lazy(() => import('./Layouts/DefaultLayout'));
 
@@ -16,7 +17,7 @@ function App() {
    return (
       <Router>
          <div className='App'>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loading />}>
                <Routes>
                   {publicRoutes.map((route) => {
                      const { PageCurrent, Layout } =
