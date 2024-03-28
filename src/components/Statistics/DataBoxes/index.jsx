@@ -72,65 +72,59 @@ export const data = [
 ];
 
 export async function DataBoxUsers() {
-   return await axios
-      .get('https://dummyjson.com/carts')
-      .then((response) => {
-         return response.data.carts.map((order) =>
-            order.products.map((product) => ({
-               id: product.id,
-               amount: product.price,
-            }))
-         );
-      })
-      .catch((error) => {
-         throw error;
-      });
+   try {
+      const response = await axios.get('https://dummyjson.com/carts');
+      return response.data.carts.map((order) =>
+         order.products.map((product) => ({
+            id: product.id,
+            amount: product.price,
+         }))
+      );
+   } catch (error) {
+      throw error;
+   }
 }
 
 export async function DataBoxOrders() {
-   return await axios
-      .get('https://dummyjson.com/comments')
-      .then((response) => {
-         return response.data.comments.map((user) => ({
-            id: user.id,
-            amount: user.postId,
-         }));
-      })
-      .catch((error) => {
-         throw error;
-      });
+   try {
+      const response = await axios.get('https://dummyjson.com/comments');
+      return response.data.comments.map((user) => ({
+         id: user.id,
+         amount: user.postId,
+      }));
+   } catch (error) {
+      throw error;
+   }
 }
 
 export const countingProducts = async () => {
-   return await axios
-      .get('https://dummyjson.com/products')
-      .then((response) => {
-         const products = response.data.products;
-         const totalProducts = products.length;
-
-         return totalProducts;
-      })
-      .catch((error) => {
-         throw error;
-      });
+   try {
+      const response = await axios.get('https://dummyjson.com/products');
+      const products = response.data.products;
+      const totalProducts = products.length;
+      return totalProducts;
+   } catch (error) {
+      console.error('Error fetching products:', error);
+      throw error;
+   }
 };
 
 export const countingUsers = async () => {
    try {
-      let records = [{}];
-      records = await sendRequest('GET', 'api/users');
+      const records = await sendRequest('GET', 'api/users');
       return records.length;
    } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching users:', error);
+      throw error;
    }
 };
 
 export const countingOrders = async () => {
    try {
-      let records = [{}];
-      records = await sendRequest('GET', 'api/orders');
+      const records = await sendRequest('GET', 'api/orders');
       return records.length;
    } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching orders:', error);
+      throw error;
    }
 };

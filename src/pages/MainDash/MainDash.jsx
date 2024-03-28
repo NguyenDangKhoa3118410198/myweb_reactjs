@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UilEllipsisV } from '@iconscout/react-unicons';
 import { pageMainDash } from '../../Data/fetchData';
 
-import DashboardBoxChart from '../../components/Statistics/DashboardBoxCharts';
+// import DashboardBoxChart from '../../components/Statistics/DashboardBoxCharts';
 import ContextualExample from '../../components/ProgressBar';
 import Todolist from '../../components/Totolist/Totolist';
 import CircularProgressbarChart from '../../components/Statistics/ChartTemplate/CircularProgressbarChart';
@@ -32,6 +32,9 @@ import { updateCountingUsers } from '../../components/features/appInformation/ap
 
 const MyCalendar = lazy(() => import('../../components/Calendar'));
 const Table = lazy(() => import('../../components/Table/Table'));
+const DashboardBoxChart = lazy(() =>
+   import('../../components/Statistics/DashboardBoxCharts')
+);
 
 const MainDash = () => {
    const [records, setRecords] = useState([]);
@@ -263,7 +266,9 @@ const MainDash = () => {
       >
          <div id='top' style={{ opacity: '0' }}></div>
 
-         <DashboardBoxChart />
+         <Suspense fallback={<div>Loading...</div>}>
+            <DashboardBoxChart />
+         </Suspense>
 
          <div className='combined-stats-container'>
             <div className='combined-stats-item'>

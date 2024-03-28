@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, startTransition } from 'react';
 import './dashboardBoxCharts.css';
 // eslint-disable-next-line no-unused-vars
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,21 +30,23 @@ function DashboardBoxCharts() {
    const dataAccess = useSelector((state) => state.appInformation.dataUsers);
 
    useEffect(() => {
-      Promise.all([countingUsers(), countingOrders(), countingProducts()])
-         .then((results) => {
-            const [users, orders, products] = results;
-            console.log('Fetching app information and dispatching it');
+      startTransition(() => {
+         Promise.all([countingUsers(), countingOrders(), countingProducts()])
+            .then((results) => {
+               const [users, orders, products] = results;
+               console.log('Fetching app information and dispatching it');
 
-            if (users && orders && products) {
-               dispatch(setDataUsers(users));
-               dispatch(setDataProducts(products));
-               dispatch(setDataOrders(orders));
-               dispatch(setDataAccess(users));
-            }
-         })
-         .catch((error) => {
-            console.error('Error:', error);
-         });
+               if (users && orders && products) {
+                  dispatch(setDataUsers(users));
+                  dispatch(setDataProducts(products));
+                  dispatch(setDataOrders(orders));
+                  dispatch(setDataAccess(users));
+               }
+            })
+            .catch((error) => {
+               console.error('Error:', error);
+            });
+      });
    }, [dispatch]);
 
    return (
