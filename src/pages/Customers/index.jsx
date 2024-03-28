@@ -90,7 +90,7 @@ function Customers() {
          if (result.isConfirmed) {
             setCurrentRecordId(customerId);
             handleDeleteConfirmed(customerId);
-            alertMessage(`Deleting record with ID: ${customerId}`);
+            alertSuccess(`Deleting record with ID: ${customerId}`);
          } else {
             console.log('Cancelled delete');
          }

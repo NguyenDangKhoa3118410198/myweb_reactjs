@@ -1,4 +1,10 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, {
+   useState,
+   useEffect,
+   lazy,
+   Suspense,
+   startTransition,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { UilEllipsisV } from '@iconscout/react-unicons';
 import { pageMainDash } from '../../Data/fetchData';
@@ -47,7 +53,9 @@ const MainDash = () => {
    });
 
    useEffect(() => {
-      pageMainDash(setRecords);
+      startTransition(() => {
+         pageMainDash(setRecords);
+      });
    }, []);
 
    const handleClose = (e) => {
@@ -68,53 +76,54 @@ const MainDash = () => {
 
    const handleSubmitAndEdit = (e) => {
       e.preventDefault();
+      startTransition(() => {
+         const newFormData = isFormDataValid(formData);
 
-      const newFormData = isFormDataValid(formData);
+         if (newFormData) {
+            if (currentRecordId && isEditPanelOpen) {
+               //edit exists record
 
-      if (newFormData) {
-         if (currentRecordId && isEditPanelOpen) {
-            //edit exists record
-
-            const currentRecord = records.find(
-               (record) => record.id === currentRecordId
-            );
-
-            const invalidEmail = records.some(
-               (record) =>
-                  record.email === formData.email &&
-                  formData.email !== currentRecord.email
-            );
-
-            if (invalidEmail) {
-               alertMessageError(
-                  `The email "${formData.email}" already exists.\n Please use a different email address.`
+               const currentRecord = records.find(
+                  (record) => record.id === currentRecordId
                );
-               return;
-            }
-            handleSave(currentRecordId, newFormData);
-         } else if (!currentRecordId && !isEditPanelOpen) {
-            //create new record
-            const invalidEmail = records.some(
-               (record) => record.email === formData.email
-            );
 
-            if (invalidEmail) {
-               alertMessageError(
-                  `The email "${formData.email}" already exists.\n Please use a different email address.`
+               const invalidEmail = records.some(
+                  (record) =>
+                     record.email === formData.email &&
+                     formData.email !== currentRecord.email
                );
-               return;
+
+               if (invalidEmail) {
+                  alertMessageError(
+                     `The email "${formData.email}" already exists.\n Please use a different email address.`
+                  );
+                  return;
+               }
+               handleSave(currentRecordId, newFormData);
+            } else if (!currentRecordId && !isEditPanelOpen) {
+               //create new record
+               const invalidEmail = records.some(
+                  (record) => record.email === formData.email
+               );
+
+               if (invalidEmail) {
+                  alertMessageError(
+                     `The email "${formData.email}" already exists.\n Please use a different email address.`
+                  );
+                  return;
+               }
+               handleSave(null, newFormData);
+               // console.log(newFormData);
+            } else {
+               alertMessage('Please select a record to edit.');
             }
-            handleSave(null, newFormData);
-            // console.log(newFormData);
+            handleSetFormData();
          } else {
-            alertMessage('Please select a record to edit.');
+            alertMessageError(
+               'Unable to save data because formData is empty or contains a null value.'
+            );
          }
-         handleSetFormData();
-      } else {
-         alertMessageError(
-            'Unable to save data because formData is empty or contains a null value.'
-         );
-      }
+      });
    };
 
    const handleEditClick = (record) => {

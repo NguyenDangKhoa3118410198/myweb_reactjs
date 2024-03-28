@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, startTransition } from 'react';
 import { useSelector } from 'react-redux';
 import { pageProducts1 } from '../../Data/fetchData';
 import { columnsProduct1 } from '../../Data/columns';
@@ -24,7 +24,9 @@ function Products() {
    const [viewCurrent, setViewCurrent] = useState({});
 
    useEffect(() => {
-      pageProducts1(setProducts);
+      startTransition(() => {
+         pageProducts1(setProducts);
+      });
    }, []);
 
    function filterData(records) {

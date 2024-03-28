@@ -9,7 +9,7 @@ import {
 } from '@iconscout/react-unicons';
 import axios from 'axios';
 import { deleteLocalStorage } from '../../ulti';
-import { loginSuccess, loginFailure } from '../../ulti/modals';
+import { alertSuccess, alertMessageError } from '../../ulti/modals';
 
 import AdminImage from '../../imgs/logo-admin-login.png';
 import './adminLogin.css';
@@ -56,10 +56,10 @@ const Login = () => {
             localStorage.setItem('username', data.username);
             localStorage.setItem('customerInfo', customerInfo);
             navigate('/home');
-            loginSuccess(data.message);
+            alertSuccess(data.message);
          }
       } catch (error) {
-         loginFailure(error.response.data.message);
+         alertMessageError(error.response.data.message);
       }
    };
 
@@ -98,7 +98,7 @@ const Login = () => {
                      </div>
                      <p>or use your email password</p>
                   </div>
-                  <div class='floating-label'>
+                  <div className='floating-label'>
                      <input
                         id='admin-email'
                         type='email'
@@ -108,7 +108,7 @@ const Login = () => {
                         autoFocus
                         required
                      />
-                     <label for='admin-email'>Email</label>
+                     <label htmlFor='admin-email'>Email</label>
                   </div>
 
                   <div className='container-hidden-pwd floating-label'>
@@ -120,7 +120,7 @@ const Login = () => {
                         placeholder=''
                         required
                      />
-                     <label for='admin-password'>Password</label>
+                     <label htmlFor='admin-password'>Password</label>
                      <div
                         className='btn-hidden-pwd'
                         onClick={() => setShowPassword(!showPassword)}
