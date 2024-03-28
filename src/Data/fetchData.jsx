@@ -51,6 +51,16 @@ export const pageCustomers = async (setRecords) => {
    }
 };
 
+export const pageUsersDetail = async (setRecords) => {
+   try {
+      let records = [{}];
+      records = await sendRequest('GET', 'api/userDetail');
+      setRecords(records);
+   } catch (error) {
+      console.error('Error fetching data:', error);
+   }
+};
+
 export const pageReviewProduct = async (productId, setRecords) => {
    try {
       let records = [{}];

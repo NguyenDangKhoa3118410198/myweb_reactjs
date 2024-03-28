@@ -1,6 +1,7 @@
 import MainDash from '../pages/MainDash/MainDash';
 import Orders from '../pages/Orders';
 import Customers from '../pages/Customers';
+import UsersDetail from '../pages/UsersDetail';
 import Products from '../pages/Products';
 import Analytics from '../pages/Analytics';
 import AdminLogin from '../components/AdminLogin';
@@ -64,6 +65,11 @@ const privateRoutes = [
       name: 'Customer',
       path: '/customers',
       component: Customers,
+   },
+   {
+      name: 'Users Detail',
+      path: '/usersDetail',
+      component: UsersDetail,
    },
    {
       name: 'Products',

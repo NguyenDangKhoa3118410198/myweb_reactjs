@@ -2,6 +2,7 @@ const userRouter = require('./user');
 const orderRouter = require('./order');
 const productRouter = require('./product');
 const customerRouter = require('./customer');
+const userDetailRouter = require('./userDetail');
 const todoRouter = require('./todo');
 
 const emailRouter = require('./email');
@@ -17,6 +18,7 @@ function route(app) {
    app.use('/api/orders', authenticateToken, orderRouter);
    app.use('/api/products', authenticateToken, productRouter);
    app.use('/api/customers', authenticateToken, customerRouter);
+   app.use('/api/userDetail', authenticateToken, userDetailRouter);
    app.use('/api/todo', authenticateToken, todoRouter);
 
    app.use('/auth/email', checkAdminRole, emailRouter);

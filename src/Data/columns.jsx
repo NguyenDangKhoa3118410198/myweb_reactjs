@@ -123,6 +123,56 @@ export const columnsCustomer = ({
    },
 ];
 
+export const columnsUserDetail = ({
+   handleView,
+   handleEditClick,
+   handleDelete,
+}) => [
+   {
+      name: 'UserId',
+      selector: (row) => row.userId,
+      sortable: true,
+   },
+   {
+      name: 'Address',
+      selector: (row) => row.address,
+      sortable: true,
+   },
+   {
+      name: 'Phone',
+      selector: (row) => row.phone,
+      sortable: true,
+   },
+   {
+      name: 'dateOfBirth',
+      selector: (row) => row.dateOfBirth,
+      sortable: true,
+   },
+   {
+      name: 'Gender',
+      selector: (row) => row.gender,
+      sortable: true,
+   },
+   {
+      name: 'avatar',
+      selector: (row) => row.avatar,
+      sortable: true,
+   },
+   {
+      name: 'Action',
+      sortable: false,
+      maxWidth: 'max-content',
+      cell: (record) => (
+         <TableActions
+            handleView={handleView}
+            handleEditClick={handleEditClick}
+            handleDelete={handleDelete}
+            record={record}
+         />
+      ),
+   },
+];
+
 export const columnsMainDash = ({
    handleView,
    handleEditClick,
