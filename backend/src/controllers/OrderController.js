@@ -4,6 +4,26 @@ const ProductOfOrder = require('../models/ProductOfOrder');
 const axios = require('axios');
 const orders = [];
 
+const countTotalOrders = async (req, res) => {
+   console.log('--------------- Count total orders -------------------');
+
+   try {
+      const count = await Order.countDocuments({});
+      res.status(200).json({
+         success: true,
+         message: 'Total orders counted successfully!',
+         totalOrders: count,
+      });
+   } catch (error) {
+      console.error('Error counting total orders:', error);
+      res.status(500).json({
+         success: false,
+         message: 'Internal server error',
+         error: error.message,
+      });
+   }
+};
+
 const getOrders = async (req, res) => {
    console.log('--------------- Get orders -------------------');
 
@@ -221,6 +241,7 @@ const getDetailOrderByOrderId = async (req, res) => {
 };
 
 module.exports = {
+   countTotalOrders,
    getOrders,
    addOrder,
    deleteOrder,

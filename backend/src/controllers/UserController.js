@@ -2,6 +2,26 @@ const User = require('../models/User');
 const { hashPasswordByNameAndEmail } = require('../ulti/bcrypt');
 const Customer = require('../models/Customer');
 
+const countTotalUsers = async (req, res) => {
+   console.log('--------------- Count total users -------------------');
+
+   try {
+      const count = await User.countDocuments({});
+      res.status(200).json({
+         success: true,
+         message: 'Total users counted successfully!',
+         totalUsers: count,
+      });
+   } catch (error) {
+      console.error('Error counting total users:', error);
+      res.status(500).json({
+         success: false,
+         message: 'Internal server error',
+         error: error.message,
+      });
+   }
+};
+
 const getUsers = async (req, res) => {
    console.log('--------------- Get users -------------------');
 
@@ -225,4 +245,11 @@ const activateUser = async (req, res) => {
    }
 };
 
-module.exports = { getUsers, addUser, editUser, deactivateUser, activateUser };
+module.exports = {
+   countTotalUsers,
+   getUsers,
+   addUser,
+   editUser,
+   deactivateUser,
+   activateUser,
+};

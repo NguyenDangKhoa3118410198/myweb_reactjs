@@ -5,6 +5,7 @@ const orderController = require('../controllers/OrderController');
 const { checkAdminRole } = require('../middleware');
 
 router.get('/', checkAdminRole, orderController.getOrders);
+router.get('/countOrders', checkAdminRole, orderController.countTotalOrders);
 router.post('/add', checkAdminRole, orderController.addOrder);
 router.delete('/:id', checkAdminRole, orderController.deleteOrder);
 router.post('/:id/edit', checkAdminRole, orderController.editOrder);

@@ -111,8 +111,8 @@ export const countingProducts = async () => {
 
 export const countingUsers = async () => {
    try {
-      const records = await sendRequest('GET', 'api/users');
-      return records.length;
+      const records = await sendRequest('GET', 'api/users/countUsers');
+      return records.totalUsers;
    } catch (error) {
       console.error('Error fetching users:', error);
       throw error;
@@ -121,8 +121,8 @@ export const countingUsers = async () => {
 
 export const countingOrders = async () => {
    try {
-      const records = await sendRequest('GET', 'api/orders');
-      return records.length;
+      const records = await sendRequest('GET', 'api/orders/countOrders');
+      return records.totalOrders;
    } catch (error) {
       console.error('Error fetching orders:', error);
       throw error;
