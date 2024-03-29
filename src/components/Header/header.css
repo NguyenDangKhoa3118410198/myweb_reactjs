@@ -18,6 +18,7 @@
    &.darkmode {
       background: linear-gradient(to bottom right, #000, #141b2d, #ddd);
    }
+   transition: background-color 0.7s linear;
 }
 
 .burger-icon {
@@ -165,6 +166,7 @@
 
 .darkmode {
    background-color: #141b2d;
+   transition: background-color 0.7s linear;
 }
 
 .darkmode .nav-left,

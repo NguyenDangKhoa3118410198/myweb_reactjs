@@ -3,5 +3,6 @@
    flex-direction: column;
    padding: 1rem 1rem 1.5rem;
    height: 100vh;
+   transition: background-color 0.7s linear;
    overflow-y: scroll;
 }
