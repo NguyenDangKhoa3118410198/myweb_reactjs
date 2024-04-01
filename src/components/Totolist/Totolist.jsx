@@ -7,8 +7,8 @@ import {
    deleteTodo,
    isCompletedTodo,
 } from '../../Data/fetchData';
-import { formattedDate } from '../../ulti';
-import { FaCalendar } from 'react-icons/fa';
+import { formattedDateAndTime } from '../../ulti';
+import { FaCalendar, FaClock } from 'react-icons/fa';
 import './todolist.css';
 
 function Todolist() {
@@ -64,40 +64,51 @@ function Todolist() {
          </Form>
          <div className='todolist'>
             {todolist && todolist.length > 0 ? (
-               todolist.map((todo) => (
-                  <div className='todo' key={todo.id}>
-                     <div className='todo-content'>
-                        <input
-                           className='todo-checkbox'
-                           type='checkbox'
-                           onChange={() => handleToggleTodo(todo.id)}
-                           checked={todo.completed}
-                        />
-                        <div className='container-todo'>
-                           <div className='container-todo-daytime'>
-                              <FaCalendar className='icon-todo' />
-                              <p className='time-todo'>
-                                 {formattedDate(todo.created)}
-                              </p>
-                           </div>
+               todolist.map((todo) => {
+                  const formattedDateTime = formattedDateAndTime(todo.created);
+                  return (
+                     <div className='todo' key={todo.id}>
+                        <div className='todo-content'>
+                           <input
+                              className='todo-checkbox'
+                              type='checkbox'
+                              onChange={() => handleToggleTodo(todo.id)}
+                              checked={todo.completed}
+                           />
+                           <div className='container-todo'>
+                              <div className='container-todo-daytime'>
+                                 <div className='date-time-todolist'>
+                                    <FaCalendar className='icon-todo' />
+                                    <p className='time-todo'>
+                                       {formattedDateTime.date}
+                                    </p>
+                                 </div>
+                                 <div className='date-time-todolist'>
+                                    <FaClock className='icon-todo' />
+                                    <p className='time-todo'>
+                                       {formattedDateTime.time}
+                                    </p>
+                                 </div>
+                              </div>
 
-                           <span
-                              className={`${
-                                 todo.completed ? 'completed' : ''
-                              } `}
-                           >
-                              {todo.task}
-                           </span>
+                              <span
+                                 className={`${
+                                    todo.completed ? 'completed' : ''
+                                 } `}
+                              >
+                                 {todo.task}
+                              </span>
+                           </div>
+                        </div>
+                        <div>
+                           <UilTrashAlt
+                              className='todo-delete'
+                              onClick={() => handleDeleteTodo(todo.id)}
+                           />
                         </div>
                      </div>
-                     <div>
-                        <UilTrashAlt
-                           className='todo-delete'
-                           onClick={() => handleDeleteTodo(todo.id)}
-                        />
-                     </div>
-                  </div>
-               ))
+                  );
+               })
             ) : (
                <p
                   style={{

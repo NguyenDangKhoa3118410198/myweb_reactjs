@@ -30,8 +30,10 @@ export const getObjectFromLocalStorage = (key) => {
    }
 };
 
-export const formattedDate = (datetime) => {
-   return moment(datetime).format('YYYY-MM-DD HH:mm:ss');
+export const formattedDateAndTime = (datetime) => {
+   const date = moment(datetime).format('YYYY-MM-DD');
+   const time = moment(datetime).format('h:mm:ss A');
+   return { date, time };
 };
 
 export const formattedBirthDay = (datetime) => {
