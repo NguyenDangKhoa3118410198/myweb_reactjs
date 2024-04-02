@@ -36,7 +36,11 @@ function Contact() {
                   </form>
                </div>
                <div className='form-img'>
-                  <img src={backgroundImage} alt='' />
+                  <img
+                     style={{ filter: 'hue-rotate(290deg)' }}
+                     src={backgroundImage}
+                     alt=''
+                  />
                </div>
             </div>
          </div>
