@@ -60,13 +60,14 @@ input[type='search'].searchBox {
    min-width: 300px;
    padding: 20px;
    flex: 1;
-   margin: 10px 0 10px 1rem;
-   border-radius: 15px;
+   margin: 0.2rem 0 0.2rem 1rem;
+   border-radius: 20px;
    background-color: #fff;
    align-self: stretch;
 }
 
 .combined-stats-header {
+   margin: 0.4rem;
    display: flex;
    height: 40px;
    align-items: center;
