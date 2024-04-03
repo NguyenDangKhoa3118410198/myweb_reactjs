@@ -12,11 +12,27 @@ import {
 
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
+const MenuWarpper = styled.div`
+   display: flex;
+   justify-content: center;
+   align-content: center;
+`;
+
 const ItemMenuAction = styled.div`
    display: flex;
    justify-content: flex-start;
    align-items: center;
    gap: 0.8rem;
+   margin: 0 0.2rem;
+
+   .icon {
+      font-size: 1.2rem;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
 `;
 
 const ItemMenu = ({ handleFunction, icon, label, record }) => {
@@ -28,8 +44,8 @@ const ItemMenu = ({ handleFunction, icon, label, record }) => {
          onClick={() => handleFunction(record)}
       >
          <ItemMenuAction>
-            {icon}
-            {label}
+            <span className='icon'>{icon}</span>
+            {label ?? null}
          </ItemMenuAction>
       </Dropdown.Item>
    );
@@ -46,16 +62,11 @@ const TableActions = ({
 }) => {
    return (
       <Dropdown>
-         <Dropdown.Toggle className='table-actions'>
-            <BsThreeDotsVertical />
-         </Dropdown.Toggle>
-
-         <Dropdown.Menu>
+         <MenuWarpper>
             {handleView && (
                <ItemMenu
                   handleFunction={handleView}
                   icon={<FaEye />}
-                  label='View'
                   record={record}
                />
             )}
@@ -64,47 +75,69 @@ const TableActions = ({
                <ItemMenu
                   handleFunction={handleEditClick}
                   icon={<FaRegEdit />}
-                  label='Edit'
                   record={record}
                />
             )}
+            <Dropdown.Toggle className='table-actions'>
+               <BsThreeDotsVertical />
+            </Dropdown.Toggle>
 
-            {handleDelete && (
-               <ItemMenu
-                  handleFunction={handleDelete}
-                  icon={<FaTrash />}
-                  label='Delete'
-                  record={record}
-               />
-            )}
+            <Dropdown.Menu>
+               {/* {handleView && (
+                  <ItemMenu
+                     handleFunction={handleView}
+                     icon={<FaEye />}
+                     label='View'
+                     record={record}
+                  />
+               )}
 
-            {handleReview && (
-               <ItemMenu
-                  handleFunction={handleReview}
-                  icon={<FaCommentAlt />}
-                  label='Review'
-                  record={record}
-               />
-            )}
+               {handleEditClick && (
+                  <ItemMenu
+                     handleFunction={handleEditClick}
+                     icon={<FaRegEdit />}
+                     label='Edit'
+                     record={record}
+                  />
+               )} */}
 
-            {handleActivate && (
-               <ItemMenu
-                  handleFunction={handleActivate}
-                  icon={<FaLockOpen />}
-                  label='Activate'
-                  record={record}
-               />
-            )}
+               {handleDelete && (
+                  <ItemMenu
+                     handleFunction={handleDelete}
+                     icon={<FaTrash />}
+                     label='Delete'
+                     record={record}
+                  />
+               )}
 
-            {handleDeactivate && (
-               <ItemMenu
-                  handleFunction={handleDeactivate}
-                  icon={<FaLock />}
-                  label='Deactivate'
-                  record={record}
-               />
-            )}
-         </Dropdown.Menu>
+               {handleReview && (
+                  <ItemMenu
+                     handleFunction={handleReview}
+                     icon={<FaCommentAlt />}
+                     label='Review'
+                     record={record}
+                  />
+               )}
+
+               {handleActivate && (
+                  <ItemMenu
+                     handleFunction={handleActivate}
+                     icon={<FaLockOpen />}
+                     label='Activate'
+                     record={record}
+                  />
+               )}
+
+               {handleDeactivate && (
+                  <ItemMenu
+                     handleFunction={handleDeactivate}
+                     icon={<FaLock />}
+                     label='Deactivate'
+                     record={record}
+                  />
+               )}
+            </Dropdown.Menu>
+         </MenuWarpper>
       </Dropdown>
    );
 };

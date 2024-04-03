@@ -27,6 +27,8 @@
       transform: translate(0, -5px) scale(1.01);
       box-shadow: none;
       filter: drop-shadow(0 0 0.4rem rgba(0, 0, 0, 0.6));
+      outline: 2px solid #eee;
+      border: 2px solid #eee;
    }
 }
 
@@ -154,6 +156,7 @@
 
 .large-box-chart-title {
    position: relative;
+   padding: 1rem 0;
 }
 
 .large-box-chart-content {
