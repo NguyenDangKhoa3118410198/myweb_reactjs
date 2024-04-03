@@ -1,7 +1,39 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
+import styled from 'styled-components';
+import {
+   FaEye,
+   FaRegEdit,
+   FaLock,
+   FaLockOpen,
+   FaCommentAlt,
+   FaTrash,
+} from 'react-icons/fa';
 
 import { BsThreeDotsVertical } from 'react-icons/bs';
+
+const ItemMenuAction = styled.div`
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   gap: 0.8rem;
+`;
+
+const ItemMenu = ({ handleFunction, icon, label, record }) => {
+   if (!handleFunction) return null;
+
+   return (
+      <Dropdown.Item
+         className='item-action'
+         onClick={() => handleFunction(record)}
+      >
+         <ItemMenuAction>
+            {icon}
+            {label}
+         </ItemMenuAction>
+      </Dropdown.Item>
+   );
+};
 
 const TableActions = ({
    handleView,
@@ -20,57 +52,57 @@ const TableActions = ({
 
          <Dropdown.Menu>
             {handleView && (
-               <Dropdown.Item
-                  className='item-action'
-                  onClick={() => handleView(record)}
-               >
-                  View
-               </Dropdown.Item>
+               <ItemMenu
+                  handleFunction={handleView}
+                  icon={<FaEye />}
+                  label='View'
+                  record={record}
+               />
             )}
 
             {handleEditClick && (
-               <Dropdown.Item
-                  className='item-action'
-                  onClick={() => handleEditClick(record)}
-               >
-                  Edit
-               </Dropdown.Item>
+               <ItemMenu
+                  handleFunction={handleEditClick}
+                  icon={<FaRegEdit />}
+                  label='Edit'
+                  record={record}
+               />
             )}
 
             {handleDelete && (
-               <Dropdown.Item
-                  className='item-action'
-                  onClick={() => handleDelete(record)}
-               >
-                  Delete
-               </Dropdown.Item>
+               <ItemMenu
+                  handleFunction={handleDelete}
+                  icon={<FaTrash />}
+                  label='Delete'
+                  record={record}
+               />
             )}
 
             {handleReview && (
-               <Dropdown.Item
-                  className='item-action'
-                  onClick={() => handleReview(record)}
-               >
-                  Review
-               </Dropdown.Item>
+               <ItemMenu
+                  handleFunction={handleReview}
+                  icon={<FaCommentAlt />}
+                  label='Review'
+                  record={record}
+               />
             )}
 
             {handleActivate && (
-               <Dropdown.Item
-                  className='item-action'
-                  onClick={() => handleActivate(record)}
-               >
-                  Active
-               </Dropdown.Item>
+               <ItemMenu
+                  handleFunction={handleActivate}
+                  icon={<FaLockOpen />}
+                  label='Activate'
+                  record={record}
+               />
             )}
 
             {handleDeactivate && (
-               <Dropdown.Item
-                  className='item-action'
-                  onClick={() => handleDeactivate(record)}
-               >
-                  Deactivate
-               </Dropdown.Item>
+               <ItemMenu
+                  handleFunction={handleDeactivate}
+                  icon={<FaLock />}
+                  label='Deactivate'
+                  record={record}
+               />
             )}
          </Dropdown.Menu>
       </Dropdown>
