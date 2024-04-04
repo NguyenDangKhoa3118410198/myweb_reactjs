@@ -82,7 +82,8 @@ input[type='text'],
 input[type='email'],
 input[type='password'],
 input[type='search'],
-input[type='number'] {
+input[type='number'],
+input[type='select'] {
    display: block;
    width: 100%;
    max-width: 100%;

@@ -34,6 +34,7 @@ button[type='button']:hover.btn-add {
 input[type='search'].searchBox {
    max-width: 300px;
    margin: 0 0 0 5px;
+   border-radius: 25px;
 }
 
 .add-filter-wrapper {
@@ -134,17 +135,34 @@ input[type='search'].searchBox {
 }
 
 .form-panel-input-select {
-   outline: none;
    width: 100%;
    max-width: 100%;
    min-width: 150px;
+   height: 45px;
    padding: 5px 15px;
-   font-size: 16px;
+   margin: 10px;
+   border-radius: 8px;
+   font-size: 15px;
    font-weight: 500;
-   color: black;
-   background-color: white;
-   border: 1px #0000006b solid;
-   border-radius: 10px;
+   color: rgba(0, 0, 0, 0.7);
+   background-color: #fff;
+   transition: all 0.2s ease-in-out;
+
+   &:focus {
+      outline: rgb(71, 156, 247) solid 2px;
+      box-shadow: 0 0 0.8rem rgba(30, 132, 240, 0.8);
+      background-color: #ffffff;
+   }
+
+   &[readonly] {
+      background-color: #eee;
+
+      &:hover,
+      &:focus {
+         outline: none;
+         box-shadow: none;
+      }
+   }
 }
 
 .form-control-btn {
@@ -153,14 +171,9 @@ input[type='search'].searchBox {
 
 .button-group-form-panel {
    display: flex;
-   flex-direction: row;
    justify-content: center;
    align-items: center;
-}
-
-.button-group-form-panel {
-   display: flex;
-   flex-direction: row;
+   padding: 1.5rem;
 }
 
 @media screen and (max-width: 1068px) {
