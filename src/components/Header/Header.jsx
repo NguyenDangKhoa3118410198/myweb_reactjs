@@ -32,7 +32,11 @@ const Header = ({ nameContent, toggleBurger }) => {
       >
          <div className='nav-left'>
             <div onClick={toggleBurger} className='burger-icon-wapper'>
-               <img className='burger-icon' src={BurgerIcon} alt='Sidebar' />
+               <img
+                  className={`burger-icon ${darkMode ? 'white' : ''}`}
+                  src={BurgerIcon}
+                  alt='Sidebar'
+               />
             </div>
 
             <h1 className='name-tab'>{nameContent}</h1>
