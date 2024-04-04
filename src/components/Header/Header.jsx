@@ -3,7 +3,6 @@ import {
    UilUser,
    UilInfoCircle,
    UilSignout,
-   UilBars,
    UilCalendarAlt,
    UilSun,
 } from '@iconscout/react-unicons';
@@ -12,6 +11,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleDarkMode } from '../features/darkmode/darkModeSlice';
 import { deleteLocalStorage, getObjectFromLocalStorage } from '../../ulti';
+import BurgerIcon from '../../imgs/align-left.svg';
 import './header.css';
 
 const Header = ({ nameContent, toggleBurger }) => {
@@ -31,8 +31,8 @@ const Header = ({ nameContent, toggleBurger }) => {
          className={`nav-user-header-container ${darkMode ? 'darkmode' : ''}`}
       >
          <div className='nav-left'>
-            <div onClick={toggleBurger} className='burger-icon'>
-               <UilBars />
+            <div onClick={toggleBurger} className='burger-icon-wapper'>
+               <img className='burger-icon' src={BurgerIcon} alt='Sidebar' />
             </div>
 
             <h1 className='name-tab'>{nameContent}</h1>

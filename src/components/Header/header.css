@@ -21,25 +21,31 @@
    transition: background-color 0.7s linear;
 }
 
-.burger-icon {
+.burger-icon-wapper {
    display: flex;
    justify-content: center;
    align-items: center;
-   margin: 10px;
+   margin: 0.5rem;
    border-radius: 5px;
    padding: 1rem;
-   scale: 1.1;
 }
 
-.burger-icon:hover {
+.burger-icon-wapper:hover {
    cursor: pointer;
    opacity: 0.5;
+}
+
+.burger-icon {
+   height: 2.5rem;
+   width: 2.5rem;
 }
 
 .nav-left {
    display: flex;
    flex-direction: row;
    align-items: center;
+   justify-content: center;
+   text-align: center;
 }
 
 .nav-left,

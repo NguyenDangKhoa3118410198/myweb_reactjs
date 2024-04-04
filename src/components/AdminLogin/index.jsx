@@ -11,7 +11,7 @@ import axios from 'axios';
 import { deleteLocalStorage } from '../../ulti';
 import { alertSuccess, alertMessageError } from '../../ulti/modals';
 
-import AdminImage from '../../imgs/logo-admin-login.png';
+import AdminImage from '../../imgs/login.svg';
 import './adminLogin.css';
 
 const Login = () => {

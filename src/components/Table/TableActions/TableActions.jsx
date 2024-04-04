@@ -32,6 +32,10 @@ const ItemMenuAction = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+
+      &:hover {
+         color: #357ae8;
+      }
    }
 `;
 
@@ -40,7 +44,7 @@ const ItemMenu = ({ handleFunction, icon, label, record }) => {
 
    return (
       <Dropdown.Item
-         className='item-action'
+         className='item-action-table'
          onClick={() => handleFunction(record)}
       >
          <ItemMenuAction>

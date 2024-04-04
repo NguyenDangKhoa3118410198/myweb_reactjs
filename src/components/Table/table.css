@@ -63,3 +63,11 @@
    margin: 0 5px 15px 5px;
    transition: background-color 0.5s;
 }
+
+.item-action-table {
+   padding: 10px;
+
+   &:hover {
+      color: #357ae8;
+   }
+}
