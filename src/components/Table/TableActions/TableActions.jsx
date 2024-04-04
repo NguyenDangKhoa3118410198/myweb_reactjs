@@ -26,7 +26,7 @@ const ItemMenuAction = styled.div`
    margin: 0 0.2rem;
 
    .icon {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       margin: 0;
       padding: 0;
       display: flex;
@@ -65,29 +65,36 @@ const TableActions = ({
    record,
 }) => {
    return (
-      <Dropdown>
-         <MenuWarpper>
-            {handleView && (
-               <ItemMenu
-                  handleFunction={handleView}
-                  icon={<FaEye />}
-                  record={record}
-               />
-            )}
+      <div
+         style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+         }}
+      >
+         <Dropdown>
+            <MenuWarpper>
+               {handleView && (
+                  <ItemMenu
+                     handleFunction={handleView}
+                     icon={<FaEye />}
+                     record={record}
+                  />
+               )}
 
-            {handleEditClick && (
-               <ItemMenu
-                  handleFunction={handleEditClick}
-                  icon={<FaRegEdit />}
-                  record={record}
-               />
-            )}
-            <Dropdown.Toggle className='table-actions'>
-               <BsThreeDotsVertical />
-            </Dropdown.Toggle>
+               {handleEditClick && (
+                  <ItemMenu
+                     handleFunction={handleEditClick}
+                     icon={<FaRegEdit />}
+                     record={record}
+                  />
+               )}
+               <Dropdown.Toggle className='table-actions'>
+                  <BsThreeDotsVertical />
+               </Dropdown.Toggle>
 
-            <Dropdown.Menu>
-               {/* {handleView && (
+               <Dropdown.Menu>
+                  {/* {handleView && (
                   <ItemMenu
                      handleFunction={handleView}
                      icon={<FaEye />}
@@ -105,44 +112,45 @@ const TableActions = ({
                   />
                )} */}
 
-               {handleDelete && (
-                  <ItemMenu
-                     handleFunction={handleDelete}
-                     icon={<FaTrash />}
-                     label='Delete'
-                     record={record}
-                  />
-               )}
+                  {handleDelete && (
+                     <ItemMenu
+                        handleFunction={handleDelete}
+                        icon={<FaTrash />}
+                        label='Delete'
+                        record={record}
+                     />
+                  )}
 
-               {handleReview && (
-                  <ItemMenu
-                     handleFunction={handleReview}
-                     icon={<FaCommentAlt />}
-                     label='Review'
-                     record={record}
-                  />
-               )}
+                  {handleReview && (
+                     <ItemMenu
+                        handleFunction={handleReview}
+                        icon={<FaCommentAlt />}
+                        label='Review'
+                        record={record}
+                     />
+                  )}
 
-               {handleActivate && (
-                  <ItemMenu
-                     handleFunction={handleActivate}
-                     icon={<FaLockOpen />}
-                     label='Activate'
-                     record={record}
-                  />
-               )}
+                  {handleActivate && (
+                     <ItemMenu
+                        handleFunction={handleActivate}
+                        icon={<FaLockOpen />}
+                        label='Activate'
+                        record={record}
+                     />
+                  )}
 
-               {handleDeactivate && (
-                  <ItemMenu
-                     handleFunction={handleDeactivate}
-                     icon={<FaLock />}
-                     label='Deactivate'
-                     record={record}
-                  />
-               )}
-            </Dropdown.Menu>
-         </MenuWarpper>
-      </Dropdown>
+                  {handleDeactivate && (
+                     <ItemMenu
+                        handleFunction={handleDeactivate}
+                        icon={<FaLock />}
+                        label='Deactivate'
+                        record={record}
+                     />
+                  )}
+               </Dropdown.Menu>
+            </MenuWarpper>
+         </Dropdown>
+      </div>
    );
 };
 

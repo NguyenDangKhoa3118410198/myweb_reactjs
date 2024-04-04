@@ -39,7 +39,8 @@ export const columnsProduct1 = ({
    {
       name: 'Action',
       sortable: false,
-      maxWidth: 'max-content',
+      center: true,
+      minWidth: '100px',
       cell: (record) => (
          <TableActions
             handleReview={handleReview}
@@ -111,7 +112,8 @@ export const columnsCustomer = ({
    {
       name: 'Action',
       sortable: false,
-      maxWidth: 'max-content',
+      center: true,
+      minWidth: '100px',
       cell: (record) => (
          <TableActions
             handleView={handleView}
@@ -142,6 +144,8 @@ export const columnsUserDetail = ({
       name: 'Phone',
       selector: (row) => row.phone,
       sortable: true,
+      minWidth: '150px',
+      maxWidth: '200px',
    },
    {
       name: 'dateOfBirth',
@@ -152,6 +156,8 @@ export const columnsUserDetail = ({
       name: 'Gender',
       selector: (row) => row.gender,
       sortable: true,
+      minWidth: '80px',
+      maxWidth: '120px',
    },
    {
       name: 'avatar',
@@ -161,7 +167,8 @@ export const columnsUserDetail = ({
    {
       name: 'Action',
       sortable: false,
-      maxWidth: 'max-content',
+      center: true,
+      minWidth: '100px',
       cell: (record) => (
          <TableActions
             handleView={handleView}
@@ -212,7 +219,9 @@ export const columnsMainDash = ({
    {
       name: 'Actions',
       sortable: false,
-      maxWidth: 'max-content',
+      center: true,
+      minWidth: '100px',
+
       cell: (record) => (
          <TableActions
             handleView={handleView}
@@ -271,7 +280,8 @@ export const columnsOrder = ({
    {
       name: 'Action',
       sortable: false,
-      maxWidth: 'max-content',
+      center: true,
+      minWidth: '100px',
       cell: (record) => (
          <TableActions
             handleView={handleView}
