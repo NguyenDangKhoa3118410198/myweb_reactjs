@@ -1,4 +1,17 @@
 import TableActions from '../components/Table/TableActions/TableActions';
+import styled from 'styled-components';
+
+const StatusStyle = styled.div`
+   min-width: 30%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   padding: 5px 15px;
+   color: #fff;
+   border-radius: 20px;
+   background-color: ${(props) => (props.isActive ? '#33B249' : '#FF4242')};
+`;
 
 export const columnsProduct1 = ({
    handleView,
@@ -215,6 +228,19 @@ export const columnsMainDash = ({
       name: 'Active',
       selector: (row) => row.isActive,
       sortable: true,
+      center: true,
+      cell: (row) => {
+         const isActive =
+            typeof row.isActive === 'string'
+               ? row.isActive === 'true'
+               : !!row.isActive;
+
+         return (
+            <StatusStyle isActive={isActive}>
+               {isActive ? 'Active' : 'Deactive'}
+            </StatusStyle>
+         );
+      },
    },
    {
       name: 'Actions',
@@ -270,6 +296,34 @@ export const columnsOrder = ({
       name: 'Status',
       selector: (row) => row.status,
       sortable: true,
+      center: true,
+      cell: (row) => {
+         const status = row.status.toLowerCase();
+
+         let backgroundColor;
+         switch (status) {
+            case 'pending':
+               backgroundColor = '#FCA61F';
+               break;
+            case 'shipped':
+               backgroundColor = '#00CED1';
+               break;
+            case 'delivered':
+               backgroundColor = '#32CD32';
+               break;
+            case 'cancelled':
+               backgroundColor = '#FF4242';
+               break;
+            default:
+               backgroundColor = '#ccc';
+               break;
+         }
+         return (
+            <StatusStyle style={{ backgroundColor: backgroundColor }}>
+               {status}
+            </StatusStyle>
+         );
+      },
    },
    {
       name: 'CustomerId',

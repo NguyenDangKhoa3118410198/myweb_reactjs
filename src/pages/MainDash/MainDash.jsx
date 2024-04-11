@@ -212,7 +212,7 @@ const MainDash = () => {
          if (response.success) {
             setRecords((prevRecords) =>
                prevRecords.map((r) =>
-                  r.id === record.id ? { ...r, isActive: 'false' } : r
+                  r.id === record.id ? { ...r, isActive: false } : r
                )
             );
             alertSuccess('User deactivated successfully');
@@ -242,7 +242,7 @@ const MainDash = () => {
          if (response.success) {
             setRecords((prevRecords) =>
                prevRecords.map((r) =>
-                  r.id === record.id ? { ...r, isActive: 'true' } : r
+                  r.id === record.id ? { ...r, isActive: true } : r
                )
             );
             alertSuccess('User activated successfully');
