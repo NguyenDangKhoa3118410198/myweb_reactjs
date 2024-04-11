@@ -11,7 +11,6 @@ import OnTopButton from '../../components/OnTop/OnTop';
 import { pageReviewProduct } from '../../Data/fetchData';
 
 import './product.css';
-import TopPlaceholder from '../../components/TopPlaceholder';
 function Products() {
    const darkMode = useSelector((state) => state.darkMode);
 
@@ -59,8 +58,6 @@ function Products() {
 
    return (
       <main className={`product-wrapper  ${darkMode ? 'darkmode' : ''}`}>
-         <TopPlaceholder />
-
          <Table
             title={'List products'}
             columns={columns}

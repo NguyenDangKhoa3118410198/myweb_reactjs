@@ -1,15 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { UilArrowUp } from '@iconscout/react-unicons';
 import './ontop.css';
 
 const OnTopButton = () => {
-   const [isHidden, setIsHidden] = useState(false);
+   const [isHidden, setIsHidden] = useState(true);
+
+   useEffect(() => {
+      const handleScroll = () => {
+         if (window.scrollY > 400) {
+            setIsHidden(false);
+         } else {
+            setIsHidden(true);
+         }
+      };
+
+      window.addEventListener('scroll', handleScroll);
+
+      return () => {
+         window.removeEventListener('scroll', handleScroll);
+      };
+   }, []);
 
    const onTop = () => {
-      const container = document.getElementById('top');
-      if (container) {
-         container.scrollIntoView({ block: 'start', behavior: 'smooth' });
-      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
    };
 
    const handleClose = () => {

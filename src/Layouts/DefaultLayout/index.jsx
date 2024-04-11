@@ -17,6 +17,7 @@ function AdminDefaultLayout({ name, children }) {
             toggleBurger={toggleBurger}
             activeMenu={activeMenu}
          />
+
          <div className='admin-layout-container'>
             <Header nameContent={name} toggleBurger={toggleBurger} />
             {children}

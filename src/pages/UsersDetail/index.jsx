@@ -19,7 +19,6 @@ import {
 } from '../../ulti/modals';
 
 import './userDetail.css';
-import TopPlaceholder from '../../components/TopPlaceholder';
 
 function UsersDetail() {
    const darkMode = useSelector((state) => state.darkMode);
@@ -179,8 +178,6 @@ function UsersDetail() {
 
    return (
       <main className={`user-detail-wrapper ${darkMode ? 'darkmode' : ''} `}>
-         <TopPlaceholder />
-
          <Table
             title='List table Users Detail'
             columns={columns}

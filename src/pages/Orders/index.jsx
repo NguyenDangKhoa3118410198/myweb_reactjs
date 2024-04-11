@@ -10,7 +10,6 @@ import {
 import './orders.css';
 import OnTopButton from '../../components/OnTop/OnTop';
 import { pageDetailOrder } from '../../Data/fetchData';
-import TopPlaceholder from '../../components/TopPlaceholder';
 
 function Orders() {
    const [records, setRecords] = useState([]);
@@ -46,8 +45,6 @@ function Orders() {
 
    return (
       <main className={`Orders  ${darkMode ? 'darkmode' : ''}`}>
-         <TopPlaceholder />
-
          <Table
             title='List of orders'
             columns={columns}
