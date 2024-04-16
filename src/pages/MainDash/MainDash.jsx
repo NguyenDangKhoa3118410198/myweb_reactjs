@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UilEllipsisV } from '@iconscout/react-unicons';
 import { pageMainDash } from '../../Data/fetchData';
 
-// import DashboardBoxChart from '../../components/Statistics/DashboardBoxCharts';
 import ContextualExample from '../../components/ProgressBar';
 import Todolist from '../../components/Totolist/Totolist';
 import CircularProgressbarChart from '../../components/Statistics/ChartTemplate/CircularProgressbarChart';
@@ -260,6 +259,49 @@ const MainDash = () => {
       handleDeactivate,
       handleActivate,
    });
+
+   const TopRevenueStats = () => (
+      <div className='combined-stats-item'>
+         <div className='combined-stats-header'>
+            <h1 className='combined-stats-title'>Top Revenue</h1>
+            <div className='combined-stats-icon'>
+               <UilEllipsisV />
+            </div>
+         </div>
+         <div className='combined-stats-content'>
+            <CircularProgressbarChart />
+         </div>
+      </div>
+   );
+
+   const TodolistStats = () => (
+      <div className='combined-stats-item'>
+         <div className='combined-stats-header'>
+            <h1 className='combined-stats-title'>Todolist</h1>
+            <div className='combined-stats-icon'>
+               <UilEllipsisV />
+            </div>
+         </div>
+         <div className='combined-stats-content'>
+            <Todolist />
+         </div>
+      </div>
+   );
+
+   const ProgressChartStats = () => (
+      <div className='combined-stats-item'>
+         <div className='combined-stats-header'>
+            <h1 className='combined-stats-title'>Progress Chart</h1>
+            <div className='combined-stats-icon'>
+               <UilEllipsisV />
+            </div>
+         </div>
+         <div className='combined-stats-content'>
+            <ContextualExample />
+         </div>
+      </div>
+   );
+
    return (
       <main
          className={`main-dashboard-container  ${darkMode ? 'darkmode' : ''}`}
@@ -269,74 +311,40 @@ const MainDash = () => {
          </Suspense>
 
          <div className='combined-stats-container'>
-            <div className='combined-stats-item'>
-               <div className='combined-stats-header'>
-                  <h1 className='combined-stats-title'>Top Revenue</h1>
-                  <div className='combined-stats-icon'>
-                     <UilEllipsisV />
-                  </div>
-               </div>
-               <div className='combined-stats-content'>
-                  <CircularProgressbarChart />
-               </div>
-            </div>
-
-            <div className='combined-stats-item'>
-               <div className='combined-stats-header'>
-                  <h1 className='combined-stats-title'>Todolist</h1>
-                  <div className='combined-stats-icon'>
-                     <UilEllipsisV />
-                  </div>
-               </div>
-               <div className='combined-stats-content'>
-                  <Todolist />
-               </div>
-            </div>
-
-            <div className='combined-stats-item'>
-               <div className='combined-stats-header'>
-                  <h1 className='combined-stats-title'>Progress Chart</h1>
-                  <div className='combined-stats-icon'>
-                     <UilEllipsisV />
-                  </div>
-               </div>
-               <div className='combined-stats-content'>
-                  <ContextualExample />
-               </div>
-            </div>
+            <TopRevenueStats />
+            <TodolistStats />
+            <ProgressChartStats />
          </div>
 
          <MyCalendar />
          <OnTopButton />
 
-         <div>
-            <Suspense fallback={<div>Loading...</div>}>
-               <Table
-                  title='List of users'
-                  columns={columns}
-                  data={filterData(searchTerm, records)}
-                  searchBox={searchBox(searchTerm, setSearchTerm)}
-                  setModalView={setModalView}
-                  formData={formData}
-                  setFormData={setFormData}
-                  FormPanel={FormPanel}
-                  tableActions={{
-                     setModalView,
-                     viewCurrent,
-                     isModalView,
-                     isAddPanelOpen,
-                     isEditPanelOpen,
-                     setIsAddPanelOpen,
-                     setIsEditPanelOpen,
-                     setCurrentRecordId,
-                  }}
-                  handleActions={{
-                     handleSubmitAndEdit,
-                     handleClose,
-                  }}
-               />
-            </Suspense>
-         </div>
+         <Suspense fallback={<div>Loading...</div>}>
+            <Table
+               title='List of users'
+               columns={columns}
+               data={filterData(searchTerm, records)}
+               searchBox={searchBox(searchTerm, setSearchTerm)}
+               setModalView={setModalView}
+               formData={formData}
+               setFormData={setFormData}
+               FormPanel={FormPanel}
+               tableActions={{
+                  setModalView,
+                  viewCurrent,
+                  isModalView,
+                  isAddPanelOpen,
+                  isEditPanelOpen,
+                  setIsAddPanelOpen,
+                  setIsEditPanelOpen,
+                  setCurrentRecordId,
+               }}
+               handleActions={{
+                  handleSubmitAndEdit,
+                  handleClose,
+               }}
+            />
+         </Suspense>
       </main>
    );
 };

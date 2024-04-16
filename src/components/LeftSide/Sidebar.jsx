@@ -43,7 +43,7 @@ const Sidebar = ({ isMenuActive, toggleBurger, activeMenu }) => {
          className={`side-menu ${isMenuActive ? 'open' : ''}`}
       >
          <div className='sidebar'>
-            <header className='head-sidebar'>
+            <header className='header-sidebar'>
                <Link to='/' className='logo'>
                   <div className='brand'>
                      <img src={Logo} alt='logo' />

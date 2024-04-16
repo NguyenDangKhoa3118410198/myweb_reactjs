@@ -2,8 +2,7 @@ import { sendRequest } from '../ulti/sendHeaderRequest';
 
 export const pageOrders = async (setRecords) => {
    try {
-      let records = [{}];
-      records = await sendRequest('GET', 'api/orders');
+      const records = await sendRequest('GET', 'api/orders');
       setRecords(records);
    } catch (error) {
       console.error('Error fetching data:', error);
@@ -12,8 +11,7 @@ export const pageOrders = async (setRecords) => {
 
 export const pageMainDash = async (setRecords) => {
    try {
-      let records = [{}];
-      records = await sendRequest('GET', 'api/users');
+      const records = await sendRequest('GET', 'api/users');
       // console.log(records);
       setRecords(records);
    } catch (error) {
@@ -21,10 +19,9 @@ export const pageMainDash = async (setRecords) => {
    }
 };
 
-export const pageProducts1 = async (setRecords) => {
+export const pageProducts = async (setRecords) => {
    try {
-      let records = [{}];
-      records = await sendRequest('GET', 'api/products');
+      const records = await sendRequest('GET', 'api/products');
       setRecords(records);
    } catch (error) {
       console.error('Error fetching data:', error);
@@ -33,8 +30,7 @@ export const pageProducts1 = async (setRecords) => {
 
 export const pageProducts2 = async (setRecords) => {
    try {
-      let records = [{}];
-      records = await sendRequest('GET', 'api/users');
+      const records = await sendRequest('GET', 'api/users');
       setRecords(records);
    } catch (error) {
       console.error('Error fetching data:', error);
@@ -43,8 +39,7 @@ export const pageProducts2 = async (setRecords) => {
 
 export const pageCustomers = async (setRecords) => {
    try {
-      let records = [{}];
-      records = await sendRequest('GET', 'api/customers');
+      const records = await sendRequest('GET', 'api/customers');
       setRecords(records);
    } catch (error) {
       console.error('Error fetching data:', error);
@@ -53,8 +48,7 @@ export const pageCustomers = async (setRecords) => {
 
 export const pageUsersDetail = async (setRecords) => {
    try {
-      let records = [{}];
-      records = await sendRequest('GET', 'api/userDetail');
+      const records = await sendRequest('GET', 'api/userDetail');
       setRecords(records);
    } catch (error) {
       console.error('Error fetching data:', error);
@@ -63,8 +57,10 @@ export const pageUsersDetail = async (setRecords) => {
 
 export const pageReviewProduct = async (productId, setRecords) => {
    try {
-      let records = [{}];
-      records = await sendRequest('GET', `api/products/${productId}/review`);
+      const records = await sendRequest(
+         'GET',
+         `api/products/${productId}/review`
+      );
       setRecords(records);
    } catch (error) {
       console.error('Error fetching data:', error);
@@ -82,9 +78,7 @@ export const pageDetailOrder = async (orderId) => {
 
 export const todoList = async (setRecords) => {
    try {
-      let records = [{}];
-      records = await sendRequest('GET', 'api/todo');
-      // console.log(records);
+      const records = await sendRequest('GET', 'api/todo');
       setRecords(records);
    } catch (error) {
       console.error('Error fetching data:', error);

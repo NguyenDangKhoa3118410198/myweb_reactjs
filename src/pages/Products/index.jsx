@@ -1,6 +1,6 @@
 import React, { useState, useEffect, startTransition } from 'react';
 import { useSelector } from 'react-redux';
-import { pageProducts1 } from '../../Data/fetchData';
+import { pageProducts } from '../../Data/fetchData';
 import { columnsProduct1 } from '../../Data/columns';
 import Table from '../../components/Table/Table';
 import {
@@ -25,7 +25,7 @@ function Products() {
 
    useEffect(() => {
       startTransition(() => {
-         pageProducts1(setProducts);
+         pageProducts(setProducts);
       });
    }, []);
 
