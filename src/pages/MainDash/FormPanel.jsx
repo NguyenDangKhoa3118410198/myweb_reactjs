@@ -8,9 +8,10 @@ function FormPanel({
    formData,
    setFormData,
    handleClose,
+   targetRef,
 }) {
    return (
-      <div className='form-panel-container'>
+      <div className='form-panel-container' ref={targetRef}>
          <div className='form-panel'>
             <p className='title-panel'>{title}</p>
             <Form onSubmit={handleSubmit} className='form-container'>

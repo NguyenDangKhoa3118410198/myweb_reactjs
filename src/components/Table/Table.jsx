@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import DataTable from 'react-data-table-component';
 import { headerCsv } from './TableActions/handleActions';
 import { TableCustomStyles } from './Custom/TableCustomStyles';
@@ -34,6 +34,14 @@ const Table = ({
    let { handleSubmitAndEdit, handleClose } = handleActions;
 
    const headers = headerCsv(data);
+   const targetRef = useRef(null);
+
+   const scrollToElement = () => {
+      if (targetRef.current) {
+         targetRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+   };
+
    return (
       <div className='wrapper'>
          <div className='form-panel-action'>
@@ -53,6 +61,7 @@ const Table = ({
             {isAddPanelOpen && (
                <FormPanel
                   title='Add'
+                  targetRef={targetRef}
                   handleSubmit={handleSubmitAndEdit}
                   formData={formData}
                   setFormData={setFormData}
@@ -84,6 +93,7 @@ const Table = ({
                               setIsAddPanelOpen(true);
                               setIsEditPanelOpen(false);
                               setCurrentRecordId(null);
+                              scrollToElement();
                            }}
                         >
                            Add

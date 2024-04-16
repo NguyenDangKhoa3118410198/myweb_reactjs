@@ -10,7 +10,7 @@ const StatusStyle = styled.div`
    padding: 5px 15px;
    color: #fff;
    border-radius: 20px;
-   background-color: ${(props) => (props.isActive ? '#33B249' : '#FF4242')};
+   background-color: ${(props) => (props.isActive ? '#6adb89' : '#FF4242')};
 `;
 
 export const columnsProduct1 = ({
@@ -32,6 +32,20 @@ export const columnsProduct1 = ({
       maxWidth: '250px',
    },
    {
+      name: 'Brand',
+      selector: (row) => row.brandName,
+      sortable: true,
+      center: true,
+      maxWidth: '150px',
+   },
+   {
+      name: 'Category',
+      selector: (row) => row.category,
+      sortable: true,
+      center: true,
+      maxWidth: '150px',
+   },
+   {
       name: 'Url path',
       selector: (row) => row.urlPath,
       sortable: true,
@@ -42,12 +56,14 @@ export const columnsProduct1 = ({
       selector: (row) => row.originPrice,
       sortable: true,
       center: true,
+      maxWidth: '150px',
    },
    {
       name: 'Price',
       selector: (row) => row.price,
       sortable: true,
       center: true,
+      maxWidth: '150px',
    },
    {
       name: 'Action',

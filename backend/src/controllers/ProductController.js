@@ -15,11 +15,13 @@ const getProducts = async (req, res) => {
             id: product.id,
             name: product.name,
             brandName: product.brand_id,
+            category: product.category_id,
             price: product.price,
          };
 
          if (req.user && req.user.role === 'admin') {
             productInfo.sku = product.sku;
+            productInfo.description = product.short_description;
             productInfo.urlPath = product.url_path;
             productInfo.urlKey = product.url_key;
             productInfo.originPrice = product.original_price;

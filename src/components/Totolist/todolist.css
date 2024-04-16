@@ -142,6 +142,7 @@ input[type='text'].new-todo-input {
    word-spacing: normal;
    letter-spacing: normal;
    text-align: justify;
+   text-justify: inter-word;
    line-height: 1.5;
    /* text-align-last: justify; */
 }
