@@ -1,19 +1,20 @@
 const axios = require('axios');
 const { API } = require('../ulti/API');
-const products = [];
+const Product = require('../models/Product');
+
 const reviews = [];
 
 const getProducts = async (req, res) => {
    console.log('--------------- Get products -------------------');
 
    try {
-      const response = await axios.get(API.productAPI);
+      const productsDB = await Product.find({});
 
-      const productData = response.data.data.map((product) => {
+      const productData = productsDB.map((product) => {
          const productInfo = {
             id: product.id,
             name: product.name,
-            brandName: product.brand_name,
+            brandName: product.brand_id,
             price: product.price,
          };
 
@@ -22,10 +23,9 @@ const getProducts = async (req, res) => {
             productInfo.urlPath = product.url_path;
             productInfo.urlKey = product.url_key;
             productInfo.originPrice = product.original_price;
-            productInfo.thumbnailUrl = product.thumbnail_url;
+            productInfo.thumbnailUrl = product.image_url;
          }
 
-         products.push(productInfo);
          return productInfo;
       });
 

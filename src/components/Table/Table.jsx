@@ -75,19 +75,7 @@ const Table = ({
             subHeader
             subHeaderComponent={
                tableActions ? (
-                  <div
-                     style={{
-                        position: 'relative',
-                        padding: '0px',
-                        width: '100%',
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'flex-start',
-                        margin: '10px 10px 20px 5px',
-
-                        top: '0',
-                     }}
-                  >
+                  <div className='custom-data-table'>
                      {setIsAddPanelOpen ? (
                         <button
                            type='button'
@@ -125,7 +113,7 @@ const Table = ({
             pagination
             paginationPerPage={5}
             paginationResetDefaultPage={1}
-            paginationRowsPerPageOptions={[5, 7]}
+            paginationRowsPerPageOptions={[5, 10]}
             paginationComponentOptions={{
                rowsPerPageText: 'Records per page:',
                rangeSeparatorText: 'out of',

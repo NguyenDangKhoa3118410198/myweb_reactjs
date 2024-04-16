@@ -71,3 +71,14 @@
       color: #357ae8;
    }
 }
+
+.custom-data-table {
+   position: relative;
+   padding: 0px;
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-start;
+   margin: 10px 10px 20px 5px;
+   top: 0;
+}
