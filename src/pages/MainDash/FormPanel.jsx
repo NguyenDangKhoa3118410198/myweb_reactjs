@@ -14,7 +14,8 @@ function FormPanel({
          <div className='form-panel'>
             <p className='title-panel'>{title}</p>
             <Form onSubmit={handleSubmit} className='form-container'>
-               <FormGroup className='form-control-input'>
+               <FormGroup controlId='formName' className='form-control-input'>
+                  <Form.Label className='no-margin-label'>Name</Form.Label>
                   <FormControl
                      className='form-panel-input'
                      type='text'
@@ -30,7 +31,11 @@ function FormPanel({
                      required
                   />
                </FormGroup>
-               <FormGroup className='form-control-input'>
+               <FormGroup
+                  controlId='formUsername'
+                  className='form-control-input'
+               >
+                  <Form.Label className='no-margin-label'>Username</Form.Label>
                   <FormControl
                      className='form-panel-input'
                      type='text'
@@ -46,9 +51,12 @@ function FormPanel({
                      required
                   />
                </FormGroup>
-               <FormGroup className='form-control-input'>
+               <FormGroup controlId='formEmail' className='form-control-input'>
+                  <Form.Label className='no-margin-label'>Email</Form.Label>
                   <FormControl
-                     className='form-panel-input'
+                     className={`form-panel-input ${
+                        title === 'Edit' ? 'disabled-input' : ''
+                     }`}
                      type='email'
                      placeholder='Email'
                      name='email'
@@ -59,7 +67,6 @@ function FormPanel({
                            email: e.target.value,
                         });
                      }}
-                     required
                      disabled={title === 'Edit' ? true : false}
                   />
                </FormGroup>

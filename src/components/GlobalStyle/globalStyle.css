@@ -269,3 +269,11 @@ button[type='button'] {
 .floating-label input:not(:focus):not(:placeholder-shown) + label {
    display: none;
 }
+
+.no-margin-label {
+   margin: 0;
+}
+
+.form-panel-input.disabled-input {
+   background-color: #eee !important;
+}

@@ -14,7 +14,11 @@ function FormPanel({
          <div className='form-panel'>
             <p className='title-panel'>{title}</p>
             <Form onSubmit={handleSubmit} className='form-container'>
-               <FormGroup className='form-control-input'>
+               <FormGroup
+                  controlId='formAddress'
+                  className='form-control-input'
+               >
+                  <Form.Label className='no-margin-label'>Address</Form.Label>
                   <FormControl
                      className='form-panel-input'
                      type='text'
@@ -30,7 +34,8 @@ function FormPanel({
                      required
                   />
                </FormGroup>
-               <FormGroup className='form-control-input'>
+               <FormGroup controlId='formPhone' className='form-control-input'>
+                  <Form.Label className='no-margin-label'>Phone</Form.Label>
                   <FormControl
                      className='form-panel-input'
                      type='text'
@@ -48,6 +53,7 @@ function FormPanel({
                </FormGroup>
 
                <FormGroup className='form-control-input'>
+                  <Form.Label className='no-margin-label'>Gender</Form.Label>
                   <Form.Select
                      aria-label='Gender'
                      className='form-panel-input-select'
