@@ -4,15 +4,19 @@ import { Link } from 'react-router-dom';
 // eslint-disable-next-line no-unused-vars
 import Menu, { MenuItem, MenuItemDropdown } from './Menu';
 import './sidebar.css';
-import Logo from '../../imgs/logo.png';
+import Logo from '../../imgs/logo-react.svg';
 import {
    UilEstate,
    UilClipboardAlt,
    UilUsersAlt,
    UilPackage,
 } from '@iconscout/react-unicons';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleDarkMode } from '../features/darkmode/darkModeSlice';
 
 const Sidebar = ({ isMenuActive, toggleBurger, activeMenu }) => {
+   const dispatch = useDispatch();
+   const darkMode = useSelector((state) => state.darkMode);
    // eslint-disable-next-line no-unused-vars
    const dropdownLinks = [
       { title: 'All Customers', to: '/' },
@@ -42,8 +46,8 @@ const Sidebar = ({ isMenuActive, toggleBurger, activeMenu }) => {
          ref={componentRef}
          className={`side-menu ${isMenuActive ? 'open' : ''}`}
       >
-         <div className='sidebar'>
-            <header className='header-sidebar'>
+         <div className={`sidebar ${darkMode ? 'isDark' : ''}`}>
+            <header className={`header-sidebar ${darkMode ? 'isDark' : ''}`}>
                <Link to='/' className='logo'>
                   <div className='brand'>
                      <img src={Logo} alt='logo' />
@@ -54,7 +58,10 @@ const Sidebar = ({ isMenuActive, toggleBurger, activeMenu }) => {
                      </span>
                   </div>
                </Link>
-               <button className='close-button' onClick={toggleBurger}>
+               <button
+                  className={`close-button ${darkMode ? 'isDark' : ''}`}
+                  onClick={toggleBurger}
+               >
                   X
                </button>
             </header>
@@ -102,9 +109,19 @@ const Sidebar = ({ isMenuActive, toggleBurger, activeMenu }) => {
                   icon={<UilVideo />}
                   className='menuItem'
                /> */}
-
-               <div style={{ marginBottom: '2rem' }}></div>
             </Menu>
+            <div className={`footer-sidebar ${darkMode ? 'isDark' : ''}`}>
+               <label className='switch'>
+                  <input
+                     type='checkbox'
+                     className={darkMode ? 'isDark' : ''}
+                     onChange={() => {
+                        dispatch(toggleDarkMode());
+                     }}
+                  />
+                  <span className='slider'></span>
+               </label>
+            </div>
          </div>
       </aside>
    );

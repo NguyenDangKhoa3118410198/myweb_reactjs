@@ -1,7 +1,7 @@
 .menu {
    display: flex;
    flex-direction: column;
-   margin-top: 4rem;
+   margin-top: 2rem;
    gap: 2rem;
    overflow-y: overlay;
    height: 100%;
@@ -19,7 +19,7 @@
 }
 
 .menuItem:hover {
-   background-color: var(--gray);
+   background-color: #d4d3d3;
    cursor: pointer;
 }
 
@@ -32,11 +32,11 @@
    height: 100%;
    margin-right: calc(1rem - 20px);
    content: '';
-   background: var(--white);
+   background: #696868;
 }
 
 .icon {
-   margin-left: 1.5rem;
+   margin-left: 1.8rem;
 }
 
 .item {
