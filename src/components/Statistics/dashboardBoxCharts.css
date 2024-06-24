@@ -8,7 +8,7 @@
    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
    grid-template-rows: repeat(auto-fit, minmax(180px, 1fr));
    gap: 10px;
-   padding: 1.5rem 0;
+   padding: 1rem 0;
 }
 
 .box {
@@ -178,7 +178,7 @@
 @media screen and (max-width: 767px) {
    .dashboard-grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 5px;
    }
 
@@ -196,7 +196,7 @@
 @media (max-width: 1545px) and (min-width: 1127px) {
    .dashboard-grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       grid-template-rows: 200px 200px 250px 250px;
    }
 

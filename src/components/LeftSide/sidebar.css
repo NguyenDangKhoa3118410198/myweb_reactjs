@@ -12,7 +12,7 @@
    z-index: 10;
    transition: all 250ms ease-in-out;
 
-   --header-and-footer: #e7e3e3;
+   --header-and-footer: #edeff2;
    --header-and-footer-darkmode: #2d2f39;
    --background-sidebar: #161a23;
    --border-color: #d9d9d9;
@@ -101,13 +101,15 @@
 }
 
 .switch {
-   --width-of-switch: 6em;
+   --width-of-switch: 5em;
    --height-of-switch: 2em;
    --size-of-icon: 1.4em;
    --slider-offset: 0.3em;
    position: relative;
    width: var(--width-of-switch);
    height: var(--height-of-switch);
+   border: 0.5px solid black;
+   border-radius: 30px;
 }
 
 .switch input {

@@ -1,7 +1,6 @@
 .main-dashboard-container {
    position: relative;
    box-sizing: border-box;
-   padding: 2rem;
    background-color: var(--bodyContent);
    transition: background-color 0.7s linear;
    overflow-y: scroll;
