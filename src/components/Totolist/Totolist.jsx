@@ -21,9 +21,9 @@ function Todolist() {
 
    const handleAddTodo = async (e) => {
       e.preventDefault();
-      const task = todo.trim();
-      if (task.length !== 0) {
-         const response = await addTodo({ task });
+      const trimmedTask = todo.trim();
+      if (trimmedTask) {
+         const response = await addTodo({ task: trimmedTask });
          setTodolist((prevTodolist) => [...prevTodolist, response]);
       }
       setTodo('');
@@ -43,6 +43,12 @@ function Todolist() {
       setTodolist(todolist.filter((todo) => todo.id !== id));
    };
 
+   const handleKeyDown = (e) => {
+      if (e.key === 'Enter' && todo.trim() !== '') {
+         handleAddTodo(e);
+      }
+   };
+
    return (
       <Container className='todolist-container'>
          <Form className='todo-form-container' onSubmit={handleAddTodo}>
@@ -56,10 +62,11 @@ function Todolist() {
                   placeholder='New todo'
                   value={todo}
                   onChange={(e) => setTodo(e.target.value)}
+                  onKeyDown={handleKeyDown}
                />
             </Form.Group>
             <Button type='submit' className='add-todo'>
-               Add
+               Enter
             </Button>
          </Form>
          <div className='todolist'>
@@ -100,7 +107,7 @@ function Todolist() {
                               </span>
                            </div>
                         </div>
-                        <div>
+                        <div className='todo-delete-wrapper'>
                            <UilTrashAlt
                               className='todo-delete'
                               onClick={() => handleDeleteTodo(todo.id)}

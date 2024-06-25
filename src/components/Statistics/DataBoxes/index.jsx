@@ -8,21 +8,25 @@ export const infoCard = [
       title: 'Customers',
       color: 'color1',
       icon: <FaUser />,
+      path: '/customers',
    },
    {
       title: 'Products',
       color: 'color2',
       icon: <FaShoppingCart />,
+      path: '/products',
    },
    {
       title: 'Orders',
       color: 'color3',
       icon: <FaBox />,
+      path: '/orders',
    },
    {
       title: 'Access',
       color: 'color4',
       icon: <FaHubspot />,
+      path: '/customers',
    },
 ];
 

@@ -7,7 +7,7 @@ const OnTopButton = () => {
 
    useEffect(() => {
       const handleScroll = () => {
-         if (window.scrollY > 400) {
+         if (window.scrollY > 500) {
             setIsHidden(false);
          } else {
             setIsHidden(true);
