@@ -28,6 +28,7 @@ import {
 } from '../../ulti/modals';
 import { updateCountingUsers } from '../../components/features/appInformation/appInformationSlice';
 import './mainDash.css';
+import { setLoading } from '../../components/features/loading/loadingSlice';
 
 const MyCalendar = lazy(() => import('../../components/Calendar'));
 const Table = lazy(() => import('../../components/Table/Table'));
@@ -55,10 +56,21 @@ const MainDash = () => {
    });
 
    useEffect(() => {
-      startTransition(() => {
-         pageMainDash(setRecords);
-      });
-   }, []);
+      const fetchData = async () => {
+         dispatch(setLoading(true));
+         try {
+            // Giả lập độ trễ 10 giây bằng setTimeout
+            await new Promise((resolve) => setTimeout(resolve, 10000));
+            pageMainDash(setRecords); // Gọi hàm fetch dữ liệu
+         } catch (error) {
+            console.error('Error fetching data:', error);
+         } finally {
+            dispatch(setLoading(false));
+         }
+      };
+
+      fetchData();
+   }, [dispatch]);
 
    const handleClose = (e) => {
       e.preventDefault();
