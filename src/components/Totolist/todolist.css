@@ -100,14 +100,17 @@
 }
 
 @keyframes shake {
+
    0%,
    100% {
       transform: translateX(0);
    }
+
    25%,
    75% {
       transform: translateX(-2px);
    }
+
    50% {
       transform: translateX(2px);
    }
@@ -139,6 +142,7 @@ input[type='text'].new-todo-input {
 }
 
 .add-todo {
+   font-weight: 500 !important;
    background-color: #1e84f0 !important;
 }
 
@@ -181,7 +185,7 @@ input[type='text'].new-todo-input {
 }
 
 .container-todo {
-   & > span {
+   &>span {
       font-family: 'Roboto', sans-serif;
       font-weight: 500;
       font-size: 13px;

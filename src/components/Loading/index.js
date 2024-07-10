@@ -28,6 +28,25 @@ const LoadingCircle = styled.div`
 
 const LoadingText = styled.p`
    margin-top: 10px;
+   font-weight: 600;
+`;
+
+const LoadingWrapper = styled.div`
+   position: relative;
+`;
+
+const LoadingDataContainer = styled.div`
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   background-color: rgba(255, 255, 255, 0.7);
+   z-index: 1000;
 `;
 
 const Loading = () => {
@@ -36,6 +55,20 @@ const Loading = () => {
          <LoadingCircle />
          <LoadingText>Loading...</LoadingText>
       </LoadingContainer>
+   );
+};
+
+export const LoadingData = ({ children, loading }) => {
+   return (
+      <LoadingWrapper>
+         {loading && (
+            <LoadingDataContainer>
+               <LoadingCircle />
+               <LoadingText>Loading...</LoadingText>
+            </LoadingDataContainer>
+         )}
+         {children}
+      </LoadingWrapper>
    );
 };
 

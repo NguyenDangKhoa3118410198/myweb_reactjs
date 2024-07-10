@@ -20,13 +20,34 @@ const Login = () => {
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [showPassword, setShowPassword] = useState(false);
+   const [rememberMe, setRememberMe] = useState(false);
 
    useEffect(() => {
       deleteLocalStorage();
+      const savedEmail = localStorage.getItem('email');
+      const savedPassword = localStorage.getItem('password');
+      const remember = localStorage.getItem('remember');
+      if (savedEmail && savedPassword) {
+         setEmail(savedEmail);
+         setPassword(savedPassword);
+         setRememberMe(remember);
+      }
    }, []);
+
+   const handleRememberMeChange = (e) => {
+      setRememberMe(e.target.checked);
+      localStorage.setItem('remember', e.target.checked);
+   };
 
    const handleSubmit = async (e) => {
       e.preventDefault();
+      if (rememberMe) {
+         localStorage.setItem('email', email);
+         localStorage.setItem('password', password);
+      } else {
+         localStorage.removeItem('email');
+         localStorage.removeItem('password');
+      }
       try {
          await handleApiCall('login/admin', { email, password });
       } catch (error) {
@@ -130,7 +151,12 @@ const Login = () => {
                   </div>
                   <div className='more-action-login-form'>
                      <div className='rememeber-checkbox-container'>
-                        <input type='checkbox' id='rememberCheckbox' />
+                        <input
+                           type='checkbox'
+                           id='rememberCheckbox'
+                           checked={rememberMe}
+                           onChange={handleRememberMeChange}
+                        />
                         <label htmlFor='rememberCheckbox'>Remember me</label>
                      </div>
 

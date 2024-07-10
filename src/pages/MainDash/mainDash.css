@@ -3,6 +3,7 @@
    box-sizing: border-box;
    background-color: var(--bodyContent);
    transition: background-color 0.7s linear;
+   padding: 5px 10px;
    overflow-y: scroll;
 }
 
@@ -125,7 +126,7 @@ input[type='search'].searchBox {
    margin: 0 16px;
 }
 
-.form-control-input > input {
+.form-control-input>input {
    background-color: #fff !important;
 }
 

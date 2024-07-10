@@ -20,16 +20,19 @@
    background-color: var(--activeItem);
    justify-content: center;
    align-items: center;
-   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
    transition: transform 0.5s ease;
+
+   &:hover {
+      box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+   }
 }
 
 .box:not(.box5, .box6, .box7):hover {
-   transform: translate(0, -5px) scale(1.01);
+   transform: translate(0, -4px) scale(1.01);
    box-shadow: none;
    filter: drop-shadow(0 0 0.4rem rgba(0, 0, 0, 0.6));
-   outline: 2px solid #eee;
-   border: 2px solid #eee;
+   outline: 1px solid #eee;
+   border: 1px solid #eee;
 }
 
 .box1 {
@@ -182,6 +185,10 @@
       gap: 5px;
    }
 
+   .box:not(.box5, .box6, .box7):hover {
+      transform: translate(0, -1px) scale(1);
+   }
+
    .box7 {
       grid-column: span 1;
       grid-row: span 3;
@@ -209,6 +216,7 @@
       grid-column: span 1;
       grid-row: 2 / 3;
    }
+
    .box3 {
       grid-column: span 1;
       grid-row: 1 / 2;

@@ -6,7 +6,6 @@
    justify-content: space-between;
    min-height: 5rem;
    padding-left: 1rem;
-   padding-right: 3rem;
    padding-top: 0.1rem;
    padding-bottom: 0.1rem;
    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
@@ -18,6 +17,7 @@
    &.darkmode {
       background: linear-gradient(to bottom right, #000, #141b2d, #ddd);
    }
+
    transition: background-color 0.7s linear;
 }
 
@@ -161,6 +161,8 @@
    display: flex;
    justify-content: center;
    padding: 0.5rem;
+   font-size: 13px;
+   font-weight: 500;
 }
 
 .menu-item::before {
@@ -186,11 +188,41 @@
 }
 
 .header-username {
-   padding: 0 1rem;
+   display: flex;
+   justify-content: center;
    font-weight: 600;
+   font-size: 14px;
 }
 
-@media (max-width: 767px) {
+.dropdown-item:hover {
+   background-color: #e7e9eb;
+}
+
+#nav-search {
+   width: 50% !important;
+   position: relative;
+}
+
+#nav-input-search {
+   border-radius: 20px;
+   padding-right: 40px;
+   margin: 0px !important;
+}
+
+.nav-search-icon {
+   position: absolute;
+   top: 50%;
+   right: 10px;
+   transform: translateY(-50%);
+}
+
+.custom-dropdown-menu {
+   margin-top: 5px;
+   width: 150px;
+}
+
+
+@media (max-width: 768px) {
    .slider.round {
       margin-left: 10px;
       width: 60px;
@@ -198,6 +230,14 @@
 
    .name-tab {
       font-size: 1.4rem;
+   }
+
+   .icon-menu-item {
+      display: none;
+   }
+
+   .name-tab {
+      display: none;
    }
 }
 
@@ -209,5 +249,9 @@
 
    .name-tab {
       display: none;
+   }
+
+   .nav-right {
+      right: 20px;
    }
 }

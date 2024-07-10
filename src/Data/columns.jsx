@@ -319,7 +319,7 @@ export const columnsOrder = ({
          let backgroundColor;
          switch (status) {
             case 'pending':
-               backgroundColor = '#FCA61F';
+               backgroundColor = 'rgb(255 229 65)';
                break;
             case 'shipped':
                backgroundColor = '#00CED1';
@@ -335,7 +335,9 @@ export const columnsOrder = ({
                break;
          }
          return (
-            <StatusStyle style={{ backgroundColor: backgroundColor }}>
+            <StatusStyle
+               style={{ backgroundColor: backgroundColor, fontWeight: 600 }}
+            >
                {status}
             </StatusStyle>
          );

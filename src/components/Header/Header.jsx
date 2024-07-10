@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
    UilUser,
    UilInfoCircle,
@@ -12,16 +12,34 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleDarkMode } from '../features/darkmode/darkModeSlice';
 import { deleteLocalStorage, getObjectFromLocalStorage } from '../../ulti';
 import BurgerIcon from '../../imgs/align-left.svg';
+import IconSearch from '../../imgs/IconSearch';
+
 import './header.css';
 
 const Header = ({ nameContent, toggleBurger }) => {
    const [avatarUrl, setAvatarUrl] = useState('');
    const darkMode = useSelector((state) => state.darkMode);
    const username = localStorage.getItem('username');
+   const searchInputRef = useRef(null);
 
    useEffect(() => {
       const customerObject = getObjectFromLocalStorage('customerInfo');
       setAvatarUrl(customerObject.avatar);
+   }, []);
+
+   useEffect(() => {
+      const handleKeyDown = (event) => {
+         if (event.ctrlKey && event.key === '/') {
+            event.preventDefault();
+            searchInputRef.current.focus();
+         }
+      };
+
+      window.addEventListener('keydown', handleKeyDown);
+
+      return () => {
+         window.removeEventListener('keydown', handleKeyDown);
+      };
    }, []);
 
    const dispatch = useDispatch();
@@ -41,6 +59,15 @@ const Header = ({ nameContent, toggleBurger }) => {
 
             <h1 className='name-tab'>{nameContent}</h1>
          </div>
+         <div id='nav-search'>
+            <input
+               ref={searchInputRef}
+               id='nav-input-search'
+               type='search'
+               placeholder='Enter something to search'
+            />
+            <IconSearch className='nav-search-icon' />
+         </div>
 
          <div className='nav-right'>
             <nav>
@@ -53,7 +80,6 @@ const Header = ({ nameContent, toggleBurger }) => {
                   >
                      <UilSun />
                   </div>
-                  <span className='header-username'> {username}</span>
 
                   <Dropdown>
                      <Dropdown.Toggle className='user-profile'>
@@ -76,7 +102,13 @@ const Header = ({ nameContent, toggleBurger }) => {
                         )}
                      </Dropdown.Toggle>
 
-                     <Dropdown.Menu>
+                     <Dropdown.Menu className='custom-dropdown-menu'>
+                        <Dropdown.Header>
+                           <span className='header-username'>
+                              Welcome: {username}
+                           </span>
+                        </Dropdown.Header>
+                        <Dropdown.Divider />
                         <Dropdown.Item as={Link} to='/info'>
                            <div className='menu-item'>
                               <UilInfoCircle />
@@ -106,6 +138,21 @@ const Header = ({ nameContent, toggleBurger }) => {
                            <div className='menu-item'>
                               <UilSignout />
                               <span className='name-menu-item'>Logout</span>
+                           </div>
+                        </Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item>
+                           <div
+                              // className='icon-menu-item'
+                              className='menu-item'
+                              onClick={() => {
+                                 dispatch(toggleDarkMode());
+                              }}
+                           >
+                              <UilSun />
+                              <span className='name-menu-item'>
+                                 Light / Dark
+                              </span>
                            </div>
                         </Dropdown.Item>
                      </Dropdown.Menu>

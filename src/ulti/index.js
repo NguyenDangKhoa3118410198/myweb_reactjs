@@ -1,13 +1,13 @@
 import moment from 'moment';
 
 export const deleteLocalStorage = () => {
-   // localStorage.removeItem('authToken');
-   // localStorage.removeItem('refreshToken');
-   // localStorage.removeItem('isAuthenticated');
-   // localStorage.removeItem('username');
-   // localStorage.removeItem('avatarUrl');
-   // localStorage.removeItem('customerInfo');
-   localStorage.clear();
+   localStorage.removeItem('authToken');
+   localStorage.removeItem('refreshToken');
+   localStorage.removeItem('isAuthenticated');
+   localStorage.removeItem('username');
+   localStorage.removeItem('avatarUrl');
+   localStorage.removeItem('customerInfo');
+   // localStorage.clear();
 };
 
 export const getObjectFromLocalStorage = (key) => {
