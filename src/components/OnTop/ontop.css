@@ -6,7 +6,7 @@
    bottom: 10px;
    border-radius: 50%;
    background-color: #2286f0;
-   z-index: 10;
+   z-index: 1001;
    transition: transform 250ms ease, background-color 500ms ease-in-out;
 }
 
@@ -24,6 +24,7 @@
    0% {
       transform: translateY(20px);
    }
+
    50% {
       transform: translateY(0);
    }
@@ -31,10 +32,12 @@
    75% {
       transform: translateY(-20px);
    }
+
    90% {
       opacity: 0;
       transform: translateY(-20px);
    }
+
    100% {
       opacity: 0;
       transform: translateY(0);

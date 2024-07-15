@@ -7,6 +7,9 @@ const showToast = (icon, message) => {
       showConfirmButton: false,
       timer: 3000,
       timerProgressBar: true,
+      customClass: {
+         popup: 'custom-toast',
+      },
       didOpen: (toast) => {
          toast.onmouseenter = Swal.stopTimer;
          toast.onmouseleave = Swal.resumeTimer;

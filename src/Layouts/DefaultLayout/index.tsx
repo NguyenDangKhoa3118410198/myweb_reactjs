@@ -3,7 +3,15 @@ import Sidebar from '../../components/LeftSide/Sidebar';
 import Header from '../../components/Header/Header';
 import './AdminDefaultLayout.css';
 
-function AdminDefaultLayout({ name, children }) {
+interface IAdminDefaultLayout {
+   name: string;
+   children: React.ReactNode;
+}
+
+const AdminDefaultLayout: React.FC<IAdminDefaultLayout> = ({
+   name,
+   children,
+}) => {
    const [isMenuActive, activeMenu] = useState(false);
 
    const toggleBurger = () => {
@@ -24,6 +32,6 @@ function AdminDefaultLayout({ name, children }) {
          </div>
       </div>
    );
-}
+};
 
 export default AdminDefaultLayout;

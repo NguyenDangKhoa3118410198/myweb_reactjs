@@ -42,6 +42,8 @@ const MainDash = () => {
    const [searchTerm, setSearchTerm] = useState('');
 
    const darkMode = useSelector((state) => state.darkMode);
+   const calendar = useSelector((state) => state.setting.calendar);
+
    const [isAddPanelOpen, setIsAddPanelOpen] = useState(false);
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
    const [isModalView, setModalView] = useState(false);
@@ -313,7 +315,7 @@ const MainDash = () => {
          </div>
       </div>
    );
-
+   // console.log(calendar);
    return (
       <main
          className={`main-dashboard-container  ${darkMode ? 'darkmode' : ''}`}
@@ -328,7 +330,8 @@ const MainDash = () => {
             <ProgressChartStats />
          </div>
 
-         <MyCalendar />
+         {calendar && <MyCalendar />}
+
          <OnTopButton />
 
          <Suspense fallback={<div>Loading...</div>}>

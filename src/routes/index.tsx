@@ -15,8 +15,10 @@ import InfoWeb from '../pages/InfoWeb';
 import Profile from '../pages/Profile';
 import ForgotPassword from '../components/ForgotPass/ForgotPassword';
 import NewPassword from '../components/ForgotPass/NewPassword';
+import Setting from '../pages/Setting';
+import { IRoute } from '../App';
 
-const publicRoutes = [
+const publicRoutes: IRoute[] = [
    {
       name: 'Admin Login',
       path: '/login',
@@ -43,7 +45,7 @@ const publicRoutes = [
    },
 ];
 
-const privateRoutes = [
+const privateRoutes: IRoute[] = [
    {
       name: 'Dashboard',
       path: '/',
@@ -96,6 +98,12 @@ const privateRoutes = [
       name: 'Profile',
       path: '/profile',
       component: Profile,
+      layout: NullLayout,
+   },
+   {
+      name: 'Setting',
+      path: '/setting',
+      component: Setting,
       layout: NullLayout,
    },
    {

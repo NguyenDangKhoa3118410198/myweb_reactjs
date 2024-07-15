@@ -3,8 +3,9 @@ import {
    UilUser,
    UilInfoCircle,
    UilSignout,
-   UilCalendarAlt,
+   UilEnvelope,
    UilSun,
+   UilSetting,
 } from '@iconscout/react-unicons';
 import { Link } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -125,8 +126,15 @@ const Header = ({ nameContent, toggleBurger }) => {
 
                         <Dropdown.Item as={Link} to='/contact'>
                            <div className='menu-item'>
-                              <UilCalendarAlt />
+                              <UilEnvelope />
                               <span className='name-menu-item'>Contact</span>
+                           </div>
+                        </Dropdown.Item>
+
+                        <Dropdown.Item as={Link} to='/setting'>
+                           <div className='menu-item'>
+                              <UilSetting />
+                              <span className='name-menu-item'>Setting</span>
                            </div>
                         </Dropdown.Item>
 

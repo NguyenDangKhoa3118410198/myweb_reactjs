@@ -1,14 +1,20 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, Fragment } from 'react';
 import { privateRoutes, publicRoutes } from './routes';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Fragment } from 'react';
 import PrivateRoute from './routes/PrivateRoute/PrivateRoute';
 import Loading from './components/Loading';
 
 const LazyAdminDefaultLayout = lazy(() => import('./Layouts/DefaultLayout'));
 
+export interface IRoute {
+   name: string;
+   path: string;
+   component?: React.ComponentType<any> | null;
+   layout?: React.ComponentType<any>;
+}
+
 function App() {
-   const renderComponentAndLayout = (route) => {
+   const renderComponentAndLayout = (route: IRoute) => {
       const PageCurrent = route.component || Fragment;
       const Layout = route.layout || LazyAdminDefaultLayout;
       return { PageCurrent, Layout };
@@ -19,7 +25,7 @@ function App() {
          <div className='App'>
             <Suspense fallback={<Loading />}>
                <Routes>
-                  {publicRoutes.map((route) => {
+                  {publicRoutes.map((route: IRoute) => {
                      const { PageCurrent, Layout } =
                         renderComponentAndLayout(route);
 
@@ -36,7 +42,7 @@ function App() {
                      );
                   })}
 
-                  {privateRoutes.map((route) => {
+                  {privateRoutes.map((route: IRoute) => {
                      const { PageCurrent, Layout } =
                         renderComponentAndLayout(route);
 
