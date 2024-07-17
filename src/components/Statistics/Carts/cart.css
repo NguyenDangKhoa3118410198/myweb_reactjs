@@ -4,6 +4,7 @@
    width: 100%;
    padding: 10px;
    text-shadow: 1px px rgba(0, 0, 0, 0.5);
+   padding: 5px;
 }
 
 .cart-left {
@@ -70,7 +71,7 @@
    flex-direction: column;
    flex: 2;
    align-items: center;
-   margin-bottom: 0.5rem;
+   margin-bottom: 1rem;
    position: relative;
 
    .cart-title {

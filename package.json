@@ -73,6 +73,7 @@
       ]
    },
    "devDependencies": {
-      "@types/lodash": "^4.17.6"
+      "@types/lodash": "^4.17.6",
+      "@types/styled-components": "^5.1.34"
    }
 }

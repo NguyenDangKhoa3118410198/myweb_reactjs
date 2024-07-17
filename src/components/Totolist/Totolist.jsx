@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Form, Button, Container } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Form, Container } from 'react-bootstrap';
 import { UilTrashAlt } from '@iconscout/react-unicons';
 import {
    todoList,
@@ -9,6 +9,7 @@ import {
 } from '../../Data/fetchData';
 import { formattedDateAndTime } from '../../ulti';
 import { FaCalendar, FaClock } from 'react-icons/fa';
+import PrimaryButton from 'components/common/ButtonPrimary';
 import './todolist.css';
 
 function Todolist() {
@@ -65,9 +66,11 @@ function Todolist() {
                   onKeyDown={handleKeyDown}
                />
             </Form.Group>
-            <Button type='submit' className='add-todo'>
-               Enter
-            </Button>
+            <PrimaryButton
+               label='Enter'
+               htmlType='submit'
+               style={{ margin: '10px' }}
+            ></PrimaryButton>
          </Form>
          <div className='todolist'>
             {todolist && todolist.length > 0 ? (

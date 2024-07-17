@@ -20,15 +20,19 @@
    0% {
       transform: translateX(0);
    }
+
    25% {
       transform: translateX(-5px) rotate(5deg);
    }
+
    50% {
       transform: translateX(5px) rotate(-5deg);
    }
+
    75% {
       transform: translateX(-5px) rotate(5deg);
    }
+
    100% {
       transform: translateX(0);
    }
@@ -62,7 +66,7 @@
 }
 
 .progress-bar-content {
-   border-radius: 10px;
-   padding: 20px;
+   border-radius: 20px;
+   padding: 25px;
    background-color: var(--bodyContent);
 }

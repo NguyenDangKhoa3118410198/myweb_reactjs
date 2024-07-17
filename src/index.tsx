@@ -4,6 +4,7 @@ import App from './App';
 import GlobalStyle from './components/GlobalStyle';
 import { Provider } from 'react-redux';
 import store from './components/features/store';
+import 'antd/dist/reset.css';
 
 const rootElement = document.getElementById('root');
 if (rootElement) {

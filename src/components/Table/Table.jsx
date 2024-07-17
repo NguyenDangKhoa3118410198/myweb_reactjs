@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import DataTable from 'react-data-table-component';
 import { headerCsv } from './TableActions/handleActions';
 import { TableCustomStyles } from './Custom/TableCustomStyles';
@@ -8,6 +8,8 @@ import ExportCSV from './ExportCSV';
 import './table.css';
 import { useSelector } from 'react-redux';
 import { LoadingData } from '../Loading';
+import PrimaryButton from 'components/common/ButtonPrimary';
+import { PlusCircleOutlined } from '@ant-design/icons';
 
 const Table = ({
    title,
@@ -88,27 +90,25 @@ const Table = ({
                subHeaderComponent={
                   tableActions ? (
                      <div className='custom-data-table'>
-                        {setIsAddPanelOpen ? (
-                           <button
-                              type='button'
-                              className='btn btn-add'
-                              onClick={() => {
-                                 setIsAddPanelOpen(true);
-                                 setIsEditPanelOpen(false);
-                                 setCurrentRecordId(null);
-                                 scrollToElement();
-                              }}
-                           >
-                              Add
-                           </button>
-                        ) : null}
                         <div className='right-data-table'>
+                           {setIsAddPanelOpen ? (
+                              <PrimaryButton
+                                 onClick={() => {
+                                    setIsAddPanelOpen(true);
+                                    setIsEditPanelOpen(false);
+                                    setCurrentRecordId(null);
+                                    scrollToElement();
+                                 }}
+                                 label='Create'
+                                 icon={<PlusCircleOutlined />}
+                              />
+                           ) : null}
+                           {searchBox}
                            <ExportCSV
                               headers={headers}
                               title={title}
                               data={data}
                            />
-                           {searchBox}
                         </div>
                      </div>
                   ) : (
