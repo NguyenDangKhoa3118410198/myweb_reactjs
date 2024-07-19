@@ -1,6 +1,5 @@
-import React, { useState, useEffect, startTransition } from 'react';
-import { useSelector } from 'react-redux';
-import { pageProducts } from '../../Data/fetchData';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { columnsProduct1 } from '../../Data/columns';
 import Table from '../../components/Table/Table';
 import {
@@ -8,9 +7,13 @@ import {
    removeExtraSpaces,
 } from '../../components/Table/TableActions/handleActions';
 import OnTopButton from '../../components/OnTop/OnTop';
-import { pageReviewProduct } from '../../Data/fetchData';
 
 import './product.css';
+import {
+   fetchProducts,
+   fetchReviewProduct,
+} from 'components/features/thunk/thunk';
+import { Spin } from 'antd';
 function Products() {
    const darkMode = useSelector((state) => state.darkMode);
 
@@ -22,12 +25,23 @@ function Products() {
 
    const [isModalView, setModalView] = useState(false);
    const [viewCurrent, setViewCurrent] = useState({});
+   const dispatch = useDispatch();
+   const { products: reduxProducts, status: statusProducts } = useSelector(
+      (state) => state.root.product
+   );
+
+   const { reviews: reduxReviews } = useSelector((state) => state.root.review);
+   useEffect(() => {
+      setIsListReviews(reduxReviews);
+   }, [reduxReviews]);
 
    useEffect(() => {
-      startTransition(() => {
-         pageProducts(setProducts);
-      });
-   }, []);
+      setProducts(reduxProducts);
+   }, [reduxProducts]);
+
+   useEffect(() => {
+      dispatch(fetchProducts()); // get list products
+   }, [dispatch]);
 
    function filterData(records) {
       return records.filter((row) =>
@@ -42,7 +56,7 @@ function Products() {
    }
 
    const handleReview = (record) => {
-      pageReviewProduct(record.id, setIsListReviews);
+      dispatch(fetchReviewProduct(record.id));
       setModalReview(true);
    };
 
@@ -58,21 +72,23 @@ function Products() {
 
    return (
       <main className={`product-wrapper  ${darkMode ? 'darkmode' : ''}`}>
-         <Table
-            title={'List products'}
-            columns={columns}
-            data={filterData(products)}
-            searchBox={searchBox(searchTerm, setSearchTerm)}
-            setModalView={setModalView}
-            tableActions={{
-               setModalView,
-               viewCurrent,
-               isModalView,
-               setModalReview,
-               isListReviews,
-               isModalReview,
-            }}
-         />
+         <Spin spinning={statusProducts === 'loading'}>
+            <Table
+               title={'List products'}
+               columns={columns}
+               data={filterData(products)}
+               searchBox={searchBox(searchTerm, setSearchTerm)}
+               setModalView={setModalView}
+               tableActions={{
+                  setModalView,
+                  viewCurrent,
+                  isModalView,
+                  setModalReview,
+                  isListReviews,
+                  isModalReview,
+               }}
+            />
+         </Spin>
 
          <OnTopButton />
       </main>
