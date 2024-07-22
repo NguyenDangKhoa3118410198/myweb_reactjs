@@ -177,7 +177,11 @@ function UsersDetail() {
    });
 
    return (
-      <main className={`user-detail-wrapper ${darkMode ? 'darkmode' : ''} `}>
+      <main
+         className={`user-detail-wrapper main-container ${
+            darkMode ? 'darkmode' : ''
+         } `}
+      >
          <Table
             title='List table Users Detail'
             columns={columns}

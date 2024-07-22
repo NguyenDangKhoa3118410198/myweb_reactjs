@@ -78,6 +78,10 @@ input,
    border: none;
 }
 
+.main-container {
+   margin: auto;
+}
+
 input[type='text'],
 input[type='email'],
 input[type='password'],
@@ -275,4 +279,17 @@ button[type='button'] {
 
 .form-panel-input.disabled-input {
    background-color: #eee !important;
+}
+
+@media (max-width: 767px) {
+   .main-dashboard-container {
+      max-width: 100%;
+      /* Đảm bảo nó chiếm toàn bộ chiều rộng màn hình */
+      padding: 5px;
+      /* Điều chỉnh padding nếu cần cho mobile */
+      overflow-y: auto;
+      /* Điều chỉnh overflow nếu cần */
+   }
+
+   /* Các cấu hình bổ sung cho mobile nếu có */
 }

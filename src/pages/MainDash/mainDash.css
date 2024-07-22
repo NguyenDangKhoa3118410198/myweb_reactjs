@@ -1,8 +1,8 @@
 .main-dashboard-container {
+   max-width: 1440px;
    position: relative;
    box-sizing: border-box;
-   background-color: var(--bodyContent);
-   transition: background-color 0.7s linear;
+   /* background-color: var(--bodyContent); */
    padding: 5px 10px;
    overflow-y: scroll;
 }

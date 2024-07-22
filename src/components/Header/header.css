@@ -176,11 +176,6 @@
    font-weight: bold;
 }
 
-.darkmode {
-   background-color: #141b2d;
-   transition: background-color 0.7s linear;
-}
-
 .darkmode .nav-left,
 .darkmode .nav-right,
 .darkmode .header-theme-toggle {

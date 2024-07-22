@@ -4,7 +4,7 @@ import backgroundImage from '../../imgs/background-contact.png';
 
 function Contact() {
    return (
-      <div className='contact-form'>
+      <div className='contact-form main-container'>
          <h1>
             <strong>We will address your issues</strong>
          </h1>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from '../../components/LeftSide/Sidebar';
 import Header from '../../components/Header/Header';
 import './AdminDefaultLayout.css';
+import { useSelector } from 'react-redux';
 
 interface IAdminDefaultLayout {
    name: string;
@@ -13,6 +14,7 @@ const AdminDefaultLayout: React.FC<IAdminDefaultLayout> = ({
    children,
 }) => {
    const [isMenuActive, activeMenu] = useState(false);
+   const darkMode = useSelector((state: any) => state.darkMode);
 
    const toggleBurger = () => {
       activeMenu(!isMenuActive);
@@ -26,7 +28,9 @@ const AdminDefaultLayout: React.FC<IAdminDefaultLayout> = ({
             activeMenu={activeMenu}
          />
 
-         <div className='admin-layout-container'>
+         <div
+            className={`admin-layout-container ${darkMode ? 'darkmode' : ''}`}
+         >
             <Header nameContent={name} toggleBurger={toggleBurger} />
             {children}
          </div>

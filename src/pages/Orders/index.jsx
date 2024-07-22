@@ -44,7 +44,7 @@ function Orders() {
    });
 
    return (
-      <main className={`Orders  ${darkMode ? 'darkmode' : ''}`}>
+      <main className={`Orders main-container ${darkMode ? 'darkmode' : ''}`}>
          <Table
             title='List of orders'
             columns={columns}

@@ -177,7 +177,11 @@ function Customers() {
    });
 
    return (
-      <main className={`customer-wrapper ${darkMode ? 'darkmode' : ''} `}>
+      <main
+         className={`customer-wrapper main-container ${
+            darkMode ? 'darkmode' : ''
+         } `}
+      >
          <Table
             title='List table Customers'
             columns={columns}

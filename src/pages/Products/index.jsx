@@ -71,7 +71,11 @@ function Products() {
    });
 
    return (
-      <main className={`product-wrapper  ${darkMode ? 'darkmode' : ''}`}>
+      <main
+         className={`product-wrapper main-container ${
+            darkMode ? 'darkmode' : ''
+         }`}
+      >
          <Spin spinning={statusProducts === 'loading'}>
             <Table
                title={'List products'}

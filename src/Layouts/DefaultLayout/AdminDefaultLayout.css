@@ -8,8 +8,13 @@
 
 .admin-layout-container {
    width: 100%;
-   height: 100%;
+   height: 100vh;
    display: flex;
    flex-direction: column;
-   background-color: #e0e0e0;
+   background-color: #e7e9eb;
+
+   &.darkmode {
+      background: linear-gradient(to bottom right, #000, #141b2d, #ddd);
+   }
+
 }
