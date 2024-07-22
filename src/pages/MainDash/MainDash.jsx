@@ -317,11 +317,7 @@ const MainDash = () => {
    );
    // console.log(calendar);
    return (
-      <main
-         className={`main-dashboard-container main-container  ${
-            darkMode ? 'darkmode' : ''
-         }`}
-      >
+      <main className={`main-dashboard-container`}>
          <Suspense fallback={<div>Loading...</div>}>
             <DashboardBoxChart />
          </Suspense>
