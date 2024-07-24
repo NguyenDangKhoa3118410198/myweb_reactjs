@@ -10,7 +10,9 @@ const StatusStyle = styled.div`
    padding: 5px 15px;
    color: #fff;
    border-radius: 20px;
-   background-color: ${(props) => (props.isActive ? '#6adb89' : '#FF4242')};
+   background-color: #fff;
+   color: ${(props) => (props.isActive ? '#6adb89' : '#FF4242')};
+   border: 1px solid ${(props) => (props.isActive ? '#6adb89' : '#FF4242')};
 `;
 
 export const columnsProduct1 = ({
@@ -316,27 +318,31 @@ export const columnsOrder = ({
       cell: (row) => {
          const status = row.status.toLowerCase();
 
-         let backgroundColor;
+         let color;
          switch (status) {
             case 'pending':
-               backgroundColor = 'rgb(255 229 65)';
+               color = 'var(--color-orange)';
                break;
             case 'shipped':
-               backgroundColor = '#00CED1';
+               color = '#00CED1';
                break;
             case 'delivered':
-               backgroundColor = '#32CD32';
+               color = '#32CD32';
                break;
             case 'cancelled':
-               backgroundColor = '#FF4242';
+               color = '#FF4242';
                break;
             default:
-               backgroundColor = '#ccc';
+               color = '#ccc';
                break;
          }
          return (
             <StatusStyle
-               style={{ backgroundColor: backgroundColor, fontWeight: 600 }}
+               style={{
+                  color: color,
+                  border: `1px solid ${color}`,
+                  fontWeight: 600,
+               }}
             >
                {status}
             </StatusStyle>

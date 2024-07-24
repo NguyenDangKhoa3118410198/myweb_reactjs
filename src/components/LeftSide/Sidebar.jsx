@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line no-unused-vars
@@ -52,7 +52,7 @@ const Sidebar = ({ isMenuActive, toggleBurger, activeMenu }) => {
                   <div className='brand'>
                      <img src={Logo} alt='logo' />
                   </div>
-                  <div className='logo'>
+                  <div className={`logo ${darkMode ? 'darkmode' : ''}`}>
                      <span>
                         K<span>o</span>ss
                      </span>
@@ -66,35 +66,26 @@ const Sidebar = ({ isMenuActive, toggleBurger, activeMenu }) => {
                </button>
             </header>
             <Menu>
-               <MenuItem
-                  title='Home'
-                  to='/'
-                  icon={<UilEstate />}
-                  className='menuItem'
-               />
+               <MenuItem title='Home' to='/' icon={<UilEstate />} />
                <MenuItem
                   title='Orders'
                   to='/orders'
                   icon={<UilClipboardAlt />}
-                  className='menuItem'
                />
                <MenuItem
                   title='Customers'
                   to='/customers'
                   icon={<UilUsersAlt />}
-                  className='menuItem'
                />
                <MenuItem
                   title='Products'
                   to='/products'
                   icon={<UilPackage />}
-                  className='menuItem'
                />
                <MenuItem
                   title='Users Detail'
                   to='/usersDetail'
                   icon={<UilUsersAlt />}
-                  className='menuItem'
                />
                {/* <MenuItem
                   title='Analytics'

@@ -1,11 +1,15 @@
-import { NavLink } from "react-router-dom";
-import "./menu.css";
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-function MenuItem({ title, to, icon, className }) {
+import './menu.css';
+
+function MenuItem({ title, to, icon }) {
+   const darkMode = useSelector((state) => state.darkMode);
+
    return (
-      <NavLink className={className} to={to}>
-         <span className="icon">{icon}</span>
-         <span className="item">{title}</span>
+      <NavLink className={`menuItem ${darkMode ? 'darkmode' : ''}`} to={to}>
+         <span className='icon'>{icon}</span>
+         <span className='item'>{title}</span>
       </NavLink>
    );
 }

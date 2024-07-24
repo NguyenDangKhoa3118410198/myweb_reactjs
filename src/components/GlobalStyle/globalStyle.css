@@ -1,6 +1,4 @@
 :root {
-   --black: #000;
-   --white: #fff;
    --yellow: linear-gradient(180deg, #f8d49a -146.42%, #fad79d -46.42%);
    --orange: #fca61f;
    --black: #242d49;
@@ -11,12 +9,60 @@
    --boxShadow: 0px 19px 60px rgb(0 0 0 / 8%);
    --smboxShadow: -79px 51px 60px rgba(0, 0, 0, 0.08);
    --activeItem: #788097;
+   --color-primary: #141414;
+   --color-green: #4a9d77;
+   --color-primary-01: #e2f4ec;
+   --color-primary-02: #f8f8ff;
+   --color-primary-03: #f4fffa;
+   --color-red: #e95060;
+   --color-red-01: #ffeff1;
+   --color-red-02: #F5222D;
+   --color-orange: #fca61f;
+   --color-white: #fff;
+   --color-white-01: #f0f2f7;
+   --color-white-02: #e4e8ee;
+   --color-black: #000;
+   --color-purple: #c3c2e0;
+   --color-purple-01: #ccd1fe;
+   --color-purple-02: #3331a7;
+   --color-purple-03: #e7e9f3;
+   --color-purple-04: #60669f;
+   --color-purple-05: #e2e5ff;
+   --color-purple-06: #1B9AAA;
+   --color-purple-07: #595959;
+   --color-purple-08: #dddcff;
+   --color-purple-blur: rgba(54, 53, 101, 0.8);
+   --color-yellow: #f7c957;
+   --color-yellow-01: #ffc107;
+   --color-yellow-02: rgb(243, 213, 17);
+   --color-blue-01: #4299e1;
+   --color-blue-02: #90cdf4;
+   --color-blue-03: #58b9f5;
+   --color-blue-04: #79c4f3;
+   --color-blue-05: #bfe1f7;
+   --color-overlay: #22aec0;
+   --color-gray: #c4c4c4;
+   --color-blue-munsell-05: #F3FAFB;
+   --Blue-Munsell-Main: #1B9AAA;
+   --color-book-incoming: #1B9AAA;
+   --color-book-cancel: #BFBFBF;
+   --color-book-modified: #FFC599;
+   --color-book-completed: #1BB250;
+   --color-book-multiple: #5A78FF;
+
+   --text-primary: #000;
+   --header-and-footer: #edeff2;
+   --header-and-footer-darkmode: #2d2f39;
+   --background-sidebar: #161a23;
+   --border-color: #d9d9d9;
    --backgroundSidebar: #3e4759ff;
    --bodyContent: #e7e9eb;
    --buttonSubmit: #4d90fe;
    --buttonSubmitHover: #357ae8;
    --buttonCancel: #fd345c;
    --buttonCancelHover: rgb(240, 48, 86);
+
+   --color-sidebar-header-footer: #90cdf4;
 }
 
 * {
@@ -26,8 +72,7 @@
 }
 
 body {
-   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-      'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto'
       'Helvetica Neue', sans-serif;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;

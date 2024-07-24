@@ -3,9 +3,10 @@
    flex-direction: column;
    align-items: center;
    margin-top: 2rem;
-   gap: 2rem;
-   overflow-y: overlay;
+   gap: 1.5rem;
    height: 100%;
+   color: var(--text-primary);
+   overflow-y: overlay;
 }
 
 .menuItem {
@@ -17,21 +18,33 @@
    border-radius: 10px;
    margin-right: 8px;
    gap: 0.8rem;
-   transition: background-color 0.5s ease-in-out;
-}
-
-.menuItem:hover {
-   background-color: #d4d3d3;
    cursor: pointer;
+
+   &:hover {
+      background-color: var(--color-blue-05);
+      color: var(--color-white);
+   }
+
+   &.darkmode:hover {
+      background-color: #d4d3d3;
+   }
+
+   &.active {
+      background: var(--color-blue-04);
+      color: var(--color-white);
+      border: 1px solid var(--color-blue-05);
+
+      &.darkmode {
+         background: #c7c5c5;
+      }
+   }
 }
 
 .menu .menuItem:last-child {
    bottom: 2.3rem;
 }
 
-.active {
-   background: #c7c5c5;
-}
+
 
 .icon {
    margin-left: 1.8rem;

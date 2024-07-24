@@ -101,6 +101,9 @@ const Table = ({
                                  }}
                                  label='Create'
                                  icon={<PlusCircleOutlined />}
+                                 style={{
+                                    backgroundColor: 'var(--color-blue-04)',
+                                 }}
                               />
                            ) : null}
                            {searchBox}

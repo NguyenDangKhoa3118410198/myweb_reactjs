@@ -4,7 +4,6 @@
    left: -230px;
    width: 230px;
    height: 100%;
-   background-color: #333;
    border-top-right-radius: 15px;
    border-bottom-right-radius: 15px;
    overflow: hidden;
@@ -12,10 +11,6 @@
    z-index: 10;
    transition: all 250ms ease-in-out;
 
-   --header-and-footer: #edeff2;
-   --header-and-footer-darkmode: #2d2f39;
-   --background-sidebar: #161a23;
-   --border-color: #d9d9d9;
 }
 
 .side-menu.open {
@@ -24,16 +19,14 @@
 
 .sidebar {
    height: 100%;
-   color: #000;
    background-color: #fff;
-   border-top: 1px solid var(--border-color);
-   border-right: 1px solid var(--border-color);
-   border-bottom: 1px solid var(--border-color);
-   border-radius: 15px;
+   border-right: 2px solid var(--color-blue-02);
+   border-bottom: 2px solid var(--color-blue-02);
+   border-radius: 20px;
 
    &.isDark {
       color: #fff;
-      background-color: var(--background-sidebar);
+      background-color: var(--color-white-01);
       border-color: #343944;
    }
 }
@@ -46,7 +39,7 @@
    margin: 0 0 1rem 0;
    position: relative;
    border-bottom: 1px solid var(--border-color);
-   background-color: var(--header-and-footer);
+   background-color: var(--color-sidebar-header-footer);
 
    &.isDark {
       background-color: var(--header-and-footer-darkmode);
@@ -62,16 +55,32 @@
 .logo {
    display: inline-flex;
    font-weight: bold;
-   font-size: 20px;
+   font-size: 24px;
    align-items: center;
    justify-content: center;
+   font-family: Tahoma;
+
+   &.darkmode>span {
+      color: var(--color-white);
+   }
+
+   &.darkmode>span>span {
+      color: var(--color-white);
+      -webkit-text-stroke: 0.5px var(--color-white);
+   }
 }
 
-.logo > span > span {
-   color: var(--pink);
+.logo>span {
+   color: var(--color-blue-01);
+   -webkit-text-stroke: 0.4px var(--color-white);
 }
 
-.brand > img {
+.logo>span>span {
+   color: var(--color-white);
+   -webkit-text-stroke: 0.5px var(--color-blue-02);
+}
+
+.brand>img {
    width: 3rem;
    height: 3rem;
    margin: 0 0.5rem 0 2rem;
@@ -79,24 +88,33 @@
 
 .close-button {
    position: absolute;
+   color: var(--color-white-01);
    right: 0;
-   margin-right: 2rem;
-   width: 2.4rem;
-   height: 2.4rem;
-   font-size: 15px;
+   margin-right: 1.5rem;
+   width: 2rem;
+   height: 2rem;
+   font-size: 12px;
    font-weight: bold;
    border-radius: 5px;
    cursor: pointer;
-   background-color: rgba(120, 121, 128, 0.3);
+   background-color: var(--color-blue-04);
+   border: 0.5px solid var(--color-white-01);
 
    &:hover {
-      color: #f6f6f6;
-      opacity: 0.5;
+      border: 0.5px solid var(--color-blue-01);
+      color: var(--color-blue-01);
+      background-color: var(--color-white-01);
       transition: all 250ms ease-in-out;
    }
 
    &.isDark {
       background-color: rgba(120, 121, 128, 0.7);
+
+      &:hover {
+         border: 0.5px solid rgba(120, 121, 128, 0.7);
+         color: rgba(120, 121, 128, 0.7);
+         background-color: var(--color-white-01);
+      }
    }
 }
 
@@ -108,7 +126,7 @@
    position: relative;
    width: var(--width-of-switch);
    height: var(--height-of-switch);
-   border: 0.5px solid black;
+   border: 0.5px solid var(--color-blue-03);
    border-radius: 30px;
 }
 
@@ -128,7 +146,7 @@
    background-color: #f4f4f5;
    transition: 0.4s;
    border-radius: 30px;
-   border: 1px solid var(--border-color);
+   border: 1px solid var(--color-blue-02);
 }
 
 .slider:before {
@@ -140,39 +158,37 @@
    left: var(--slider-offset, 0.3em);
    top: 50%;
    transform: translateY(-50%);
-   background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
+   background: linear-gradient(40deg, var(--color-white), var(--color-blue-04) 80%);
    transition: 0.4s;
 }
 
-input:checked.isDark + .slider {
+input:checked.isDark+.slider {
    background-color: #303136;
 }
 
-input:checked.isDark + .slider::before {
-   left: calc(
-      100% - (var(--size-of-icon, 1.4em) + var(--slider-offset, 0.3em))
-   );
+input:checked.isDark+.slider::before {
+   left: calc(100% - (var(--size-of-icon, 1.4em) + var(--slider-offset, 0.3em)));
    background: #303136;
-   box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+   box-shadow: inset -3px -2px 5px -2px #322caf, inset -10px -4px 0 0 #a3dafb;
 }
 
-input:checked + .slider {
+input:checked+.slider {
    background-color: #f4f4f5;
 }
 
-input:checked + .slider::before {
+input:checked+.slider::before {
    left: var(--slider-offset, 0.3em);
    background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
 }
 
 .footer-sidebar {
    width: 100%;
-   padding: 3rem;
+   padding: 1.6rem;
    position: absolute;
    bottom: 0;
    display: grid;
    place-items: center;
-   background-color: var(--header-and-footer);
+   background-color: var(--color-sidebar-header-footer);
    border-top: 1px solid var(--border-color);
 
    &.isDark {

@@ -1,24 +1,23 @@
 import { Button } from 'antd';
+import styled from 'styled-components';
 import { IButton } from '../Button';
+
+const StyledButton = styled(Button)`
+   border-radius: 10px;
+   font-size: 14px;
+   padding: 17px;
+
+   &:hover {
+      color: var(--color-blue-03) !important;
+      background-color: var(--color-white) !important;
+      border: 1px solid var(--color-blue-03) !important;
+   }
+`;
 
 export default function PrimaryButton({ label, icon, ...props }: IButton) {
    return (
-      <>
-         <Button
-            type='primary'
-            {...props}
-            style={{
-               backgroundColor: 'var(--buttonSubmit)',
-               borderRadius: '10px',
-               fontSize: '14px',
-               fontWeight: 500,
-               padding: '16px',
-               ...props?.style,
-            }}
-            icon={icon}
-         >
-            {label}
-         </Button>
-      </>
+      <StyledButton type='primary' {...props} icon={icon}>
+         {label}
+      </StyledButton>
    );
 }

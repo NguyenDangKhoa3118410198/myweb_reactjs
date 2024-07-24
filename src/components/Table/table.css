@@ -67,7 +67,16 @@
    position: relative;
    display: block;
    margin: 0 5px;
+   background-color: #fff !important;
+   border: 1px solid var(--color-blue-03) !important;
+   color: var(--color-blue-03) !important;
    transition: background-color 0.5s;
+
+   &:hover {
+      background-color: var(--color-blue-04) !important;
+      border: 1px solid var(--color-white-01) !important;
+      color: var(--color-white-01) !important;
+   }
 }
 
 .item-action-table {

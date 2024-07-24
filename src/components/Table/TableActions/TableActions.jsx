@@ -34,7 +34,7 @@ const ItemMenuAction = styled.div`
       align-items: center;
 
       &:hover {
-         color: #357ae8;
+         color: var(--color-blue-03);
       }
    }
 `;
