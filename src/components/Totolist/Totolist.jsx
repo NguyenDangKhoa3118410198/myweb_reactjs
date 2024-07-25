@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Form, Container } from 'react-bootstrap';
-import { UilTrashAlt } from '@iconscout/react-unicons';
+import { Container } from 'react-bootstrap';
 import {
    todoList,
    addTodo,
@@ -8,9 +7,9 @@ import {
    isCompletedTodo,
 } from '../../Data/fetchData';
 import { formattedDateAndTime } from '../../ulti';
-import { FaCalendar, FaClock } from 'react-icons/fa';
-import PrimaryButton from 'components/common/ButtonPrimary';
 import './todolist.css';
+import Todo from './Todo';
+import TodoForm from './TodoForm';
 
 function Todolist() {
    const [todo, setTodo] = useState('');
@@ -52,71 +51,26 @@ function Todolist() {
 
    return (
       <Container className='todolist-container'>
-         <Form className='todo-form-container' onSubmit={handleAddTodo}>
-            <Form.Group
-               controlId='newTodo'
-               className='container-new-todo-input'
-            >
-               <Form.Control
-                  type='text'
-                  className='new-todo-input'
-                  placeholder='New todo'
-                  value={todo}
-                  onChange={(e) => setTodo(e.target.value)}
-                  onKeyDown={handleKeyDown}
-               />
-            </Form.Group>
-            <PrimaryButton
-               label='Enter'
-               htmlType='submit'
-               style={{ margin: '10px' }}
-            ></PrimaryButton>
-         </Form>
+         <TodoForm
+            setTodolist={setTodolist}
+            setTodo={setTodo}
+            handleKeyDown={handleKeyDown}
+            todo={todo}
+         />
          <div className='todolist'>
             {todolist && todolist.length > 0 ? (
                todolist.map((todo) => {
-                  const formattedDateTime = formattedDateAndTime(todo.created);
+                  const { id, task, completed, created: time } = todo;
+                  const formattedDateTime = formattedDateAndTime(time);
                   return (
-                     <div className='todo' key={todo.id}>
-                        <div className='todo-content'>
-                           <input
-                              className='todo-checkbox'
-                              type='checkbox'
-                              onChange={() => handleToggleTodo(todo.id)}
-                              checked={todo.completed}
-                           />
-                           <div className='container-todo'>
-                              <div className='container-todo-daytime'>
-                                 <div className='date-time-todolist'>
-                                    <FaCalendar className='icon-todo' />
-                                    <p className='time-todo'>
-                                       {formattedDateTime.date}
-                                    </p>
-                                 </div>
-                                 <div className='date-time-todolist'>
-                                    <FaClock className='icon-todo' />
-                                    <p className='time-todo'>
-                                       {formattedDateTime.time}
-                                    </p>
-                                 </div>
-                              </div>
-
-                              <span
-                                 className={`${
-                                    todo.completed ? 'completed' : ''
-                                 } `}
-                              >
-                                 {todo.task}
-                              </span>
-                           </div>
-                        </div>
-                        <div className='todo-delete-wrapper'>
-                           <UilTrashAlt
-                              className='todo-delete'
-                              onClick={() => handleDeleteTodo(todo.id)}
-                           />
-                        </div>
-                     </div>
+                     <Todo
+                        id={id}
+                        task={task}
+                        completed={completed}
+                        formattedDateTime={formattedDateTime}
+                        handleIsCompleted={handleToggleTodo}
+                        handleDelete={handleDeleteTodo}
+                     />
                   );
                })
             ) : (

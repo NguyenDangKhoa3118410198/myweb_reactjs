@@ -6,6 +6,7 @@ const StyledButton = styled(Button)`
    border-radius: 10px;
    font-size: 14px;
    padding: 17px;
+   background-color: var(--color-blue-04);
 
    &:hover {
       color: var(--color-blue-03) !important;

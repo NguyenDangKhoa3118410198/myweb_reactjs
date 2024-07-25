@@ -11,7 +11,7 @@
    height: 100vh;
    display: flex;
    flex-direction: column;
-   background-color: #e7e9eb;
+   background-color: var(--color-main-background);
 
    &.darkmode {
       background: linear-gradient(to bottom right, #000, #141b2d, #ddd);

@@ -63,6 +63,8 @@
    --buttonCancelHover: rgb(240, 48, 86);
 
    --color-sidebar-header-footer: #90cdf4;
+   --color-main-header: linear-gradient(to right, var(--color-blue-01), #ADD8E6);
+   --color-main-background: #F3FAFB;
 }
 
 * {

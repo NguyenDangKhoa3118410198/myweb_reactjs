@@ -4,6 +4,8 @@ export interface IButton {
    label: string;
    icon?: any;
    style?: any;
+   type?: any;
+   htmlType?: any;
 }
 
 export default function ButtonCustom({ label, ...props }: IButton) {
