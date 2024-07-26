@@ -10,7 +10,7 @@ import { UilEllipsisV } from '@iconscout/react-unicons';
 import { pageMainDash } from '../../Data/fetchData';
 
 import ContextualExample from '../../components/ProgressBar';
-import Todolist from '../../components/Totolist/Totolist';
+import Todolist from 'components/Totolist/Totolist';
 import CircularProgressbarChart from '../../components/Statistics/ChartTemplate/CircularProgressbarChart';
 import {
    searchBox,

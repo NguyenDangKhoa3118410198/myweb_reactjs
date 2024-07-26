@@ -14,7 +14,7 @@ const checkAndRefreshToken = async () => {
    const token = localStorage.getItem('authToken');
    const refreshToken = localStorage.getItem('refreshToken');
 
-   console.log('client token: ', token);
+   // console.log('client token: ', token);
 
    if (!token) {
       console.log('Token does not exist. No need to refresh.');
@@ -78,7 +78,6 @@ const checkAndRefreshToken = async () => {
 api.interceptors.request.use(
    async (config) => {
       await checkAndRefreshToken();
-      console.log('shouldSendRequest:', shouldSendRequest);
       if (shouldSendRequest) {
          config.headers.Authorization = `Bearer ${localStorage.getItem(
             'authToken'

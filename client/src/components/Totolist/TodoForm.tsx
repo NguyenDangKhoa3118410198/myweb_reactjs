@@ -1,15 +1,22 @@
 import React from 'react';
-import { Form, Input } from 'antd';
+import { Form } from 'antd';
 import { addTodo } from 'Data/fetchData';
 import PrimaryButton from 'components/common/ButtonPrimary';
+import InputText from 'components/common/InputText';
 
 interface TodoFormProps {
    setTodolist: any;
    setTodo: React.Dispatch<React.SetStateAction<string>>;
    todo: string;
+   scrollToBottom: any;
 }
 
-const TodoForm: React.FC<TodoFormProps> = ({ setTodolist, setTodo, todo }) => {
+const TodoForm: React.FC<TodoFormProps> = ({
+   setTodolist,
+   setTodo,
+   todo,
+   scrollToBottom,
+}) => {
    const [form] = Form.useForm();
 
    const onFinish = async (values: { newTodo: string }) => {
@@ -19,12 +26,13 @@ const TodoForm: React.FC<TodoFormProps> = ({ setTodolist, setTodo, todo }) => {
          setTodolist((prevTodolist: any) => [...prevTodolist, response]);
       }
       form.resetFields();
+      scrollToBottom();
    };
 
    return (
       <Form form={form} className='todo-form-container' onFinish={onFinish}>
          <Form.Item name='newTodo' className='container-new-todo-input'>
-            <Input
+            <InputText
                type='text'
                className='new-todo-input'
                placeholder='New todo'

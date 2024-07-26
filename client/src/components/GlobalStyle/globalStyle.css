@@ -118,7 +118,7 @@ label {
    font-weight: normal;
 }
 
-button,
+/* button,
 input,
 [tabindex] {
    outline: none;
@@ -264,7 +264,7 @@ button[type='cancel']:focus-visible {
 
 button[type='button'] {
    text-transform: capitalize;
-}
+} */
 
 .table-actions {
    background-color: transparent;

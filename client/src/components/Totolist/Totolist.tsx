@@ -1,69 +1,69 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Container } from 'react-bootstrap';
-import {
-   todoList,
-   addTodo,
-   deleteTodo,
-   isCompletedTodo,
-} from '../../Data/fetchData';
+import { todoList, deleteTodo, isCompletedTodo } from '../../Data/fetchData';
 import { formattedDateAndTime } from '../../ulti';
 import './todolist.css';
 import Todo from './Todo';
 import TodoForm from './TodoForm';
 
+interface ITodo {
+   id: string;
+   completed: boolean;
+   task: string;
+   created?: string;
+}
+
 function Todolist() {
    const [todo, setTodo] = useState('');
-   const [todolist, setTodolist] = useState();
+   const [todolist, setTodolist] = useState<ITodo[]>([]);
+
+   const todoListRef = useRef<HTMLDivElement | null>(null);
 
    useEffect(() => {
       todoList(setTodolist);
    }, []);
 
-   const handleAddTodo = async (e) => {
-      e.preventDefault();
-      const trimmedTask = todo.trim();
-      if (trimmedTask) {
-         const response = await addTodo({ task: trimmedTask });
-         setTodolist((prevTodolist) => [...prevTodolist, response]);
+   const scrollToBottom = () => {
+      if (todoListRef.current) {
+         setTimeout(() => {
+            todoListRef.current?.scrollTo({
+               top: todoListRef.current.scrollHeight,
+               behavior: 'smooth',
+            });
+         }, 100);
       }
-      setTodo('');
    };
 
-   const handleToggleTodo = (id) => {
+   const handleToggleTodo = (id: string) => {
       isCompletedTodo(id);
       setTodolist(
-         todolist.map((todo) =>
+         todolist.map((todo: ITodo) =>
             todo.id === id ? { ...todo, completed: !todo.completed } : todo
          )
       );
    };
 
-   const handleDeleteTodo = (id) => {
+   const handleDeleteTodo = (id: string) => {
       deleteTodo(id);
-      setTodolist(todolist.filter((todo) => todo.id !== id));
-   };
-
-   const handleKeyDown = (e) => {
-      if (e.key === 'Enter' && todo.trim() !== '') {
-         handleAddTodo(e);
-      }
+      setTodolist(todolist.filter((todo: ITodo) => todo.id !== id));
    };
 
    return (
-      <Container className='todolist-container'>
+      <Container>
          <TodoForm
             setTodolist={setTodolist}
             setTodo={setTodo}
-            handleKeyDown={handleKeyDown}
             todo={todo}
+            scrollToBottom={scrollToBottom}
          />
-         <div className='todolist'>
-            {todolist && todolist.length > 0 ? (
+         <div className='todolist' ref={todoListRef}>
+            {todolist.length > 0 ? (
                todolist.map((todo) => {
                   const { id, task, completed, created: time } = todo;
                   const formattedDateTime = formattedDateAndTime(time);
                   return (
                      <Todo
+                        key={id}
                         id={id}
                         task={task}
                         completed={completed}
@@ -79,7 +79,7 @@ function Todolist() {
                      padding: '10px',
                      textTransform: 'capitalize',
                      textAlign: 'center',
-                     fontWeight: '400',
+                     fontWeight: '500',
                      fontSize: '1.5rem',
                   }}
                >

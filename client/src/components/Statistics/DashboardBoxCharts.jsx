@@ -33,7 +33,6 @@ function DashboardBoxCharts() {
       Promise.all([countingUsers(), countingOrders(), countingProducts()])
          .then((results) => {
             const [users, orders, products] = results;
-            console.log('Fetching app information and dispatching it');
 
             if (users && orders && products) {
                dispatch(setDataUsers(users));
