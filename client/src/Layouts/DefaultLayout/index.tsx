@@ -22,11 +22,7 @@ const AdminDefaultLayout: React.FC<IAdminDefaultLayout> = ({
 
    return (
       <div className='admin-layout'>
-         <Sidebar
-            isMenuActive={isMenuActive}
-            toggleBurger={toggleBurger}
-            activeMenu={activeMenu}
-         />
+         <Sidebar isMenuActive={isMenuActive} activeMenu={activeMenu} />
 
          <div
             className={`admin-layout-container ${darkMode ? 'darkmode' : ''}`}

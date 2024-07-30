@@ -40,8 +40,13 @@
    --color-blue-03: #58b9f5;
    --color-blue-04: #79c4f3;
    --color-blue-05: #bfe1f7;
+   --color-blue-06: #77b2f5;
+   --color-blue-07: #4c9bf5;
    --color-overlay: #22aec0;
+   --color-black: #000000;
+   --color-black-01: #12101d;
    --color-gray: #c4c4c4;
+   --color-gray-01: #f3f3f9;
    --color-blue-munsell-05: #F3FAFB;
    --Blue-Munsell-Main: #1B9AAA;
    --color-book-incoming: #1B9AAA;
@@ -72,6 +77,7 @@
    padding: 0;
    box-sizing: border-box;
 }
+
 
 body {
    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto'
@@ -105,7 +111,7 @@ html *::-webkit-scrollbar-track {
 }
 
 a[href] {
-   color: var(--text-color);
+   color: black;
    text-decoration: none;
 }
 

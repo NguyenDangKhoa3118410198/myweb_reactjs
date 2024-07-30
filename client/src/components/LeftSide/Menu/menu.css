@@ -2,25 +2,33 @@
    display: flex;
    flex-direction: column;
    align-items: center;
-   margin: 20px 8px 0;
+   padding: 14px 12px;
    gap: 18px;
    height: 100%;
    color: var(--text-primary);
    overflow-y: overlay;
+   transition: all .3s ease;
 }
 
-.menuItem {
+a.menuItem[href] {
    width: 100%;
    display: flex;
    align-items: center;
-   height: 3.5rem;
-   font-size: 14px;
-   border-radius: 10px;
-   gap: 0.8rem;
+   height: 42px;
+   border-radius: 5px;
+   gap: 14px;
    cursor: pointer;
+   font-size: 16px;
+   font-weight: 500;
+   color: var(--color-blue-06);
+   transition: background-color, color .3s ease;
 
    &:hover {
-      background-color: var(--color-blue-05);
+      background-color: var(--color-blue-07);
+      color: var(--color-white);
+   }
+
+   &.darkmode {
       color: var(--color-white);
    }
 
@@ -29,9 +37,8 @@
    }
 
    &.active {
-      background: var(--color-blue-04);
+      background-color: var(--color-blue-07);
       color: var(--color-white);
-      border: 1px solid var(--color-blue-05);
 
       &.darkmode {
          background: #c7c5c5;
@@ -43,14 +50,12 @@
    bottom: 2.3rem;
 }
 
-
-
 .icon {
-   margin-left: 1.8rem;
+   margin-left: 20px;
 }
 
 .item {
-   font-size: 1.4rem;
+   font-size: 18px;
    font-weight: 600;
 }
 
@@ -84,9 +89,6 @@
    font-size: 14px;
 }
 
-/* .dropdownContent a:hover {
-    background-color: var(--gray);
-} */
 
 .menuItemDropdown .item {
    margin-left: 1rem;

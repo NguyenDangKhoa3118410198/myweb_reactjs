@@ -1,16 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
 .side-menu {
    position: fixed;
    top: 0;
    left: -230px;
    width: 230px;
    height: 100%;
-   border-top-right-radius: 15px;
-   border-bottom-right-radius: 15px;
+   border-top-right-radius: 10px;
+   border-bottom-right-radius: 10px;
    overflow: hidden;
    opacity: 1;
    z-index: 10;
-   transition: all 250ms ease-in-out;
-
+   transition: all .3s ease;
+   box-shadow: 0 5px 1px rgba(0, 0, 0, 0.2);
+   font-family: "Poppins", sans-serif;
 }
 
 .side-menu.open {
@@ -20,13 +23,10 @@
 .sidebar {
    height: 100%;
    background-color: #fff;
-   border-right: 2px solid var(--color-blue-02);
-   border-bottom: 2px solid var(--color-blue-02);
-   border-radius: 20px;
 
    &.isDark {
       color: #fff;
-      background-color: var(--color-white-01);
+      background-color: var(--color-black-01);
       border-color: #343944;
    }
 }
@@ -35,14 +35,14 @@
    display: flex;
    flex-direction: row;
    align-items: center;
-   padding: 1.3rem 0;
-   margin: 0 0 1rem 0;
+   justify-content: center;
    position: relative;
-   border-bottom: 1px solid var(--border-color);
-   background-color: var(--color-sidebar-header-footer);
+   font-size: 24px;
+   height: 70px;
+   margin-bottom: 18px;
 
    &.isDark {
-      background-color: var(--header-and-footer-darkmode);
+      background-color: var(--color-black-01);
       color: #fff;
    }
 }
@@ -52,16 +52,25 @@
    display: none;
 }
 
+.header-sidebar-container {
+   display: inline-flex;
+   font-weight: bold;
+   font-size: 24px;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+}
+
 .logo {
    display: inline-flex;
    font-weight: bold;
    font-size: 24px;
    align-items: center;
    justify-content: center;
-   font-family: Tahoma;
+   height: 100%;
 
    &.darkmode>span {
-      color: var(--color-white);
+      color: #000;
    }
 
    &.darkmode>span>span {
@@ -71,7 +80,8 @@
 }
 
 .logo>span {
-   color: var(--color-blue-01);
+   margin-top: 15px;
+   color: #000;
    -webkit-text-stroke: 0.4px var(--color-white);
 }
 
@@ -83,40 +93,10 @@
 .brand>img {
    width: 3rem;
    height: 3rem;
-   margin: 0 0.5rem 0 2rem;
+   margin: 0 5px;
 }
 
-.close-button {
-   position: absolute;
-   color: var(--color-white-01);
-   right: 0;
-   margin-right: 1.5rem;
-   width: 2rem;
-   height: 2rem;
-   font-size: 12px;
-   font-weight: bold;
-   border-radius: 5px;
-   cursor: pointer;
-   background-color: var(--color-blue-04);
-   border: 0.5px solid var(--color-white-01);
 
-   &:hover {
-      border: 0.5px solid var(--color-blue-01);
-      color: var(--color-blue-01);
-      background-color: var(--color-white-01);
-      transition: all 250ms ease-in-out;
-   }
-
-   &.isDark {
-      background-color: rgba(120, 121, 128, 0.7);
-
-      &:hover {
-         border: 0.5px solid rgba(120, 121, 128, 0.7);
-         color: rgba(120, 121, 128, 0.7);
-         background-color: var(--color-white-01);
-      }
-   }
-}
 
 .switch {
    --width-of-switch: 5em;
@@ -188,11 +168,4 @@ input:checked+.slider::before {
    bottom: 0;
    display: grid;
    place-items: center;
-   background-color: var(--color-sidebar-header-footer);
-   border-top: 1px solid var(--border-color);
-
-   &.isDark {
-      background-color: var(--header-and-footer-darkmode);
-      color: #fff;
-   }
 }
