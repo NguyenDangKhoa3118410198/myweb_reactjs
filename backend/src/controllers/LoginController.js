@@ -106,74 +106,75 @@ const login = async (req, res) => {
 };
 
 const loginRoleAdmin = async (req, res) => {
-   try {
-      const { email, password } = req.body;
+   // try {
+   //    const { email, password } = req.body;
 
-      const existingUser = await User.findOne({ email });
+   //    const existingUser = await User.findOne({ email });
 
-      if (!existingUser || existingUser === null) {
-         return res.status(401).json({
-            success: false,
-            message: 'Login failed. Incorrect username or password.',
-         });
-      }
+   //    if (!existingUser || existingUser === null) {
+   //       return res.status(401).json({
+   //          success: false,
+   //          message: 'Login failed. Incorrect username or password.',
+   //       });
+   //    }
 
-      if (existingUser.role !== 'admin') {
-         return res.status(403).json({
-            success: false,
-            message: 'Login failed. User does not have admin role.',
-         });
-      }
+   //    if (existingUser.role !== 'admin') {
+   //       return res.status(403).json({
+   //          success: false,
+   //          message: 'Login failed. User does not have admin role.',
+   //       });
+   //    }
 
-      if (!existingUser.isActive) {
-         return res.status(401).json({
-            success: false,
-            message: 'Login failed. User account is not active.',
-         });
-      }
+   //    if (!existingUser.isActive) {
+   //       return res.status(401).json({
+   //          success: false,
+   //          message: 'Login failed. User account is not active.',
+   //       });
+   //    }
 
-      const passwordMatch = await bcrypt.compare(
-         password,
-         existingUser.password
-      );
+   //    const passwordMatch = await bcrypt.compare(
+   //       password,
+   //       existingUser.password
+   //    );
 
-      if (passwordMatch) {
-         const customerFilter = await Customer.findOne({
-            user: existingUser._id,
-         }).select({ user: 0, _id: 0 });
+   //    if (passwordMatch) {
+   //       const customerFilter = await Customer.findOne({
+   //          user: existingUser._id,
+   //       }).select({ user: 0, _id: 0 });
 
-         const customerInfo = {
-            ...customerFilter.toObject(),
-            name: existingUser.name,
-            email: existingUser.email,
-            username: existingUser.username,
-         };
+   //       const customerInfo = {
+   //          ...customerFilter.toObject(),
+   //          name: existingUser.name,
+   //          email: existingUser.email,
+   //          username: existingUser.username,
+   //       };
 
-         const accessToken = generateAccessToken(existingUser);
-         const refreshToken = generateRefreshToken(existingUser);
+   //       const accessToken = generateAccessToken(existingUser);
+   //       const refreshToken = generateRefreshToken(existingUser);
 
-         res.json({
-            success: true,
-            message: 'Login successful!',
-            username: existingUser.username,
-            customerInfo,
-            accessToken,
-            refreshToken,
-         });
-      } else {
-         return res.status(401).json({
-            success: false,
-            message: 'Login failed. Incorrect password.',
-         });
-      }
-   } catch (error) {
-      console.error('Error during login:', error);
-      res.status(500).json({
-         success: false,
-         message:
-            'Internal Server Error: An unexpected error occurred during login.',
-      });
-   }
+   //       res.json({
+   //          success: true,
+   //          message: 'Login successful!',
+   //          username: existingUser.username,
+   //          customerInfo,
+   //          accessToken,
+   //          refreshToken,
+   //       });
+   //    } else {
+   //       return res.status(401).json({
+   //          success: false,
+   //          message: 'Login failed. Incorrect password.',
+   //       });
+   //    }
+   // } catch (error) {
+   //    console.error('Error during login:', error);
+   //    res.status(500).json({
+   //       success: false,
+   //       message:
+   //          'Internal Server Error: An unexpected error occurred during login.',
+   //    });
+   // }
+   res.send('Page login');
 };
 
 const resetPassword = async (req, res) => {
