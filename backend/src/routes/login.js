@@ -7,6 +7,5 @@ router.post('/reset-password', loginController.resetPassword);
 router.post('/reset-password/confirm', loginController.confirmResetPassword);
 router.post('/admin', loginController.loginRoleAdmin);
 router.post('/', loginController.login);
-router.get('/vercel', loginController.vercel);
 
 module.exports = router;

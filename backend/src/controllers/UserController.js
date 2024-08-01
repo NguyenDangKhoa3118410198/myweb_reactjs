@@ -20,6 +20,7 @@ const countTotalUsers = async (req, res) => {
          error: error.message,
       });
    }
+   res.send('user index');
 };
 
 const getUsers = async (req, res) => {

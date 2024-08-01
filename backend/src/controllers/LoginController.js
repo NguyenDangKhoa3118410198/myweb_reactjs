@@ -255,14 +255,9 @@ const confirmResetPassword = async (req, res) => {
    }
 };
 
-const vercel = (req, res) => {
-   res.send('verCel on Vercel');
-};
-
 module.exports = {
    login,
    loginRoleAdmin,
    resetPassword,
    confirmResetPassword,
-   vercel,
 };
