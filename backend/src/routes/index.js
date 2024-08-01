@@ -22,14 +22,14 @@ function route(app) {
    app.use('/api/todo', authenticateToken, todoRouter);
 
    app.use('/auth/email', checkAdminRole, emailRouter);
-   app.use('/auth/login', loginRouter);
    app.use('/auth/logout', logoutRouter);
    app.use('/auth/register', registerRouter);
    app.use('/auth/refreshToken', refreshTokenRouter);
+   app.use('/auth/login', loginRouter);
    app.get('/baka', (req, res) => res.send('baka'));
 
    app.use((req, res) => {
-      res.status(404).send('Page not found');
+      res.status(404).send('Page not founds');
    });
 
    app.use((err, req, res, next) => {
