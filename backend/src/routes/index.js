@@ -26,6 +26,7 @@ function route(app) {
    app.use('/auth/logout', logoutRouter);
    app.use('/auth/register', registerRouter);
    app.use('/auth/refreshToken', refreshTokenRouter);
+   app.get('/baka', (req, res) => res.send('Express on Vercel'));
 
    app.use((req, res) => {
       res.status(404).send('Page not found');
