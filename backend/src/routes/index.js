@@ -14,7 +14,7 @@ const refreshTokenRouter = require('./refreshToken');
 const { authenticateToken, checkAdminRole } = require('../middleware');
 
 function route(app) {
-   app.use('/api/users', userRouter);
+   app.use('/api/users', authenticateToken, userRouter);
    app.use('/api/orders', authenticateToken, orderRouter);
    app.use('/api/products', authenticateToken, productRouter);
    app.use('/api/customers', authenticateToken, customerRouter);

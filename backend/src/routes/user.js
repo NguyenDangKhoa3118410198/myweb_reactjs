@@ -10,6 +10,5 @@ router.post('/add', checkAdminRole, userController.addUser);
 router.post('/:id/edit', checkAdminRole, userController.editUser);
 router.patch('/:id/deactivate', checkAdminRole, userController.deactivateUser);
 router.patch('/:id/activate', checkAdminRole, userController.activateUser);
-router.get('/test', (req, res) => res.send('user'));
 
 module.exports = router;

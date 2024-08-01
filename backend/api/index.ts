@@ -8,7 +8,7 @@ const port = process.env.PORT || 4000;
 const route = require('../src/routes');
 
 const corsOptions = {
-   origin: 'http://localhost:3000', // Chỉ chấp nhận yêu cầu từ nguồn này
+   origin: 'http://localhost:3000',
    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
    credentials: true, // Cho phép gửi cookie qua các nguồn
    optionsSuccessStatus: 200,
@@ -17,7 +17,6 @@ const corsOptions = {
 db.connectToDatabase();
 app.use(cors(corsOptions));
 app.use(express.json());
-
 app.use((req, res, next) => {
    // Kiểm tra xem yêu cầu có đến đường dẫn cụ thể không
    if (req.path.includes('/assets/drop-wrapper-pic-GDO35LIT.png')) {
