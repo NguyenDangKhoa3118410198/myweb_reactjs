@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => res.send('Express on Vercel'));
-app.listen(4000, () => console.log('Server ready on port 3000.'));
+app.listen(4000, () => console.log('Server ready on port 4000.'));
 route(app);
 
 module.exports = app;
