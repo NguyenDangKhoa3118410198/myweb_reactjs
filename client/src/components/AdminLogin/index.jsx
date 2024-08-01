@@ -60,7 +60,7 @@ const Login = () => {
    const handleApiCall = async (apiEndpoint, requestData) => {
       try {
          const response = await axios.post(
-            `http://localhost:4000/auth/${apiEndpoint}`,
+            `https://react-backend-two.vercel.app/auth/${apiEndpoint}`,
             requestData
          );
          const data = response.data;

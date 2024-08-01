@@ -1,7 +1,7 @@
 import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
 import { alertMessage } from '../ulti/modals';
-const apiUrl = 'http://localhost:4000';
+const apiUrl = 'https://react-backend-two.vercel.app';
 
 const api = axios.create({
    baseURL: apiUrl,
