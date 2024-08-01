@@ -28,17 +28,6 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => res.send('Express on Vercel'));
-app.get('/test', (req, res) => res.send('DC?M'));
-
-app.listen(3000, () => console.log('Server ready on port 3000.'));
-
-// Thay vì khởi động server tại đây, chỉ xuất module `app`
-// app.listen(port, () => {
-//   console.log(`Server is running on port ${port}`);
-// });
-
-app.get('/', (req, res) => res.send('Express on Vercel'));
-
 app.listen(3000, () => console.log('Server ready on port 3000.'));
 route(app);
 

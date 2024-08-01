@@ -14,7 +14,7 @@ const refreshTokenRouter = require('./refreshToken');
 const { authenticateToken, checkAdminRole } = require('../middleware');
 
 function route(app) {
-   app.use('/api/users', authenticateToken, userRouter);
+   app.use('/api/users', userRouter);
    app.use('/api/orders', authenticateToken, orderRouter);
    app.use('/api/products', authenticateToken, productRouter);
    app.use('/api/customers', authenticateToken, customerRouter);
@@ -26,10 +26,9 @@ function route(app) {
    app.use('/auth/register', registerRouter);
    app.use('/auth/refreshToken', refreshTokenRouter);
    app.use('/auth/login', loginRouter);
-   app.get('/baka', (req, res) => res.send('baka'));
 
    app.use((req, res) => {
-      res.status(404).send('Page not founds');
+      res.status(404).send('Page not found');
    });
 
    app.use((err, req, res, next) => {
