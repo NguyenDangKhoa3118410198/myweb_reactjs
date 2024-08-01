@@ -1,40 +1,49 @@
-const express = require('express');
-const cors = require('cors');
-const app = express();
-const db = require('../src/models/db');
-require('dotenv').config();
-const port = process.env.PORT || 4000;
+// const express = require('express');
+// const cors = require('cors');
+// const app = express();
+// const db = require('../src/models/db');
+// require('dotenv').config();
+// const port = process.env.PORT || 4000;
 
-const route = require('../src/routes');
+// const route = require('../src/routes');
 
-const corsOptions = {
-   origin: 'http://localhost:3000', // Chỉ chấp nhận yêu cầu từ nguồn này
-   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-   credentials: true, // Cho phép gửi cookie qua các nguồn
-   optionsSuccessStatus: 200,
-};
+// const corsOptions = {
+//    origin: 'http://localhost:3000', // Chỉ chấp nhận yêu cầu từ nguồn này
+//    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//    credentials: true, // Cho phép gửi cookie qua các nguồn
+//    optionsSuccessStatus: 200,
+// };
 
-db.connectToDatabase();
-app.use(cors(corsOptions));
-app.use(express.json());
+// db.connectToDatabase();
+// app.use(cors(corsOptions));
+// app.use(express.json());
 
-app.use((req, res, next) => {
-   // Kiểm tra xem yêu cầu có đến đường dẫn cụ thể không
-   if (req.path.includes('/assets/drop-wrapper-pic-GDO35LIT.png')) {
-      return res.send('skip');
-   }
-   // Nếu không phải là đường dẫn cụ thể, tiếp tục xử lý yêu cầu
-   next();
-});
-
-route(app);
-
-// Thay vì khởi động server tại đây, chỉ xuất module `app`
-// app.listen(port, () => {
-//   console.log(`Server is running on port ${port}`);
+// app.use((req, res, next) => {
+//    // Kiểm tra xem yêu cầu có đến đường dẫn cụ thể không
+//    if (req.path.includes('/assets/drop-wrapper-pic-GDO35LIT.png')) {
+//       return res.send('skip');
+//    }
+//    // Nếu không phải là đường dẫn cụ thể, tiếp tục xử lý yêu cầu
+//    next();
 // });
 
+// route(app);
+
+// // Thay vì khởi động server tại đây, chỉ xuất module `app`
+// // app.listen(port, () => {
+// //   console.log(`Server is running on port ${port}`);
+// // });
+
+// app.get('/', (req, res) => res.send('Express on Vercel'));
+
+// app.listen(3000, () => console.log('Server ready on port 3000.'));
+
+// module.exports = app;
+const express = require('express');
+const app = express();
+
 app.get('/', (req, res) => res.send('Express on Vercel'));
+app.get('/test', (req, res) => res.send('DC?M'));
 
 app.listen(3000, () => console.log('Server ready on port 3000.'));
 
