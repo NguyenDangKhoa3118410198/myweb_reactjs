@@ -1,11 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const db = require('./src/models/db');
+const db = require('../src/models/db');
 require('dotenv').config();
 const port = process.env.PORT || 4000;
 
-const route = require('./src/routes');
+const route = require('../src/routes');
 
 const corsOptions = {
    origin: 'http://localhost:3000', // Chỉ chấp nhận yêu cầu từ nguồn này
