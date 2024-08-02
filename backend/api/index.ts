@@ -8,7 +8,7 @@ const port = process.env.PORT || 4000;
 const route = require('../src/routes');
 
 const corsOptions = {
-   origin: 'http://localhost:3000',
+   origin: ['http://localhost:3000', 'https://myweb-reactjs.vercel.app'],
    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
    credentials: true, // Cho phép gửi cookie qua các nguồn
    optionsSuccessStatus: 200,
