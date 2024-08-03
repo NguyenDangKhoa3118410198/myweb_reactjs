@@ -12,7 +12,7 @@ const ForgotPasswordForm = () => {
 
       try {
          const response = await axios.post(
-            `http://localhost:4000/auth/login/reset-password`,
+            `https://react-backend-two.vercel.app/auth/login/reset-password`,
             { email }
          );
 

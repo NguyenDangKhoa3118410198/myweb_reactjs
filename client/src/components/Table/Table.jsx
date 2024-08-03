@@ -8,7 +8,7 @@ import ExportCSV from './ExportCSV';
 import './table.css';
 import { useSelector } from 'react-redux';
 import { LoadingData } from '../Loading';
-import PrimaryButton from 'components/common/ButtonPrimary';
+import PrimaryButton from 'components/common/ButtonComponent/ButtonPrimary';
 import { PlusCircleOutlined } from '@ant-design/icons';
 
 const Table = ({

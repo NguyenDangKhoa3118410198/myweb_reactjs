@@ -18,7 +18,7 @@ const NewPassword = () => {
 
       try {
          const response = await axios.post(
-            `http://localhost:4000/auth/login/reset-password/confirm`,
+            `https://react-backend-two.vercel.app/auth/login/reset-password/confirm`,
             { newPassword, code }
          );
 

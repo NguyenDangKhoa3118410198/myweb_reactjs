@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 import styled from 'styled-components';
-import { IButton } from '../Button';
+import { IButton } from './Button';
 
 const StyledButton = styled(Button)`
    border-radius: 10px;

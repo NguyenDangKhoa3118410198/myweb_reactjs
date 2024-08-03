@@ -1,8 +1,8 @@
 import React from 'react';
 import { Form } from 'antd';
 import { addTodo } from 'Data/fetchData';
-import PrimaryButton from 'components/common/ButtonPrimary';
-import InputText from 'components/common/InputText';
+import PrimaryButton from 'components/common/ButtonComponent/ButtonPrimary';
+import InputText from 'components/common/InputComponent/InputText';
 
 interface TodoFormProps {
    setTodolist: any;
@@ -33,7 +33,6 @@ const TodoForm: React.FC<TodoFormProps> = ({
       <Form form={form} className='todo-form-container' onFinish={onFinish}>
          <Form.Item name='newTodo' className='container-new-todo-input'>
             <InputText
-               type='text'
                className='new-todo-input'
                placeholder='New todo'
                value={todo}
