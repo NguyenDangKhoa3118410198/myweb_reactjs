@@ -7,7 +7,7 @@
    padding: 8px 15px;
    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
    border-bottom: 2px solid #d1c3c3;
-   background: var(--color-main-header);
+   background: var(--color-blue-01);
    height: 100px !important;
 }
 
