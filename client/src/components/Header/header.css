@@ -9,9 +9,7 @@
    border-bottom: 2px solid #d1c3c3;
    background: var(--color-blue-01);
    height: 100px !important;
-}
 
-.nav-user-header-container {
    &.darkmode {
       background: linear-gradient(to bottom right, #000, #141b2d, #ddd);
    }
