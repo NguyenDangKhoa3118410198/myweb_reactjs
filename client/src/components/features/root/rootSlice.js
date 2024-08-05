@@ -31,7 +31,11 @@ const initialState = {
 const rootSlice = createSlice({
    name: 'root',
    initialState,
-   reducers: {},
+   reducers: {
+      setLoading: (state, action) => {
+         state.loading = action.payload;
+      },
+   },
    extraReducers: (builder) => {
       handleAsyncThunk(
          builder, // tao 3 trang thai

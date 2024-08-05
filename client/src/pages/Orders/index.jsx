@@ -8,7 +8,6 @@ import {
    filterData,
 } from '../../components/Table/TableActions/handleActions';
 import './orders.css';
-import OnTopButton from '../../components/OnTop/OnTop';
 import { pageDetailOrder } from '../../Data/fetchData';
 
 function Orders() {
@@ -60,8 +59,6 @@ function Orders() {
                isListReviews,
             }}
          />
-
-         <OnTopButton />
       </main>
    );
 }

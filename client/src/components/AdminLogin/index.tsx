@@ -1,21 +1,24 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Form, notification } from 'antd';
+import { Form, message, notification, Spin } from 'antd';
 import axios from 'axios';
 import { deleteLocalStorage } from '../../ulti';
 import AdminImage from '../../imgs/login.svg';
 import './adminLogin.css';
 import HeaderAdminForm from './HeaderAdminForm';
 import FormAdminLogin from './FormAdminLogin';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoading } from 'components/features/root/rootSlice';
 
 const Login = () => {
    const navigate = useNavigate();
+   const dispatch = useDispatch();
    const [rememberMe, setRememberMe] = useState(false);
-
    const [form] = Form.useForm();
+   const loading = useSelector((state: any) => state.root.loading);
 
-   const handleRememberMeChange = (e) => {
+   const handleRememberMeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const isChecked = e.target.checked;
       setRememberMe(isChecked);
       localStorage.setItem('remember', String(isChecked));
@@ -36,7 +39,8 @@ const Login = () => {
       }
    }, [form]);
 
-   const handleSubmit = async (values) => {
+   const handleSubmit = async (values: any) => {
+      dispatch(setLoading(true));
       const { email, password } = values;
 
       if (rememberMe) {
@@ -49,19 +53,21 @@ const Login = () => {
 
       try {
          await handleApiCall('login/admin', { email, password });
-      } catch (error) {
+      } catch (error: any) {
          console.error(error);
          notification.error({
             message: 'Error',
             description:
                error.response?.data?.message || 'An unexpected error occurred.',
          });
+      } finally {
+         dispatch(setLoading(false));
       }
 
       form.resetFields();
    };
 
-   const handleApiCall = async (apiEndpoint, requestData) => {
+   const handleApiCall = async (apiEndpoint: string, requestData: any) => {
       try {
          const response = await axios.post(
             `https://react-backend-two.vercel.app/auth/${apiEndpoint}`,
@@ -75,7 +81,7 @@ const Login = () => {
                refreshToken,
                customerInfo,
                username,
-               message,
+               message: responseMessage,
             } = data;
 
             localStorage.setItem('authToken', accessToken);
@@ -85,48 +91,45 @@ const Login = () => {
             localStorage.setItem('customerInfo', JSON.stringify(customerInfo));
 
             navigate('/home');
-            notification.success({
-               message: 'Success',
-               description: message,
-            });
+            message.success('Success: ' + responseMessage);
          }
-      } catch (error) {
-         notification.error({
-            message: 'Error',
-            description:
-               error.response?.data?.message || 'An unexpected error occurred.',
-         });
+      } catch (error: any) {
+         message.error(
+            error.response?.data?.message || 'An unexpected error occurred.'
+         );
       }
    };
 
    return (
-      <div className='wrapper-admin-login'>
-         <div className='admin-login-container' id='admin-login-container'>
-            <div className='admin-form-container admin-sign-up'>
-               <div className='right-admin-form-container'>
-                  <img
-                     className='image-admin-form'
-                     src={AdminImage}
-                     alt='Error'
-                  />
+      <Spin spinning={loading === true}>
+         <div className='wrapper-admin-login'>
+            <div className='admin-login-container' id='admin-login-container'>
+               <div className='admin-form-container admin-sign-up'>
+                  <div className='right-admin-form-container'>
+                     <img
+                        className='image-admin-form'
+                        src={AdminImage}
+                        alt='Error'
+                     />
+                  </div>
+               </div>
+               <div className='admin-form-container admin-sign-in'>
+                  <Form
+                     form={form}
+                     onFinish={handleSubmit}
+                     initialValues={{ remember: rememberMe }}
+                     className='login-form'
+                  >
+                     <HeaderAdminForm />
+                     <FormAdminLogin
+                        handleRememberMeChange={handleRememberMeChange}
+                        rememberMe={rememberMe}
+                     />
+                  </Form>
                </div>
             </div>
-            <div className='admin-form-container admin-sign-in'>
-               <Form
-                  form={form}
-                  onFinish={handleSubmit}
-                  initialValues={{ remember: rememberMe }}
-                  className='login-form'
-               >
-                  <HeaderAdminForm />
-                  <FormAdminLogin
-                     handleRememberMeChange={handleRememberMeChange}
-                     rememberMe={rememberMe}
-                  />
-               </Form>
-            </div>
          </div>
-      </div>
+      </Spin>
    );
 };
 

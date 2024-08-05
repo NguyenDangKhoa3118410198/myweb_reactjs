@@ -4,9 +4,12 @@
    padding: 5px 10px;
    left: 50%;
    transform: translateX(-50%);
-   overflow-y: scroll;
+   overflow: auto;
+   /* Để đảm bảo có thanh cuộn nếu cần */
    scrollbar-width: none;
+   /* Ẩn thanh cuộn trong các trình duyệt hỗ trợ */
    -ms-overflow-style: none;
+   /* Ẩn thanh cuộn trong Internet Explorer */
 }
 
 button[type='button'].btn-add {
@@ -71,7 +74,7 @@ input[type='search'].searchBox {
 }
 
 .combined-stats-header {
-   margin: 8px 10px;
+   margin: 4px 10px;
    display: flex;
    height: 30px;
    align-items: center;
@@ -80,7 +83,7 @@ input[type='search'].searchBox {
 
 .combined-stats-title {
    font-weight: 600;
-   font-size: 21px;
+   font-size: 20px;
 }
 
 .combined-stats-icon {

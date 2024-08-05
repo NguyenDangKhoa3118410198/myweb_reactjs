@@ -6,6 +6,7 @@
 }
 
 .title-progress-bar {
+   font-size: 14px;
    font-weight: 600;
 }
 
@@ -66,7 +67,7 @@
 }
 
 .progress-bar-content {
-   border-radius: 20px;
+   border-radius: 16px;
    padding: 25px;
-   background-color: var(--bodyContent);
+   background-color: var(--color-gray-01);
 }

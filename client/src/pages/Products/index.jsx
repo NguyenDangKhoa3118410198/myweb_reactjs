@@ -6,7 +6,6 @@ import {
    searchBox,
    removeExtraSpaces,
 } from '../../components/Table/TableActions/handleActions';
-import OnTopButton from '../../components/OnTop/OnTop';
 
 import './product.css';
 import {
@@ -93,8 +92,6 @@ function Products() {
                }}
             />
          </Spin>
-
-         <OnTopButton />
       </main>
    );
 }

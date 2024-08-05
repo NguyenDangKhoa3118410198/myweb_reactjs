@@ -5,21 +5,22 @@
 
 .dashboard-grid-container {
    display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-   grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));
-   gap: 10px;
-   padding: 1rem 0;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+   grid-template-rows: repeat(auto-fit, minmax(120px, 1fr));
+   gap: 5px;
+   padding: 10px 0;
 }
 
 .box {
    margin: 0.8rem;
-   border-radius: 20px;
+   border-radius: 14px;
    color: #fff;
    display: flex;
    font-size: 18px;
    background-color: var(--activeItem);
    justify-content: center;
    align-items: center;
+   min-width: 120px;
 
    &:hover {
       box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
@@ -201,8 +202,8 @@
 @media (max-width: 1545px) and (min-width: 1127px) {
    .dashboard-grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      grid-template-rows: 200px 200px 250px 250px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-rows: 180px 180px 240px 240px;
    }
 
    .box1 {

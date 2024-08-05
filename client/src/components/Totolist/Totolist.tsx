@@ -56,36 +56,38 @@ function Todolist() {
             todo={todo}
             scrollToBottom={scrollToBottom}
          />
-         <div className='todolist' ref={todoListRef}>
-            {todolist.length > 0 ? (
-               todolist.map((todo) => {
-                  const { id, task, completed, created: time } = todo;
-                  const formattedDateTime = formattedDateAndTime(time);
-                  return (
-                     <Todo
-                        key={id}
-                        id={id}
-                        task={task}
-                        completed={completed}
-                        formattedDateTime={formattedDateTime}
-                        handleIsCompleted={handleToggleTodo}
-                        handleDelete={handleDeleteTodo}
-                     />
-                  );
-               })
-            ) : (
-               <p
-                  style={{
-                     padding: '10px',
-                     textTransform: 'capitalize',
-                     textAlign: 'center',
-                     fontWeight: '500',
-                     fontSize: '1.5rem',
-                  }}
-               >
-                  Nothing left to do. Your task is completed.
-               </p>
-            )}
+         <div className='todolist'>
+            <div className='todoscroll' ref={todoListRef}>
+               {todolist.length > 0 ? (
+                  todolist.map((todo) => {
+                     const { id, task, completed, created: time } = todo;
+                     const formattedDateTime = formattedDateAndTime(time);
+                     return (
+                        <Todo
+                           key={id}
+                           id={id}
+                           task={task}
+                           completed={completed}
+                           formattedDateTime={formattedDateTime}
+                           handleIsCompleted={handleToggleTodo}
+                           handleDelete={handleDeleteTodo}
+                        />
+                     );
+                  })
+               ) : (
+                  <p
+                     style={{
+                        padding: '10px',
+                        textTransform: 'capitalize',
+                        textAlign: 'center',
+                        fontWeight: '600',
+                        fontSize: '18px',
+                     }}
+                  >
+                     Nothing left to do. Your task is completed.
+                  </p>
+               )}
+            </div>
          </div>
       </Container>
    );

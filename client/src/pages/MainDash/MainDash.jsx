@@ -6,7 +6,7 @@ import React, {
    startTransition,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { UilEllipsisV } from '@iconscout/react-unicons';
+import { EllipsisOutlined } from '@ant-design/icons';
 import { pageMainDash } from '../../Data/fetchData';
 
 import ContextualExample from '../../components/ProgressBar';
@@ -19,7 +19,6 @@ import {
 } from '../../components/Table/TableActions/handleActions';
 import { columnsMainDash } from '../../Data/columns';
 import FormPanel from './FormPanel';
-import OnTopButton from '../../components/OnTop/OnTop';
 import { sendRequest } from '../../ulti/sendHeaderRequest';
 import {
    alertMessage,
@@ -29,6 +28,7 @@ import {
 import { updateCountingUsers } from '../../components/features/appInformation/appInformationSlice';
 import './mainDash.css';
 import { setLoading } from '../../components/features/loading/loadingSlice';
+import { Spin } from 'antd';
 
 const MyCalendar = lazy(() => import('../../components/Calendar'));
 const Table = lazy(() => import('../../components/Table/Table'));
@@ -279,7 +279,7 @@ const MainDash = () => {
          <div className='combined-stats-header'>
             <h1 className='combined-stats-title'>Top Revenue</h1>
             <div className='combined-stats-icon'>
-               <UilEllipsisV />
+               <EllipsisOutlined />
             </div>
          </div>
          <div className='combined-stats-content'>
@@ -293,7 +293,7 @@ const MainDash = () => {
          <div className='combined-stats-header'>
             <h1 className='combined-stats-title'>Todolist</h1>
             <div className='combined-stats-icon'>
-               <UilEllipsisV />
+               <EllipsisOutlined />
             </div>
          </div>
          <div className='combined-stats-content'>
@@ -307,7 +307,7 @@ const MainDash = () => {
          <div className='combined-stats-header'>
             <h1 className='combined-stats-title'>Progress Chart</h1>
             <div className='combined-stats-icon'>
-               <UilEllipsisV />
+               <EllipsisOutlined />
             </div>
          </div>
          <div className='combined-stats-content'>
@@ -318,7 +318,7 @@ const MainDash = () => {
    // console.log(calendar);
    return (
       <main className={`main-dashboard-container`}>
-         <Suspense fallback={<div>Loading...</div>}>
+         <Suspense fallback={<Spin />}>
             <DashboardBoxChart />
          </Suspense>
 
@@ -330,9 +330,7 @@ const MainDash = () => {
 
          {calendar && <MyCalendar />}
 
-         <OnTopButton />
-
-         <Suspense fallback={<div>Loading...</div>}>
+         <Suspense fallback={<Spin />}>
             <Table
                title='List of users'
                columns={columns}

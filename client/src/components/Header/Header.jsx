@@ -1,23 +1,22 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { Dropdown, Menu, Avatar } from 'antd';
 import {
-   UilUser,
-   UilInfoCircle,
-   UilSignout,
-   UilEnvelope,
-   UilSun,
-   UilSetting,
-} from '@iconscout/react-unicons';
+   UserOutlined,
+   InfoCircleOutlined,
+   MailOutlined,
+   SettingOutlined,
+   LogoutOutlined,
+   SunOutlined,
+} from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import Dropdown from 'react-bootstrap/Dropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleDarkMode } from '../features/darkmode/darkModeSlice';
 import { deleteLocalStorage, getObjectFromLocalStorage } from '../../ulti';
 import BurgerIcon from '../../imgs/align-left.svg';
-import IconSearch from '../../imgs/IconSearch';
-
 import './header.css';
+import InputSearch from 'components/common/InputComponent/InputSearch';
 
-const Header = ({ nameContent, toggleBurger }) => {
+const Header = ({ nameContent = '', toggleBurger = () => {} }) => {
    const [avatarUrl, setAvatarUrl] = useState('');
    const darkMode = useSelector((state) => state.darkMode);
    const username = localStorage.getItem('username');
@@ -45,6 +44,77 @@ const Header = ({ nameContent, toggleBurger }) => {
 
    const dispatch = useDispatch();
 
+   const menuItems = [
+      {
+         label: <span className='header-username'>Welcome: {username}</span>,
+         key: 'welcome',
+         disabled: true,
+      },
+      { type: 'divider' },
+      {
+         label: (
+            <Link to='/info' className='user-menu-item'>
+               <InfoCircleOutlined className='icon-sidebar-menu' />
+               <span className='name-menu-item'>Info</span>
+            </Link>
+         ),
+         key: 'info',
+      },
+      {
+         label: (
+            <Link to='/profile' className='user-menu-item'>
+               <UserOutlined className='icon-sidebar-menu' />
+               <span className='name-menu-item'>Profile</span>
+            </Link>
+         ),
+         key: 'profile',
+      },
+      {
+         label: (
+            <Link to='/contact' className='user-menu-item'>
+               <MailOutlined className='icon-sidebar-menu' />
+               <span className='name-menu-item'>Contact</span>
+            </Link>
+         ),
+         key: 'contact',
+      },
+      {
+         label: (
+            <Link to='/setting' className='user-menu-item'>
+               <SettingOutlined className='icon-sidebar-menu' />
+               <span className='name-menu-item'>Setting</span>
+            </Link>
+         ),
+         key: 'setting',
+      },
+      {
+         label: (
+            <Link
+               to='/login'
+               className='user-menu-item logout'
+               onClick={deleteLocalStorage}
+            >
+               <LogoutOutlined className='icon-sidebar-menu' />
+               <span className='name-menu-item'>Logout</span>
+            </Link>
+         ),
+         key: 'logout',
+      },
+      { type: 'divider' },
+      {
+         label: (
+            <div
+               className='menu-item user-menu-item'
+               onClick={() => dispatch(toggleDarkMode())}
+            >
+               <SunOutlined className='icon-sidebar-menu' />
+               <span className='name-menu-item'>Light / Dark</span>
+            </div>
+         ),
+         key: 'dark-mode',
+      },
+   ];
+
    return (
       <header
          className={`nav-user-header-container ${darkMode ? 'darkmode' : ''}`}
@@ -57,19 +127,11 @@ const Header = ({ nameContent, toggleBurger }) => {
                   alt='Sidebar'
                />
             </div>
-
             <h1 className='name-tab'>{nameContent}</h1>
          </div>
          <div id='nav-search'>
-            <input
-               ref={searchInputRef}
-               id='nav-input-search'
-               type='search'
-               placeholder='Enter something to search'
-            />
-            <IconSearch className='nav-search-icon' />
+            <InputSearch size='large' />
          </div>
-
          <div className='nav-right'>
             <nav>
                <div className='user-utilities'>
@@ -79,91 +141,19 @@ const Header = ({ nameContent, toggleBurger }) => {
                         dispatch(toggleDarkMode());
                      }}
                   >
-                     <UilSun />
+                     <SunOutlined />
                   </div>
-
-                  <Dropdown>
-                     <Dropdown.Toggle className='user-profile'>
-                        {avatarUrl ? (
-                           <img
-                              style={{
-                                 width: '45px',
-                                 height: '45px',
-                                 objectFit: 'cover',
-                                 display: 'flex',
-                                 justifyContent: 'center',
-                                 alignItems: 'center',
-                                 borderRadius: '50%',
-                              }}
-                              src={avatarUrl}
-                              alt='error'
-                           />
-                        ) : (
-                           <UilUser />
-                        )}
-                     </Dropdown.Toggle>
-
-                     <Dropdown.Menu className='custom-dropdown-menu'>
-                        <Dropdown.Header>
-                           <span className='header-username'>
-                              Welcome: {username}
-                           </span>
-                        </Dropdown.Header>
-                        <Dropdown.Divider />
-                        <Dropdown.Item as={Link} to='/info'>
-                           <div className='menu-item'>
-                              <UilInfoCircle />
-                              <span className='name-menu-item'>Info</span>
-                           </div>
-                        </Dropdown.Item>
-
-                        <Dropdown.Item as={Link} to='/profile'>
-                           <div className='menu-item'>
-                              <UilUser />
-                              <span className='name-menu-item'>Profile</span>
-                           </div>
-                        </Dropdown.Item>
-
-                        <Dropdown.Item as={Link} to='/contact'>
-                           <div className='menu-item'>
-                              <UilEnvelope />
-                              <span className='name-menu-item'>Contact</span>
-                           </div>
-                        </Dropdown.Item>
-
-                        <Dropdown.Item as={Link} to='/setting'>
-                           <div className='menu-item'>
-                              <UilSetting />
-                              <span className='name-menu-item'>Setting</span>
-                           </div>
-                        </Dropdown.Item>
-
-                        <Dropdown.Item
-                           as={Link}
-                           to='/login'
-                           onClick={deleteLocalStorage}
-                        >
-                           <div className='menu-item'>
-                              <UilSignout />
-                              <span className='name-menu-item'>Logout</span>
-                           </div>
-                        </Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item>
-                           <div
-                              // className='icon-menu-item'
-                              className='menu-item'
-                              onClick={() => {
-                                 dispatch(toggleDarkMode());
-                              }}
-                           >
-                              <UilSun />
-                              <span className='name-menu-item'>
-                                 Light / Dark
-                              </span>
-                           </div>
-                        </Dropdown.Item>
-                     </Dropdown.Menu>
+                  <Dropdown
+                     overlay={<Menu items={menuItems} />}
+                     trigger={['click']}
+                  >
+                     <div className='user-profile'>
+                        <Avatar
+                           src={avatarUrl}
+                           icon={!avatarUrl ? <UserOutlined /> : null}
+                           className='user-profile-avatar'
+                        />
+                     </div>
                   </Dropdown>
                </div>
             </nav>

@@ -18,13 +18,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 6rem;
-      height: 6rem;
+      width: 72px;
+      height: 72px;
       margin: 0 auto;
-      border-radius: 20px;
+      border-radius: 10px;
       outline: 2px solid rgba(255, 255, 255, 0.5);
       border: 1px solid rgba(0, 0, 0, 0.2);
-      background-color: #fff;
+      background-color: #ffffff;
 
       &.color1 {
          color: #6240df;
@@ -44,8 +44,8 @@
    }
 
    .cart-icon svg {
-      width: 4rem;
-      height: 4rem;
+      width: 40px;
+      height: 40px;
    }
 
    @media screen and (max-width: 767px) {
@@ -62,37 +62,39 @@
 }
 
 .cart-icon:hover {
-   transform: scale(1.1);
+   transform: scale(1.05);
    transition: transform 0.15s linear;
 }
 
 .cart-right {
+   color: #fff;
    display: flex;
    flex-direction: column;
    flex: 2;
    align-items: center;
-   margin-bottom: 1rem;
+   justify-content: center;
+   margin-bottom: 10px;
    position: relative;
 
    .cart-title {
-      font-weight: bold;
+      font-weight: 700;
       font-size: 24px;
       text-shadow: 0.5px 1px rgba(0, 0, 0, 0.4);
    }
 
    .cart-count {
-      font-size: 3rem;
-      font-weight: bold;
+      font-size: 28px;
+      font-weight: 600;
       text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
    }
 
    .cart-up {
-      border-radius: 20px;
-      padding: 0.5rem;
+      border-radius: 18px;
+      padding: 6px;
       background-color: rgb(255, 255, 255, 0.4);
       color: #fff;
-      font-size: normal;
-      font-weight: bold;
+      font-size: 16px;
+      font-weight: 600;
       border: 2px solid #eee;
       text-align: center;
       text-transform: capitalize;

@@ -12,26 +12,21 @@ export interface IInputBase extends InputProps {
 const StyledInput = styled(Input)<InputProps>`
    border-radius: 14px;
    font-size: 14px;
-   height: 40px;
    line-height: 120%;
    max-width: 502px;
-   // min-width: 248px;
+   min-height: 40px;
    width: 100%;
 `;
 
 const InputBase: React.FC<IInputBase> = ({
    placeholder,
    type = 'text',
-   value,
-   onChange,
    ...props
 }) => {
    return (
       <StyledInput
          type={type}
          placeholder={placeholder || 'Enter something'}
-         value={value}
-         onChange={onChange}
          {...props}
       />
    );

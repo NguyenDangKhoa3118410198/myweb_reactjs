@@ -21,7 +21,7 @@
 }
 
 .admin-login-container p {
-   font-size: 15px;
+   font-size: 16px;
    line-height: 15px;
    letter-spacing: 0.3px;
    margin: 0.2rem 0;
@@ -114,10 +114,12 @@
 }
 
 .social-icons {
+   width: 100%;
    display: flex;
-   margin: 2rem 0;
-   gap: 3rem;
+   margin: 20px 5px 10px 5px;
+   justify-content: space-evenly;
 }
+
 
 .admin-platform-icon {
    padding: 14px;
@@ -220,6 +222,16 @@
    transform: translateX(200%);
 }
 
+.btn-sign-in {
+   height: 40px;
+   min-width: 150px;
+
+   >span {
+      font-size: 14px;
+      font-weight: 600;
+   }
+}
+
 .btn-sign-in:active {
    transform: scale(1.1);
    background-color: #036ee0;
@@ -256,11 +268,11 @@
    flex-direction: column;
    align-items: center;
    margin: 10px 5px;
-   padding: 0 5px;
+   padding: 5px;
    font-weight: 500;
 
    &>h1 {
-      font-size: 30px;
+      font-size: 32px;
       font-weight: 700;
       text-transform: uppercase;
    }
@@ -329,5 +341,5 @@
    object-fit: cover;
    width: 100%;
    height: 100%;
-   padding: 2rem;
+   padding: 20px;
 }

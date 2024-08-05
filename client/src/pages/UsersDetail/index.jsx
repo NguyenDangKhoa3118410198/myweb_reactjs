@@ -7,7 +7,6 @@ import {
 import Table from '../../components/Table/Table';
 import { columnsUserDetail } from '../../Data/columns';
 import { pageUsersDetail } from '../../Data/fetchData';
-import OnTopButton from '../../components/OnTop/OnTop';
 import { sendRequest } from '../../ulti/sendHeaderRequest';
 import FormPanel from './FormPanel';
 import { isFormDataValid } from '../../components/Table/TableActions/handleActions';
@@ -203,7 +202,6 @@ function UsersDetail() {
                handleClose,
             }}
          />
-         <OnTopButton />
       </main>
    );
 }

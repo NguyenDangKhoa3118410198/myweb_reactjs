@@ -1,3 +1,4 @@
+import InputSearch from 'components/common/InputComponent/InputSearch';
 import PropTypes from 'prop-types';
 export const searchBox = (searchTerm, setSearchTerm) => {
    function handleSearch(event) {
@@ -5,10 +6,11 @@ export const searchBox = (searchTerm, setSearchTerm) => {
    }
 
    return (
-      <input
-         className='searchBox'
-         type='search'
+      <InputSearch
+         className='input-search-table'
          placeholder='Search...'
+         size='medium'
+         variant='filled'
          value={searchTerm}
          onChange={handleSearch}
       />

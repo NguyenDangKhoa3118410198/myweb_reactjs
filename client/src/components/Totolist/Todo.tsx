@@ -46,7 +46,7 @@ function Todo({
                </span>
             </div>
          </div>
-         <div className='todo-delete-wrapper'>
+         <div className='todo-delete-wrapper' onClick={() => handleDelete(id)}>
             <FaRegTrashAlt
                className='todo-delete'
                onClick={() => handleDelete(id)}

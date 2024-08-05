@@ -8,7 +8,7 @@ function MenuItem({ title, to, icon }) {
 
    return (
       <NavLink className={`menuItem ${darkMode ? 'darkmode' : ''}`} to={to}>
-         <span className='icon'>{icon}</span>
+         <span className='icon icon-sidebar-menu'>{icon}</span>
          <span className='item'>{title}</span>
       </NavLink>
    );

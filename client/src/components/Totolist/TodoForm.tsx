@@ -43,7 +43,7 @@ const TodoForm: React.FC<TodoFormProps> = ({
             <PrimaryButton
                label='Enter'
                htmlType='submit'
-               style={{ margin: '10px' }}
+               style={{ margin: '10px', fontWeight: 600 }}
             />
          </Form.Item>
       </Form>

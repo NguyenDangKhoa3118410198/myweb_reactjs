@@ -10,7 +10,7 @@
    border-bottom-right-radius: 10px;
    overflow: hidden;
    opacity: 1;
-   z-index: 10;
+   z-index: 101;
    transition: all .3s ease;
    box-shadow: 0 5px 1px rgba(0, 0, 0, 0.2);
    font-family: "Poppins", sans-serif;
@@ -45,6 +45,10 @@
       background-color: var(--color-black-01);
       color: #fff;
    }
+}
+
+.icon-sidebar-menu {
+   font-size: 18px;
 }
 
 /* logo */

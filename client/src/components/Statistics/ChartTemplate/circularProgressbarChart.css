@@ -16,15 +16,17 @@
    }
 
    .circular-day {
+      font-size: 16px;
       font-weight: 500;
    }
 
    .circular-amount {
       font-size: 24px;
-      font-weight: bold;
+      font-weight: 700;
    }
 
    .circular-desc {
+      font-size: 16px;
       font-weight: 500;
    }
 }
