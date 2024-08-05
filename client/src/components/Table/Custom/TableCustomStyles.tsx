@@ -1,4 +1,6 @@
-const TableCustomStyles = {
+import { TableStyles } from 'react-data-table-component';
+
+const TableCustomStyles: TableStyles = {
    table: {
       style: {
          minHeight: '300px',
@@ -13,7 +15,7 @@ const TableCustomStyles = {
       style: {
          fontSize: '1.2rem',
          fontWeight: 'bold',
-         textTransform: 'capitalize',
+         textTransform: 'capitalize', // Giá trị hợp lệ
       },
    },
 };

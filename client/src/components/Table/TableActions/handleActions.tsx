@@ -1,7 +1,18 @@
 import InputSearch from 'components/common/InputComponent/InputSearch';
-import PropTypes from 'prop-types';
-export const searchBox = (searchTerm, setSearchTerm) => {
-   function handleSearch(event) {
+
+interface FormData {
+   [key: string]: string | number | null | undefined;
+}
+
+interface Record {
+   [key: string]: string | number | null | undefined;
+}
+
+export const searchBox = (
+   searchTerm: string,
+   setSearchTerm: (value: string) => void
+) => {
+   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
       setSearchTerm(event.target.value);
    }
 
@@ -9,7 +20,6 @@ export const searchBox = (searchTerm, setSearchTerm) => {
       <InputSearch
          className='input-search-table'
          placeholder='Search...'
-         size='medium'
          variant='filled'
          value={searchTerm}
          onChange={handleSearch}
@@ -17,7 +27,7 @@ export const searchBox = (searchTerm, setSearchTerm) => {
    );
 };
 
-export const removeExtraSpaces = (text) => {
+export const removeExtraSpaces = (text: string): string => {
    if (typeof text === 'string') {
       return text.replace(/\s+/g, ' ').trim();
    } else {
@@ -25,18 +35,20 @@ export const removeExtraSpaces = (text) => {
    }
 };
 
-export const formDataObjectWithExtraSpacesRemoved = (formData) => {
-   const formDataWithExtraSpacesRemoved = {};
+export const formDataObjectWithExtraSpacesRemoved = (
+   formData: FormData
+): FormData => {
+   const formDataWithExtraSpacesRemoved: FormData = {};
    Object.entries(formData).forEach(([key, value]) => {
-      formDataWithExtraSpacesRemoved[key] = removeExtraSpaces(value);
+      formDataWithExtraSpacesRemoved[key] = removeExtraSpaces(value as string);
    });
    return formDataWithExtraSpacesRemoved;
 };
 
-export const filterData = (searchTerm, records) => {
+export const filterData = (searchTerm: string, records: Record[]): Record[] => {
    return records.filter((row) =>
       Object.values(row).some(
-         (value) =>
+         (value: any) =>
             canConvertToString(value) &&
             value
                .toString()
@@ -46,22 +58,17 @@ export const filterData = (searchTerm, records) => {
    );
 };
 
-const canConvertToString = (value) => {
+const canConvertToString = (value: any): boolean => {
    return typeof value === 'string' || typeof value === 'number';
 };
 
-filterData.propTypes = {
-   searchTerm: PropTypes.string.isRequired,
-   records: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-
-export const isFormDataValid = (formData) => {
+export const isFormDataValid = (formData: FormData): FormData | false => {
    if (
       Object.values(formData).every(
          (value) =>
             value !== null &&
             value !== undefined &&
-            removeExtraSpaces(value) !== ''
+            removeExtraSpaces(value as string) !== ''
       )
    ) {
       const newFormData = formDataObjectWithExtraSpacesRemoved(formData);
@@ -71,11 +78,13 @@ export const isFormDataValid = (formData) => {
    return false;
 };
 
-export const capitalizeFirstLetter = (string) => {
+export const capitalizeFirstLetter = (string: string): string => {
    return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-export const headerCsv = (data) => {
+export const headerCsv = (
+   data: Record[]
+): { label: string; key: string }[] | undefined => {
    let headers;
    if (data.length > 0) {
       headers = Object.keys(data[0]).map((header) => ({

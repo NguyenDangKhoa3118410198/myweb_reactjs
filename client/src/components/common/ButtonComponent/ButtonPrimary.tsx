@@ -1,11 +1,12 @@
-import { Button } from 'antd';
+import React from 'react';
+import { Button, ButtonProps as AntButtonProps } from 'antd';
 import styled from 'styled-components';
-import { IButton } from './Button';
 
 const StyledButton = styled(Button)`
    border-radius: 10px;
    font-size: 14px;
-   padding: 17px;
+   padding: 16px;
+   color: var(--color-white);
    background-color: var(--color-blue-04);
 
    &:hover {
@@ -15,10 +16,21 @@ const StyledButton = styled(Button)`
    }
 `;
 
-export default function PrimaryButton({ label, icon, ...props }: IButton) {
+interface PrimaryButtonProps extends AntButtonProps {
+   label: string;
+   icon?: React.ReactNode;
+}
+
+const PrimaryButton: React.FC<PrimaryButtonProps> = ({
+   label,
+   icon,
+   ...props
+}) => {
    return (
-      <StyledButton type='primary' {...props} icon={icon}>
+      <StyledButton {...props} icon={icon}>
          {label}
       </StyledButton>
    );
-}
+};
+
+export default PrimaryButton;

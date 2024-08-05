@@ -3,7 +3,13 @@ import { Button } from 'react-bootstrap';
 import { VerticalAlignBottomOutlined } from '@ant-design/icons';
 import './table.css';
 
-function ExportCSV({ headers, title, data }) {
+interface IExportButton {
+   headers: { label: string; key: string }[];
+   title: string;
+   data: any[];
+}
+
+const ExportCSV: React.FC<IExportButton> = ({ headers, title, data }) => {
    return (
       <Button type='button' className='btn btn-add export-csv'>
          <CSVLink
@@ -18,6 +24,6 @@ function ExportCSV({ headers, title, data }) {
          </CSVLink>
       </Button>
    );
-}
+};
 
 export default ExportCSV;

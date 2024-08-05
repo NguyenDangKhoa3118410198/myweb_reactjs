@@ -10,7 +10,7 @@ export const deleteLocalStorage = () => {
    // localStorage.clear();
 };
 
-export const getObjectFromLocalStorage = (key) => {
+export const getObjectFromLocalStorage = (key: any) => {
    const storedData = localStorage.getItem(key);
 
    if (storedData === null) {
@@ -30,12 +30,12 @@ export const getObjectFromLocalStorage = (key) => {
    }
 };
 
-export const formattedDateAndTime = (datetime) => {
+export const formattedDateAndTime = (datetime: any) => {
    const date = moment(datetime).format('YY/MM/DD');
    const time = moment(datetime).format('h:mm A');
    return { date, time };
 };
 
-export const formattedBirthDay = (datetime) => {
+export const formattedBirthDay = (datetime: any) => {
    return moment(datetime).format('YYYY-MM-DD');
 };

@@ -1,6 +1,21 @@
+import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import styled from 'styled-components';
 import { formattedBirthDay } from '../../../ulti';
+
+// Define types for props
+interface ViewCurrent {
+   id?: string;
+   avatar?: string;
+   thumbnailUrl?: string;
+   [key: string]: any; // Add this line to allow any additional properties
+}
+
+interface ModalViewProps {
+   viewcurrent: ViewCurrent;
+   onHide: () => void;
+   show: boolean;
+}
 
 const ImageUser = styled.img`
    width: 180px;
@@ -29,8 +44,8 @@ const ItemInfo = styled.li`
    margin-bottom: 8px;
 `;
 
-function ModalView(props) {
-   const capitalizeFirstLetter = (str) => {
+const ModalView: React.FC<ModalViewProps> = (props) => {
+   const capitalizeFirstLetter = (str: string) => {
       return str.charAt(0).toUpperCase() + str.slice(1);
    };
 
@@ -43,7 +58,7 @@ function ModalView(props) {
       >
          <Modal.Header closeButton>
             <Modal.Title id='contained-modal-title-vcenter'>
-               Details Infomation
+               Details Information
             </Modal.Title>
          </Modal.Header>
          <Modal.Body>
@@ -67,7 +82,8 @@ function ModalView(props) {
                               <strong>{capitalizeFirstLetter(key)}:</strong>{' '}
                               {key === 'dateOfBirth'
                                  ? formattedBirthDay(value)
-                                 : value}
+                                 : String(value)}{' '}
+                              {/* Ensure value is a string */}
                            </ItemInfo>
                         )
                   )}
@@ -76,6 +92,6 @@ function ModalView(props) {
          </Modal.Body>
       </Modal>
    );
-}
+};
 
 export default ModalView;

@@ -74,6 +74,7 @@
    },
    "devDependencies": {
       "@types/lodash": "^4.17.6",
+      "@types/react-csv": "^1.1.10",
       "@types/styled-components": "^5.1.34"
    }
 }

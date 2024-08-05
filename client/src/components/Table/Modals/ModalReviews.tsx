@@ -5,11 +5,26 @@ import { FaStar } from 'react-icons/fa';
 import { Spin } from 'antd';
 import { useSelector } from 'react-redux';
 
-const capitalizeFirstLetter = (str) => {
+interface Review {
+   id?: string;
+   customerId?: string;
+   image?: string;
+   thumbnail?: string;
+   rating?: number;
+   [key: string]: any; // Cho phép các thuộc tính khác có thể xuất hiện
+}
+
+interface ModalReviewsProps {
+   data: Review[];
+   show: boolean;
+   onHide: () => void;
+}
+
+const capitalizeFirstLetter = (str: string) => {
    return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-const starRating = (rating) => {
+const starRating = (rating: number) => {
    const stars = [];
    for (let i = 0; i < 5; i++) {
       if (i < rating) {
@@ -21,11 +36,13 @@ const starRating = (rating) => {
    return <StarRating>{stars}</StarRating>;
 };
 
-const ModalReviews = React.memo((props) => {
-   const { data: dataReview } = props;
-   const { status: statusReviews } = useSelector((state) => state.root.review);
+const ModalReviews: React.FC<ModalReviewsProps> = React.memo((props) => {
+   const { data: dataReview, show, onHide } = props;
+   const { status: statusReviews } = useSelector(
+      (state: any) => state.root.review
+   );
 
-   const renderReview = useCallback((review) => {
+   const renderReview = useCallback((review: Review) => {
       return Object.entries(review).map(
          ([key, value]) =>
             key !== 'id' &&
@@ -42,7 +59,8 @@ const ModalReviews = React.memo((props) => {
 
    return (
       <Modal
-         {...props}
+         show={show}
+         onHide={onHide}
          size='lg'
          aria-labelledby='contained-modal-title-vcenter'
          centered
@@ -60,7 +78,7 @@ const ModalReviews = React.memo((props) => {
                         {review.image || review.thumbnail ? (
                            <ImageReview
                               src={review.image || review.thumbnail}
-                              alt='error'
+                              alt='Review Image'
                            />
                         ) : null}
                         <ListItemInfo>{renderReview(review)}</ListItemInfo>

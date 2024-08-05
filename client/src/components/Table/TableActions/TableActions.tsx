@@ -11,35 +11,19 @@ import {
 } from 'react-icons/fa';
 
 import { BsThreeDotsVertical } from 'react-icons/bs';
+interface ItemMenuProps {
+   handleFunction?: (record: any) => void;
+   icon: React.ReactNode;
+   label?: string;
+   record: any;
+}
 
-const MenuWarpper = styled.div`
-   display: flex;
-   justify-content: center;
-   align-content: center;
-`;
-
-const ItemMenuAction = styled.div`
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
-   gap: 0.8rem;
-   margin: 0 0.2rem;
-
-   .icon {
-      font-size: 1.4rem;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      &:hover {
-         color: var(--color-blue-03);
-      }
-   }
-`;
-
-const ItemMenu = ({ handleFunction, icon, label, record }) => {
+const ItemMenu: React.FC<ItemMenuProps> = ({
+   handleFunction,
+   icon,
+   label,
+   record,
+}) => {
    if (!handleFunction) return null;
 
    return (
@@ -55,7 +39,17 @@ const ItemMenu = ({ handleFunction, icon, label, record }) => {
    );
 };
 
-const TableActions = ({
+interface TableActionsProps {
+   handleView?: (record: any) => void;
+   handleEditClick?: (record: any) => void;
+   handleDelete?: (record: any) => void;
+   handleReview?: (record: any) => void;
+   handleDeactivate?: (record: any) => void;
+   handleActivate?: (record: any) => void;
+   record: any;
+}
+
+const TableActions: React.FC<TableActionsProps> = ({
    handleView,
    handleEditClick,
    handleDelete,
@@ -155,3 +149,30 @@ const TableActions = ({
 };
 
 export default TableActions;
+
+const MenuWarpper = styled.div`
+   display: flex;
+   justify-content: center;
+   align-content: center;
+`;
+
+const ItemMenuAction = styled.div`
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   gap: 0.8rem;
+   margin: 0 0.2rem;
+
+   .icon {
+      font-size: 1.4rem;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+         color: var(--color-blue-03);
+      }
+   }
+`;

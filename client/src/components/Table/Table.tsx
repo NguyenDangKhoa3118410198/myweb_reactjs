@@ -1,17 +1,45 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import DataTable from 'react-data-table-component';
 import { headerCsv } from './TableActions/handleActions';
 import { TableCustomStyles } from './Custom/TableCustomStyles';
 import ModalView from './Modals/ModalView';
 import ModalReviews from './Modals/ModalReviews';
 import ExportCSV from './ExportCSV';
-import './table.css';
 import { useSelector } from 'react-redux';
 import { LoadingData } from '../Loading';
 import PrimaryButton from 'components/common/ButtonComponent/ButtonPrimary';
 import { PlusCircleOutlined } from '@ant-design/icons';
+import './table.css';
 
-const Table = ({
+// Định nghĩa các loại kiểu cho các props
+interface ITableProps {
+   title?: string;
+   columns: any;
+   data: any[];
+   searchBox: JSX.Element;
+   formData: any;
+   setFormData: (value: any) => void;
+   FormPanel: React.FC<any>;
+   tableActions?: {
+      setModalReview?: (show: boolean) => void;
+      setModalView?: (show: boolean) => void;
+      viewCurrent?: any;
+      isModalView?: boolean;
+      isEditPanelOpen?: boolean;
+      isAddPanelOpen?: boolean;
+      isModalReview?: boolean;
+      isListReviews?: any[];
+      setIsAddPanelOpen?: (open: boolean) => void;
+      setIsEditPanelOpen?: (open: boolean) => void;
+      setCurrentRecordId?: (id: any) => void;
+   };
+   handleActions?: {
+      handleSubmitAndEdit?: () => void;
+      handleClose?: () => void;
+   };
+}
+
+const Table: React.FC<ITableProps> = ({
    title,
    columns,
    data,
@@ -22,7 +50,7 @@ const Table = ({
    tableActions,
    handleActions = {},
 }) => {
-   let {
+   const {
       setModalReview,
       setModalView,
       viewCurrent,
@@ -33,13 +61,14 @@ const Table = ({
       isListReviews,
       setIsAddPanelOpen,
       setIsEditPanelOpen,
-      setCurrentRecordId,
+      setCurrentRecordId = () => {},
    } = tableActions || {};
-   let { handleSubmitAndEdit, handleClose } = handleActions;
+   const { handleSubmitAndEdit, handleClose } = handleActions;
 
    const headers = headerCsv(data);
-   const targetRef = useRef(null);
-   const loading = useSelector((state) => state.loading.loading);
+   const targetRef = useRef<HTMLDivElement>(null);
+   const loading = useSelector((state: any) => state.loading.loading);
+
    const scrollToElement = () => {
       if (targetRef.current) {
          targetRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -51,17 +80,18 @@ const Table = ({
          <div className='form-panel-action'>
             {setModalReview && isListReviews && (
                <ModalReviews
-                  show={isModalReview}
+                  show={isModalReview ?? false}
                   onHide={() => setModalReview(false)}
-                  viewcurrent={viewCurrent ? viewCurrent : 'Not Found'}
                   data={isListReviews}
                />
             )}
-            <ModalView
-               show={isModalView}
-               onHide={() => setModalView(false)}
-               viewcurrent={viewCurrent ? viewCurrent : 'Not Found'}
-            />
+            {setModalView && (
+               <ModalView
+                  show={isModalView ?? false}
+                  onHide={() => setModalView(false)}
+                  viewcurrent={viewCurrent ? viewCurrent : 'Not Found'}
+               />
+            )}
             {isAddPanelOpen && (
                <FormPanel
                   title='Add'
@@ -91,22 +121,22 @@ const Table = ({
                   tableActions ? (
                      <div className='custom-data-table'>
                         <div className='right-data-table'>
-                           {setIsAddPanelOpen ? (
+                           {setIsAddPanelOpen && (
                               <PrimaryButton
                                  onClick={() => {
                                     setIsAddPanelOpen(true);
-                                    setIsEditPanelOpen(false);
-                                    setCurrentRecordId(null);
+                                    setIsEditPanelOpen?.(false);
+                                    setCurrentRecordId?.(null);
                                     scrollToElement();
                                  }}
                                  label='Create'
                                  icon={<PlusCircleOutlined />}
                               />
-                           ) : null}
+                           )}
                            {searchBox}
                            <ExportCSV
-                              headers={headers}
-                              title={title}
+                              headers={headers || []}
+                              title={title || 'data'}
                               data={data}
                            />
                         </div>
@@ -114,8 +144,8 @@ const Table = ({
                   ) : (
                      <div className='right-data-table'>
                         <ExportCSV
-                           headers={headers}
-                           title={title}
+                           headers={headers || []}
+                           title={title || 'data'}
                            data={data}
                         />
                         {searchBox}
@@ -129,7 +159,7 @@ const Table = ({
                pointerOnHover
                pagination
                paginationPerPage={5}
-               paginationResetDefaultPage={1}
+               paginationResetDefaultPage={true}
                paginationRowsPerPageOptions={[5, 10]}
                paginationComponentOptions={{
                   rowsPerPageText: 'Records per page:',
