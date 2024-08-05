@@ -1,8 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// Định nghĩa kiểu cho trạng thái
+type DarkModeState = boolean;
+
+const initialState: DarkModeState = false;
+
 const darkModeSlice = createSlice({
    name: 'darkMode',
-   initialState: false,
+   initialState,
    reducers: {
       toggleDarkMode: (state) => {
          return !state;
@@ -12,3 +17,6 @@ const darkModeSlice = createSlice({
 
 export const { toggleDarkMode } = darkModeSlice.actions;
 export default darkModeSlice.reducer;
+
+// Xuất kiểu trạng thái
+export type { DarkModeState };

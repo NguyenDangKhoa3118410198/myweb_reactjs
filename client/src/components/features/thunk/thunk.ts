@@ -1,26 +1,43 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { sendRequest } from 'ulti/sendHeaderRequest';
 
-export const handleAsyncThunk = (
+type HandleAsyncThunkParams<S, T> = {
+   builder: any; // Thay thế với kiểu cụ thể nếu có
+   thunk: any; // Thay thế với kiểu cụ thể nếu có
+   successCallback: (state: any, action: PayloadAction<T>) => void;
+   stateSelector: (state: S) => any;
+};
+
+export const handleAsyncThunk = <S, T>({
    builder,
    thunk,
    successCallback,
-   stateSelector
-) => {
+   stateSelector,
+}: HandleAsyncThunkParams<S, T>) => {
    builder
-      .addCase(thunk.pending, (state) => {
+      .addCase(thunk.pending, (state: S) => {
          const selectedState = stateSelector(state);
-         selectedState.status = 'loading';
+         if (selectedState) {
+            selectedState.status = 'loading';
+         }
       })
-      .addCase(thunk.fulfilled, (state, action) => {
+      .addCase(thunk.fulfilled, (state: S, action: PayloadAction<T>) => {
          const selectedState = stateSelector(state);
-         selectedState.status = 'succeeded';
-         successCallback(selectedState, action);
+         if (selectedState) {
+            selectedState.status = 'succeeded';
+            successCallback(selectedState, action);
+         } else {
+            console.error('Selected state is undefined');
+         }
       })
-      .addCase(thunk.rejected, (state, action) => {
+      .addCase(thunk.rejected, (state: S, action: any) => {
          const selectedState = stateSelector(state);
-         selectedState.status = 'failed';
-         selectedState.error = action.error.message;
+         if (selectedState) {
+            selectedState.status = 'failed';
+            selectedState.error = action.error.message || 'Unknown error';
+         } else {
+            console.error('Selected state is undefined');
+         }
       });
 };
 
@@ -34,7 +51,7 @@ export const fetchReviewProduct = createAsyncThunk(
             `api/products/${productId}/review`
          );
          return { reviews: data };
-      } catch (error) {
+      } catch (error: any) {
          return rejectWithValue(error.message);
       }
    }
@@ -47,7 +64,7 @@ export const fetchProducts = createAsyncThunk(
       try {
          const data = await sendRequest('GET', 'api/products');
          return { products: data };
-      } catch (error) {
+      } catch (error: any) {
          return rejectWithValue(error.message);
       }
    }
@@ -61,7 +78,7 @@ export const fetchOrders = createAsyncThunk(
          const response = await fetch('api/orders');
          const data = await response.json();
          return { orders: data };
-      } catch (error) {
+      } catch (error: any) {
          return rejectWithValue(error.message);
       }
    }

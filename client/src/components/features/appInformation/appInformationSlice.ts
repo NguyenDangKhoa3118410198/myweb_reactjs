@@ -1,6 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+interface AppInformationState {
+   dataUsers: number;
+   dataOrders: number;
+   dataProducts: number;
+   dataAccess: number;
+}
+
+const initialState: AppInformationState = {
    dataUsers: 0,
    dataOrders: 0,
    dataProducts: 0,
@@ -11,19 +18,19 @@ const appInformationSlice = createSlice({
    name: 'appInformation',
    initialState,
    reducers: {
-      setDataUsers: (state, action) => {
+      setDataUsers: (state, action: PayloadAction<number>) => {
          state.dataUsers = action.payload;
       },
-      updateCountingUsers: (state, action) => {
+      updateCountingUsers: (state) => {
          state.dataUsers += 1;
       },
-      setDataOrders: (state, action) => {
+      setDataOrders: (state, action: PayloadAction<number>) => {
          state.dataOrders = action.payload;
       },
-      setDataProducts: (state, action) => {
+      setDataProducts: (state, action: PayloadAction<number>) => {
          state.dataProducts = action.payload;
       },
-      setDataAccess: (state, action) => {
+      setDataAccess: (state, action: PayloadAction<number>) => {
          state.dataAccess = action.payload;
       },
    },
@@ -36,4 +43,7 @@ export const {
    setDataProducts,
    setDataAccess,
 } = appInformationSlice.actions;
+
 export default appInformationSlice.reducer;
+
+export type { AppInformationState };

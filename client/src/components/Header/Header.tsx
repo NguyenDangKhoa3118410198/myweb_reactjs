@@ -15,23 +15,27 @@ import { deleteLocalStorage, getObjectFromLocalStorage } from '../../ulti';
 import BurgerIcon from '../../imgs/align-left.svg';
 import './header.css';
 import InputSearch from 'components/common/InputComponent/InputSearch';
+import type { MenuProps } from 'antd';
+import { RootState } from 'components/features/store';
 
 const Header = ({ nameContent = '', toggleBurger = () => {} }) => {
    const [avatarUrl, setAvatarUrl] = useState('');
-   const darkMode = useSelector((state) => state.darkMode);
-   const username = localStorage.getItem('username');
-   const searchInputRef = useRef(null);
+   const darkMode = useSelector((state: RootState) => state.darkMode);
+   const test = useSelector((state: RootState) => state.root.review.reviewId);
 
+   const username = localStorage.getItem('username');
+   const searchInputRef = useRef<HTMLInputElement>(null);
+   console.log('test: ', test);
    useEffect(() => {
       const customerObject = getObjectFromLocalStorage('customerInfo');
       setAvatarUrl(customerObject.avatar);
    }, []);
 
    useEffect(() => {
-      const handleKeyDown = (event) => {
-         if (event.ctrlKey && event.key === '/') {
-            event.preventDefault();
-            searchInputRef.current.focus();
+      const handleKeyDown = (e: any) => {
+         if (e.ctrlKey && e.key === '/') {
+            e.preventDefault();
+            searchInputRef.current?.focus();
          }
       };
 
@@ -44,7 +48,7 @@ const Header = ({ nameContent = '', toggleBurger = () => {} }) => {
 
    const dispatch = useDispatch();
 
-   const menuItems = [
+   const menuItems: MenuProps['items'] = [
       {
          label: <span className='header-username'>Welcome: {username}</span>,
          key: 'welcome',

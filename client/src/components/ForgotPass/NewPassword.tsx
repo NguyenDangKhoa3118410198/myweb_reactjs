@@ -13,7 +13,7 @@ const NewPassword = () => {
       setCode('');
    };
 
-   const handleSubmit = async (e) => {
+   const handleSubmit = async (e: any) => {
       e.preventDefault();
 
       try {
@@ -28,7 +28,7 @@ const NewPassword = () => {
          } else {
             alertMessageError(response.data.message);
          }
-      } catch (error) {
+      } catch (error: any) {
          console.error('An error occurred:', error.message);
       }
    };

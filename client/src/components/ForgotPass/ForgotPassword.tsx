@@ -7,7 +7,7 @@ import './forgotPassword.css';
 const ForgotPasswordForm = () => {
    const [email, setEmail] = useState('');
 
-   const handleSubmit = async (e) => {
+   const handleSubmit = async (e: any) => {
       e.preventDefault();
 
       try {
@@ -19,7 +19,7 @@ const ForgotPasswordForm = () => {
          if (response.data.success) {
             alertMessage(response.data.message);
          }
-      } catch (error) {
+      } catch (error: any) {
          alertMessageError(error.response.data.message);
       }
    };
