@@ -13,19 +13,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleDarkMode } from '../features/darkmode/darkModeSlice';
 import { deleteLocalStorage, getObjectFromLocalStorage } from '../../ulti';
 import BurgerIcon from '../../imgs/align-left.svg';
-import './header.css';
 import InputSearch from 'components/common/InputComponent/InputSearch';
 import type { MenuProps } from 'antd';
 import { RootState } from 'components/features/store';
+import './header.css';
 
 const Header = ({ nameContent = '', toggleBurger = () => {} }) => {
    const [avatarUrl, setAvatarUrl] = useState('');
-   const darkMode = useSelector((state: RootState) => state.darkMode);
-   const test = useSelector((state: RootState) => state.root.review.reviewId);
-
    const username = localStorage.getItem('username');
+   const darkMode = useSelector((state: RootState) => state.darkMode);
    const searchInputRef = useRef<HTMLInputElement>(null);
-   console.log('test: ', test);
    useEffect(() => {
       const customerObject = getObjectFromLocalStorage('customerInfo');
       setAvatarUrl(customerObject.avatar);

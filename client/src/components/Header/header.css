@@ -169,6 +169,8 @@
 }
 
 .name-tab {
+   width: 180px;
+   overflow: hidden;
    font-size: 32px;
    font-weight: 700;
    margin-bottom: 0;

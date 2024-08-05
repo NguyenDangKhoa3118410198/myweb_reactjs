@@ -1,10 +1,16 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
+import { RootState } from 'components/features/store';
 import './menu.css';
 
-function MenuItem({ title, to, icon }) {
-   const darkMode = useSelector((state) => state.darkMode);
+interface IMenuItem {
+   title: string;
+   to: string;
+   icon: any;
+}
+
+const MenuItem: React.FC<IMenuItem> = ({ title, to, icon }) => {
+   const darkMode = useSelector((state: RootState) => state.darkMode);
 
    return (
       <NavLink className={`menuItem ${darkMode ? 'darkmode' : ''}`} to={to}>
@@ -12,5 +18,5 @@ function MenuItem({ title, to, icon }) {
          <span className='item'>{title}</span>
       </NavLink>
    );
-}
+};
 export default MenuItem;

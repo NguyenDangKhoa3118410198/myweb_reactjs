@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 import Menu, { MenuItem, MenuItemDropdown } from './Menu';
 import './sidebar.css';
 import {
@@ -11,10 +11,18 @@ import {
 import { useSelector } from 'react-redux';
 import HeaderSidebar from './HeaderSidebar';
 import FooterSidebar from './FooterSidebar';
+import { RootState } from 'components/features/store';
 
-const Sidebar = ({ isMenuActive, activeMenu }) => {
-   const darkMode = useSelector((state) => state.darkMode);
-   // eslint-disable-next-line no-unused-vars
+interface ISidebar {
+   isMenuActive: boolean;
+   activeMenu: (value: boolean) => void;
+}
+
+const Sidebar: React.FC<ISidebar> = ({ isMenuActive, activeMenu }) => {
+   const darkMode = useSelector((state: RootState) => state.darkMode);
+   const componentRef = useRef<HTMLDivElement>(null);
+
+   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
    const dropdownLinks = [
       { title: 'All Customers', to: '/' },
       { title: 'Add Customer', to: '/customers' },
@@ -48,13 +56,11 @@ const Sidebar = ({ isMenuActive, activeMenu }) => {
       },
    ];
 
-   const componentRef = useRef(null);
-
    useEffect(() => {
-      function handleClickOutside(event) {
+      function handleClickOutside(e: any) {
          if (
             componentRef.current &&
-            !componentRef.current.contains(event.target)
+            !componentRef?.current?.contains(e.target)
          ) {
             activeMenu(false);
          }

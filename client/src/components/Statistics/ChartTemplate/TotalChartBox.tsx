@@ -12,7 +12,11 @@ import {
    Legend,
 } from 'recharts';
 
-function TotalChart({ data }) {
+interface ITotalChart {
+   data: any;
+}
+
+const TotalChart: React.FC<ITotalChart> = ({ data }) => {
    return (
       <ResponsiveContainer>
          <ComposedChart
@@ -42,6 +46,6 @@ function TotalChart({ data }) {
          </ComposedChart>
       </ResponsiveContainer>
    );
-}
+};
 
 export default TotalChart;

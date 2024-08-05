@@ -1,37 +1,30 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './progressbar.css';
 
 function ContextualExample() {
-   const [countOfProgess, setCountOfProgess] = useState(0);
-   const [countOfProgessSuccess, setCountOfProgessSuccess] = useState(0);
-   const [countOfProgessWarning, setCountOfProgessWarning] = useState(0);
+   const [countOfProgess, setCountOfProgress] = useState<number>(0);
+   const [countOfProgessSuccess, setCountOfProgressSuccess] =
+      useState<number>(0);
+   const [countOfProgessWarning, setCountOfProgressWarning] =
+      useState<number>(0);
 
-   React.useEffect(() => {
+   useEffect(() => {
       const timer = setInterval(() => {
-         setCountOfProgess((oldProgress) => {
-            if (100 === oldProgress) return 0;
-            return parseInt(
-               Math.min(oldProgress + Math.random() * 10, 100),
-               10
-            );
+         setCountOfProgress((oldProgress) => {
+            if (oldProgress === 100) return 0;
+            return Math.min(oldProgress + Math.random() * 10, 100);
          });
 
-         setCountOfProgessSuccess((oldProgress) => {
+         setCountOfProgressSuccess((oldProgress) => {
             if (100 === oldProgress) return 0;
-            return parseInt(
-               Math.min(oldProgress + Math.random() * 10, 100),
-               10
-            );
+            return Math.min(oldProgress + Math.random() * 10, 100);
          });
 
-         setCountOfProgessWarning((oldProgress) => {
+         setCountOfProgressWarning((oldProgress) => {
             if (100 === oldProgress) return 0;
-            return parseInt(
-               Math.min(oldProgress + Math.random() * 10, 100),
-               10
-            );
+            return Math.min(oldProgress + Math.random() * 10, 100);
          });
       }, 1900);
 
@@ -44,7 +37,7 @@ function ContextualExample() {
          <div className='progress-bar-content'>
             <div className='info-channel'>
                <span className='title-progress-bar'>
-                  Facebook: {parseInt(countOfProgess)} %
+                  Facebook: {countOfProgess} %
                </span>
                <div className='channel-container'>
                   <div className='icon-channel'>
@@ -78,7 +71,7 @@ function ContextualExample() {
 
             <div className='info-channel'>
                <span className='title-progress-bar'>
-                  Google: {parseInt(countOfProgessSuccess)} %
+                  Google: {countOfProgessSuccess} %
                </span>
                <div className='channel-container'>
                   <div className='icon-channel'>
@@ -119,7 +112,7 @@ function ContextualExample() {
             </div>
             <div className='info-channel'>
                <span className='title-progress-bar'>
-                  Youtube: {parseInt(countOfProgessWarning)} %
+                  Youtube: {countOfProgessWarning} %
                </span>
                <div className='channel-container'>
                   <div className='icon-channel'>

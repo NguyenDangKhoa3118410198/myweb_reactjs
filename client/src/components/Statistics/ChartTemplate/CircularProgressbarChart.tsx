@@ -3,7 +3,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import './circularProgressbarChart.css';
 
-function CircularProgressbarChart() {
+const CircularProgressbarChart = () => {
    const percentage = 60;
    return (
       <div className='circular-container'>
@@ -28,6 +28,6 @@ function CircularProgressbarChart() {
          </div>
       </div>
    );
-}
+};
 
 export default CircularProgressbarChart;

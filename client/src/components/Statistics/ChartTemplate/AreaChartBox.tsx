@@ -2,7 +2,11 @@ import React from 'react';
 
 import { AreaChart, Area, Tooltip, ResponsiveContainer } from 'recharts';
 
-function AreaChartBox({ data }) {
+interface IAreaChart {
+   data: any;
+}
+
+const AreaChartBox: React.FC<IAreaChart> = ({ data }) => {
    return (
       <ResponsiveContainer width='100%' height='100%'>
          <AreaChart
@@ -31,6 +35,6 @@ function AreaChartBox({ data }) {
          </AreaChart>
       </ResponsiveContainer>
    );
-}
+};
 
 export default AreaChartBox;

@@ -2,7 +2,11 @@ import React from 'react';
 
 import { Tooltip, ResponsiveContainer, Bar, BarChart } from 'recharts';
 
-function BarChartBox({ data }) {
+interface IBarChartBox {
+   data: any;
+}
+
+const BarChartBox: React.FC<IBarChartBox> = ({ data }) => {
    return (
       <ResponsiveContainer width='100%' height='100%'>
          <BarChart width={150} height={40} data={data}>
@@ -23,6 +27,6 @@ function BarChartBox({ data }) {
          </BarChart>
       </ResponsiveContainer>
    );
-}
+};
 
 export default BarChartBox;

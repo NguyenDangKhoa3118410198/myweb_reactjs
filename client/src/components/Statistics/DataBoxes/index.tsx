@@ -78,8 +78,8 @@ export const data = [
 export async function DataBoxUsers() {
    try {
       const response = await axios.get('https://dummyjson.com/carts');
-      return response.data.carts.map((order) =>
-         order.products.map((product) => ({
+      return response.data.carts.map((order: any) =>
+         order.products.map((product: any) => ({
             id: product.id,
             amount: product.price,
          }))
@@ -92,7 +92,7 @@ export async function DataBoxUsers() {
 export async function DataBoxOrders() {
    try {
       const response = await axios.get('https://dummyjson.com/comments');
-      return response.data.comments.map((user) => ({
+      return response.data.comments.map((user: any) => ({
          id: user.id,
          amount: user.postId,
       }));

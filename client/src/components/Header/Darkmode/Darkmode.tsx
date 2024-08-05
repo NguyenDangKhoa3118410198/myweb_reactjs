@@ -1,6 +1,10 @@
 import React from 'react';
+interface IDarkMode {
+   darkMode: boolean;
+   setDarkMode: (value: boolean) => void;
+}
 
-function Darkmode(darkMode, setDarkMode) {
+const Darkmode: React.FC<IDarkMode> = ({ darkMode, setDarkMode }) => {
    return (
       <div className='header-theme-toggle'>
          <label className='switch'>
@@ -15,6 +19,6 @@ function Darkmode(darkMode, setDarkMode) {
          <span className='theme-title'>Darkmode Header</span>
       </div>
    );
-}
+};
 
 export default Darkmode;

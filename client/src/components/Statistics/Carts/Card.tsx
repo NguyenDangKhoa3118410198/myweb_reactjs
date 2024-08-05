@@ -3,7 +3,17 @@ import './cart.css';
 import { FaQuestion } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const Card = ({ infoCard, data }) => {
+interface ICard {
+   infoCard: {
+      title: string;
+      icon: any;
+      color: string;
+      path: string;
+   };
+   data: any;
+}
+
+const Card: React.FC<ICard> = ({ infoCard, data }) => {
    const {
       title = 'Default title',
       icon = <FaQuestion />,

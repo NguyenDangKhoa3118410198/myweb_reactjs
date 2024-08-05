@@ -9,17 +9,22 @@ import {
 } from '../ChartTemplate';
 import '../DashboardBoxCharts';
 
-function LargeBoxChart({ data, chartModel }) {
-   const chartComponents = {
-      AreaChartBox: <AreaChart data={data} />,
-      LineChartBox: <LineChart data={data} />,
-      BarChartBox: <BarChart data={data} />,
-      TotalChartBox: <TotalChart data={data} />,
-      PieChartBox: <PieChart data={data} />,
-      RadialBarChartBox: <RadialBarChart data={data} />,
+interface ILargeBoxChart {
+   data: any;
+   chartModel: string;
+}
+
+const LargeBoxChart: React.FC<ILargeBoxChart> = ({ data, chartModel }) => {
+   const chartComponents: { [key: string]: React.ElementType } = {
+      AreaChartBox: AreaChart,
+      LineChartBox: LineChart,
+      BarChartBox: BarChart,
+      TotalChartBox: TotalChart,
+      PieChartBox: PieChart,
+      RadialBarChartBox: RadialBarChart,
    };
 
-   const selectedChart = chartComponents[chartModel] || null;
+   const ChartComponent = chartComponents[chartModel] || null;
 
    const getDate = () => {
       const today = new Date();
@@ -37,10 +42,12 @@ function LargeBoxChart({ data, chartModel }) {
          </div>
 
          <div className='large-box-chart-content'>
-            <div className='large-shape-chart'>{selectedChart}</div>
+            <div className='large-shape-chart'>
+               {ChartComponent && <ChartComponent data={data} />}
+            </div>
          </div>
       </div>
    );
-}
+};
 
 export default LargeBoxChart;

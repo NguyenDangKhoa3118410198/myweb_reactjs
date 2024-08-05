@@ -1,7 +1,7 @@
 import React from 'react';
 import { PieChart, Pie, ResponsiveContainer } from 'recharts';
 
-function PieChartBox() {
+const PieChartBox = () => {
    const data01 = [
       { name: 'Group A', value: 400 },
       { name: 'Group B', value: 300 },
@@ -45,6 +45,6 @@ function PieChartBox() {
          </PieChart>
       </ResponsiveContainer>
    );
-}
+};
 
 export default PieChartBox;

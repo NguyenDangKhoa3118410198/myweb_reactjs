@@ -58,7 +58,7 @@ const style = {
    lineHeight: '24px',
 };
 
-function RadialBarChartBox() {
+const RadialBarChartBox = () => {
    return (
       <ResponsiveContainer width='100%' height='100%'>
          <RadialBarChart
@@ -70,10 +70,8 @@ function RadialBarChartBox() {
             data={data}
          >
             <RadialBar
-               minAngle={15}
                label={{ position: 'insideStart', fill: '#fff' }}
                background
-               clockWise
                dataKey='uv'
             />
             <Legend
@@ -85,6 +83,6 @@ function RadialBarChartBox() {
          </RadialBarChart>
       </ResponsiveContainer>
    );
-}
+};
 
 export default RadialBarChartBox;

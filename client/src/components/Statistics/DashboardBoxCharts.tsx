@@ -18,16 +18,23 @@ import {
    setDataProducts,
    setDataAccess,
 } from '../features/appInformation/appInformationSlice';
+import { RootState } from 'components/features/store';
 
 function DashboardBoxCharts() {
    const dispatch = useDispatch();
 
-   const dataUsers = useSelector((state) => state.appInformation.dataUsers);
-   const dataProducts = useSelector(
-      (state) => state.appInformation.dataProducts
+   const dataUsers = useSelector(
+      (state: RootState) => state.appInformation.dataUsers
    );
-   const dataOrders = useSelector((state) => state.appInformation.dataOrders);
-   const dataAccess = useSelector((state) => state.appInformation.dataUsers);
+   const dataProducts = useSelector(
+      (state: RootState) => state.appInformation.dataProducts
+   );
+   const dataOrders = useSelector(
+      (state: RootState) => state.appInformation.dataOrders
+   );
+   const dataAccess = useSelector(
+      (state: RootState) => state.appInformation.dataUsers
+   );
 
    useEffect(() => {
       Promise.all([countingUsers(), countingOrders(), countingProducts()])
@@ -62,15 +69,15 @@ function DashboardBoxCharts() {
                <Cart infoCard={infoCard[3]} data={dataAccess} />
             </div>
             <div className='box box5'>
-               <LargeBox data={data} chartModel={'PieChartBox'} />
+               <LargeBox data={data} chartModel='PieChartBox' />
             </div>
 
             <div className='box box6'>
-               <LargeBox data={data} chartModel={'TotalChartBox'} />
+               <LargeBox data={data} chartModel='TotalChartBox' />
             </div>
 
             <div className='box box7'>
-               <LargeBox data={data} chartModel={'RadialBarChartBox'} />
+               <LargeBox data={data} chartModel='RadialBarChartBox' />
             </div>
          </div>
       </div>
