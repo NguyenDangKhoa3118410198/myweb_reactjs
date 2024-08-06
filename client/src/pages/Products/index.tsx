@@ -13,23 +13,27 @@ import {
    fetchReviewProduct,
 } from 'components/features/thunk/thunk';
 import { Spin } from 'antd';
-function Products() {
-   const darkMode = useSelector((state) => state.darkMode);
+import { AppDispatch, RootState } from 'components/features/store';
 
-   const [products, setProducts] = useState([]);
+const Products = () => {
+   const darkMode = useSelector((state: RootState) => state.darkMode);
+
+   const [products, setProducts] = useState<any>([]);
    const [searchTerm, setSearchTerm] = useState('');
 
    const [isModalReview, setModalReview] = useState(false);
-   const [isListReviews, setIsListReviews] = useState([]);
+   const [isListReviews, setIsListReviews] = useState<any>([]);
 
-   const [isModalView, setModalView] = useState(false);
+   const [isModalView, setModalView] = useState<boolean>(false);
    const [viewCurrent, setViewCurrent] = useState({});
-   const dispatch = useDispatch();
+   const dispatch = useDispatch<AppDispatch>();
    const { products: reduxProducts, status: statusProducts } = useSelector(
-      (state) => state.root.product
+      (state: RootState) => state.root.product
    );
 
-   const { reviews: reduxReviews } = useSelector((state) => state.root.review);
+   const { reviews: reduxReviews } = useSelector(
+      (state: RootState) => state.root.review
+   );
    useEffect(() => {
       setIsListReviews(reduxReviews);
    }, [reduxReviews]);
@@ -42,8 +46,8 @@ function Products() {
       dispatch(fetchProducts()); // get list products
    }, [dispatch]);
 
-   function filterData(records) {
-      return records.filter((row) =>
+   function filterData(records: any) {
+      return records.filter((row: any) =>
          Object.values(row).some(
             (value) =>
                typeof value === 'string' &&
@@ -54,12 +58,12 @@ function Products() {
       );
    }
 
-   const handleReview = (record) => {
+   const handleReview = (record: any) => {
       dispatch(fetchReviewProduct(record.id));
       setModalReview(true);
    };
 
-   const handleView = (record) => {
+   const handleView = (record: any) => {
       setModalView(true);
       setViewCurrent(record);
    };
@@ -81,7 +85,6 @@ function Products() {
                columns={columns}
                data={filterData(products)}
                searchBox={searchBox(searchTerm, setSearchTerm)}
-               setModalView={setModalView}
                tableActions={{
                   setModalView,
                   viewCurrent,
@@ -94,6 +97,6 @@ function Products() {
          </Spin>
       </main>
    );
-}
+};
 
 export default Products;

@@ -5,8 +5,8 @@ import {
    filterData,
 } from '../../components/Table/TableActions/handleActions';
 import Table from '../../components/Table/Table';
-import { columnsUserDetail } from '../../Data/columns';
-import { pageUsersDetail } from '../../Data/fetchData';
+import { columnsCustomer } from '../../Data/columns';
+import { pageCustomers } from '../../Data/fetchData';
 import { sendRequest } from '../../ulti/sendHeaderRequest';
 import FormPanel from './FormPanel';
 import { isFormDataValid } from '../../components/Table/TableActions/handleActions';
@@ -16,12 +16,13 @@ import {
    alertConfirmDelete,
    alertSuccess,
 } from '../../ulti/modals';
+import { RootState } from 'components/features/store';
 
-import './userDetail.css';
+import './customers.css';
 
-function UsersDetail() {
-   const darkMode = useSelector((state) => state.darkMode);
-   const [records, setRecords] = useState([]);
+const Customers = () => {
+   const darkMode = useSelector((state: RootState) => state.darkMode);
+   const [records, setRecords] = useState<any>([]);
    const [searchTerm, setSearchTerm] = useState('');
    const [isModalView, setModalView] = useState(false);
    const [viewCurrent, setViewCurrent] = useState({});
@@ -35,7 +36,7 @@ function UsersDetail() {
    });
 
    useEffect(() => {
-      pageUsersDetail(setRecords);
+      pageCustomers(setRecords);
    }, []);
 
    const handleSetFormData = () => {
@@ -47,7 +48,7 @@ function UsersDetail() {
       setCurrentRecordId(null);
    };
 
-   const handleDeleteConfirmed = async (userDetailId) => {
+   const handleDeleteConfirmed = async (customerId: string) => {
       try {
          // const customerId = currentRecordId;
 
@@ -58,26 +59,26 @@ function UsersDetail() {
 
          const response = await sendRequest(
             'DELETE',
-            `api/userDetail/${userDetailId}`
+            `api/customers/${customerId}`
          );
 
          if (response.success) {
-            setRecords((prevRecords) =>
-               prevRecords.filter((r) => r.id !== userDetailId)
+            setRecords((prevRecords: any) =>
+               prevRecords.filter((r: any) => r.id !== customerId)
             );
-            console.log('User detail deleted successfully');
+            console.log('Customer deleted successfully');
          } else {
-            console.error('Error deleting user detail:', response.message);
+            console.error('Error deleting customer:', response.message);
          }
-         console.log('delete records', userDetailId);
-      } catch (error) {
-         console.error('Failed to delete user detail:', error.message);
+         console.log('delete records', customerId);
+      } catch (error: any) {
+         console.error('Failed to delete customer:', error.message);
       }
    };
 
-   const handleDelete = async (record) => {
+   const handleDelete = async (record: any) => {
       try {
-         const userDetailId = record.id;
+         const customerId = record.id;
 
          if (records.length === 0) {
             console.log('No records to delete');
@@ -87,23 +88,23 @@ function UsersDetail() {
          const result = await alertConfirmDelete();
 
          if (result.isConfirmed) {
-            setCurrentRecordId(userDetailId);
-            handleDeleteConfirmed(userDetailId);
-            alertSuccess(`Deleting record with ID: ${userDetailId}`);
+            setCurrentRecordId(customerId);
+            handleDeleteConfirmed(customerId);
+            alertSuccess(`Deleting record with ID: ${customerId}`);
          } else {
             console.log('Cancelled delete');
          }
-      } catch (error) {
+      } catch (error: any) {
          console.error('Failed to initiate delete:', error.message);
       }
    };
 
-   const handleView = (record) => {
+   const handleView = (record: any) => {
       setModalView(true);
       setViewCurrent(record);
    };
 
-   const handleEditClick = (record) => {
+   const handleEditClick = (record: any) => {
       setIsEditPanelOpen(true);
       setFormData({
          address: record.address,
@@ -113,9 +114,11 @@ function UsersDetail() {
       setCurrentRecordId(record.id);
    };
 
-   const handleSave = async (currentRecordId, record) => {
+   const handleSave = async (currentRecordId: string, record: any) => {
       if (currentRecordId) {
-         const currentRecord = records.find((r) => r.id === currentRecordId);
+         const currentRecord = records.find(
+            (r: any) => r.id === currentRecordId
+         );
 
          if (!currentRecord) {
             alertMessageError('Invalid ID');
@@ -125,27 +128,27 @@ function UsersDetail() {
          try {
             const response = await sendRequest(
                'PATCH',
-               `api/userDetail/${currentRecordId}/edit/admin`,
+               `api/customers/${currentRecordId}/edit/admin`,
                record
             );
 
             if (response.success) {
                setRecords(
-                  records.map((r) =>
+                  records.map((r: any) =>
                      r.id === currentRecordId ? { ...r, ...record } : r
                   )
                );
-               alertSuccess('Updated user detail successfully');
+               alertSuccess('Updated customer successfully');
             } else {
-               console.error('Error updating user detail:', response.message);
+               console.error('Error updating customer:', response.message);
             }
-         } catch (error) {
+         } catch (error: any) {
             console.error('Error sending request:', error.message);
          }
       }
    };
 
-   const handleSubmitAndEdit = (e) => {
+   const handleSubmitAndEdit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const newFormData = isFormDataValid(formData);
 
@@ -163,13 +166,13 @@ function UsersDetail() {
       }
    };
 
-   const handleClose = (e) => {
+   const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
       handleSetFormData();
       setIsEditPanelOpen(false);
    };
 
-   const columns = columnsUserDetail({
+   const columns = columnsCustomer({
       handleView,
       handleEditClick,
       handleDelete,
@@ -177,12 +180,12 @@ function UsersDetail() {
 
    return (
       <main
-         className={`user-detail-wrapper main-container ${
+         className={`customer-wrapper main-container ${
             darkMode ? 'darkmode' : ''
          } `}
       >
          <Table
-            title='List table Users Detail'
+            title='List table Customers'
             columns={columns}
             data={filterData(searchTerm, records)}
             searchBox={searchBox(searchTerm, setSearchTerm)}
@@ -204,6 +207,6 @@ function UsersDetail() {
          />
       </main>
    );
-}
+};
 
-export default UsersDetail;
+export default Customers;

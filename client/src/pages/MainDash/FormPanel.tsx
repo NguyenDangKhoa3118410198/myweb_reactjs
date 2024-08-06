@@ -2,14 +2,29 @@ import React from 'react';
 import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import './mainDash.css';
 
-function FormPanel({
+interface FormData {
+   name: string;
+   username: string;
+   email: string;
+}
+
+interface FormPanelProps {
+   title: string;
+   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+   formData: FormData;
+   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
+   handleClose: (e: React.MouseEvent<HTMLButtonElement>) => void;
+   targetRef?: React.RefObject<HTMLDivElement>; // optional
+}
+
+const FormPanel: React.FC<FormPanelProps> = ({
    title,
    handleSubmit,
    formData,
    setFormData,
    handleClose,
    targetRef,
-}) {
+}) => {
    return (
       <div className='form-panel-container' ref={targetRef}>
          <div className='form-panel'>
@@ -77,7 +92,7 @@ function FormPanel({
                   </Button>
                   <Button
                      className='form-control-btn'
-                     type='cancel'
+                     type='button'
                      onClick={handleClose}
                   >
                      Cancel
@@ -87,6 +102,6 @@ function FormPanel({
          </div>
       </div>
    );
-}
+};
 
 export default FormPanel;

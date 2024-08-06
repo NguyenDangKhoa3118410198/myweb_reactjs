@@ -29,20 +29,21 @@ import { updateCountingUsers } from '../../components/features/appInformation/ap
 import './mainDash.css';
 import { setLoading } from '../../components/features/loading/loadingSlice';
 import { Spin } from 'antd';
+import { RootState } from 'components/features/store';
 
 const MyCalendar = lazy(() => import('../../components/Calendar'));
 const Table = lazy(() => import('../../components/Table/Table'));
-const DashboardBoxChart = lazy(() =>
-   import('../../components/Statistics/DashboardBoxCharts')
+const DashboardBoxChart = lazy(
+   () => import('../../components/Statistics/DashboardBoxCharts')
 );
 
 const MainDash = () => {
-   const [records, setRecords] = useState([]);
+   const [records, setRecords] = useState<any>([]);
    const [currentRecordId, setCurrentRecordId] = useState(null);
    const [searchTerm, setSearchTerm] = useState('');
 
-   const darkMode = useSelector((state) => state.darkMode);
-   const calendar = useSelector((state) => state.setting.calendar);
+   // const darkMode = useSelector((state: RootState) => state.darkMode);
+   const calendar = useSelector((state: RootState) => state.setting.calendar);
 
    const [isAddPanelOpen, setIsAddPanelOpen] = useState(false);
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
@@ -74,7 +75,7 @@ const MainDash = () => {
       fetchData();
    }, [dispatch]);
 
-   const handleClose = (e) => {
+   const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
       handleSetFormData();
       setIsAddPanelOpen(false);
@@ -90,7 +91,7 @@ const MainDash = () => {
       setCurrentRecordId(null);
    };
 
-   const handleSubmitAndEdit = (e) => {
+   const handleSubmitAndEdit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       startTransition(() => {
          const newFormData = isFormDataValid(formData);
@@ -100,11 +101,11 @@ const MainDash = () => {
                //edit exists record
 
                const currentRecord = records.find(
-                  (record) => record.id === currentRecordId
+                  (record: any) => record.id === currentRecordId
                );
 
                const invalidEmail = records.some(
-                  (record) =>
+                  (record: any) =>
                      record.email === formData.email &&
                      formData.email !== currentRecord.email
                );
@@ -119,7 +120,7 @@ const MainDash = () => {
             } else if (!currentRecordId && !isEditPanelOpen) {
                //create new record
                const invalidEmail = records.some(
-                  (record) => record.email === formData.email
+                  (record: any) => record.email === formData.email
                );
 
                if (invalidEmail) {
@@ -128,7 +129,7 @@ const MainDash = () => {
                   );
                   return;
                }
-               handleSave(null, newFormData);
+               handleSave('', newFormData);
                // console.log(newFormData);
             } else {
                alertMessage('Please select a record to edit.');
@@ -142,7 +143,7 @@ const MainDash = () => {
       });
    };
 
-   const handleEditClick = (record) => {
+   const handleEditClick = (record: any) => {
       setIsEditPanelOpen(true);
       setIsAddPanelOpen(false);
       setFormData({
@@ -153,14 +154,16 @@ const MainDash = () => {
       setCurrentRecordId(record.id);
    };
 
-   const handleView = (record) => {
+   const handleView = (record: any) => {
       setModalView(true);
       setViewCurrent(record);
    };
 
-   const handleSave = async (currentRecordId, record) => {
+   const handleSave = async (currentRecordId: string, record: any) => {
       if (currentRecordId) {
-         const currentRecord = records.find((r) => r.id === currentRecordId);
+         const currentRecord = records.find(
+            (r: any) => r.id === currentRecordId
+         );
 
          if (!currentRecord) {
             alertMessageError('Invalid ID');
@@ -176,7 +179,7 @@ const MainDash = () => {
 
             if (response.success) {
                setRecords(
-                  records.map((r) =>
+                  records.map((r: any) =>
                      r.id === currentRecordId ? { ...r, ...record } : r
                   )
                );
@@ -185,7 +188,7 @@ const MainDash = () => {
             } else {
                console.error('Error updating user:', response.message);
             }
-         } catch (error) {
+         } catch (error: any) {
             console.error('Error sending request:', error.message);
          }
       } else {
@@ -201,13 +204,13 @@ const MainDash = () => {
             } else {
                console.error('Error adding new user:', response.message);
             }
-         } catch (error) {
+         } catch (error: any) {
             console.error('Error sending request:', error.message);
          }
       }
    };
 
-   const handleDeactivate = async (record) => {
+   const handleDeactivate = async (record: any) => {
       try {
          const userId = record.id;
 
@@ -222,8 +225,8 @@ const MainDash = () => {
          );
 
          if (response.success) {
-            setRecords((prevRecords) =>
-               prevRecords.map((r) =>
+            setRecords((prevRecords: any) =>
+               prevRecords.map((r: any) =>
                   r.id === record.id ? { ...r, isActive: false } : r
                )
             );
@@ -232,12 +235,12 @@ const MainDash = () => {
          } else {
             console.error('Error deactivated user:', response.message);
          }
-      } catch (error) {
+      } catch (error: any) {
          console.error('Failed to deactivated user:', error.message);
       }
    };
 
-   const handleActivate = async (record) => {
+   const handleActivate = async (record: any) => {
       try {
          const userId = record.id;
 
@@ -252,8 +255,8 @@ const MainDash = () => {
          );
 
          if (response.success) {
-            setRecords((prevRecords) =>
-               prevRecords.map((r) =>
+            setRecords((prevRecords: any) =>
+               prevRecords.map((r: any) =>
                   r.id === record.id ? { ...r, isActive: true } : r
                )
             );
@@ -262,7 +265,7 @@ const MainDash = () => {
          } else {
             console.error('Error activated user:', response.message);
          }
-      } catch (error) {
+      } catch (error: any) {
          console.error('Failed to activated user:', error.message);
       }
    };
@@ -336,7 +339,6 @@ const MainDash = () => {
                columns={columns}
                data={filterData(searchTerm, records)}
                searchBox={searchBox(searchTerm, setSearchTerm)}
-               setModalView={setModalView}
                formData={formData}
                setFormData={setFormData}
                FormPanel={FormPanel}

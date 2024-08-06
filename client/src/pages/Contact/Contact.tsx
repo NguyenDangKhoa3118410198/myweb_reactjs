@@ -2,7 +2,7 @@ import React from 'react';
 import './contact.css';
 import backgroundImage from '../../imgs/background-contact.png';
 
-function Contact() {
+const Contact = () => {
    return (
       <div className='contact-form main-container'>
          <h1>
@@ -46,6 +46,6 @@ function Contact() {
          </div>
       </div>
    );
-}
+};
 
 export default Contact;

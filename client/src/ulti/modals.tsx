@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 
-const showToast = (icon, message) => {
+const showToast = (icon: any, message: string) => {
    const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
@@ -23,15 +23,15 @@ const showToast = (icon, message) => {
    });
 };
 
-export const alertMessage = (icon, data) => {
+export const alertMessage = (data: string, icon?: any) => {
    showToast(icon, data);
 };
 
-export const alertMessageError = (data) => {
+export const alertMessageError = (data: string) => {
    showToast('error', data);
 };
 
-export const alertSuccess = (data) => {
+export const alertSuccess = (data: string) => {
    showToast('success', data);
 };
 

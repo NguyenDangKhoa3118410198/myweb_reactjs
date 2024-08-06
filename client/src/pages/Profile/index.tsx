@@ -4,7 +4,7 @@ import { FaCamera } from 'react-icons/fa';
 import './profile.css';
 import { getObjectFromLocalStorage } from '../../ulti';
 
-function Profile() {
+const Profile = () => {
    const [name, setName] = useState('');
    const [username, setUsername] = useState('');
    const [email, setEmail] = useState('');
@@ -13,7 +13,7 @@ function Profile() {
    const [phone, setPhone] = useState('');
    const [address, setAddress] = useState('');
 
-   const [avatarUrl, setAvatarUrl] = useState('');
+   const [avatarUrl, setAvatarUrl] = useState<any>('');
 
    useEffect(() => {
       const customerInfo = localStorage.getItem('customerInfo');
@@ -29,7 +29,7 @@ function Profile() {
       }
    }, []);
 
-   const storeImageUrlToLocalStorage = (imageUrl) => {
+   const storeImageUrlToLocalStorage = (imageUrl: any) => {
       const customerInfo = getObjectFromLocalStorage('customerInfo');
       customerInfo.avatar = imageUrl;
 
@@ -41,7 +41,7 @@ function Profile() {
       console.log('Đã thay đổi mật khẩu');
    };
 
-   const handleAvatarChange = (event) => {
+   const handleAvatarChange = (event: any) => {
       const file = event.target.files[0];
       const reader = new FileReader();
 
@@ -166,6 +166,6 @@ Bắt đầu nổi tiếng qua việc tham gia Miss Teen, Chi Pu được mời 
          </div>
       </div>
    );
-}
+};
 
 export default Profile;

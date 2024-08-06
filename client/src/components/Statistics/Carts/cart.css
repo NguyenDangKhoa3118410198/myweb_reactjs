@@ -23,23 +23,23 @@
       margin: 0 auto;
       border-radius: 10px;
       outline: 2px solid rgba(255, 255, 255, 0.5);
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      background-color: #ffffff;
+      border: 2px solid rgba(228, 223, 223, 0.2);
+      background-color: transparent;
 
       &.color1 {
-         color: #6240df;
+         color: #fff;
       }
 
       &.color2 {
-         color: #4381f9;
+         color: #fff;
       }
 
       &.color3 {
-         color: #62cbf9;
+         color: #fff;
       }
 
       &.color4 {
-         color: #1ccc9a;
+         color: #fff;
       }
    }
 

@@ -1,7 +1,7 @@
 import { useState, useEffect, Fragment } from 'react';
 import './analytics.css';
 
-function Analytics() {
+const Analytics = () => {
    const [products, setProducts] = useState([]);
 
    useEffect(() => {
@@ -13,7 +13,7 @@ function Analytics() {
             const data = await response.json();
 
             // Lấy thông tin cần thiết từ dữ liệu nhận được
-            const productData = data.data.map((product) => ({
+            const productData = data.data.map((product: any) => ({
                id: product.id,
                sku: product.sku,
                name: product.name,
@@ -34,7 +34,7 @@ function Analytics() {
          <main className='product-list'>
             <h1>Product List of : {products.length}</h1>
             <ul>
-               {products.map((product) => (
+               {products.map((product: any) => (
                   <li key={product.id}>
                      <p>ID: {product.id}</p>
                      <p>SKU: {product.sku}</p>
@@ -45,6 +45,6 @@ function Analytics() {
          </main>
       </Fragment>
    );
-}
+};
 
 export default Analytics;

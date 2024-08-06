@@ -11,18 +11,17 @@ import PrimaryButton from 'components/common/ButtonComponent/ButtonPrimary';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import './table.css';
 
-// Định nghĩa các loại kiểu cho các props
 interface ITableProps {
    title?: string;
-   columns: any;
+   columns: any[];
    data: any[];
    searchBox: JSX.Element;
-   formData: any;
-   setFormData: (value: any) => void;
-   FormPanel: React.FC<any>;
+   formData?: any;
+   setFormData?: any;
+   FormPanel?: any;
    tableActions?: {
-      setModalReview?: (show: boolean) => void;
-      setModalView?: (show: boolean) => void;
+      setModalReview?: (value: boolean) => void;
+      setModalView?: (value: boolean) => void;
       viewCurrent?: any;
       isModalView?: boolean;
       isEditPanelOpen?: boolean;
@@ -34,11 +33,10 @@ interface ITableProps {
       setCurrentRecordId?: (id: any) => void;
    };
    handleActions?: {
-      handleSubmitAndEdit?: () => void;
-      handleClose?: () => void;
+      handleSubmitAndEdit?: (e: React.FormEvent<HTMLFormElement>) => void;
+      handleClose?: (e: React.MouseEvent<HTMLButtonElement>) => void;
    };
 }
-
 const Table: React.FC<ITableProps> = ({
    title,
    columns,

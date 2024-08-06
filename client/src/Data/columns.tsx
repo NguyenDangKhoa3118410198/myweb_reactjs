@@ -1,68 +1,88 @@
 import TableActions from '../components/Table/TableActions/TableActions';
+
 import styled from 'styled-components';
 
-const StatusStyle = styled.div`
+interface StatusStyleProps {
+   isActive: boolean;
+}
+
+const StatusStyle = styled.div<StatusStyleProps>`
    min-width: 30%;
    display: flex;
    align-items: center;
    justify-content: center;
    text-align: center;
    padding: 5px 15px;
-   color: #fff;
-   border-radius: 20px;
-   background-color: #fff;
    color: ${(props) => (props.isActive ? '#6adb89' : '#FF4242')};
    border: 1px solid ${(props) => (props.isActive ? '#6adb89' : '#FF4242')};
+   border-radius: 20px;
+   background-color: #fff;
 `;
 
+const ExampleComponent: React.FC<{
+   color: string;
+   status: string;
+   isActive?: boolean;
+}> = ({ color, status, isActive }) => (
+   <StatusStyle
+      isActive={isActive ?? false}
+      style={{
+         color: color,
+         border: `1px solid ${color}`,
+         fontWeight: 600,
+      }}
+   >
+      {status}
+   </StatusStyle>
+);
+
 export const columnsProduct1 = ({
-   handleView,
-   handleEditClick,
-   handleDelete,
-   handleReview,
+   handleView = (record: any) => {},
+   handleEditClick = (record: any) => {},
+   handleDelete = (record: any) => {},
+   handleReview = (record: any) => {},
+}: {
+   handleView?: (record: any) => void;
+   handleEditClick?: (record: any) => void;
+   handleDelete?: (record: any) => void;
+   handleReview?: (record: any) => void;
 }) => [
-   // {
-   //    name: 'ID',
-   //    selector: (row) => row.id,
-   //    sortable: true,
-   //    maxWidth: '100px',
-   // },
    {
       name: 'Name',
-      selector: (row) => row.name,
+      selector: (row: any) => row.name,
       sortable: true,
       maxWidth: '250px',
    },
    {
       name: 'Brand',
-      selector: (row) => row.brandName,
+      selector: (row: any) => row.brandName,
       sortable: true,
       center: true,
       maxWidth: '150px',
    },
    {
       name: 'Category',
-      selector: (row) => row.category,
+      selector: (row: any) => row.category,
       sortable: true,
       center: true,
       maxWidth: '150px',
    },
    {
       name: 'Url path',
-      selector: (row) => row.urlPath,
+      selector: (row: any) => row.urlPath,
       sortable: true,
       maxWidth: '300px',
    },
    {
       name: 'Origin price',
-      selector: (row) => row.originPrice,
+      selector: (row: any) => row.originPrice,
       sortable: true,
       center: true,
       maxWidth: '150px',
    },
    {
       name: 'Price',
-      selector: (row) => row.price,
+      selector: (row: any) => row.price,
       sortable: true,
       center: true,
       maxWidth: '150px',
@@ -72,11 +92,13 @@ export const columnsProduct1 = ({
       sortable: false,
       center: true,
       minWidth: '100px',
-      cell: (record) => (
+      cell: (record: any) => (
          <TableActions
             handleReview={handleReview}
             handleView={handleView}
             record={record}
+            handleEditClick={handleEditClick}
+            handleDelete={handleDelete}
          />
       ),
    },
@@ -85,59 +107,59 @@ export const columnsProduct1 = ({
 export const columnsProduct2 = [
    {
       name: 'ID',
-      selector: (row) => row.id,
+      selector: (row: any) => row.id,
       sortable: true,
    },
    {
       name: 'Name',
-      selector: (row) => row.name,
+      selector: (row: any) => row.name,
       sortable: true,
    },
    {
       name: 'Username',
-      selector: (row) => row.username,
+      selector: (row: any) => row.username,
       sortable: true,
    },
    {
       name: 'Email',
-      selector: (row) => row.email,
+      selector: (row: any) => row.email,
       sortable: false,
    },
 ];
 
 export const columnsCustomer = ({
-   handleView,
-   handleEditClick,
-   handleDelete,
+   handleView = (record: any) => {},
+   handleEditClick = (record: any) => {},
+   handleDelete = (record: any) => {},
 }) => [
    {
       name: 'UserId',
-      selector: (row) => row.userId,
+      selector: (row: any) => row.userId,
       sortable: true,
    },
    {
       name: 'Address',
-      selector: (row) => row.address,
+      selector: (row: any) => row.address,
       sortable: true,
    },
    {
       name: 'Phone',
-      selector: (row) => row.phone,
+      selector: (row: any) => row.phone,
       sortable: true,
    },
    {
       name: 'dateOfBirth',
-      selector: (row) => row.dateOfBirth,
+      selector: (row: any) => row.dateOfBirth,
       sortable: true,
    },
    {
       name: 'Gender',
-      selector: (row) => row.gender,
+      selector: (row: any) => row.gender,
       sortable: true,
    },
    {
       name: 'avatar',
-      selector: (row) => row.avatar,
+      selector: (row: any) => row.avatar,
       sortable: true,
    },
    {
@@ -145,7 +167,7 @@ export const columnsCustomer = ({
       sortable: false,
       center: true,
       minWidth: '100px',
-      cell: (record) => (
+      cell: (record: any) => (
          <TableActions
             handleView={handleView}
             handleEditClick={handleEditClick}
@@ -157,42 +179,46 @@ export const columnsCustomer = ({
 ];
 
 export const columnsUserDetail = ({
-   handleView,
-   handleEditClick,
-   handleDelete,
+   handleView = (record: any) => {},
+   handleEditClick = (record: any) => {},
+   handleDelete = (record: any) => {},
+}: {
+   handleView?: (record: any) => void;
+   handleEditClick?: (record: any) => void;
+   handleDelete?: (record: any) => void;
 }) => [
    {
       name: 'UserId',
-      selector: (row) => row.userId,
+      selector: (row: any) => row.userId,
       sortable: true,
    },
    {
       name: 'Address',
-      selector: (row) => row.address,
+      selector: (row: any) => row.address,
       sortable: true,
    },
    {
       name: 'Phone',
-      selector: (row) => row.phone,
+      selector: (row: any) => row.phone,
       sortable: true,
       minWidth: '150px',
       maxWidth: '200px',
    },
    {
       name: 'dateOfBirth',
-      selector: (row) => row.dateOfBirth,
+      selector: (row: any) => row.dateOfBirth,
       sortable: true,
    },
    {
       name: 'Gender',
-      selector: (row) => row.gender,
+      selector: (row: any) => row.gender,
       sortable: true,
       minWidth: '80px',
       maxWidth: '120px',
    },
    {
       name: 'avatar',
-      selector: (row) => row.avatar,
+      selector: (row: any) => row.avatar,
       sortable: true,
    },
    {
@@ -200,7 +226,7 @@ export const columnsUserDetail = ({
       sortable: false,
       center: true,
       minWidth: '100px',
-      cell: (record) => (
+      cell: (record: any) => (
          <TableActions
             handleView={handleView}
             handleEditClick={handleEditClick}
@@ -212,42 +238,47 @@ export const columnsUserDetail = ({
 ];
 
 export const columnsMainDash = ({
-   handleView,
-   handleEditClick,
-   handleDeactivate,
-   handleActivate,
+   handleView = (record: any) => {},
+   handleEditClick = (record: any) => {},
+   handleDeactivate = (record: any) => {},
+   handleActivate = (record: any) => {},
+}: {
+   handleView?: (record: any) => void;
+   handleEditClick?: (record: any) => void;
+   handleDeactivate?: (record: any) => void;
+   handleActivate?: (record: any) => void;
 }) => [
    {
       name: 'ID',
-      selector: (row) => row.id,
+      selector: (row: any) => row.id,
       sortable: true,
    },
    {
       name: 'Name',
-      selector: (row) => row.name,
+      selector: (row: any) => row.name,
       sortable: true,
    },
    {
       name: 'Username',
-      selector: (row) => row.username,
+      selector: (row: any) => row.username,
       sortable: true,
    },
    {
       name: 'Email',
-      selector: (row) => row.email,
+      selector: (row: any) => row.email,
       sortable: true,
    },
    {
       name: 'Role',
-      selector: (row) => row.role,
+      selector: (row: any) => row.role,
       sortable: true,
    },
    {
       name: 'Active',
-      selector: (row) => row.isActive,
+      selector: (row: any) => row.isActive,
       sortable: true,
       center: true,
-      cell: (row) => {
+      cell: (row: any) => {
          const isActive =
             typeof row.isActive === 'string'
                ? row.isActive === 'true'
@@ -266,7 +297,7 @@ export const columnsMainDash = ({
       center: true,
       minWidth: '100px',
 
-      cell: (record) => (
+      cell: (record: any) => (
          <TableActions
             handleView={handleView}
             handleEditClick={handleEditClick}
@@ -279,43 +310,48 @@ export const columnsMainDash = ({
 ];
 
 export const columnsOrder = ({
-   handleView,
-   handleEditClick,
-   handleDelete,
-   handleReview,
+   handleView = (record: any) => {},
+   handleEditClick = (record: any) => {},
+   handleDelete = (record: any) => {},
+   handleReview = (record: any) => {},
+}: {
+   handleView?: (record: any) => void;
+   handleEditClick?: (record: any) => void;
+   handleDelete?: (record: any) => void;
+   handleReview?: (record: any) => void;
 }) => [
    {
       name: 'ID',
-      selector: (row) => row.id,
+      selector: (row: any) => row.id,
       sortable: true,
    },
    {
       name: 'TotalProducts',
-      selector: (row) => row.totalProducts,
+      selector: (row: any) => row.totalProducts,
       sortable: true,
    },
    {
       name: 'TotalQuantity',
-      selector: (row) => row.totalQuantity,
+      selector: (row: any) => row.totalQuantity,
       sortable: true,
    },
 
    {
       name: 'DiscountedTotal',
-      selector: (row) => row.discountedTotal,
+      selector: (row: any) => row.discountedTotal,
       sortable: true,
    },
    {
       name: 'Total',
-      selector: (row) => row.total,
+      selector: (row: any) => row.total,
       sortable: true,
    },
    {
       name: 'Status',
-      selector: (row) => row.status,
+      selector: (row: any) => row.status,
       sortable: true,
       center: true,
-      cell: (row) => {
+      cell: (row: any) => {
          const status = row.status.toLowerCase();
 
          let color;
@@ -336,22 +372,12 @@ export const columnsOrder = ({
                color = '#ccc';
                break;
          }
-         return (
-            <StatusStyle
-               style={{
-                  color: color,
-                  border: `1px solid ${color}`,
-                  fontWeight: 600,
-               }}
-            >
-               {status}
-            </StatusStyle>
-         );
+         return <ExampleComponent color={color} status={status} />;
       },
    },
    {
       name: 'CustomerId',
-      selector: (row) => row.customerId,
+      selector: (row: any) => row.customerId,
       sortable: true,
    },
 
@@ -360,7 +386,7 @@ export const columnsOrder = ({
       sortable: false,
       center: true,
       minWidth: '100px',
-      cell: (record) => (
+      cell: (record: any) => (
          <TableActions
             handleView={handleView}
             handleEditClick={handleEditClick}

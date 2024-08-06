@@ -6,10 +6,11 @@ import { Button } from 'antd';
 import { useState } from 'react';
 import GeneralSetting from './General';
 import { ArrowLeftOutlined } from '@ant-design/icons';
+import { RootState } from 'components/features/store';
 
-function Setting() {
+const Setting = () => {
    const dispatch = useDispatch();
-   const calendar = useSelector((state) => state.setting.calendar);
+   const calendar = useSelector((state: RootState) => state.setting.calendar);
    const [activeTab, setActiveTab] = useState('general');
    const handleCheckboxChange = () => {
       dispatch(setSettingCalendar(!calendar));
@@ -73,6 +74,6 @@ function Setting() {
          </div>
       </>
    );
-}
+};
 
 export default Setting;

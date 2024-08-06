@@ -1,4 +1,4 @@
-import { FaCalendar, FaClock, FaRegTrashAlt } from 'react-icons/fa'; // Thay đổi từ FaClock thành FaTrashAlt
+import { FaCalendar, FaClock, FaRegTrashAlt } from 'react-icons/fa';
 
 interface TodoProps {
    id: string;

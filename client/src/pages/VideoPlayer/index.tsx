@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player';
 import { videos } from '../../Video/dataVideos';
 import './videoPlayer.css';
 
-function VideoPlayer() {
+const VideoPlayer = () => {
    return (
       <main className='wrapper-videos'>
          <div className='grid-container'>
@@ -20,7 +20,7 @@ function VideoPlayer() {
                               height='260px'
                               allow='autoplay'
                               frameBorder='0'
-                              allowFullScreen='allowFullScreen'
+                              allowFullScreen
                            ></iframe>
                         </div>
                         <div className='information-video'>
@@ -52,6 +52,6 @@ function VideoPlayer() {
          </div>
       </main>
    );
-}
+};
 
 export default VideoPlayer;

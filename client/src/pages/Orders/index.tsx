@@ -9,11 +9,12 @@ import {
 } from '../../components/Table/TableActions/handleActions';
 import './orders.css';
 import { pageDetailOrder } from '../../Data/fetchData';
+import { RootState } from 'components/features/store';
 
-function Orders() {
+const Orders = () => {
    const [records, setRecords] = useState([]);
    const [searchTerm, setSearchTerm] = useState('');
-   const darkMode = useSelector((state) => state.darkMode);
+   const darkMode = useSelector((state: RootState) => state.darkMode);
 
    const [isModalReview, setModalReview] = useState(false);
    const [isListReviews, setIsListReviews] = useState([]);
@@ -24,7 +25,7 @@ function Orders() {
       pageOrders(setRecords);
    }, []);
 
-   const handleReview = async (record) => {
+   const handleReview = async (record: any) => {
       const response = await pageDetailOrder(record.id);
 
       setIsListReviews(response);
@@ -32,7 +33,7 @@ function Orders() {
       setModalReview(true);
    };
 
-   const handleView = (record) => {
+   const handleView = (record: any) => {
       setModalView(true);
       setViewCurrent(record);
    };
@@ -49,7 +50,6 @@ function Orders() {
             columns={columns}
             data={filterData(searchTerm, records)}
             searchBox={searchBox(searchTerm, setSearchTerm)}
-            setModalView={setModalView}
             tableActions={{
                setModalView,
                viewCurrent,
@@ -61,6 +61,6 @@ function Orders() {
          />
       </main>
    );
-}
+};
 
 export default Orders;
