@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Dropdown, Menu, Avatar } from 'antd';
+import { Dropdown, Menu, Avatar, Input } from 'antd';
 import {
    UserOutlined,
    InfoCircleOutlined,
@@ -7,15 +7,15 @@ import {
    SettingOutlined,
    LogoutOutlined,
    SunOutlined,
+   SearchOutlined,
 } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleDarkMode } from '../features/darkmode/darkModeSlice';
 import { deleteLocalStorage, getObjectFromLocalStorage } from '../../ulti';
-import BurgerIcon from '../../imgs/align-left.svg';
-import InputSearch from 'components/common/InputComponent/InputSearch';
 import type { MenuProps } from 'antd';
 import { RootState } from 'components/features/store';
+import { MenuOutlined } from '@ant-design/icons';
 import './header.css';
 
 const Header = ({ nameContent = '', toggleBurger = () => {} }) => {
@@ -46,12 +46,6 @@ const Header = ({ nameContent = '', toggleBurger = () => {} }) => {
    const dispatch = useDispatch();
 
    const menuItems: MenuProps['items'] = [
-      {
-         label: <span className='header-username'>Welcome: {username}</span>,
-         key: 'welcome',
-         disabled: true,
-      },
-      { type: 'divider' },
       {
          label: (
             <Link to='/info' className='user-menu-item'>
@@ -122,17 +116,20 @@ const Header = ({ nameContent = '', toggleBurger = () => {} }) => {
       >
          <div className='nav-left'>
             <div onClick={toggleBurger} className='burger-icon-wapper'>
-               <img
-                  className={`burger-icon ${darkMode ? 'white' : ''}`}
-                  src={BurgerIcon}
-                  alt='Sidebar'
+               <MenuOutlined
+                  className={`burger-icon ${darkMode ? 'darkmode' : ''}`}
                />
             </div>
-            <h1 className='name-tab'>{nameContent}</h1>
+            <div id='nav-search'>
+               <Input
+                  placeholder='Search'
+                  prefix={<SearchOutlined />}
+                  variant={darkMode ? 'outlined' : 'filled'}
+                  className='custom-search-input'
+               />
+            </div>
          </div>
-         <div id='nav-search'>
-            <InputSearch size='large' />
-         </div>
+
          <div className='nav-right'>
             <nav>
                <div className='user-utilities'>
@@ -154,6 +151,10 @@ const Header = ({ nameContent = '', toggleBurger = () => {} }) => {
                            icon={!avatarUrl ? <UserOutlined /> : null}
                            className='user-profile-avatar'
                         />
+                        <div className='user-profile-info'>
+                           <p className='user-profile-name'>{username}</p>
+                           <p className='user-profile-role'>Administrator</p>
+                        </div>
                      </div>
                   </Dropdown>
                </div>
