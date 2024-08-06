@@ -90,8 +90,8 @@ const Login = () => {
             localStorage.setItem('username', username);
             localStorage.setItem('customerInfo', JSON.stringify(customerInfo));
 
-            navigate('/home');
-            message.success('Success: ' + responseMessage);
+            navigate('/');
+            message.success(responseMessage);
          }
       } catch (error: any) {
          message.error(

@@ -58,7 +58,7 @@ const Profile = () => {
    return (
       <div className='wrapper-profile'>
          <div className='container-profile'>
-            <Link to='/home' className='back-to-home-profile'>
+            <Link to='/' className='back-to-home-profile'>
                Back
             </Link>
             <div className='infomation-profile'>

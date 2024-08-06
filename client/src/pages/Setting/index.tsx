@@ -38,7 +38,7 @@ const Setting = () => {
       <>
          <div className='setting-header'>
             <div className='back-btn-container'>
-               <Link to='/home' className='back'>
+               <Link to='/' className='back'>
                   <ArrowLeftOutlined /> Back
                </Link>
             </div>

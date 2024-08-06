@@ -53,12 +53,6 @@ const privateRoutes: IRoute[] = [
       layout: AdminDefaultLayout,
    },
    {
-      name: 'Dashboard',
-      path: '/home',
-      component: MainDash,
-      layout: AdminDefaultLayout,
-   },
-   {
       name: 'Orders',
       path: '/orders',
       component: Orders,

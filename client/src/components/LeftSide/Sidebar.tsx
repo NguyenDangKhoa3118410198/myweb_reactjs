@@ -6,7 +6,7 @@ import {
    HomeOutlined,
    FileTextOutlined,
    UserOutlined,
-   BoxPlotOutlined,
+   LaptopOutlined,
 } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import HeaderSidebar from './HeaderSidebar';
@@ -30,7 +30,7 @@ const Sidebar: React.FC<ISidebar> = ({ isMenuActive, activeMenu }) => {
 
    const listMenuItem = [
       {
-         title: 'Home',
+         title: 'Dashboard',
          to: '/',
          icon: <HomeOutlined />,
       },
@@ -47,7 +47,7 @@ const Sidebar: React.FC<ISidebar> = ({ isMenuActive, activeMenu }) => {
       {
          title: 'Products',
          to: '/products',
-         icon: <BoxPlotOutlined />,
+         icon: <LaptopOutlined />,
       },
       {
          title: 'Users Detail',

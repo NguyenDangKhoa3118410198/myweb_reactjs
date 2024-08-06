@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Dropdown, Menu, Avatar, Input } from 'antd';
+import { Dropdown, Menu, Avatar, Input, Badge } from 'antd';
 import {
    UserOutlined,
    InfoCircleOutlined,
@@ -8,6 +8,7 @@ import {
    LogoutOutlined,
    SunOutlined,
    SearchOutlined,
+   BellOutlined,
 } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -146,6 +147,11 @@ const Header = ({ nameContent = '', toggleBurger = () => {} }) => {
                      trigger={['click']}
                   >
                      <div className='user-profile'>
+                        <Badge size='small' count={5}>
+                           <BellOutlined
+                              style={{ fontSize: '20px', color: '#000' }}
+                           />
+                        </Badge>
                         <Avatar
                            src={avatarUrl}
                            icon={!avatarUrl ? <UserOutlined /> : null}

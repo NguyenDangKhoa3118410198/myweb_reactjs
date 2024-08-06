@@ -2,8 +2,8 @@
    display: flex;
    flex-direction: column;
    align-items: center;
-   padding: 14px 12px;
-   gap: 18px;
+   padding: 14px 20px;
+   gap: 10px;
    height: 100%;
    color: var(--text-primary);
    overflow-y: overlay;
@@ -14,14 +14,12 @@ a.menuItem[href] {
    width: 100%;
    display: flex;
    align-items: center;
-   height: 42px;
-   border-radius: 5px;
+   height: 45px;
+   border-radius: 6px;
    gap: 14px;
-   cursor: pointer;
-   font-size: 16px;
-   font-weight: 500;
    color: var(--color-blue-06);
    transition: background-color, color .3s ease;
+   cursor: pointer;
 
    &:hover {
       background-color: var(--color-blue-07);
@@ -55,7 +53,7 @@ a.menuItem[href] {
 }
 
 .item {
-   font-size: 18px;
+   font-size: 16px;
    font-weight: 600;
 }
 

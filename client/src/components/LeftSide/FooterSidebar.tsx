@@ -1,23 +1,25 @@
-import { toggleDarkMode } from 'components/features/darkmode/darkModeSlice';
-import { useDispatch } from 'react-redux';
+import { LogoutOutlined } from '@ant-design/icons';
+import { Divider } from 'antd';
+import { Link } from 'react-router-dom';
+import { deleteLocalStorage } from 'ulti';
 
 interface FooterSidebarProps {
    darkMode: boolean;
 }
 
 const FooterSidebar: React.FC<FooterSidebarProps> = ({ darkMode }) => {
-   const dispatch = useDispatch();
    return (
       <div className={`footer-sidebar ${darkMode ? 'isDark' : ''}`}>
-         <label className='switch'>
-            <input
-               type='checkbox'
-               className={darkMode ? 'isDark' : ''}
-               onChange={() => {
-                  dispatch(toggleDarkMode());
-               }}
-            />
-            <span className='slider'></span>
+         <Divider />
+         <label>
+            <Link
+               to='/login'
+               className='user-menu-item logout'
+               onClick={deleteLocalStorage}
+            >
+               <LogoutOutlined className='icon-sidebar-menu' />
+               <span className='name-menu-item'>Logout</span>
+            </Link>
          </label>
       </div>
    );
