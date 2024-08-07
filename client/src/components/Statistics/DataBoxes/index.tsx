@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { sendRequest } from '../../../ulti/sendHeaderRequest';
-import IconCustomer from '../../../imgs/IconCustomer.png';
-import IconAccess from '../../../imgs/IconAccess.png';
-import IconTotal from '../../../imgs/IconTotal.png';
-import IconProduct from '../../../imgs/IconProduct.png';
+import IconCustomer from '../../../imgs/IconCustomer.svg';
+import IconAccess from '../../../imgs/IconAccess.svg';
+import IconTotal from '../../../imgs/IconTotal.svg';
+import IconProduct from '../../../imgs/IconProduct.svg';
 
 export const infoCard = [
    {

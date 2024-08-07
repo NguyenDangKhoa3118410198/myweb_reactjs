@@ -290,7 +290,7 @@ const MainDash = () => {
 
          {calendar && <MyCalendar />}
 
-         <Suspense fallback={<Spin />}>
+         <Spin spinning={false}>
             <Table
                title='List of users'
                columns={columns}
@@ -314,7 +314,7 @@ const MainDash = () => {
                   handleClose,
                }}
             />
-         </Suspense>
+         </Spin>
       </main>
    );
 };
