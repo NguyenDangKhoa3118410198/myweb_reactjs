@@ -14,17 +14,20 @@ function ContextualExample() {
       const timer = setInterval(() => {
          setCountOfProgress((oldProgress) => {
             if (oldProgress === 100) return 0;
-            return Math.min(oldProgress + Math.random() * 10, 100);
+            const newProgress = Math.min(oldProgress + Math.random() * 10, 100);
+            return parseFloat(newProgress.toFixed(1));
          });
 
          setCountOfProgressSuccess((oldProgress) => {
             if (100 === oldProgress) return 0;
-            return Math.min(oldProgress + Math.random() * 10, 100);
+            const newProgress = Math.min(oldProgress + Math.random() * 10, 100);
+            return parseFloat(newProgress.toFixed(1));
          });
 
          setCountOfProgressWarning((oldProgress) => {
             if (100 === oldProgress) return 0;
-            return Math.min(oldProgress + Math.random() * 10, 100);
+            const newProgress = Math.min(oldProgress + Math.random() * 10, 100);
+            return parseFloat(newProgress.toFixed(1));
          });
       }, 1900);
 
@@ -32,6 +35,7 @@ function ContextualExample() {
          clearInterval(timer);
       };
    }, []);
+
    return (
       <div className='progress-container'>
          <div className='progress-bar-content'>
