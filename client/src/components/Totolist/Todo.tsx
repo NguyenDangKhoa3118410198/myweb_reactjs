@@ -12,14 +12,14 @@ interface TodoProps {
    handleDelete: (id: string) => void;
 }
 
-function Todo({
+const Todo = ({
    id,
    task,
    completed,
    formattedDateTime,
    handleIsCompleted,
    handleDelete,
-}: TodoProps) {
+}: TodoProps) => {
    return (
       <div className='todo' key={id}>
          <div className='todo-content'>
@@ -54,6 +54,6 @@ function Todo({
          </div>
       </div>
    );
-}
+};
 
 export default Todo;

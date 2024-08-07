@@ -21,12 +21,12 @@ const Card: React.FC<ICard> = ({ infoCard, data }) => {
 
    return (
       <Link to={path} className='cart-container'>
-         <div className='cart-right'>
+         <div className='cart-left'>
             <h1 className='cart-title'>{title ? title : ''}</h1>
             <h1 className='cart-count'>{data ?? '...Loading'}</h1>
             <div className='cart-up'>10% Up from yesterday</div>
          </div>
-         <div className='cart-left'>
+         <div className='cart-right'>
             <div className={`cart-icon `}>
                <img src={icon} alt='Error' />
             </div>

@@ -13,7 +13,7 @@ interface ITodo {
    created?: string;
 }
 
-function Todolist() {
+const Todolist = () => {
    const [todo, setTodo] = useState('');
    const [todolist, setTodolist] = useState<ITodo[]>([]);
 
@@ -91,6 +91,6 @@ function Todolist() {
          </div>
       </Container>
    );
-}
+};
 
 export default Todolist;

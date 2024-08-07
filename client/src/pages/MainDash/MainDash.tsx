@@ -6,12 +6,7 @@ import React, {
    startTransition,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { EllipsisOutlined } from '@ant-design/icons';
 import { pageMainDash } from '../../Data/fetchData';
-
-import ContextualExample from '../../components/ProgressBar';
-import Todolist from 'components/Totolist/Totolist';
-import CircularProgressbarChart from '../../components/Statistics/ChartTemplate/CircularProgressbarChart';
 import {
    searchBox,
    filterData,
@@ -30,6 +25,11 @@ import './mainDash.css';
 import { setLoading } from '../../components/features/loading/loadingSlice';
 import { Spin } from 'antd';
 import { RootState } from 'components/features/store';
+import {
+   ProgressChartStats,
+   TodolistStats,
+   TopRevenueStats,
+} from './ListStats';
 
 const MyCalendar = lazy(() => import('../../components/Calendar'));
 const Table = lazy(() => import('../../components/Table/Table'));
@@ -62,8 +62,6 @@ const MainDash = () => {
       const fetchData = async () => {
          dispatch(setLoading(true));
          try {
-            // Giả lập độ trễ 10 giây bằng setTimeout
-            await new Promise((resolve) => setTimeout(resolve, 10000));
             pageMainDash(setRecords); // Gọi hàm fetch dữ liệu
          } catch (error) {
             console.error('Error fetching data:', error);
@@ -99,7 +97,6 @@ const MainDash = () => {
          if (newFormData) {
             if (currentRecordId && isEditPanelOpen) {
                //edit exists record
-
                const currentRecord = records.find(
                   (record: any) => record.id === currentRecordId
                );
@@ -130,7 +127,6 @@ const MainDash = () => {
                   return;
                }
                handleSave('', newFormData);
-               // console.log(newFormData);
             } else {
                alertMessage('Please select a record to edit.');
             }
@@ -277,47 +273,6 @@ const MainDash = () => {
       handleActivate,
    });
 
-   const TopRevenueStats = () => (
-      <div className='combined-stats-item'>
-         <div className='combined-stats-header'>
-            <h1 className='combined-stats-title'>Top Revenue</h1>
-            <div className='combined-stats-icon'>
-               <EllipsisOutlined />
-            </div>
-         </div>
-         <div className='combined-stats-content'>
-            <CircularProgressbarChart />
-         </div>
-      </div>
-   );
-
-   const TodolistStats = () => (
-      <div className='combined-stats-item'>
-         <div className='combined-stats-header'>
-            <h1 className='combined-stats-title'>Todolist</h1>
-            <div className='combined-stats-icon'>
-               <EllipsisOutlined />
-            </div>
-         </div>
-         <div className='combined-stats-content'>
-            <Todolist />
-         </div>
-      </div>
-   );
-
-   const ProgressChartStats = () => (
-      <div className='combined-stats-item'>
-         <div className='combined-stats-header'>
-            <h1 className='combined-stats-title'>Progress Chart</h1>
-            <div className='combined-stats-icon'>
-               <EllipsisOutlined />
-            </div>
-         </div>
-         <div className='combined-stats-content'>
-            <ContextualExample />
-         </div>
-      </div>
-   );
    return (
       <main className={`main-dashboard-container`}>
          <h1 className={`title-page ${darkMode ? 'darkmode' : ''} `}>
