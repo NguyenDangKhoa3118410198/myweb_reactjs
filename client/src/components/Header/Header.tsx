@@ -149,7 +149,10 @@ const Header = ({ nameContent = '', toggleBurger = () => {} }) => {
                      <div className='user-profile'>
                         <Badge size='small' count={5}>
                            <BellOutlined
-                              style={{ fontSize: '20px', color: '#000' }}
+                              style={{
+                                 fontSize: '20px',
+                                 color: darkMode ? `#fff` : `#000`,
+                              }}
                            />
                         </Badge>
                         <Avatar

@@ -10,37 +10,15 @@
 .cart-left {
    display: flex;
    flex-direction: column;
-   flex: 1;
    justify-content: space-evenly;
    align-items: center;
+   position: relative;
+   overflow: hidden;
+   flex: 1;
 
    .cart-icon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 72px;
-      height: 72px;
-      margin: 0 auto;
-      border-radius: 10px;
-      outline: 2px solid rgba(255, 255, 255, 0.5);
-      border: 2px solid rgba(228, 223, 223, 0.2);
-      background-color: transparent;
-
-      &.color1 {
-         color: #fff;
-      }
-
-      &.color2 {
-         color: #fff;
-      }
-
-      &.color3 {
-         color: #fff;
-      }
-
-      &.color4 {
-         color: #fff;
-      }
+      position: absolute;
+      margin: auto;
    }
 
    .cart-icon svg {
@@ -67,38 +45,32 @@
 }
 
 .cart-right {
-   color: #fff;
    display: flex;
    flex-direction: column;
-   flex: 2;
    align-items: center;
    justify-content: center;
-   margin-bottom: 10px;
    position: relative;
+   flex: 2;
 
    .cart-title {
-      font-weight: 700;
-      font-size: 24px;
-      text-shadow: 0.5px 1px rgba(0, 0, 0, 0.4);
+      color: var(--color-black);
+      font-weight: 600;
+      font-size: 16px;
    }
 
    .cart-count {
       font-size: 28px;
-      font-weight: 600;
-      text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
+      font-weight: 700;
+      color: var(--color-black);
    }
 
    .cart-up {
-      border-radius: 18px;
-      padding: 6px;
-      background-color: rgb(255, 255, 255, 0.4);
-      color: #fff;
       font-size: 16px;
       font-weight: 600;
-      border: 2px solid #eee;
       text-align: center;
       text-transform: capitalize;
       position: relative;
+      color: #606060;
    }
 
    @media screen and (max-width: 767px) {

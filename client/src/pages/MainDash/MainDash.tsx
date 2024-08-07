@@ -321,6 +321,7 @@ const MainDash = () => {
    // console.log(calendar);
    return (
       <main className={`main-dashboard-container`}>
+         <h1 className='title-page'>Dashboard</h1>
          <Suspense fallback={<Spin />}>
             <DashboardBoxChart />
          </Suspense>

@@ -1,31 +1,33 @@
-import React from 'react';
-import { FaUser, FaShoppingCart, FaBox, FaHubspot } from 'react-icons/fa';
 import axios from 'axios';
 import { sendRequest } from '../../../ulti/sendHeaderRequest';
+import IconCustomer from '../../../imgs/IconCustomer.png';
+import IconAccess from '../../../imgs/IconAccess.png';
+import IconTotal from '../../../imgs/IconTotal.png';
+import IconProduct from '../../../imgs/IconProduct.png';
 
 export const infoCard = [
    {
       title: 'Customers',
       color: 'color1',
-      icon: <FaUser />,
+      icon: IconCustomer,
       path: '/customers',
    },
    {
       title: 'Products',
       color: 'color2',
-      icon: <FaShoppingCart />,
+      icon: IconProduct,
       path: '/products',
    },
    {
       title: 'Orders',
       color: 'color3',
-      icon: <FaBox />,
+      icon: IconTotal,
       path: '/orders',
    },
    {
       title: 'Access',
       color: 'color4',
-      icon: <FaHubspot />,
+      icon: IconAccess,
       path: '/customers',
    },
 ];

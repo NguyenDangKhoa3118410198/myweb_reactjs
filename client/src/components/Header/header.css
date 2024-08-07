@@ -195,14 +195,6 @@
    display: inline-block;
 }
 
-.name-tab {
-   width: 180px;
-   overflow: hidden;
-   font-size: 32px;
-   font-weight: 700;
-   margin-bottom: 0;
-   text-align: center;
-}
 
 .darkmode .nav-left,
 .darkmode .nav-right,
@@ -262,19 +254,12 @@
       display: none;
    }
 
-   .name-tab {
-      display: none;
-   }
 }
 
 @media (max-width: 365px) {
    .slider.round {
       margin-left: 10px;
       width: 60px;
-   }
-
-   .name-tab {
-      display: none;
    }
 
    .nav-right {

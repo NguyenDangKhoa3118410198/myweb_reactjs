@@ -12,6 +12,13 @@
    /* Ẩn thanh cuộn trong Internet Explorer */
 }
 
+.title-page {
+   padding: 25px 10px 15px 10px;
+   font-size: 30px;
+   font-weight: 700;
+   margin: 0;
+}
+
 button[type='button'].btn-add {
    padding: 5px 10px;
    border-radius: 10px;

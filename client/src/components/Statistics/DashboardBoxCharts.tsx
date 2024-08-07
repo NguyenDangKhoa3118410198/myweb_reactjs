@@ -68,7 +68,9 @@ function DashboardBoxCharts() {
             <div className='box box4'>
                <Cart infoCard={infoCard[3]} data={dataAccess} />
             </div>
-            <div className='box box5'>
+         </div>
+         <>
+            {/* <div className='box box5'>
                <LargeBox data={data} chartModel='PieChartBox' />
             </div>
 
@@ -78,8 +80,8 @@ function DashboardBoxCharts() {
 
             <div className='box box7'>
                <LargeBox data={data} chartModel='RadialBarChartBox' />
-            </div>
-         </div>
+            </div> */}
+         </>
       </div>
    );
 }
