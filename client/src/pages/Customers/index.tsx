@@ -6,7 +6,6 @@ import {
 } from '../../components/Table/TableActions/handleActions';
 import Table from '../../components/Table/Table';
 import { columnsCustomer } from '../../Data/columns';
-import { pageCustomers } from '../../Data/fetchData';
 import { sendRequest } from '../../ulti/sendHeaderRequest';
 import FormPanel from './FormPanel';
 import { isFormDataValid } from '../../components/Table/TableActions/handleActions';
@@ -18,16 +17,24 @@ import {
 } from '../../ulti/modals';
 import { RootState } from 'components/features/store';
 
+import { Spin } from 'antd';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import { fetchCustomers } from 'components/features/thunk/thunk';
 import './customers.css';
 
 const Customers = () => {
-   const darkMode = useSelector((state: RootState) => state.darkMode);
    const [records, setRecords] = useState<any>([]);
    const [searchTerm, setSearchTerm] = useState('');
    const [isModalView, setModalView] = useState(false);
    const [viewCurrent, setViewCurrent] = useState({});
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
    const [currentRecordId, setCurrentRecordId] = useState(null);
+   const darkMode = useSelector((state: RootState) => state.darkMode);
+   const { customers, status } = useSelector(
+      (state: RootState) => state.root.customer
+   );
+
+   const dispatch = useAppDispatch();
 
    const [formData, setFormData] = useState({
       address: '',
@@ -36,8 +43,12 @@ const Customers = () => {
    });
 
    useEffect(() => {
-      pageCustomers(setRecords);
-   }, []);
+      dispatch(fetchCustomers());
+   }, [dispatch]);
+
+   useEffect(() => {
+      setRecords(customers);
+   }, [customers]);
 
    const handleSetFormData = () => {
       setFormData({
@@ -184,27 +195,29 @@ const Customers = () => {
             darkMode ? 'darkmode' : ''
          } `}
       >
-         <Table
-            title='List table Customers'
-            columns={columns}
-            data={filterData(searchTerm, records)}
-            searchBox={searchBox(searchTerm, setSearchTerm)}
-            formData={formData}
-            setFormData={setFormData}
-            FormPanel={FormPanel}
-            tableActions={{
-               viewCurrent,
-               setModalView,
-               isModalView,
-               isEditPanelOpen,
-               setIsEditPanelOpen,
-               setCurrentRecordId,
-            }}
-            handleActions={{
-               handleSubmitAndEdit,
-               handleClose,
-            }}
-         />
+         <Spin spinning={status === 'loading'}>
+            <Table
+               title='List table Customers'
+               columns={columns}
+               data={filterData(searchTerm, records)}
+               searchBox={searchBox(searchTerm, setSearchTerm)}
+               formData={formData}
+               setFormData={setFormData}
+               FormPanel={FormPanel}
+               tableActions={{
+                  viewCurrent,
+                  setModalView,
+                  isModalView,
+                  isEditPanelOpen,
+                  setIsEditPanelOpen,
+                  setCurrentRecordId,
+               }}
+               handleActions={{
+                  handleSubmitAndEdit,
+                  handleClose,
+               }}
+            />
+         </Spin>
       </main>
    );
 };

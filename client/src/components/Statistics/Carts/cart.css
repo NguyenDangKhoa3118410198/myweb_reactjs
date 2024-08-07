@@ -61,10 +61,11 @@
       text-transform: capitalize;
       position: relative;
       color: #606060;
-      margin-left: 5px;
+      margin-left: 2px;
 
       .cart-up-highlight {
          color: #00B69B;
+         margin-left: 2px;
       }
    }
 

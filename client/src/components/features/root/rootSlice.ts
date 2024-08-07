@@ -1,30 +1,47 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
+   fetchCustomers,
    fetchOrders,
    fetchProducts,
    fetchReviewProduct,
+   fetchUserDetail,
+   fetchUsers,
    handleAsyncThunk,
 } from '../thunk/thunk';
 
-interface ReviewState {
+interface BaseState {
+   status: 'idle' | 'loading' | 'succeeded' | 'failed';
+   error: string | null;
+}
+
+interface UserState extends BaseState {
+   userId: number | null;
+   users: any[];
+}
+
+interface ReviewState extends BaseState {
    reviewId: number | null;
    reviews: any[];
-   status: 'idle' | 'loading' | 'succeeded' | 'failed';
-   error: string | null;
 }
 
-interface ProductState {
+interface ProductState extends BaseState {
    productId: number | null;
    products: any[];
-   status: 'idle' | 'loading' | 'succeeded' | 'failed';
-   error: string | null;
 }
 
-interface OrderState {
+interface OrderState extends BaseState {
    orderId: number | null;
    orders: any[];
-   status: 'idle' | 'loading' | 'succeeded' | 'failed';
-   error: string | null;
+}
+
+interface CustomerState extends BaseState {
+   customerId: number | null;
+   customers: any[];
+}
+
+interface UserDetailState extends BaseState {
+   userDetailId: number | null;
+   userDetails: any[];
 }
 
 interface RootStateSlice {
@@ -32,6 +49,9 @@ interface RootStateSlice {
    review: ReviewState;
    product: ProductState;
    order: OrderState;
+   user: UserState;
+   customer: CustomerState;
+   userDetail: UserDetailState;
 }
 
 const initialState: RootStateSlice = {
@@ -51,6 +71,24 @@ const initialState: RootStateSlice = {
    order: {
       orderId: null,
       orders: [],
+      status: 'idle',
+      error: null,
+   },
+   user: {
+      userId: null,
+      users: [],
+      status: 'idle',
+      error: null,
+   },
+   customer: {
+      customerId: null,
+      customers: [],
+      status: 'idle',
+      error: null,
+   },
+   userDetail: {
+      userDetailId: null,
+      userDetails: [],
       status: 'idle',
       error: null,
    },
@@ -90,6 +128,36 @@ const rootSlice = createSlice({
             state.orders = action.payload.orders;
          },
          stateSelector: (state: RootStateSlice) => state.order,
+      });
+      handleAsyncThunk({
+         builder,
+         thunk: fetchUsers,
+         successCallback: (state: UserState, action: PayloadAction<any>) => {
+            state.users = action.payload.users;
+         },
+         stateSelector: (state: RootStateSlice) => state.user,
+      });
+      handleAsyncThunk({
+         builder,
+         thunk: fetchCustomers,
+         successCallback: (
+            state: CustomerState,
+            action: PayloadAction<any>
+         ) => {
+            state.customers = action.payload.customers;
+         },
+         stateSelector: (state: RootStateSlice) => state.customer,
+      });
+      handleAsyncThunk({
+         builder,
+         thunk: fetchUserDetail,
+         successCallback: (
+            state: UserDetailState,
+            action: PayloadAction<any>
+         ) => {
+            state.userDetails = action.payload.userDetails;
+         },
+         stateSelector: (state: RootStateSlice) => state.userDetail,
       });
    },
 });

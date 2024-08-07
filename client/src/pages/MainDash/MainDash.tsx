@@ -5,8 +5,7 @@ import React, {
    Suspense,
    startTransition,
 } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { pageMainDash } from '../../Data/fetchData';
+import { useSelector } from 'react-redux';
 import {
    searchBox,
    filterData,
@@ -21,8 +20,6 @@ import {
    alertSuccess,
 } from '../../ulti/modals';
 import { updateCountingUsers } from '../../components/features/appInformation/appInformationSlice';
-import './mainDash.css';
-import { setLoading } from '../../components/features/loading/loadingSlice';
 import { Spin } from 'antd';
 import { RootState } from 'components/features/store';
 import {
@@ -30,6 +27,9 @@ import {
    TodolistStats,
    TopRevenueStats,
 } from './ListStats';
+import { fetchUsers } from 'components/features/thunk/thunk';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import './mainDash.css';
 
 const MyCalendar = lazy(() => import('../../components/Calendar'));
 const Table = lazy(() => import('../../components/Table/Table'));
@@ -49,8 +49,11 @@ const MainDash = () => {
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
    const [isModalView, setModalView] = useState(false);
    const [viewCurrent, setViewCurrent] = useState({});
+   const dispatch = useAppDispatch();
 
-   const dispatch = useDispatch();
+   const { users: reduxUsers, status: statusUsers } = useSelector(
+      (state: RootState) => state.root.user
+   );
 
    const [formData, setFormData] = useState({
       name: '',
@@ -59,19 +62,12 @@ const MainDash = () => {
    });
 
    useEffect(() => {
-      const fetchData = async () => {
-         dispatch(setLoading(true));
-         try {
-            pageMainDash(setRecords); // Gọi hàm fetch dữ liệu
-         } catch (error) {
-            console.error('Error fetching data:', error);
-         } finally {
-            dispatch(setLoading(false));
-         }
-      };
-
-      fetchData();
+      dispatch(fetchUsers());
    }, [dispatch]);
+
+   useEffect(() => {
+      setRecords(reduxUsers);
+   }, [reduxUsers]);
 
    const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
@@ -290,9 +286,9 @@ const MainDash = () => {
 
          {calendar && <MyCalendar />}
 
-         <Spin spinning={false}>
+         <Spin spinning={statusUsers === 'loading'}>
             <Table
-               title='List of users'
+               title='List Users'
                columns={columns}
                data={filterData(searchTerm, records)}
                searchBox={searchBox(searchTerm, setSearchTerm)}

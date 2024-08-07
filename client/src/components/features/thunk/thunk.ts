@@ -73,9 +73,44 @@ export const fetchOrders = createAsyncThunk(
    'root/fetchOrders',
    async (_, { rejectWithValue }) => {
       try {
-         const response = await fetch('api/orders');
-         const data = await response.json();
+         const data = await sendRequest('GET', 'api/orders');
          return { orders: data };
+      } catch (error: any) {
+         return rejectWithValue(error.message);
+      }
+   }
+);
+
+export const fetchUsers = createAsyncThunk(
+   'root/fetchUsers',
+   async (_, { rejectWithValue }) => {
+      try {
+         const data = await sendRequest('GET', 'api/users');
+         return { users: data };
+      } catch (error: any) {
+         return rejectWithValue(error.message);
+      }
+   }
+);
+
+export const fetchCustomers = createAsyncThunk(
+   'root/fetchCustomers',
+   async (_, { rejectWithValue }) => {
+      try {
+         const data = await sendRequest('GET', 'api/customers');
+         return { customers: data };
+      } catch (error: any) {
+         return rejectWithValue(error.message);
+      }
+   }
+);
+
+export const fetchUserDetail = createAsyncThunk(
+   'root/fetchUserDetail',
+   async (_, { rejectWithValue }) => {
+      try {
+         const data = await sendRequest('GET', 'api/userDetail');
+         return { userDetails: data };
       } catch (error: any) {
          return rejectWithValue(error.message);
       }

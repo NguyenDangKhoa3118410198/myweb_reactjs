@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { columnsProduct1 } from '../../Data/columns';
 import Table from '../../components/Table/Table';
 import {
@@ -9,11 +9,13 @@ import {
 
 import './product.css';
 import {
+   fetchOrders,
    fetchProducts,
    fetchReviewProduct,
 } from 'components/features/thunk/thunk';
 import { Spin } from 'antd';
-import { AppDispatch, RootState } from 'components/features/store';
+import { RootState } from 'components/features/store';
+import { useAppDispatch } from 'hooks/useAppDispatch';
 
 const Products = () => {
    const darkMode = useSelector((state: RootState) => state.darkMode);
@@ -26,7 +28,7 @@ const Products = () => {
 
    const [isModalView, setModalView] = useState<boolean>(false);
    const [viewCurrent, setViewCurrent] = useState({});
-   const dispatch = useDispatch<AppDispatch>();
+   const dispatch = useAppDispatch();
    const { products: reduxProducts, status: statusProducts } = useSelector(
       (state: RootState) => state.root.product
    );
@@ -43,7 +45,8 @@ const Products = () => {
    }, [reduxProducts]);
 
    useEffect(() => {
-      dispatch(fetchProducts()); // get list products
+      dispatch(fetchProducts());
+      dispatch(fetchOrders());
    }, [dispatch]);
 
    function filterData(records: any) {

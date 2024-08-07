@@ -1,24 +1,5 @@
 import { sendRequest } from '../ulti/sendHeaderRequest';
 
-export const pageOrders = async (setRecords) => {
-   try {
-      const records = await sendRequest('GET', 'api/orders');
-      setRecords(records);
-   } catch (error) {
-      console.error('Error fetching data:', error);
-   }
-};
-
-export const pageMainDash = async (setRecords) => {
-   try {
-      const records = await sendRequest('GET', 'api/users');
-      // console.log(records);
-      setRecords(records);
-   } catch (error) {
-      console.error('Error fetching data:', error);
-   }
-};
-
 export const pageProducts = async (setRecords) => {
    try {
       const records = await sendRequest('GET', 'api/products');
