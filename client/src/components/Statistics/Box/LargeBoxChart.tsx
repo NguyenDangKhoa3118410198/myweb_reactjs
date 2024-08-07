@@ -10,11 +10,16 @@ import {
 import '../DashboardBoxCharts';
 
 interface ILargeBoxChart {
-   data: any;
+   data?: any;
    chartModel: string;
+   title?: string;
 }
 
-const LargeBoxChart: React.FC<ILargeBoxChart> = ({ data, chartModel }) => {
+const LargeBoxChart: React.FC<ILargeBoxChart> = ({
+   data,
+   chartModel,
+   title,
+}) => {
    const chartComponents: { [key: string]: React.ElementType } = {
       AreaChartBox: AreaChart,
       LineChartBox: LineChart,
@@ -37,7 +42,7 @@ const LargeBoxChart: React.FC<ILargeBoxChart> = ({ data, chartModel }) => {
       <div className='large-box-chart'>
          <div className='large-box-chart-info'>
             <div className='large-box-chart-title'>
-               <h3>{getDate()}</h3>
+               <h3 className='large-box-title'>{title ? title : getDate()}</h3>
             </div>
          </div>
 

@@ -1,32 +1,46 @@
 import React from 'react';
 
-import { LineChart, Line, Tooltip, ResponsiveContainer } from 'recharts';
+import {
+   LineChart,
+   Line,
+   XAxis,
+   YAxis,
+   CartesianGrid,
+   Tooltip,
+   Legend,
+   ResponsiveContainer,
+} from 'recharts';
 
 interface ILineChartBox {
-   data: any;
+   data?: any;
 }
 
 const LineChartBox: React.FC<ILineChartBox> = ({ data }) => {
    return (
       <ResponsiveContainer width='100%' height='100%'>
-         <LineChart width={100} height={100} data={data}>
-            <Tooltip
-               contentStyle={{
-                  background: 'transparent',
-                  border: 'none',
-               }}
-               labelStyle={{ display: 'none' }}
-               position={{ x: 50, y: 80 }}
-               itemStyle={{
-                  color: '#fff',
-               }}
-            />
+         <LineChart
+            width={500}
+            height={300}
+            data={data}
+            margin={{
+               top: 5,
+               right: 30,
+               left: 20,
+               bottom: 5,
+            }}
+         >
+            <CartesianGrid strokeDasharray='3 3' />
+            <XAxis dataKey='name' />
+            <YAxis />
+            <Tooltip />
+            <Legend />
             <Line
                type='monotone'
-               dataKey='amount'
-               stroke='#fff '
-               strokeWidth={2}
+               dataKey='pv'
+               stroke='#8884d8'
+               activeDot={{ r: 8 }}
             />
+            <Line type='monotone' dataKey='uv' stroke='#82ca9d' />
          </LineChart>
       </ResponsiveContainer>
    );

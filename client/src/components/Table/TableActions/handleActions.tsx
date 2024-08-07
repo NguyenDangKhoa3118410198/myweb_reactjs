@@ -1,4 +1,5 @@
-import InputSearch from 'components/common/InputComponent/InputSearch';
+import { SearchOutlined } from '@ant-design/icons';
+import { Input } from 'antd';
 
 interface FormData {
    [key: string]: string | number | null | undefined;
@@ -17,13 +18,16 @@ export const searchBox = (
    }
 
    return (
-      <InputSearch
-         className='input-search-table'
-         placeholder='Search...'
-         variant='filled'
-         value={searchTerm}
-         onChange={handleSearch}
-      />
+      <>
+         <Input
+            placeholder='Search'
+            prefix={<SearchOutlined />}
+            variant='filled'
+            className='custom-search-input'
+            value={searchTerm}
+            onChange={handleSearch}
+         />
+      </>
    );
 };
 

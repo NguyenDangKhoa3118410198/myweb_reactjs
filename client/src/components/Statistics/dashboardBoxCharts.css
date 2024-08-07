@@ -22,19 +22,21 @@
    height: 140px;
 
    &:hover {
-      box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+      border: 1px solid #fff;
    }
 }
 
-.box:not(.box5, .box6, .box7):hover {
-   box-shadow: none;
-   filter: drop-shadow(0 0 0.4rem rgba(0, 0, 0, 0.6));
-   outline: 1px solid #eee;
-   border: 1px solid #eee;
+.large-box-wrapper {
+   border-radius: 14px;
+   background-color: #fff;
+   margin: 0.8rem;
+   padding: 20px 32px;
 }
+
 
 .box5 {
    background-color: #fff;
+
 }
 
 .box6 {
@@ -128,6 +130,11 @@
 .large-box-chart-title {
    position: relative;
    padding: 1rem 0;
+}
+
+.large-box-title {
+   font-size: 24px;
+   font-weight: 700;
 }
 
 .large-box-chart-content {

@@ -42,7 +42,7 @@ const MainDash = () => {
    const [currentRecordId, setCurrentRecordId] = useState(null);
    const [searchTerm, setSearchTerm] = useState('');
 
-   // const darkMode = useSelector((state: RootState) => state.darkMode);
+   const darkMode = useSelector((state: RootState) => state.darkMode);
    const calendar = useSelector((state: RootState) => state.setting.calendar);
 
    const [isAddPanelOpen, setIsAddPanelOpen] = useState(false);
@@ -318,10 +318,11 @@ const MainDash = () => {
          </div>
       </div>
    );
-   // console.log(calendar);
    return (
       <main className={`main-dashboard-container`}>
-         <h1 className='title-page'>Dashboard</h1>
+         <h1 className={`title-page ${darkMode ? 'darkmode' : ''} `}>
+            Dashboard
+         </h1>
          <Suspense fallback={<Spin />}>
             <DashboardBoxChart />
          </Suspense>

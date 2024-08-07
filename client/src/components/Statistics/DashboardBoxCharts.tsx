@@ -70,17 +70,13 @@ function DashboardBoxCharts() {
             </div>
          </div>
          <>
-            {/* <div className='box box5'>
-               <LargeBox data={data} chartModel='PieChartBox' />
+            <div className='large-box-wrapper'>
+               <LargeBox
+                  data={data}
+                  chartModel='LineChartBox'
+                  title='Sale details'
+               />
             </div>
-
-            <div className='box box6'>
-               <LargeBox data={data} chartModel='TotalChartBox' />
-            </div>
-
-            <div className='box box7'>
-               <LargeBox data={data} chartModel='RadialBarChartBox' />
-            </div> */}
          </>
       </div>
    );
