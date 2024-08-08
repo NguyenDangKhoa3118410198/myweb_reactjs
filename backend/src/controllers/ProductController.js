@@ -6,9 +6,12 @@ const reviews = [];
 
 const getProducts = async (req, res) => {
    console.log('--------------- Get products -------------------');
+   const page = parseInt(req.query.page) || 1;
+   const limit = parseInt(req.query.limit) || 10;
+   const skip = (page - 1) * limit;
 
    try {
-      const productsDB = await Product.find({});
+      const productsDB = await Product.find({}).skip(skip).limit(limit);
 
       const productData = productsDB.map((product) => {
          const productInfo = {
@@ -34,6 +37,7 @@ const getProducts = async (req, res) => {
       res.status(200).json(productData);
    } catch (error) {
       console.error('Error fetching data:', error);
+      res.status(500).json({ message: 'Error fetching data' });
    }
 };
 
