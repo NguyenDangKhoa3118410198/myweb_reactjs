@@ -11,6 +11,7 @@ const getProducts = async (req, res) => {
    const skip = (page - 1) * limit;
 
    try {
+      const totalProducts = await Product.countDocuments({});
       const productsDB = await Product.find({}).skip(skip).limit(limit);
 
       const productData = productsDB.map((product) => {
@@ -34,7 +35,11 @@ const getProducts = async (req, res) => {
          return productInfo;
       });
 
-      res.status(200).json(productData);
+      res.status(200).json({
+         products: productData,
+         page: page,
+         totalPages: Math.ceil(totalProducts / limit),
+      });
    } catch (error) {
       console.error('Error fetching data:', error);
       res.status(500).json({ message: 'Error fetching data' });
