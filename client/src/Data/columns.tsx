@@ -48,48 +48,47 @@ export const columnsProduct1 = ({
    handleReview?: (record: any) => void;
 }) => [
    {
+      name: 'STT',
+      selector: (row: any, index: number) => index + 1,
+      width: '70px',
+      center: true,
+   },
+   {
       name: 'Name',
       selector: (row: any) => row.name,
-      sortable: true,
       maxWidth: '250px',
    },
    {
       name: 'Brand',
       selector: (row: any) => row.brandName,
-      sortable: true,
       center: true,
       maxWidth: '150px',
    },
    {
       name: 'Category',
       selector: (row: any) => row.category,
-      sortable: true,
       center: true,
       maxWidth: '150px',
    },
    {
       name: 'Url path',
       selector: (row: any) => row.urlPath,
-      sortable: true,
       maxWidth: '300px',
    },
    {
       name: 'Origin price',
       selector: (row: any) => row.originPrice,
-      sortable: true,
       center: true,
       maxWidth: '150px',
    },
    {
       name: 'Price',
       selector: (row: any) => row.price,
-      sortable: true,
       center: true,
       maxWidth: '150px',
    },
    {
       name: 'Action',
-      sortable: false,
       center: true,
       minWidth: '100px',
       cell: (record: any) => (
@@ -106,24 +105,27 @@ export const columnsProduct1 = ({
 
 export const columnsProduct2 = [
    {
-      name: 'ID',
-      selector: (row: any) => row.id,
-      sortable: true,
+      name: 'STT',
+      selector: (row: any, index: number) => index + 1,
+      width: '70px',
+      center: true,
    },
+   // {
+   //    name: 'ID',
+   //    selector: (row: any) => row.id,
+   //
+   // },
    {
       name: 'Name',
       selector: (row: any) => row.name,
-      sortable: true,
    },
    {
       name: 'Username',
       selector: (row: any) => row.username,
-      sortable: true,
    },
    {
       name: 'Email',
       selector: (row: any) => row.email,
-      sortable: false,
    },
 ];
 
@@ -133,38 +135,38 @@ export const columnsCustomer = ({
    handleDelete = (record: any) => {},
 }) => [
    {
-      name: 'UserId',
-      selector: (row: any) => row.userId,
-      sortable: true,
+      name: 'STT',
+      selector: (row: any, index: number) => index + 1,
+      width: '70px',
+      center: true,
    },
+   // {
+   //    name: 'UserId',
+   //    selector: (row: any) => row.userId,
+   //
+   // },
    {
       name: 'Address',
       selector: (row: any) => row.address,
-      sortable: true,
    },
    {
       name: 'Phone',
       selector: (row: any) => row.phone,
-      sortable: true,
    },
    {
-      name: 'dateOfBirth',
+      name: 'Birthday',
       selector: (row: any) => row.dateOfBirth,
-      sortable: true,
    },
    {
       name: 'Gender',
       selector: (row: any) => row.gender,
-      sortable: true,
    },
    {
       name: 'avatar',
       selector: (row: any) => row.avatar,
-      sortable: true,
    },
    {
       name: 'Action',
-      sortable: false,
       center: true,
       minWidth: '100px',
       cell: (record: any) => (
@@ -188,42 +190,41 @@ export const columnsUserDetail = ({
    handleDelete?: (record: any) => void;
 }) => [
    {
-      name: 'UserId',
-      selector: (row: any) => row.userId,
-      sortable: true,
+      name: 'STT',
+      selector: (row: any, index: number) => index + 1,
+      width: '70px',
+      center: true,
    },
+   // {
+   //    name: 'UserId',
+   //    selector: (row: any) => row.userId,
+   //
+   // },
    {
       name: 'Address',
       selector: (row: any) => row.address,
-      sortable: true,
    },
    {
       name: 'Phone',
       selector: (row: any) => row.phone,
-      sortable: true,
       minWidth: '150px',
       maxWidth: '200px',
    },
    {
-      name: 'dateOfBirth',
+      name: 'Birthday',
       selector: (row: any) => row.dateOfBirth,
-      sortable: true,
    },
    {
       name: 'Gender',
       selector: (row: any) => row.gender,
-      sortable: true,
-      minWidth: '80px',
-      maxWidth: '120px',
+      width: '100px',
    },
    {
-      name: 'avatar',
+      name: 'Avatar',
       selector: (row: any) => row.avatar,
-      sortable: true,
    },
    {
       name: 'Action',
-      sortable: false,
       center: true,
       minWidth: '100px',
       cell: (record: any) => (
@@ -249,34 +250,36 @@ export const columnsMainDash = ({
    handleActivate?: (record: any) => void;
 }) => [
    {
-      name: 'ID',
-      selector: (row: any) => row.id,
-      sortable: true,
+      name: 'STT',
+      selector: (row: any, index: number) => index + 1,
+      width: '70px',
+      center: true,
+   },
+   // {
+   //    name: 'ID',
+   //    selector: (row: any) => row.id,
+   //
+   // },
+   {
+      name: 'SubName',
+      selector: (row: any) => row.name,
    },
    {
       name: 'Name',
-      selector: (row: any) => row.name,
-      sortable: true,
-   },
-   {
-      name: 'Username',
       selector: (row: any) => row.username,
-      sortable: true,
    },
    {
       name: 'Email',
       selector: (row: any) => row.email,
-      sortable: true,
    },
    {
       name: 'Role',
       selector: (row: any) => row.role,
-      sortable: true,
+      width: '70px',
    },
    {
       name: 'Active',
       selector: (row: any) => row.isActive,
-      sortable: true,
       center: true,
       cell: (row: any) => {
          const isActive =
@@ -293,7 +296,6 @@ export const columnsMainDash = ({
    },
    {
       name: 'Actions',
-      sortable: false,
       center: true,
       minWidth: '100px',
 
@@ -320,36 +322,38 @@ export const columnsOrder = ({
    handleDelete?: (record: any) => void;
    handleReview?: (record: any) => void;
 }) => [
+   // {
+   //    name: 'ID',
+   //    selector: (row: any) => row.id,
+   //
+   // },
    {
-      name: 'ID',
-      selector: (row: any) => row.id,
-      sortable: true,
+      name: 'STT',
+      selector: (row: any, index: number) => index + 1,
+      width: '70px',
+      center: true,
    },
    {
-      name: 'TotalProducts',
+      name: 'Total Products',
       selector: (row: any) => row.totalProducts,
-      sortable: true,
    },
    {
-      name: 'TotalQuantity',
+      name: 'Total Quantity',
       selector: (row: any) => row.totalQuantity,
-      sortable: true,
    },
 
    {
-      name: 'DiscountedTotal',
+      name: 'Discounted Total',
       selector: (row: any) => row.discountedTotal,
-      sortable: true,
    },
    {
       name: 'Total',
       selector: (row: any) => row.total,
-      sortable: true,
    },
    {
       name: 'Status',
       selector: (row: any) => row.status,
-      sortable: true,
+      width: '140px',
       center: true,
       cell: (row: any) => {
          const status = row.status.toLowerCase();
@@ -376,14 +380,12 @@ export const columnsOrder = ({
       },
    },
    {
-      name: 'CustomerId',
+      name: 'Customer Id',
       selector: (row: any) => row.customerId,
-      sortable: true,
    },
 
    {
       name: 'Action',
-      sortable: false,
       center: true,
       minWidth: '100px',
       cell: (record: any) => (

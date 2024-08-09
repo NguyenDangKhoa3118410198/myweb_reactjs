@@ -1,5 +1,7 @@
 import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
+import useDebounce from 'hooks/useDebounce';
+import { useEffect, useState } from 'react';
 
 interface FormData {
    [key: string]: string | number | null | undefined;
@@ -9,25 +11,35 @@ interface Record {
    [key: string]: string | number | null | undefined;
 }
 
-export const searchBox = (
-   searchTerm: string,
-   setSearchTerm: (value: string) => void
-) => {
-   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
-      setSearchTerm(event.target.value);
-   }
+interface SearchBoxProps {
+   searchTerm: string;
+   setSearchTerm: (value: string) => void;
+}
+
+export const SearchBox: React.FC<SearchBoxProps> = ({
+   searchTerm,
+   setSearchTerm,
+}) => {
+   const [inputValue, setInputValue] = useState(searchTerm);
+   const debouncedValue = useDebounce(inputValue, 300);
+
+   useEffect(() => {
+      setSearchTerm(debouncedValue);
+   }, [debouncedValue, setSearchTerm]);
+
+   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(event.target.value);
+   };
 
    return (
-      <>
-         <Input
-            placeholder='Search'
-            prefix={<SearchOutlined />}
-            variant='filled'
-            className='custom-search-input'
-            value={searchTerm}
-            onChange={handleSearch}
-         />
-      </>
+      <Input
+         placeholder='Search'
+         prefix={<SearchOutlined />}
+         variant='filled'
+         className='custom-search-input'
+         value={inputValue}
+         onChange={handleChange}
+      />
    );
 };
 

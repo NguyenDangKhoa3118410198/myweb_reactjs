@@ -7,9 +7,9 @@ import React, {
 } from 'react';
 import { useSelector } from 'react-redux';
 import {
-   searchBox,
    filterData,
    isFormDataValid,
+   SearchBox,
 } from '../../components/Table/TableActions/handleActions';
 import { columnsMainDash } from '../../Data/columns';
 import FormPanel from './FormPanel';
@@ -64,8 +64,8 @@ const MainDash = () => {
    });
 
    useEffect(() => {
-      dispatch(fetchUsers({ page: currentPage, limit: limitPage }));
-   }, [dispatch, currentPage, limitPage]);
+      dispatch(fetchUsers({ page: currentPage, limit: limitPage, searchTerm }));
+   }, [dispatch, currentPage, limitPage, searchTerm]);
 
    useEffect(() => {
       setRecords(users);
@@ -298,7 +298,12 @@ const MainDash = () => {
                title='List Users'
                columns={columns}
                data={filterData(searchTerm, records)}
-               searchBox={searchBox(searchTerm, setSearchTerm)}
+               searchBox={
+                  <SearchBox
+                     searchTerm={searchTerm}
+                     setSearchTerm={setSearchTerm}
+                  />
+               }
                formData={formData}
                setFormData={setFormData}
                FormPanel={FormPanel}

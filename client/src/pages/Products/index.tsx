@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { columnsProduct1 } from '../../Data/columns';
 import Table from '../../components/Table/Table';
 import {
-   searchBox,
    removeExtraSpaces,
+   SearchBox,
 } from '../../components/Table/TableActions/handleActions';
 
 import './product.css';
@@ -50,8 +50,10 @@ const Products = () => {
    }, [reduxProducts]);
 
    useEffect(() => {
-      dispatch(fetchProducts({ page: currentPage, limit: limitPage }));
-   }, [dispatch, currentPage, limitPage]);
+      dispatch(
+         fetchProducts({ page: currentPage, limit: limitPage, searchTerm })
+      );
+   }, [dispatch, currentPage, limitPage, searchTerm]);
 
    function filterData(records: any) {
       return records.filter((row: any) =>
@@ -96,7 +98,12 @@ const Products = () => {
                title={'List products'}
                columns={columns}
                data={filterData(products)}
-               searchBox={searchBox(searchTerm, setSearchTerm)}
+               searchBox={
+                  <SearchBox
+                     searchTerm={searchTerm}
+                     setSearchTerm={setSearchTerm}
+                  />
+               }
                tableActions={{
                   setModalView,
                   viewCurrent,

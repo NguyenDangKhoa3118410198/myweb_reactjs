@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
-   searchBox,
    filterData,
+   SearchBox,
 } from '../../components/Table/TableActions/handleActions';
 import Table from '../../components/Table/Table';
 import { columnsUserDetail } from '../../Data/columns';
@@ -44,8 +44,10 @@ const UsersDetail = () => {
    });
 
    useEffect(() => {
-      dispatch(fetchUserDetail({ page: currentPage, limit: limitPage }));
-   }, [dispatch, currentPage, limitPage]);
+      dispatch(
+         fetchUserDetail({ page: currentPage, limit: limitPage, searchTerm })
+      );
+   }, [dispatch, currentPage, limitPage, searchTerm]);
 
    useEffect(() => {
       setRecords(userDetails);
@@ -206,7 +208,12 @@ const UsersDetail = () => {
                title='List table Users Detail'
                columns={columns}
                data={filterData(searchTerm, records)}
-               searchBox={searchBox(searchTerm, setSearchTerm)}
+               searchBox={
+                  <SearchBox
+                     searchTerm={searchTerm}
+                     setSearchTerm={setSearchTerm}
+                  />
+               }
                formData={formData}
                setFormData={setFormData}
                FormPanel={FormPanel}

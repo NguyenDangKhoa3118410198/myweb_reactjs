@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import Table from '../../components/Table/Table';
 import { columnsOrder } from '../../Data/columns';
 import {
-   searchBox,
    filterData,
+   SearchBox,
 } from '../../components/Table/TableActions/handleActions';
 import './orders.css';
 import { pageDetailOrder } from '../../Data/fetchData';
@@ -31,8 +31,10 @@ const Orders = () => {
    );
 
    useEffect(() => {
-      dispatch(fetchOrders({ page: currentPage, limit: limitPage }));
-   }, [dispatch, currentPage, limitPage]);
+      dispatch(
+         fetchOrders({ page: currentPage, limit: limitPage, searchTerm })
+      );
+   }, [dispatch, currentPage, limitPage, searchTerm]);
 
    useEffect(() => {
       setRecords(orders);
@@ -68,7 +70,12 @@ const Orders = () => {
                title='List of orders'
                columns={columns}
                data={filterData(searchTerm, records)}
-               searchBox={searchBox(searchTerm, setSearchTerm)}
+               searchBox={
+                  <SearchBox
+                     searchTerm={searchTerm}
+                     setSearchTerm={setSearchTerm}
+                  />
+               }
                tableActions={{
                   setModalView,
                   viewCurrent,

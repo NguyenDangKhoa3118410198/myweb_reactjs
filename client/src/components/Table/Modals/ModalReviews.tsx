@@ -11,7 +11,7 @@ interface Review {
    image?: string;
    thumbnail?: string;
    rating?: number;
-   [key: string]: any; // Cho phép các thuộc tính khác có thể xuất hiện
+   [key: string]: any;
 }
 
 interface ModalReviewsProps {
@@ -50,8 +50,12 @@ const ModalReviews: React.FC<ModalReviewsProps> = React.memo((props) => {
             key !== 'image' &&
             key !== 'thumbnail' && (
                <ItemInfo key={key}>
-                  <strong>{`${capitalizeFirstLetter(key)}: `}</strong>
-                  {key === 'rating' ? starRating(value) : value}
+                  <ItemLabel>{`${capitalizeFirstLetter(key)}: `}</ItemLabel>
+                  {key === 'rating' ? (
+                     starRating(value)
+                  ) : (
+                     <ItemContent>{value}</ItemContent>
+                  )}
                </ItemInfo>
             )
       );
@@ -66,9 +70,9 @@ const ModalReviews: React.FC<ModalReviewsProps> = React.memo((props) => {
          centered
       >
          <Modal.Header closeButton>
-            <Modal.Title id='contained-modal-title-vcenter'>
+            <StyledTitle id='contained-modal-title-vcenter'>
                List Reviews
-            </Modal.Title>
+            </StyledTitle>
          </Modal.Header>
          <CustomModalBody>
             <Spin spinning={statusReviews === 'loading'}>
@@ -94,6 +98,12 @@ const ModalReviews: React.FC<ModalReviewsProps> = React.memo((props) => {
 });
 
 export default ModalReviews;
+
+const StyledTitle = styled(Modal.Title)`
+   font-size: 24px;
+   font-weight: 700;
+   color: var(--color-black);
+`;
 
 const ItemInfo = styled.div`
    word-spacing: normal;
@@ -137,4 +147,18 @@ const StarRating = styled.div`
 
 const NoFound = styled.p`
    height: 150px;
+`;
+
+const ItemLabel = styled.span`
+   font-size: 16px;
+   font-weight: 700;
+   color: var(--color-black);
+   line-height: 26px;
+`;
+
+const ItemContent = styled.span`
+   font-size: 15px;
+   font-weight: 500;
+   color: var(--color-black);
+   line-height: 24px;
 `;

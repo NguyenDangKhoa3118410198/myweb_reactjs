@@ -59,14 +59,16 @@ export const fetchReviewProduct = createAsyncThunk<
 export const fetchProducts = createAsyncThunk(
    'root/fetchProducts',
    async (
-      { page, limit }: { page: number; limit: number },
+      {
+         page,
+         limit,
+         searchTerm,
+      }: { page: number; limit: number; searchTerm?: string },
       { rejectWithValue }
    ) => {
       try {
-         const data = await sendRequest(
-            'GET',
-            `api/products?page=${page}&limit=${limit}`
-         );
+         const params = getParamURL(page, limit, searchTerm);
+         const data = await sendRequest('GET', `api/products?${params}`);
          return {
             products: data.data,
             totalPages: data.pagination.totalPages,
@@ -82,14 +84,16 @@ export const fetchProducts = createAsyncThunk(
 export const fetchOrders = createAsyncThunk(
    'root/fetchOrders',
    async (
-      { page, limit }: { page: number; limit: number },
+      {
+         page,
+         limit,
+         searchTerm,
+      }: { page: number; limit: number; searchTerm?: string },
       { rejectWithValue }
    ) => {
       try {
-         const data = await sendRequest(
-            'GET',
-            `api/orders?page=${page}&limit=${limit}`
-         );
+         const params = getParamURL(page, limit, searchTerm);
+         const data = await sendRequest('GET', `api/orders?${params}`);
          return {
             orders: data.data,
             totalPages: data.pagination.totalPages,
@@ -104,14 +108,16 @@ export const fetchOrders = createAsyncThunk(
 export const fetchUsers = createAsyncThunk(
    'root/fetchUsers',
    async (
-      { page, limit }: { page: number; limit: number },
+      {
+         page,
+         limit,
+         searchTerm,
+      }: { page: number; limit: number; searchTerm?: string },
       { rejectWithValue }
    ) => {
       try {
-         const data = await sendRequest(
-            'GET',
-            `api/users?page=${page}&limit=${limit}`
-         );
+         const params = getParamURL(page, limit, searchTerm);
+         const data = await sendRequest('GET', `api/users?${params}`);
          return {
             users: data.data,
             totalPages: data.pagination.totalPages,
@@ -125,14 +131,16 @@ export const fetchUsers = createAsyncThunk(
 export const fetchCustomers = createAsyncThunk(
    'root/fetchCustomers',
    async (
-      { page, limit }: { page: number; limit: number },
+      {
+         page,
+         limit,
+         searchTerm,
+      }: { page: number; limit: number; searchTerm?: string },
       { rejectWithValue }
    ) => {
       try {
-         const data = await sendRequest(
-            'GET',
-            `api/customers?page=${page}&limit=${limit}`
-         );
+         const params = getParamURL(page, limit, searchTerm);
+         const data = await sendRequest('GET', `api/customers?${params}`);
          return {
             customers: data.data,
             totalPages: data.pagination.totalPages,
@@ -146,14 +154,16 @@ export const fetchCustomers = createAsyncThunk(
 export const fetchUserDetail = createAsyncThunk(
    'root/fetchUserDetail',
    async (
-      { page, limit }: { page: number; limit: number },
+      {
+         page,
+         limit,
+         searchTerm,
+      }: { page: number; limit: number; searchTerm?: string },
       { rejectWithValue }
    ) => {
       try {
-         const data = await sendRequest(
-            'GET',
-            `api/userDetail?page=${page}&limit=${limit}`
-         );
+         const params = getParamURL(page, limit, searchTerm);
+         const data = await sendRequest('GET', `api/userDetail?${params}`);
          return {
             userDetails: data.data,
             totalPages: data.pagination.totalPages,
@@ -163,3 +173,16 @@ export const fetchUserDetail = createAsyncThunk(
       }
    }
 );
+
+const getParamURL = (page: number, limit: number, searchTerm?: string) => {
+   const params = new URLSearchParams();
+
+   if (searchTerm) {
+      params.append('search', searchTerm);
+   }
+
+   params.append('page', page.toString());
+   params.append('limit', limit.toString());
+
+   return params.toString();
+};

@@ -3,12 +3,11 @@ import Modal from 'react-bootstrap/Modal';
 import styled from 'styled-components';
 import { formattedBirthDay } from '../../../ulti';
 
-// Define types for props
 interface ViewCurrent {
    id?: string;
    avatar?: string;
    thumbnailUrl?: string;
-   [key: string]: any; // Add this line to allow any additional properties
+   [key: string]: any;
 }
 
 interface ModalViewProps {
@@ -16,6 +15,72 @@ interface ModalViewProps {
    onHide: () => void;
    show: boolean;
 }
+
+const ModalView: React.FC<ModalViewProps> = (props) => {
+   const capitalizeFirstLetter = (str: string) => {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+   };
+
+   return (
+      <Modal
+         {...props}
+         size='lg'
+         aria-labelledby='contained-modal-title-vcenter'
+         centered
+      >
+         <Modal.Header closeButton>
+            <StyledTitle id='contained-modal-title-vcenter'>
+               Details Information
+            </StyledTitle>
+         </Modal.Header>
+         <Modal.Body>
+            <ContainerModalView>
+               {props.viewcurrent.avatar || props.viewcurrent.thumbnailUrl ? (
+                  <ImageUser
+                     src={
+                        props.viewcurrent.avatar ||
+                        props.viewcurrent.thumbnailUrl
+                     }
+                     alt='Image error'
+                  />
+               ) : null}
+               <ContainerListItems>
+                  {Object.entries(props.viewcurrent).map(
+                     ([key, value]) =>
+                        key !== 'id' &&
+                        key !== 'avatar' &&
+                        key !== 'thumbnailUrl' &&
+                        key !== 'brandName' &&
+                        key !== 'category' &&
+                        key !== 'sku' &&
+                        key !== 'urlPath' &&
+                        key !== 'urlKey' && (
+                           <ItemInfo key={key}>
+                              <ItemLabel>
+                                 {capitalizeFirstLetter(key)}:
+                              </ItemLabel>{' '}
+                              <ItemContent>
+                                 {key === 'dateOfBirth'
+                                    ? formattedBirthDay(value)
+                                    : String(value)}{' '}
+                              </ItemContent>
+                           </ItemInfo>
+                        )
+                  )}
+               </ContainerListItems>
+            </ContainerModalView>
+         </Modal.Body>
+      </Modal>
+   );
+};
+
+export default ModalView;
+
+const StyledTitle = styled(Modal.Title)`
+   font-size: 24px;
+   font-weight: 700;
+   color: var(--color-black);
+`;
 
 const ImageUser = styled.img`
    width: 180px;
@@ -44,54 +109,16 @@ const ItemInfo = styled.li`
    margin-bottom: 8px;
 `;
 
-const ModalView: React.FC<ModalViewProps> = (props) => {
-   const capitalizeFirstLetter = (str: string) => {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-   };
+const ItemLabel = styled.span`
+   font-size: 16px;
+   font-weight: 700;
+   color: var(--color-black);
+   line-height: 26px;
+`;
 
-   return (
-      <Modal
-         {...props}
-         size='lg'
-         aria-labelledby='contained-modal-title-vcenter'
-         centered
-      >
-         <Modal.Header closeButton>
-            <Modal.Title id='contained-modal-title-vcenter'>
-               Details Information
-            </Modal.Title>
-         </Modal.Header>
-         <Modal.Body>
-            <ContainerModalView>
-               {props.viewcurrent.avatar || props.viewcurrent.thumbnailUrl ? (
-                  <ImageUser
-                     src={
-                        props.viewcurrent.avatar ||
-                        props.viewcurrent.thumbnailUrl
-                     }
-                     alt='Image error'
-                  />
-               ) : null}
-               <ContainerListItems>
-                  {Object.entries(props.viewcurrent).map(
-                     ([key, value]) =>
-                        key !== 'id' &&
-                        key !== 'avatar' &&
-                        key !== 'thumbnailUrl' && (
-                           <ItemInfo key={key}>
-                              <strong>{capitalizeFirstLetter(key)}:</strong>{' '}
-                              {key === 'dateOfBirth'
-                                 ? formattedBirthDay(value)
-                                 : String(value)}{' '}
-                              {/* Ensure value is a string */}
-                           </ItemInfo>
-                        )
-                  )}
-               </ContainerListItems>
-            </ContainerModalView>
-         </Modal.Body>
-      </Modal>
-   );
-};
-
-export default ModalView;
+const ItemContent = styled.span`
+   font-size: 15px;
+   font-weight: 500;
+   color: var(--color-black);
+   line-height: 24px;
+`;

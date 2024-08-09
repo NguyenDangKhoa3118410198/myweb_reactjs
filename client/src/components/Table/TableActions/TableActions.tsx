@@ -2,15 +2,15 @@ import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import styled from 'styled-components';
 import {
-   FaEye,
-   FaRegEdit,
-   FaLock,
-   FaLockOpen,
-   FaCommentAlt,
-   FaTrash,
-} from 'react-icons/fa';
+   CommentOutlined,
+   DeleteOutlined,
+   EditOutlined,
+   EyeOutlined,
+   LockOutlined,
+   MoreOutlined,
+   UnlockOutlined,
+} from '@ant-design/icons';
 
-import { BsThreeDotsVertical } from 'react-icons/bs';
 interface ItemMenuProps {
    handleFunction?: (record: any) => void;
    icon: React.ReactNode;
@@ -71,7 +71,7 @@ const TableActions: React.FC<TableActionsProps> = ({
                {handleView && (
                   <ItemMenu
                      handleFunction={handleView}
-                     icon={<FaEye />}
+                     icon={<EyeOutlined />}
                      record={record}
                   />
                )}
@@ -79,12 +79,12 @@ const TableActions: React.FC<TableActionsProps> = ({
                {handleEditClick && (
                   <ItemMenu
                      handleFunction={handleEditClick}
-                     icon={<FaRegEdit />}
+                     icon={<EditOutlined />}
                      record={record}
                   />
                )}
                <Dropdown.Toggle className='table-actions'>
-                  <BsThreeDotsVertical />
+                  <MoreOutlined />
                </Dropdown.Toggle>
 
                <Dropdown.Menu>
@@ -109,7 +109,7 @@ const TableActions: React.FC<TableActionsProps> = ({
                   {handleDelete && (
                      <ItemMenu
                         handleFunction={handleDelete}
-                        icon={<FaTrash />}
+                        icon={<DeleteOutlined />}
                         label='Delete'
                         record={record}
                      />
@@ -118,7 +118,7 @@ const TableActions: React.FC<TableActionsProps> = ({
                   {handleReview && (
                      <ItemMenu
                         handleFunction={handleReview}
-                        icon={<FaCommentAlt />}
+                        icon={<CommentOutlined />}
                         label='Review'
                         record={record}
                      />
@@ -127,7 +127,7 @@ const TableActions: React.FC<TableActionsProps> = ({
                   {handleActivate && (
                      <ItemMenu
                         handleFunction={handleActivate}
-                        icon={<FaLockOpen />}
+                        icon={<UnlockOutlined />}
                         label='Activate'
                         record={record}
                      />
@@ -136,7 +136,7 @@ const TableActions: React.FC<TableActionsProps> = ({
                   {handleDeactivate && (
                      <ItemMenu
                         handleFunction={handleDeactivate}
-                        icon={<FaLock />}
+                        icon={<LockOutlined />}
                         label='Deactivate'
                         record={record}
                      />
