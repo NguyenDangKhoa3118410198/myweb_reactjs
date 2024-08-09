@@ -2,14 +2,19 @@ const Customer = require('../models/Customer');
 
 const getCustomers = async (req, res) => {
    console.log('--------------- Get customers -------------------');
+   const page = parseInt(req.query.page) || 1;
+   const limit = parseInt(req.query.limit) || 5;
+   const skip = (page - 1) * limit;
+
    try {
-      const customersDB = await Customer.find({});
+      const totalCustomers = await Customer.countDocuments({});
+      const customersDB = await Customer.find({}).skip(skip).limit(limit);
 
       if (!customersDB || customersDB.length === 0) {
          return res.status(404).json({ error: 'No customers found' });
       }
 
-      const filteredCustomers = customersDB.map((customer) => ({
+      const listCustomers = customersDB.map((customer) => ({
          id: customer._id,
          userId: customer.user,
          address: customer.address,
@@ -19,7 +24,12 @@ const getCustomers = async (req, res) => {
          avatar: customer.avatar,
       }));
 
-      res.status(200).json(filteredCustomers);
+      const totalPages = Math.ceil(totalCustomers / limit);
+
+      res.status(200).json({
+         data: listCustomers,
+         pagination: { page, totalPages },
+      });
    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });

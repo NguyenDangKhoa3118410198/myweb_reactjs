@@ -35,10 +35,11 @@ const getProducts = async (req, res) => {
          return productInfo;
       });
 
+      const totalPages = Math.ceil(totalProducts / limit);
+
       res.status(200).json({
-         products: productData,
-         page: page,
-         totalPages: Math.ceil(totalProducts / limit),
+         data: productData,
+         pagination: { page, totalPages },
       });
    } catch (error) {
       console.error('Error fetching data:', error);

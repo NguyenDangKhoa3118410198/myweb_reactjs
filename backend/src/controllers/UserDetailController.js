@@ -2,14 +2,19 @@ const UserDetail = require('../models/UserDetail');
 
 const getUsersDetail = async (req, res) => {
    console.log('--------------- Get user detail -------------------');
+   const page = parseInt(req.query.page) || 1;
+   const limit = parseInt(req.query.limit) || 5;
+   const skip = (page - 1) * limit;
+
    try {
-      const usersDetailDB = await UserDetail.find({});
+      const totalUserDetails = await UserDetail.countDocuments({});
+      const usersDetailDB = await UserDetail.find({}).skip(skip).limit(limit);
 
       if (!usersDetailDB || usersDetailDB.length === 0) {
          return res.status(404).json({ error: 'No user detail found' });
       }
 
-      const filteredUsersDetail = usersDetailDB.map((userDetail) => ({
+      const listUserDetails = usersDetailDB.map((userDetail) => ({
          id: userDetail._id,
          userId: userDetail.user,
          address: userDetail.address,
@@ -19,7 +24,12 @@ const getUsersDetail = async (req, res) => {
          avatar: userDetail.avatar,
       }));
 
-      res.status(200).json(filteredUsersDetail);
+      const totalPages = Math.ceil(totalUserDetails / limit);
+
+      res.status(200).json({
+         data: listUserDetails,
+         pagination: { page, totalPages },
+      });
    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });

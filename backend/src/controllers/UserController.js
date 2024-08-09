@@ -24,23 +24,33 @@ const countTotalUsers = async (req, res) => {
 
 const getUsers = async (req, res) => {
    console.log('--------------- Get users -------------------');
+   const page = parseInt(req.query.page) || 1;
+   const limit = parseInt(req.query.limit) || 5;
+   const skip = (page - 1) * limit;
 
    try {
       let usersDB;
+      let totalUsers;
 
       if (req.user && req.user.role === 'admin') {
+         totalUsers = await User.countDocuments({});
          usersDB = await User.find(
             {},
             { password: 0, createdAt: 0, updatedAt: 0, __v: 0 }
-         );
+         )
+            .skip(skip)
+            .limit(limit);
       } else {
+         totalUsers = await User.countDocuments({ role: 'user' });
          usersDB = await User.find(
             { role: 'user' },
             { name: 1, username: 1, email: 1 }
-         );
+         )
+            .skip(skip)
+            .limit(limit);
       }
 
-      const filteredUsers = await Promise.all(
+      const listUsers = await Promise.all(
          usersDB.map(async (user) => {
             const filteredUser = {
                name: user.name,
@@ -70,7 +80,12 @@ const getUsers = async (req, res) => {
          })
       );
 
-      res.status(200).json(filteredUsers);
+      const totalPages = Math.ceil(totalUsers / limit);
+
+      res.status(200).json({
+         data: listUsers,
+         pagination: { page, totalPages },
+      });
    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });

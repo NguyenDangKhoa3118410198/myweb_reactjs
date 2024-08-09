@@ -26,10 +26,15 @@ const countTotalOrders = async (req, res) => {
 
 const getOrders = async (req, res) => {
    console.log('--------------- Get orders -------------------');
+   const page = parseInt(req.query.page) || 1;
+   const limit = parseInt(req.query.limit) || 5;
+   const skip = (page - 1) * limit;
 
    try {
-      const ordersDB = await Order.find({});
-      const simplifiedOrders = ordersDB.map((order) => ({
+      const totalOrders = await Order.countDocuments({});
+      const ordersDB = await Order.find({}).skip(skip).limit(limit);
+
+      const listOrders = ordersDB.map((order) => ({
          id: order._id,
          customerId: order.customerId,
          total: order.total,
@@ -38,7 +43,13 @@ const getOrders = async (req, res) => {
          totalQuantity: order.totalQuantity,
          status: order.status,
       }));
-      res.json(simplifiedOrders);
+
+      const totalPages = Math.ceil(totalOrders / limit);
+
+      res.status(200).json({
+         data: listOrders,
+         pagination: { page, totalPages },
+      });
    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
