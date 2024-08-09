@@ -21,15 +21,18 @@ const Orders = () => {
    const [isListReviews, setIsListReviews] = useState([]);
    const [isModalView, setModalView] = useState(false);
    const [viewCurrent, setViewCurrent] = useState({});
+   const [currentPage, setCurrentPage] = useState(1);
+   const [limitPage, setLimitPage] = useState(5);
+
    const dispatch = useAppDispatch();
    const darkMode = useSelector((state: RootState) => state.darkMode);
-   const { orders, status } = useSelector(
+   const { orders, status, totalPages } = useSelector(
       (state: RootState) => state.root.order
    );
 
    useEffect(() => {
-      dispatch(fetchOrders());
-   }, [dispatch]);
+      dispatch(fetchOrders({ page: currentPage, limit: limitPage }));
+   }, [dispatch, currentPage, limitPage]);
 
    useEffect(() => {
       setRecords(orders);
@@ -46,6 +49,11 @@ const Orders = () => {
    const handleView = (record: any) => {
       setModalView(true);
       setViewCurrent(record);
+   };
+
+   const handleLimitChange = (newLimit: number) => {
+      setLimitPage(newLimit);
+      setCurrentPage(1);
    };
 
    const columns = columnsOrder({
@@ -68,6 +76,13 @@ const Orders = () => {
                   setModalReview,
                   isModalReview,
                   isListReviews,
+               }}
+               pagination={{
+                  limitPage,
+                  currentPage,
+                  totalPages,
+                  onPageChange: setCurrentPage,
+                  onLimitChange: handleLimitChange,
                }}
             />
          </Spin>

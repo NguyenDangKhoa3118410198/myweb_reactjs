@@ -50,7 +50,7 @@ export const formDataObjectWithExtraSpacesRemoved = (
 };
 
 export const filterData = (searchTerm: string, records: Record[]): Record[] => {
-   return records.filter((row) =>
+   return records.filter((row: any) =>
       Object.values(row).some(
          (value: any) =>
             canConvertToString(value) &&

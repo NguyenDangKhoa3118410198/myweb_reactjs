@@ -58,10 +58,20 @@ export const fetchReviewProduct = createAsyncThunk<
 // Fetch products
 export const fetchProducts = createAsyncThunk(
    'root/fetchProducts',
-   async (_, { rejectWithValue }) => {
+   async (
+      { page, limit }: { page: number; limit: number },
+      { rejectWithValue }
+   ) => {
       try {
-         const data = await sendRequest('GET', 'api/products');
-         return { products: data };
+         const data = await sendRequest(
+            'GET',
+            `api/products?page=${page}&limit=${limit}`
+         );
+         return {
+            products: data.data,
+            totalPages: data.pagination.totalPages,
+            // page: data.pagination.page,
+         };
       } catch (error: any) {
          return rejectWithValue(error.message);
       }
@@ -71,10 +81,20 @@ export const fetchProducts = createAsyncThunk(
 // Fetch orders
 export const fetchOrders = createAsyncThunk(
    'root/fetchOrders',
-   async (_, { rejectWithValue }) => {
+   async (
+      { page, limit }: { page: number; limit: number },
+      { rejectWithValue }
+   ) => {
       try {
-         const data = await sendRequest('GET', 'api/orders');
-         return { orders: data };
+         const data = await sendRequest(
+            'GET',
+            `api/orders?page=${page}&limit=${limit}`
+         );
+         return {
+            orders: data.data,
+            totalPages: data.pagination.totalPages,
+            // page: data.pagination.page,
+         };
       } catch (error: any) {
          return rejectWithValue(error.message);
       }
@@ -83,10 +103,19 @@ export const fetchOrders = createAsyncThunk(
 
 export const fetchUsers = createAsyncThunk(
    'root/fetchUsers',
-   async (_, { rejectWithValue }) => {
+   async (
+      { page, limit }: { page: number; limit: number },
+      { rejectWithValue }
+   ) => {
       try {
-         const data = await sendRequest('GET', 'api/users');
-         return { users: data };
+         const data = await sendRequest(
+            'GET',
+            `api/users?page=${page}&limit=${limit}`
+         );
+         return {
+            users: data.data,
+            totalPages: data.pagination.totalPages,
+         };
       } catch (error: any) {
          return rejectWithValue(error.message);
       }
@@ -95,10 +124,19 @@ export const fetchUsers = createAsyncThunk(
 
 export const fetchCustomers = createAsyncThunk(
    'root/fetchCustomers',
-   async (_, { rejectWithValue }) => {
+   async (
+      { page, limit }: { page: number; limit: number },
+      { rejectWithValue }
+   ) => {
       try {
-         const data = await sendRequest('GET', 'api/customers');
-         return { customers: data };
+         const data = await sendRequest(
+            'GET',
+            `api/customers?page=${page}&limit=${limit}`
+         );
+         return {
+            customers: data.data,
+            totalPages: data.pagination.totalPages,
+         };
       } catch (error: any) {
          return rejectWithValue(error.message);
       }
@@ -107,10 +145,19 @@ export const fetchCustomers = createAsyncThunk(
 
 export const fetchUserDetail = createAsyncThunk(
    'root/fetchUserDetail',
-   async (_, { rejectWithValue }) => {
+   async (
+      { page, limit }: { page: number; limit: number },
+      { rejectWithValue }
+   ) => {
       try {
-         const data = await sendRequest('GET', 'api/userDetail');
-         return { userDetails: data };
+         const data = await sendRequest(
+            'GET',
+            `api/userDetail?page=${page}&limit=${limit}`
+         );
+         return {
+            userDetails: data.data,
+            totalPages: data.pagination.totalPages,
+         };
       } catch (error: any) {
          return rejectWithValue(error.message);
       }

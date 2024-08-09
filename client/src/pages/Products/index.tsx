@@ -9,7 +9,6 @@ import {
 
 import './product.css';
 import {
-   fetchOrders,
    fetchProducts,
    fetchReviewProduct,
 } from 'components/features/thunk/thunk';
@@ -28,14 +27,20 @@ const Products = () => {
 
    const [isModalView, setModalView] = useState<boolean>(false);
    const [viewCurrent, setViewCurrent] = useState({});
+   const [currentPage, setCurrentPage] = useState(1);
+   const [limitPage, setLimitPage] = useState(5);
+
    const dispatch = useAppDispatch();
-   const { products: reduxProducts, status: statusProducts } = useSelector(
-      (state: RootState) => state.root.product
-   );
+   const {
+      products: reduxProducts,
+      status: statusProducts,
+      totalPages,
+   } = useSelector((state: RootState) => state.root.product);
 
    const { reviews: reduxReviews } = useSelector(
       (state: RootState) => state.root.review
    );
+
    useEffect(() => {
       setIsListReviews(reduxReviews);
    }, [reduxReviews]);
@@ -45,9 +50,8 @@ const Products = () => {
    }, [reduxProducts]);
 
    useEffect(() => {
-      dispatch(fetchProducts());
-      dispatch(fetchOrders());
-   }, [dispatch]);
+      dispatch(fetchProducts({ page: currentPage, limit: limitPage }));
+   }, [dispatch, currentPage, limitPage]);
 
    function filterData(records: any) {
       return records.filter((row: any) =>
@@ -69,6 +73,11 @@ const Products = () => {
    const handleView = (record: any) => {
       setModalView(true);
       setViewCurrent(record);
+   };
+
+   const handleLimitChange = (newLimit: number) => {
+      setLimitPage(newLimit);
+      setCurrentPage(1);
    };
 
    const columns = columnsProduct1({
@@ -95,6 +104,13 @@ const Products = () => {
                   setModalReview,
                   isListReviews,
                   isModalReview,
+               }}
+               pagination={{
+                  limitPage,
+                  currentPage,
+                  totalPages,
+                  onPageChange: setCurrentPage,
+                  onLimitChange: handleLimitChange,
                }}
             />
          </Spin>

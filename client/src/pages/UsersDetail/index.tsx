@@ -30,8 +30,10 @@ const UsersDetail = () => {
    const [viewCurrent, setViewCurrent] = useState({});
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
    const [currentRecordId, setCurrentRecordId] = useState(null);
+   const [currentPage, setCurrentPage] = useState(1);
+   const [limitPage, setLimitPage] = useState(5);
    const dispatch = useAppDispatch();
-   const { userDetails, status } = useSelector(
+   const { userDetails, status, totalPages } = useSelector(
       (state: RootState) => state.root.userDetail
    );
 
@@ -42,8 +44,8 @@ const UsersDetail = () => {
    });
 
    useEffect(() => {
-      dispatch(fetchUserDetail());
-   }, [dispatch]);
+      dispatch(fetchUserDetail({ page: currentPage, limit: limitPage }));
+   }, [dispatch, currentPage, limitPage]);
 
    useEffect(() => {
       setRecords(userDetails);
@@ -182,6 +184,11 @@ const UsersDetail = () => {
       setIsEditPanelOpen(false);
    };
 
+   const handleLimitChange = (newLimit: number) => {
+      setLimitPage(newLimit);
+      setCurrentPage(1);
+   };
+
    const columns = columnsUserDetail({
       handleView,
       handleEditClick,
@@ -214,6 +221,13 @@ const UsersDetail = () => {
                handleActions={{
                   handleSubmitAndEdit,
                   handleClose,
+               }}
+               pagination={{
+                  limitPage,
+                  currentPage,
+                  totalPages,
+                  onPageChange: setCurrentPage,
+                  onLimitChange: handleLimitChange,
                }}
             />
          </Spin>

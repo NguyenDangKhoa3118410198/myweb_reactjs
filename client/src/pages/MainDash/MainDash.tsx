@@ -49,9 +49,11 @@ const MainDash = () => {
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
    const [isModalView, setModalView] = useState(false);
    const [viewCurrent, setViewCurrent] = useState({});
+   const [currentPage, setCurrentPage] = useState(1);
+   const [limitPage, setLimitPage] = useState(5);
    const dispatch = useAppDispatch();
 
-   const { users: reduxUsers, status: statusUsers } = useSelector(
+   const { users, status, totalPages } = useSelector(
       (state: RootState) => state.root.user
    );
 
@@ -62,12 +64,12 @@ const MainDash = () => {
    });
 
    useEffect(() => {
-      dispatch(fetchUsers());
-   }, [dispatch]);
+      dispatch(fetchUsers({ page: currentPage, limit: limitPage }));
+   }, [dispatch, currentPage, limitPage]);
 
    useEffect(() => {
-      setRecords(reduxUsers);
-   }, [reduxUsers]);
+      setRecords(users);
+   }, [users]);
 
    const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
@@ -262,6 +264,11 @@ const MainDash = () => {
       }
    };
 
+   const handleLimitChange = (newLimit: number) => {
+      setLimitPage(newLimit);
+      setCurrentPage(1);
+   };
+
    const columns = columnsMainDash({
       handleView,
       handleEditClick,
@@ -286,7 +293,7 @@ const MainDash = () => {
 
          {calendar && <MyCalendar />}
 
-         <Spin spinning={statusUsers === 'loading'}>
+         <Spin spinning={status === 'loading'}>
             <Table
                title='List Users'
                columns={columns}
@@ -308,6 +315,13 @@ const MainDash = () => {
                handleActions={{
                   handleSubmitAndEdit,
                   handleClose,
+               }}
+               pagination={{
+                  limitPage,
+                  currentPage,
+                  totalPages,
+                  onPageChange: setCurrentPage,
+                  onLimitChange: handleLimitChange,
                }}
             />
          </Spin>

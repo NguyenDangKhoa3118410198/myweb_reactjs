@@ -29,8 +29,10 @@ const Customers = () => {
    const [viewCurrent, setViewCurrent] = useState({});
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
    const [currentRecordId, setCurrentRecordId] = useState(null);
+   const [currentPage, setCurrentPage] = useState(1);
+   const [limitPage, setLimitPage] = useState(5);
    const darkMode = useSelector((state: RootState) => state.darkMode);
-   const { customers, status } = useSelector(
+   const { customers, status, totalPages } = useSelector(
       (state: RootState) => state.root.customer
    );
 
@@ -43,8 +45,8 @@ const Customers = () => {
    });
 
    useEffect(() => {
-      dispatch(fetchCustomers());
-   }, [dispatch]);
+      dispatch(fetchCustomers({ page: currentPage, limit: limitPage }));
+   }, [dispatch, currentPage, limitPage]);
 
    useEffect(() => {
       setRecords(customers);
@@ -183,6 +185,11 @@ const Customers = () => {
       setIsEditPanelOpen(false);
    };
 
+   const handleLimitChange = (newLimit: number) => {
+      setLimitPage(newLimit);
+      setCurrentPage(1);
+   };
+
    const columns = columnsCustomer({
       handleView,
       handleEditClick,
@@ -215,6 +222,13 @@ const Customers = () => {
                handleActions={{
                   handleSubmitAndEdit,
                   handleClose,
+               }}
+               pagination={{
+                  limitPage,
+                  currentPage,
+                  totalPages,
+                  onPageChange: setCurrentPage,
+                  onLimitChange: handleLimitChange,
                }}
             />
          </Spin>

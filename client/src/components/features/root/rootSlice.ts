@@ -17,6 +17,7 @@ interface BaseState {
 interface UserState extends BaseState {
    userId: number | null;
    users: any[];
+   totalPages: number;
 }
 
 interface ReviewState extends BaseState {
@@ -27,21 +28,25 @@ interface ReviewState extends BaseState {
 interface ProductState extends BaseState {
    productId: number | null;
    products: any[];
+   totalPages: number;
 }
 
 interface OrderState extends BaseState {
    orderId: number | null;
    orders: any[];
+   totalPages: number;
 }
 
 interface CustomerState extends BaseState {
    customerId: number | null;
    customers: any[];
+   totalPages: number;
 }
 
 interface UserDetailState extends BaseState {
    userDetailId: number | null;
    userDetails: any[];
+   totalPages: number;
 }
 
 interface RootStateSlice {
@@ -67,30 +72,35 @@ const initialState: RootStateSlice = {
       products: [],
       status: 'idle',
       error: null,
+      totalPages: 1,
    },
    order: {
       orderId: null,
       orders: [],
       status: 'idle',
       error: null,
+      totalPages: 1,
    },
    user: {
       userId: null,
       users: [],
       status: 'idle',
       error: null,
+      totalPages: 1,
    },
    customer: {
       customerId: null,
       customers: [],
       status: 'idle',
       error: null,
+      totalPages: 1,
    },
    userDetail: {
       userDetailId: null,
       userDetails: [],
       status: 'idle',
       error: null,
+      totalPages: 1,
    },
 };
 
@@ -117,6 +127,7 @@ const rootSlice = createSlice({
          thunk: fetchProducts,
          successCallback: (state: ProductState, action: PayloadAction<any>) => {
             state.products = action.payload.products;
+            state.totalPages = action.payload.totalPages;
          },
          stateSelector: (state: RootStateSlice) => state.product,
       });
@@ -126,6 +137,7 @@ const rootSlice = createSlice({
          thunk: fetchOrders,
          successCallback: (state: OrderState, action: PayloadAction<any>) => {
             state.orders = action.payload.orders;
+            state.totalPages = action.payload.totalPages;
          },
          stateSelector: (state: RootStateSlice) => state.order,
       });
@@ -134,6 +146,7 @@ const rootSlice = createSlice({
          thunk: fetchUsers,
          successCallback: (state: UserState, action: PayloadAction<any>) => {
             state.users = action.payload.users;
+            state.totalPages = action.payload.totalPages;
          },
          stateSelector: (state: RootStateSlice) => state.user,
       });
@@ -145,6 +158,7 @@ const rootSlice = createSlice({
             action: PayloadAction<any>
          ) => {
             state.customers = action.payload.customers;
+            state.totalPages = action.payload.totalPages;
          },
          stateSelector: (state: RootStateSlice) => state.customer,
       });
@@ -156,6 +170,7 @@ const rootSlice = createSlice({
             action: PayloadAction<any>
          ) => {
             state.userDetails = action.payload.userDetails;
+            state.totalPages = action.payload.totalPages;
          },
          stateSelector: (state: RootStateSlice) => state.userDetail,
       });

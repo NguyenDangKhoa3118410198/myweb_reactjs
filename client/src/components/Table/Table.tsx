@@ -36,6 +36,13 @@ interface ITableProps {
       handleSubmitAndEdit?: (e: React.FormEvent<HTMLFormElement>) => void;
       handleClose?: (e: React.MouseEvent<HTMLButtonElement>) => void;
    };
+   pagination?: {
+      limitPage: number;
+      currentPage: number;
+      totalPages: number;
+      onPageChange: (page: number) => void;
+      onLimitChange: (page: number) => void;
+   };
 }
 const Table: React.FC<ITableProps> = ({
    title,
@@ -47,6 +54,7 @@ const Table: React.FC<ITableProps> = ({
    FormPanel,
    tableActions,
    handleActions = {},
+   pagination,
 }) => {
    const {
       setModalReview,
@@ -156,16 +164,21 @@ const Table: React.FC<ITableProps> = ({
                highlightOnHover
                pointerOnHover
                pagination
-               paginationPerPage={5}
                paginationResetDefaultPage={true}
+               paginationPerPage={pagination?.limitPage}
                paginationRowsPerPageOptions={[5, 10]}
-               paginationComponentOptions={{
-                  rowsPerPageText: 'Records per page:',
-                  rangeSeparatorText: 'out of',
-               }}
                customStyles={TableCustomStyles}
                striped
                className='react-table'
+               paginationServer
+               paginationTotalRows={
+                  (pagination?.totalPages ?? 1) * (pagination?.limitPage ?? 1)
+               }
+               onChangePage={pagination?.onPageChange}
+               onChangeRowsPerPage={(newLimit) => {
+                  pagination?.onLimitChange(newLimit);
+               }}
+               paginationDefaultPage={pagination?.currentPage}
             />
          </LoadingData>
       </div>
