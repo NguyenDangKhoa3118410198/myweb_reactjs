@@ -26,13 +26,25 @@ const countTotalOrders = async (req, res) => {
 
 const getOrders = async (req, res) => {
    console.log('--------------- Get orders -------------------');
-   const page = parseInt(req.query.page) || 1;
-   const limit = parseInt(req.query.limit) || 5;
+   const page = parseInt(req.query.page, 10);
+   const limit = parseInt(req.query.limit, 10);
    const skip = (page - 1) * limit;
+   const searchTerm = req.query.search ? req.query.search.trim() : '';
+   const searchNumber = parseFloat(searchTerm);
 
    try {
-      const totalOrders = await Order.countDocuments({});
-      const ordersDB = await Order.find({}).skip(skip).limit(limit);
+      const searchQuery = !isNaN(searchNumber)
+         ? {
+              $or: [{ total: searchNumber }, { discountedTotal: searchNumber }],
+           }
+         : searchTerm
+         ? {
+              $or: [{ status: { $regex: searchTerm, $options: 'i' } }],
+           }
+         : {};
+
+      const totalOrders = await Order.countDocuments(searchQuery);
+      const ordersDB = await Order.find(searchQuery).skip(skip).limit(limit);
 
       const listOrders = ordersDB.map((order) => ({
          id: order._id,

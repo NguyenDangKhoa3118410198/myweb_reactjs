@@ -5,12 +5,24 @@ const getUsersDetail = async (req, res) => {
    const page = parseInt(req.query.page) || 1;
    const limit = parseInt(req.query.limit) || 5;
    const skip = (page - 1) * limit;
+   const searchTerm = req.query.search ? req.query.search.trim() : '';
 
    try {
-      const totalUserDetails = await UserDetail.countDocuments({});
-      const usersDetailDB = await UserDetail.find({}).skip(skip).limit(limit);
+      const searchQuery = searchTerm
+         ? {
+              $or: [
+                 { address: { $regex: searchTerm, $options: 'i' } },
+                 { phone: { $regex: searchTerm, $options: 'i' } },
+                 { gender: { $regex: searchTerm, $options: 'i' } },
+              ],
+           }
+         : {};
+      const totalUserDetails = await UserDetail.countDocuments(searchQuery);
+      const usersDetailDB = await UserDetail.find(searchQuery)
+         .skip(skip)
+         .limit(limit);
 
-      if (!usersDetailDB || usersDetailDB.length === 0) {
+      if (!usersDetailDB) {
          return res.status(404).json({ error: 'No user detail found' });
       }
 

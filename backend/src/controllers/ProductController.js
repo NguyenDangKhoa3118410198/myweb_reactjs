@@ -9,10 +9,19 @@ const getProducts = async (req, res) => {
    const page = parseInt(req.query.page) || 1;
    const limit = parseInt(req.query.limit) || 10;
    const skip = (page - 1) * limit;
+   const searchTerm = req.query.search ? req.query.search.trim() : '';
 
    try {
-      const totalProducts = await Product.countDocuments({});
-      const productsDB = await Product.find({}).skip(skip).limit(limit);
+      const searchQuery = searchTerm
+         ? {
+              $or: [{ name: { $regex: searchTerm, $options: 'i' } }],
+           }
+         : {};
+
+      const totalProducts = await Product.countDocuments(searchQuery);
+      const productsDB = await Product.find(searchQuery)
+         .skip(skip)
+         .limit(limit);
 
       const productData = productsDB.map((product) => {
          const productInfo = {

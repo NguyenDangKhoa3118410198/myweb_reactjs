@@ -27,24 +27,41 @@ const getUsers = async (req, res) => {
    const page = parseInt(req.query.page) || 1;
    const limit = parseInt(req.query.limit) || 5;
    const skip = (page - 1) * limit;
+   const searchTerm = req.query.search ? req.query.search.trim() : '';
 
    try {
       let usersDB;
       let totalUsers;
 
+      const searchQuery = searchTerm
+         ? {
+              $or: [
+                 { name: { $regex: searchTerm, $options: 'i' } },
+                 { username: { $regex: searchTerm, $options: 'i' } },
+                 { email: { $regex: searchTerm, $options: 'i' } },
+              ],
+           }
+         : {};
+
       if (req.user && req.user.role === 'admin') {
-         totalUsers = await User.countDocuments({});
-         usersDB = await User.find(
-            {},
-            { password: 0, createdAt: 0, updatedAt: 0, __v: 0 }
-         )
+         totalUsers = await User.countDocuments(searchQuery);
+         usersDB = await User.find(searchQuery, {
+            password: 0,
+            createdAt: 0,
+            updatedAt: 0,
+            __v: 0,
+         })
             .skip(skip)
             .limit(limit);
       } else {
-         totalUsers = await User.countDocuments({ role: 'user' });
+         totalUsers = await User.countDocuments({
+            role: 'user',
+            ...searchQuery,
+         });
          usersDB = await User.find(
             { role: 'user' },
-            { name: 1, username: 1, email: 1 }
+            { name: 1, username: 1, email: 1 },
+            ...searchQuery
          )
             .skip(skip)
             .limit(limit);

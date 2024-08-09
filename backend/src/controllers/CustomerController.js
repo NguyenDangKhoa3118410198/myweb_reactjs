@@ -2,15 +2,30 @@ const Customer = require('../models/Customer');
 
 const getCustomers = async (req, res) => {
    console.log('--------------- Get customers -------------------');
+
    const page = parseInt(req.query.page) || 1;
    const limit = parseInt(req.query.limit) || 5;
    const skip = (page - 1) * limit;
+   const searchTerm = req.query.search ? req.query.search.trim() : '';
 
    try {
-      const totalCustomers = await Customer.countDocuments({});
-      const customersDB = await Customer.find({}).skip(skip).limit(limit);
+      const searchQuery = searchTerm
+         ? {
+              $or: [
+                 { address: { $regex: searchTerm, $options: 'i' } },
+                 { phone: { $regex: searchTerm, $options: 'i' } },
+                 { gender: { $regex: searchTerm, $options: 'i' } },
+              ],
+           }
+         : {};
 
-      if (!customersDB || customersDB.length === 0) {
+      const totalCustomers = await Customer.countDocuments(searchQuery);
+
+      const customersDB = await Customer.find(searchQuery)
+         .skip(skip)
+         .limit(limit);
+
+      if (!customersDB) {
          return res.status(404).json({ error: 'No customers found' });
       }
 
