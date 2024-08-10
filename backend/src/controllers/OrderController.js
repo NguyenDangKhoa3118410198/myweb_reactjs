@@ -241,7 +241,7 @@ const getDetailOrderByOrderId = async (req, res) => {
 
       const detailOrderDB = await ProductOfOrder.find({ orderId });
 
-      if (!detailOrderDB || detailOrderDB.length === 0) {
+      if (!detailOrderDB) {
          return res.status(404).json({ error: 'Order not found' });
       }
       const simplifiedOrders = detailOrderDB.map((detailOrder) => ({
