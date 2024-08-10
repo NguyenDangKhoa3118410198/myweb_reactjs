@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
 import { Spin } from 'antd';
 import { useSelector } from 'react-redux';
+import { formatAndCapitalize } from 'ulti';
 
 interface Review {
    id?: string;
@@ -19,10 +20,6 @@ interface ModalReviewsProps {
    show: boolean;
    onHide: () => void;
 }
-
-const capitalizeFirstLetter = (str: string) => {
-   return str.charAt(0).toUpperCase() + str.slice(1);
-};
 
 const starRating = (rating: number) => {
    const stars = [];
@@ -50,7 +47,7 @@ const ModalReviews: React.FC<ModalReviewsProps> = React.memo((props) => {
             key !== 'image' &&
             key !== 'thumbnail' && (
                <ItemInfo key={key}>
-                  <ItemLabel>{`${capitalizeFirstLetter(key)}: `}</ItemLabel>
+                  <ItemLabel>{`${formatAndCapitalize(key)}: `}</ItemLabel>
                   {key === 'rating' ? (
                      starRating(value)
                   ) : (

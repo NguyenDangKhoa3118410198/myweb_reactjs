@@ -6,19 +6,18 @@ import {
    filterData,
    SearchBox,
 } from '../../components/Table/TableActions/handleActions';
-import './orders.css';
-import { pageDetailOrder } from '../../Data/fetchData';
 import { RootState } from 'components/features/store';
 import { Spin } from 'antd';
 import { useAppDispatch } from 'hooks/useAppDispatch';
-import { fetchOrders } from 'components/features/thunk/thunk';
+import { fetchOrders, fetchReviewOrder } from 'components/features/thunk/thunk';
+import './orders.css';
 
 const Orders = () => {
    const [records, setRecords] = useState<any>([]);
    const [searchTerm, setSearchTerm] = useState('');
 
    const [isModalReview, setModalReview] = useState(false);
-   const [isListReviews, setIsListReviews] = useState([]);
+   const [isListReviews, setIsListReviews] = useState<any>([]);
    const [isModalView, setModalView] = useState(false);
    const [viewCurrent, setViewCurrent] = useState({});
    const [currentPage, setCurrentPage] = useState(1);
@@ -28,6 +27,9 @@ const Orders = () => {
    const darkMode = useSelector((state: RootState) => state.darkMode);
    const { orders, status, totalPages } = useSelector(
       (state: RootState) => state.root.order
+   );
+   const reviewByOrderId = useSelector(
+      (state: RootState) => state.root.review.reviewByOrderId
    );
 
    useEffect(() => {
@@ -40,11 +42,12 @@ const Orders = () => {
       setRecords(orders);
    }, [orders]);
 
-   const handleReview = async (record: any) => {
-      const response = await pageDetailOrder(record.id);
+   useEffect(() => {
+      setIsListReviews(reviewByOrderId);
+   }, [reviewByOrderId]);
 
-      setIsListReviews(response);
-
+   const handleReview = (record: any) => {
+      dispatch(fetchReviewOrder(record.id));
       setModalReview(true);
    };
 

@@ -55,6 +55,19 @@ export const fetchReviewProduct = createAsyncThunk<
    }
 });
 
+export const fetchReviewOrder = createAsyncThunk<
+   { reviewByOrderId: any },
+   string,
+   { rejectValue: string }
+>('root/fetchReviewOrder', async (orderId, { rejectWithValue }) => {
+   try {
+      const data = await sendRequest('GET', `api/orders/${orderId}/detail`);
+      return { reviewByOrderId: data };
+   } catch (error: any) {
+      return rejectWithValue(error.message);
+   }
+});
+
 // Fetch products
 export const fetchProducts = createAsyncThunk(
    'root/fetchProducts',

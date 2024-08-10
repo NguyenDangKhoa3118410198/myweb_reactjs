@@ -355,7 +355,7 @@ export const columnsOrder = ({
       cell: (record: any) => (
          <TableActions
             handleView={handleView}
-            handleEditClick={handleEditClick}
+            // handleEditClick={handleEditClick}
             handleDelete={handleDelete}
             handleReview={handleReview}
             record={record}

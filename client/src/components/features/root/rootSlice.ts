@@ -4,6 +4,7 @@ import {
    fetchOrders,
    fetchProducts,
    fetchReviewProduct,
+   fetchReviewOrder,
    fetchUserDetail,
    fetchUsers,
    handleAsyncThunk,
@@ -23,6 +24,7 @@ interface UserState extends BaseState {
 interface ReviewState extends BaseState {
    reviewId: number | null;
    reviews: any[];
+   reviewByOrderId: any[];
 }
 
 interface ProductState extends BaseState {
@@ -66,6 +68,7 @@ const initialState: RootStateSlice = {
       reviews: [],
       status: 'idle',
       error: null,
+      reviewByOrderId: [],
    },
    product: {
       productId: null,
@@ -118,6 +121,15 @@ const rootSlice = createSlice({
          thunk: fetchReviewProduct,
          successCallback: (state: ReviewState, action: PayloadAction<any>) => {
             state.reviews = action.payload.reviews;
+         },
+         stateSelector: (state: RootStateSlice) => state.review,
+      });
+
+      handleAsyncThunk({
+         builder,
+         thunk: fetchReviewOrder,
+         successCallback: (state: any, action: PayloadAction<any>) => {
+            state.reviewByOrderId = action.payload.reviewByOrderId;
          },
          stateSelector: (state: RootStateSlice) => state.review,
       });
