@@ -117,7 +117,11 @@ const Login = () => {
                   <Form
                      form={form}
                      onFinish={handleSubmit}
-                     initialValues={{ remember: rememberMe }}
+                     initialValues={{
+                        remember: rememberMe,
+                        password: '123',
+                        email: 'Admin@123',
+                     }}
                      className='login-form'
                   >
                      <HeaderAdminForm />
