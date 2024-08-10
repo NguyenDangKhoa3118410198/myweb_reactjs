@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import { alertSuccess, alertMessageError } from '../../ulti/modals';
-
+import { Form, message } from 'antd';
+import PrimaryButton from 'components/common/ButtonComponent/ButtonPrimary';
+import InputText from 'components/common/InputComponent/InputText';
+import InputPassword from 'components/common/InputComponent/InputPassword';
 import './forgotPassword.css';
 
 const NewPassword = () => {
-   const [newPassword, setNewPassword] = useState('');
-   const [code, setCode] = useState('');
+   const [, setNewPassword] = useState('');
+   const [, setCode] = useState('');
 
    const clearForm = () => {
       setNewPassword('');
       setCode('');
    };
 
-   const handleSubmit = async (e: any) => {
-      e.preventDefault();
-
+   const handleSubmit = async (values: any) => {
+      const { newPassword, code } = values;
       try {
          const response = await axios.post(
             `https://react-backend-two.vercel.app/auth/login/reset-password/confirm`,
@@ -23,10 +24,10 @@ const NewPassword = () => {
          );
 
          if (response.data.success) {
-            alertSuccess('Password reset successful');
+            message.success('Password reset successful');
             clearForm();
          } else {
-            alertMessageError(response.data.message);
+            message.error(response.data.message);
          }
       } catch (error: any) {
          console.error('An error occurred:', error.message);
@@ -35,27 +36,33 @@ const NewPassword = () => {
 
    return (
       <div className='forgot-password-form-container'>
-         <form onSubmit={handleSubmit} className='forgot-password-form'>
-            <label>
-               New Password:
-               <input
-                  type='password'
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  required
-               />
-            </label>
-            <label>
-               Reset Code:
-               <input
-                  type='text'
-                  value={code}
-                  onChange={(e) => setCode(e.target.value)}
-                  required
-               />
-            </label>
-            <button type='submit'>Reset Password</button>
-         </form>
+         <Form onFinish={handleSubmit} className='forgot-password-form'>
+            <h2 className='header-form'>Reset Password</h2>
+            <Form.Item
+               label='New Password'
+               name='newPassword'
+               rules={[
+                  {
+                     required: true,
+                     message: 'Please enter your new password!',
+                  },
+               ]}
+            >
+               <InputPassword placeholder='Enter New Password' />
+            </Form.Item>
+            <Form.Item
+               label='Reset Code'
+               name='code'
+               rules={[
+                  { required: true, message: 'Please enter the reset code!' },
+               ]}
+            >
+               <InputText placeholder='Enter Reset Code' />
+            </Form.Item>
+            <Form.Item>
+               <PrimaryButton type='primary' htmlType='submit' label='Submit' />
+            </Form.Item>
+         </Form>
       </div>
    );
 };

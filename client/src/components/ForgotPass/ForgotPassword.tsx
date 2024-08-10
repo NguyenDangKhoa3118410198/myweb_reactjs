@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
 import axios from 'axios';
-import { alertMessage, alertMessageError } from '../../ulti/modals';
-
+import { Form, message } from 'antd';
+import PrimaryButton from 'components/common/ButtonComponent/ButtonPrimary';
+import InputEmail from 'components/common/InputComponent/InputEmail';
 import './forgotPassword.css';
 
 const ForgotPasswordForm = () => {
-   const [email, setEmail] = useState('');
-
-   const handleSubmit = async (e: any) => {
-      e.preventDefault();
-
+   const handleSubmit = async (values: any) => {
+      const { email } = values;
       try {
          const response = await axios.post(
             `https://react-backend-two.vercel.app/auth/login/reset-password`,
@@ -17,30 +14,35 @@ const ForgotPasswordForm = () => {
          );
 
          if (response.data.success) {
-            alertMessage(response.data.message);
+            message.info(response.data.message);
          }
       } catch (error: any) {
-         alertMessageError(error.response.data.message);
+         message.error(error.response.data.message);
       }
    };
 
    return (
       <div className='forgot-password-form-container'>
-         <form onSubmit={handleSubmit} className='forgot-password-form'>
-            <h2>Forgot Password</h2>
-            <label className='lbl-reset-pwd'>
-               You need to enter a valid email to reset your password
-               <input
-                  className='input-reset-pwd'
-                  type='email'
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder='Enter Email'
-                  required
-               />
-            </label>
-            <button type='submit'>Send Request</button>
-         </form>
+         <Form onFinish={handleSubmit} className='forgot-password-form'>
+            <h2 className='header-form'>Forgot Password</h2>
+            <Form.Item
+               label='Email'
+               name='email'
+               rules={[
+                  { required: true, message: 'Please input your email!' },
+                  {
+                     pattern:
+                        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                     message: 'Please enter a valid email!',
+                  },
+               ]}
+            >
+               <InputEmail placeholder='Enter Email' />
+            </Form.Item>
+            <Form.Item>
+               <PrimaryButton type='primary' htmlType='submit' label='Submit' />
+            </Form.Item>
+         </Form>
       </div>
    );
 };
