@@ -199,7 +199,7 @@ const resetPassword = async (req, res) => {
 
       await user.save();
 
-      const resetLink = `http://localhost:3000/new-password`;
+      const resetLink = `myweb-reactjs.vercel.app/new-password`;
 
       await sendResetEmail(email, resetLink, resetCode);
       res.status(200).json({
