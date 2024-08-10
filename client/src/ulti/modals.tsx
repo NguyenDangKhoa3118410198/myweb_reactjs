@@ -1,4 +1,6 @@
 import Swal from 'sweetalert2';
+import { Modal } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 const showToast = (icon: any, message: string) => {
    const Toast = Swal.mixin({
@@ -35,27 +37,20 @@ export const alertSuccess = (data: string) => {
    showToast('success', data);
 };
 
-export const alertConfirmDelete = async () => {
-   const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
+export const alertConfirmDelete = async (): Promise<boolean> => {
+   return new Promise((resolve) => {
+      Modal.confirm({
+         title: 'Are you sure?',
+         content: "You won't be able to revert this!",
+         icon: <ExclamationCircleOutlined />,
+         okText: 'Yes, delete it!',
+         cancelText: 'Cancel',
+         onOk() {
+            resolve(true); // User confirmed
+         },
+         onCancel() {
+            resolve(false); // User canceled
+         },
+      });
    });
-
-   return result;
-
-   // const result = await Swal.fire({
-   //    title: 'Confirm Deletion',
-   //    text: 'Are you sure you want to delete this record?',
-   //    icon: 'warning',
-   //    showCancelButton: true,
-   //    confirmButtonText: 'OK',
-   //    cancelButtonText: 'Cancel',
-   // });
-
-   // return result;
 };

@@ -93,9 +93,11 @@ const Products = () => {
             darkMode ? 'darkmode' : ''
          }`}
       >
+         <h1 className={`title-page ${darkMode ? 'darkmode' : ''} `}>
+            Product
+         </h1>
          <Spin spinning={statusProducts === 'loading'}>
             <Table
-               title={'List products'}
                columns={columns}
                data={filterData(products)}
                searchBox={

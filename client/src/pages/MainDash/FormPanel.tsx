@@ -33,6 +33,7 @@ const FormPanel: React.FC<FormPanelProps> = ({
             layout='vertical'
             onFinish={handleSubmit}
             initialValues={formData}
+            validateTrigger='onSubmit'
          >
             <Form.Item
                label='Name'
@@ -53,7 +54,14 @@ const FormPanel: React.FC<FormPanelProps> = ({
             <Form.Item
                label='Email'
                name='email'
-               rules={[{ required: true, message: 'Please input your email!' }]}
+               rules={[
+                  { required: true, message: 'Please input your email!' },
+                  {
+                     pattern:
+                        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                     message: 'Please enter a valid email!',
+                  },
+               ]}
             >
                <InputEmail placeholder='Email' disabled={title === 'Edit'} />
             </Form.Item>

@@ -92,9 +92,7 @@ const MainDash = () => {
          setIsEditPanelOpen(false);
          setIsAddPanelOpen(false);
       } else {
-         message.error(
-            'Unable to save data because formData is empty or contains a null value.'
-         );
+         message.error('Please complete all required fields.');
       }
    };
 
@@ -133,10 +131,12 @@ const MainDash = () => {
             );
 
             if (response.success) {
-               setRecords(
-                  records.map((r: any) =>
-                     r.id === currentRecordId ? { ...r, ...record } : r
-                  )
+               dispatch(
+                  fetchUsers({
+                     page: currentPage,
+                     limit: limitPage,
+                     searchTerm,
+                  })
                );
                message.success(response.message);
             } else {
@@ -147,8 +147,13 @@ const MainDash = () => {
          try {
             const response = await sendRequest('POST', 'api/users/add', record);
             if (response.success) {
-               const newRecord = response.newUser;
-               setRecords([...records, newRecord]);
+               dispatch(
+                  fetchUsers({
+                     page: currentPage,
+                     limit: limitPage,
+                     searchTerm,
+                  })
+               );
                dispatch(updateCountingUsers());
                message.success(response.message);
             } else {
@@ -243,7 +248,6 @@ const MainDash = () => {
 
          <Spin spinning={status === 'loading'}>
             <Table
-               title='List Users'
                columns={columns}
                data={filterData(searchTerm, records)}
                searchBox={

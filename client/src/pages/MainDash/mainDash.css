@@ -182,14 +182,16 @@ input[type='search'].searchBox {
 }
 
 .form-control-btn {
-   margin: 10px;
+   width: 120px;
+   margin-inline: 10px;
+   font-weight: 500;
 }
 
 .button-group-form-panel {
    display: flex;
    justify-content: center;
    align-items: center;
-   padding: 1.5rem;
+   padding: 10px 20px;
 }
 
 @media screen and (max-width: 1068px) {

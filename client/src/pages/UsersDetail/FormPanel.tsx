@@ -1,5 +1,8 @@
 import React from 'react';
-import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Modal, Form, Select } from 'antd';
+import InputText from 'components/common/InputComponent/InputText';
+import PrimaryButton from 'components/common/ButtonComponent/ButtonPrimary';
+import CancelButton from 'components/common/ButtonComponent/ButtonCancel';
 import '../MainDash/mainDash.css';
 
 interface FormData {
@@ -10,95 +13,71 @@ interface FormData {
 
 interface FormPanelProps {
    title: string;
-   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+   handleSubmit: () => void;
    formData: FormData;
-   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
-   handleClose: (e: React.MouseEvent<HTMLButtonElement>) => void;
+   handleClose: () => void;
+   isOpen?: any;
 }
 
 const FormPanel: React.FC<FormPanelProps> = ({
    title,
    handleSubmit,
    formData,
-   setFormData,
    handleClose,
+   isOpen,
 }) => {
    return (
-      <div className='form-panel-container'>
-         <div className='form-panel'>
-            <p className='title-panel'>{title}</p>
-            <Form onSubmit={handleSubmit} className='form-container'>
-               <FormGroup
-                  controlId='formAddress'
-                  className='form-control-input'
-               >
-                  <Form.Label className='no-margin-label'>Address</Form.Label>
-                  <FormControl
-                     className='form-panel-input'
-                     type='text'
-                     placeholder='Address'
-                     name='address'
-                     value={formData.address}
-                     onChange={(e) => {
-                        setFormData({
-                           ...formData,
-                           address: e.target.value,
-                        });
-                     }}
-                     required
-                  />
-               </FormGroup>
-               <FormGroup controlId='formPhone' className='form-control-input'>
-                  <Form.Label className='no-margin-label'>Phone</Form.Label>
-                  <FormControl
-                     className='form-panel-input'
-                     type='text'
-                     placeholder='Phone'
-                     name='phone'
-                     value={formData.phone}
-                     onChange={(e) => {
-                        setFormData({
-                           ...formData,
-                           phone: e.target.value,
-                        });
-                     }}
-                     required
-                  />
-               </FormGroup>
+      <Modal title={title} open={isOpen} onCancel={handleClose} footer={null}>
+         <Form
+            layout='vertical'
+            onFinish={handleSubmit}
+            initialValues={formData}
+         >
+            <Form.Item
+               label='Address'
+               name='address'
+               rules={[
+                  { required: true, message: 'Please input your address!' },
+               ]}
+            >
+               <InputText placeholder='Address' value={formData.address} />
+            </Form.Item>
 
-               <FormGroup className='form-control-input'>
-                  <Form.Label className='no-margin-label'>Gender</Form.Label>
-                  <Form.Select
-                     aria-label='Gender'
-                     className='form-panel-input-select'
-                     value={formData.gender}
-                     onChange={(e) => {
-                        setFormData({
-                           ...formData,
-                           gender: e.target.value,
-                        });
-                     }}
-                  >
-                     <option value='Male'>Male</option>
-                     <option value='Female'>Female</option>
-                  </Form.Select>
-               </FormGroup>
+            <Form.Item
+               label='Phone'
+               name='phone'
+               rules={[
+                  {
+                     required: true,
+                     message: 'Please input your phone number!',
+                  },
+               ]}
+            >
+               <InputText placeholder='Phone' value={formData.phone} />
+            </Form.Item>
 
-               <div className='button-group-form-panel'>
-                  <Button className='form-control-btn' type='submit'>
-                     {title}
-                  </Button>
-                  <Button
-                     className='form-control-btn'
-                     type='button' // Đổi từ 'cancel' thành 'button' vì 'cancel' không phải là giá trị hợp lệ cho thuộc tính 'type'
-                     onClick={handleClose}
-                  >
-                     Cancel
-                  </Button>
-               </div>
-            </Form>
-         </div>
-      </div>
+            <Form.Item label='Gender' name='gender'>
+               <Select value={formData.gender}>
+                  <Select.Option value='Male'>Male</Select.Option>
+                  <Select.Option value='Female'>Female</Select.Option>
+               </Select>
+            </Form.Item>
+
+            <div className='button-group-form-panel'>
+               <CancelButton
+                  onClick={handleClose}
+                  label='Cancel'
+                  className='form-control-btn'
+               />
+               <PrimaryButton
+                  type='primary'
+                  htmlType='submit'
+                  label={title}
+                  className='form-control-btn'
+               />
+            </div>
+         </Form>
+      </Modal>
    );
 };
 

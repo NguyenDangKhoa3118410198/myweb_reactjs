@@ -39,3 +39,18 @@ export const formattedDateAndTime = (datetime: any) => {
 export const formattedBirthDay = (datetime: any) => {
    return moment(datetime).format('YYYY-MM-DD');
 };
+
+export const formatCamelCase = (text: string): string => {
+   return text.replace(/([a-z])([A-Z])/g, '$1 $2');
+};
+
+export const capitalizeFirstLetter = (str: string): string => {
+   return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+export const formatAndCapitalize = (text: string): string => {
+   if (text === 'dateOfBirth') return 'Birthday';
+   const formattedText = formatCamelCase(text);
+
+   return capitalizeFirstLetter(formattedText);
+};

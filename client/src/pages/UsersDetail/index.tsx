@@ -101,7 +101,7 @@ const UsersDetail = () => {
 
          const result = await alertConfirmDelete();
 
-         if (result.isConfirmed) {
+         if (result) {
             setCurrentRecordId(userDetailId);
             handleDeleteConfirmed(userDetailId);
             alertSuccess(`Deleting record with ID: ${userDetailId}`);
@@ -162,9 +162,8 @@ const UsersDetail = () => {
       }
    };
 
-   const handleSubmitAndEdit = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      const newFormData = isFormDataValid(formData);
+   const handleSubmitAndEdit = (values: any) => {
+      const newFormData = isFormDataValid(values);
 
       if (newFormData) {
          if (currentRecordId && isEditPanelOpen) {
@@ -173,6 +172,7 @@ const UsersDetail = () => {
             alertMessage('Please select a record to edit.');
          }
          handleSetFormData();
+         setIsEditPanelOpen(false);
       } else {
          alertMessageError(
             'Unable to save data because formData is empty or contains a null value.'
@@ -204,7 +204,6 @@ const UsersDetail = () => {
       >
          <Spin spinning={status === 'loading'}>
             <Table
-               title='List table Users Detail'
                columns={columns}
                data={filterData(searchTerm, records)}
                searchBox={

@@ -9,15 +9,10 @@ import { columnsCustomer } from '../../Data/columns';
 import { sendRequest } from '../../ulti/sendHeaderRequest';
 import FormPanel from './FormPanel';
 import { isFormDataValid } from '../../components/Table/TableActions/handleActions';
-import {
-   alertMessage,
-   alertMessageError,
-   alertConfirmDelete,
-   alertSuccess,
-} from '../../ulti/modals';
+import { alertConfirmDelete } from '../../ulti/modals';
 import { RootState } from 'components/features/store';
 
-import { Spin } from 'antd';
+import { message, Spin } from 'antd';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import { fetchCustomers } from 'components/features/thunk/thunk';
 import './customers.css';
@@ -65,8 +60,6 @@ const Customers = () => {
 
    const handleDeleteConfirmed = async (customerId: string) => {
       try {
-         // const customerId = currentRecordId;
-
          if (records.length === 0) {
             console.log('No records to delete');
             return;
@@ -78,17 +71,18 @@ const Customers = () => {
          );
 
          if (response.success) {
-            setRecords((prevRecords: any) =>
-               prevRecords.filter((r: any) => r.id !== customerId)
+            dispatch(
+               fetchCustomers({
+                  page: currentPage,
+                  limit: limitPage,
+                  searchTerm,
+               })
             );
-            console.log('Customer deleted successfully');
+            message.success(`Delete successful`);
          } else {
-            console.error('Error deleting customer:', response.message);
+            message.error(response.message);
          }
-         console.log('delete records', customerId);
-      } catch (error: any) {
-         console.error('Failed to delete customer:', error.message);
-      }
+      } catch (error: any) {}
    };
 
    const handleDelete = async (record: any) => {
@@ -102,10 +96,9 @@ const Customers = () => {
 
          const result = await alertConfirmDelete();
 
-         if (result.isConfirmed) {
+         if (result) {
             setCurrentRecordId(customerId);
             handleDeleteConfirmed(customerId);
-            alertSuccess(`Deleting record with ID: ${customerId}`);
          } else {
             console.log('Cancelled delete');
          }
@@ -136,7 +129,7 @@ const Customers = () => {
          );
 
          if (!currentRecord) {
-            alertMessageError('Invalid ID');
+            message.warning('Invalid ID');
             return;
          }
 
@@ -153,9 +146,9 @@ const Customers = () => {
                      r.id === currentRecordId ? { ...r, ...record } : r
                   )
                );
-               alertSuccess('Updated customer successfully');
+               message.success('Updated successfully');
             } else {
-               console.error('Error updating customer:', response.message);
+               message.error(response.message);
             }
          } catch (error: any) {
             console.error('Error sending request:', error.message);
@@ -163,21 +156,19 @@ const Customers = () => {
       }
    };
 
-   const handleSubmitAndEdit = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      const newFormData = isFormDataValid(formData);
+   const handleSubmitAndEdit = (values: any) => {
+      const newFormData = isFormDataValid(values);
 
       if (newFormData) {
          if (currentRecordId && isEditPanelOpen) {
             handleSave(currentRecordId, newFormData);
          } else {
-            alertMessage('Please select a record to edit.');
+            message.info('Please select a record to edit.');
          }
          handleSetFormData();
+         setIsEditPanelOpen(false);
       } else {
-         alertMessageError(
-            'Unable to save data because formData is empty or contains a null value.'
-         );
+         message.warning('Please complete all required fields.');
       }
    };
 
@@ -203,9 +194,11 @@ const Customers = () => {
             darkMode ? 'darkmode' : ''
          } `}
       >
+         <h1 className={`title-page ${darkMode ? 'darkmode' : ''} `}>
+            Customer
+         </h1>
          <Spin spinning={status === 'loading'}>
             <Table
-               title='List table Customers'
                columns={columns}
                data={filterData(searchTerm, records)}
                searchBox={

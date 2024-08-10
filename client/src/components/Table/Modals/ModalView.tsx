@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import styled from 'styled-components';
-import { formattedBirthDay } from '../../../ulti';
+import { formatAndCapitalize, formattedBirthDay } from '../../../ulti';
 
 interface ViewCurrent {
    id?: string;
@@ -17,10 +17,6 @@ interface ModalViewProps {
 }
 
 const ModalView: React.FC<ModalViewProps> = (props) => {
-   const capitalizeFirstLetter = (str: string) => {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-   };
-
    return (
       <Modal
          {...props}
@@ -56,9 +52,7 @@ const ModalView: React.FC<ModalViewProps> = (props) => {
                         key !== 'urlPath' &&
                         key !== 'urlKey' && (
                            <ItemInfo key={key}>
-                              <ItemLabel>
-                                 {capitalizeFirstLetter(key)}:
-                              </ItemLabel>{' '}
+                              <ItemLabel>{formatAndCapitalize(key)}:</ItemLabel>{' '}
                               <ItemContent>
                                  {key === 'dateOfBirth'
                                     ? formattedBirthDay(value)

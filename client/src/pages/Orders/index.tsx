@@ -65,9 +65,9 @@ const Orders = () => {
 
    return (
       <main className={`Orders main-container ${darkMode ? 'darkmode' : ''}`}>
+         <h1 className={`title-page ${darkMode ? 'darkmode' : ''} `}>Order</h1>
          <Spin spinning={status === 'loading'}>
             <Table
-               title='List of orders'
                columns={columns}
                data={filterData(searchTerm, records)}
                searchBox={

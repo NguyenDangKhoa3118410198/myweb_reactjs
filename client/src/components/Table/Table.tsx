@@ -96,7 +96,6 @@ const Table: React.FC<ITableProps> = ({
 
             <LoadingData loading={loading}>
                <DataTable
-                  title={title ? title : 'List table ....'}
                   subHeader
                   subHeaderComponent={
                      tableActions ? (
@@ -143,7 +142,6 @@ const Table: React.FC<ITableProps> = ({
                   paginationRowsPerPageOptions={[5, 10]}
                   customStyles={TableCustomStyles}
                   striped
-                  className='react-table'
                   paginationServer
                   paginationTotalRows={
                      (pagination?.totalPages ?? 1) *

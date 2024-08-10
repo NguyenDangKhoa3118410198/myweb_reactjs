@@ -49,11 +49,11 @@ const Sidebar: React.FC<ISidebar> = ({ isMenuActive, activeMenu }) => {
          to: '/products',
          icon: <LaptopOutlined />,
       },
-      {
-         title: 'Users Detail',
-         to: '/usersDetail',
-         icon: <UserOutlined />,
-      },
+      // {
+      //    title: 'Users Detail',
+      //    to: '/usersDetail',
+      //    icon: <UserOutlined />,
+      // },
    ];
 
    useEffect(() => {

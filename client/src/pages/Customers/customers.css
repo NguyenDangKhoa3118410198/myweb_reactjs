@@ -1,8 +1,10 @@
 .customer-wrapper {
-   display: flex;
-   flex-direction: column;
-   padding: 1rem 1rem 1.5rem;
-   height: 100vh;
-   transition: background-color 0.7s linear;
-   overflow-y: scroll;
+   max-width: 1440px;
+   position: relative;
+   padding: 5px 10px;
+   left: 50%;
+   transform: translateX(-50%);
+   overflow: auto;
+   scrollbar-width: none;
+   -ms-overflow-style: none;
 }

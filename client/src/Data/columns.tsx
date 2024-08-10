@@ -122,11 +122,10 @@ export const columnsCustomer = ({
    handleEditClick = (record: any) => {},
    handleDelete = (record: any) => {},
 }) => [
-   // {
-   //    name: 'UserId',
-   //    selector: (row: any) => row.userId,
-   //
-   // },
+   {
+      name: 'UserId',
+      selector: (row: any) => row.userId,
+   },
    {
       name: 'Address',
       selector: (row: any) => row.address,
@@ -142,10 +141,12 @@ export const columnsCustomer = ({
    {
       name: 'Gender',
       selector: (row: any) => row.gender,
+      width: '120px',
    },
    {
       name: 'avatar',
       selector: (row: any) => row.avatar,
+      minWidth: '100px',
    },
    {
       name: 'Action',
@@ -292,11 +293,10 @@ export const columnsOrder = ({
    handleDelete?: (record: any) => void;
    handleReview?: (record: any) => void;
 }) => [
-   // {
-   //    name: 'ID',
-   //    selector: (row: any) => row.id,
-   //
-   // },
+   {
+      name: 'ID',
+      selector: (row: any) => row.id,
+   },
    {
       name: 'Total Products',
       selector: (row: any) => row.totalProducts,
