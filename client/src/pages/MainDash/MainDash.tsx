@@ -1,10 +1,4 @@
-import React, {
-   useState,
-   useEffect,
-   lazy,
-   Suspense,
-   startTransition,
-} from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import {
    filterData,
@@ -14,13 +8,8 @@ import {
 import { columnsMainDash } from '../../Data/columns';
 import FormPanel from './FormPanel';
 import { sendRequest } from '../../ulti/sendHeaderRequest';
-import {
-   alertMessage,
-   alertMessageError,
-   alertSuccess,
-} from '../../ulti/modals';
 import { updateCountingUsers } from '../../components/features/appInformation/appInformationSlice';
-import { Spin } from 'antd';
+import { message, Spin } from 'antd';
 import { RootState } from 'components/features/store';
 import {
    ProgressChartStats,
@@ -71,8 +60,7 @@ const MainDash = () => {
       setRecords(users);
    }, [users]);
 
-   const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault();
+   const handleClose = () => {
       handleSetFormData();
       setIsAddPanelOpen(false);
       setIsEditPanelOpen(false);
@@ -87,54 +75,27 @@ const MainDash = () => {
       setCurrentRecordId(null);
    };
 
-   const handleSubmitAndEdit = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      startTransition(() => {
-         const newFormData = isFormDataValid(formData);
+   const handleSubmitAndEdit = (values: FormData) => {
+      const newFormData = isFormDataValid(values);
 
-         if (newFormData) {
-            if (currentRecordId && isEditPanelOpen) {
-               //edit exists record
-               const currentRecord = records.find(
-                  (record: any) => record.id === currentRecordId
-               );
-
-               const invalidEmail = records.some(
-                  (record: any) =>
-                     record.email === formData.email &&
-                     formData.email !== currentRecord.email
-               );
-
-               if (invalidEmail) {
-                  alertMessageError(
-                     `The email "${formData.email}" already exists.\n Please use a different email address.`
-                  );
-                  return;
-               }
-               handleSave(currentRecordId, newFormData);
-            } else if (!currentRecordId && !isEditPanelOpen) {
-               //create new record
-               const invalidEmail = records.some(
-                  (record: any) => record.email === formData.email
-               );
-
-               if (invalidEmail) {
-                  alertMessageError(
-                     `The email "${formData.email}" already exists.\n Please use a different email address.`
-                  );
-                  return;
-               }
-               handleSave('', newFormData);
-            } else {
-               alertMessage('Please select a record to edit.');
-            }
-            handleSetFormData();
+      if (newFormData) {
+         if (currentRecordId && isEditPanelOpen) {
+            //edit
+            handleSave(currentRecordId, newFormData);
+         } else if (!currentRecordId && !isEditPanelOpen) {
+            //create
+            handleSave('', newFormData);
          } else {
-            alertMessageError(
-               'Unable to save data because formData is empty or contains a null value.'
-            );
+            message.warning('Please select a record to edit.');
          }
-      });
+         handleSetFormData();
+         setIsEditPanelOpen(false);
+         setIsAddPanelOpen(false);
+      } else {
+         message.error(
+            'Unable to save data because formData is empty or contains a null value.'
+         );
+      }
    };
 
    const handleEditClick = (record: any) => {
@@ -160,7 +121,7 @@ const MainDash = () => {
          );
 
          if (!currentRecord) {
-            alertMessageError('Invalid ID');
+            message.error('Invalid ID');
             return;
          }
 
@@ -177,30 +138,23 @@ const MainDash = () => {
                      r.id === currentRecordId ? { ...r, ...record } : r
                   )
                );
-               alertSuccess('Updated user successfully');
-               console.log('Updated user successfully');
+               message.success(response.message);
             } else {
-               console.error('Error updating user:', response.message);
+               message.error(response.message);
             }
-         } catch (error: any) {
-            console.error('Error sending request:', error.message);
-         }
+         } catch (error: any) {}
       } else {
          try {
             const response = await sendRequest('POST', 'api/users/add', record);
-
             if (response.success) {
                const newRecord = response.newUser;
                setRecords([...records, newRecord]);
                dispatch(updateCountingUsers());
-               alertSuccess('User added successfully');
-               console.log('User added successfully:', newRecord);
+               message.success(response.message);
             } else {
-               console.error('Error adding new user:', response.message);
+               message.error(response.message);
             }
-         } catch (error: any) {
-            console.error('Error sending request:', error.message);
-         }
+         } catch (error: any) {}
       }
    };
 
@@ -224,14 +178,11 @@ const MainDash = () => {
                   r.id === record.id ? { ...r, isActive: false } : r
                )
             );
-            alertSuccess('User deactivated successfully');
-            console.log('User deactivated successfully');
+            message.success(response.message);
          } else {
-            console.error('Error deactivated user:', response.message);
+            message.error(response.message);
          }
-      } catch (error: any) {
-         console.error('Failed to deactivated user:', error.message);
-      }
+      } catch (error: any) {}
    };
 
    const handleActivate = async (record: any) => {
@@ -254,14 +205,11 @@ const MainDash = () => {
                   r.id === record.id ? { ...r, isActive: true } : r
                )
             );
-            alertSuccess('User activated successfully');
-            console.log('User activated successfully');
+            message.success(response.message);
          } else {
-            console.error('Error activated user:', response.message);
+            message.error(response.message);
          }
-      } catch (error: any) {
-         console.error('Failed to activated user:', error.message);
-      }
+      } catch (error: any) {}
    };
 
    const handleLimitChange = (newLimit: number) => {

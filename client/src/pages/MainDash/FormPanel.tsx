@@ -1,6 +1,10 @@
 import React from 'react';
-import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Form, Modal } from 'antd';
 import './mainDash.css';
+import InputText from 'components/common/InputComponent/InputText';
+import InputEmail from 'components/common/InputComponent/InputEmail';
+import PrimaryButton from 'components/common/ButtonComponent/ButtonPrimary';
+import CancelButton from 'components/common/ButtonComponent/ButtonCancel';
 
 interface FormData {
    name: string;
@@ -10,97 +14,67 @@ interface FormData {
 
 interface FormPanelProps {
    title: string;
-   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
    formData: FormData;
-   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
-   handleClose: (e: React.MouseEvent<HTMLButtonElement>) => void;
-   targetRef?: React.RefObject<HTMLDivElement>; // optional
+   handleClose: () => void;
+   handleSubmit?: any;
+   isOpen?: any;
 }
 
 const FormPanel: React.FC<FormPanelProps> = ({
    title,
-   handleSubmit,
    formData,
-   setFormData,
    handleClose,
-   targetRef,
+   handleSubmit,
+   isOpen,
 }) => {
    return (
-      <div className='form-panel-container' ref={targetRef}>
-         <div className='form-panel'>
-            <p className='title-panel'>{title}</p>
-            <Form onSubmit={handleSubmit} className='form-container'>
-               <FormGroup controlId='formName' className='form-control-input'>
-                  <Form.Label className='no-margin-label'>Name</Form.Label>
-                  <FormControl
-                     className='form-panel-input'
-                     type='text'
-                     placeholder='Name'
-                     name='name'
-                     value={formData.name}
-                     onChange={(e) => {
-                        setFormData({
-                           ...formData,
-                           name: e.target.value,
-                        });
-                     }}
-                     required
-                  />
-               </FormGroup>
-               <FormGroup
-                  controlId='formUsername'
-                  className='form-control-input'
-               >
-                  <Form.Label className='no-margin-label'>Username</Form.Label>
-                  <FormControl
-                     className='form-panel-input'
-                     type='text'
-                     placeholder='Username'
-                     name='username'
-                     value={formData.username}
-                     onChange={(e) => {
-                        setFormData({
-                           ...formData,
-                           username: e.target.value,
-                        });
-                     }}
-                     required
-                  />
-               </FormGroup>
-               <FormGroup controlId='formEmail' className='form-control-input'>
-                  <Form.Label className='no-margin-label'>Email</Form.Label>
-                  <FormControl
-                     className={`form-panel-input ${
-                        title === 'Edit' ? 'disabled-input' : ''
-                     }`}
-                     type='email'
-                     placeholder='Email'
-                     name='email'
-                     value={formData.email}
-                     onChange={(e) => {
-                        setFormData({
-                           ...formData,
-                           email: e.target.value,
-                        });
-                     }}
-                     disabled={title === 'Edit' ? true : false}
-                  />
-               </FormGroup>
+      <Modal title={title} open={isOpen} footer={null} onCancel={handleClose}>
+         <Form
+            layout='vertical'
+            onFinish={handleSubmit}
+            initialValues={formData}
+         >
+            <Form.Item
+               label='Name'
+               name='name'
+               rules={[{ required: true, message: 'Please input your name!' }]}
+            >
+               <InputText placeholder='Name' />
+            </Form.Item>
+            <Form.Item
+               label='Username'
+               name='username'
+               rules={[
+                  { required: true, message: 'Please input your username!' },
+               ]}
+            >
+               <InputText placeholder='Username' />
+            </Form.Item>
+            <Form.Item
+               label='Email'
+               name='email'
+               rules={[{ required: true, message: 'Please input your email!' }]}
+            >
+               <InputEmail placeholder='Email' disabled={title === 'Edit'} />
+            </Form.Item>
+            <Form.Item>
                <div className='button-group-form-panel'>
-                  <Button className='form-control-btn' type='submit'>
-                     {title}
-                  </Button>
-                  <Button
+                  <CancelButton
                      className='form-control-btn'
-                     type='button'
-                     onClick={handleClose}
-                  >
-                     Cancel
-                  </Button>
+                     onClick={() => {
+                        handleClose();
+                     }}
+                     label='Cancel'
+                  />
+                  <PrimaryButton
+                     className='form-control-btn'
+                     label={title}
+                     htmlType='submit'
+                  />
                </div>
-            </Form>
-         </div>
-      </div>
+            </Form.Item>
+         </Form>
+      </Modal>
    );
 };
 

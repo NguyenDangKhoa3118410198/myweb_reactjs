@@ -181,8 +181,7 @@ const Customers = () => {
       }
    };
 
-   const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault();
+   const handleClose = () => {
       handleSetFormData();
       setIsEditPanelOpen(false);
    };

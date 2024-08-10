@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import DataTable from 'react-data-table-component';
 import { headerCsv } from './TableActions/handleActions';
 import { TableCustomStyles } from './Custom/TableCustomStyles';
@@ -33,8 +33,8 @@ interface ITableProps {
       setCurrentRecordId?: (id: any) => void;
    };
    handleActions?: {
-      handleSubmitAndEdit?: (e: React.FormEvent<HTMLFormElement>) => void;
-      handleClose?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+      handleSubmitAndEdit?: (values: any) => void;
+      handleClose?: () => void;
    };
    pagination?: {
       limitPage: number;
@@ -72,116 +72,112 @@ const Table: React.FC<ITableProps> = ({
    const { handleSubmitAndEdit, handleClose } = handleActions;
 
    const headers = headerCsv(data);
-   const targetRef = useRef<HTMLDivElement>(null);
    const loading = useSelector((state: any) => state.loading.loading);
 
-   const scrollToElement = () => {
-      if (targetRef.current) {
-         targetRef.current.scrollIntoView({ behavior: 'smooth' });
-      }
-   };
-
    return (
-      <div className='wrapper'>
-         <div className='form-panel-action'>
-            {setModalReview && isListReviews && (
-               <ModalReviews
-                  show={isModalReview ?? false}
-                  onHide={() => setModalReview(false)}
-                  data={isListReviews}
-               />
-            )}
-            {setModalView && (
-               <ModalView
-                  show={isModalView ?? false}
-                  onHide={() => setModalView(false)}
-                  viewcurrent={viewCurrent ? viewCurrent : 'Not Found'}
-               />
-            )}
-            {isAddPanelOpen && (
-               <FormPanel
-                  title='Add'
-                  targetRef={targetRef}
-                  handleSubmit={handleSubmitAndEdit}
-                  formData={formData}
-                  setFormData={setFormData}
-                  handleClose={handleClose}
-               />
-            )}
-            {isEditPanelOpen && (
-               <FormPanel
-                  title='Edit'
-                  handleSubmit={handleSubmitAndEdit}
-                  formData={formData}
-                  setFormData={setFormData}
-                  handleClose={handleClose}
-               />
-            )}
-         </div>
+      <>
+         <div className='wrapper'>
+            <div className='form-panel-action'>
+               {setModalReview && isListReviews && (
+                  <ModalReviews
+                     show={isModalReview ?? false}
+                     onHide={() => setModalReview(false)}
+                     data={isListReviews}
+                  />
+               )}
+               {setModalView && (
+                  <ModalView
+                     show={isModalView ?? false}
+                     onHide={() => setModalView(false)}
+                     viewcurrent={viewCurrent ? viewCurrent : 'Not Found'}
+                  />
+               )}
+            </div>
 
-         <LoadingData loading={loading}>
-            <DataTable
-               title={title ? title : 'List table ....'}
-               subHeader
-               subHeaderComponent={
-                  tableActions ? (
-                     <div className='custom-data-table'>
-                        <div className='right-data-table'>
-                           {setIsAddPanelOpen && (
-                              <PrimaryButton
-                                 onClick={() => {
-                                    setIsAddPanelOpen(true);
-                                    setIsEditPanelOpen?.(false);
-                                    setCurrentRecordId?.(null);
-                                    scrollToElement();
-                                 }}
-                                 label='Create'
-                                 icon={<PlusCircleOutlined />}
+            <LoadingData loading={loading}>
+               <DataTable
+                  title={title ? title : 'List table ....'}
+                  subHeader
+                  subHeaderComponent={
+                     tableActions ? (
+                        <div className='custom-data-table'>
+                           <div className='right-data-table'>
+                              {setIsAddPanelOpen && (
+                                 <PrimaryButton
+                                    onClick={() => {
+                                       setIsAddPanelOpen(true);
+                                       setIsEditPanelOpen?.(false);
+                                       setCurrentRecordId?.(null);
+                                    }}
+                                    label='Create'
+                                    icon={<PlusCircleOutlined />}
+                                 />
+                              )}
+                              {searchBox}
+                              <ExportCSV
+                                 headers={headers || []}
+                                 title={title || 'data'}
+                                 data={data}
                               />
-                           )}
-                           {searchBox}
+                           </div>
+                        </div>
+                     ) : (
+                        <div className='right-data-table'>
                            <ExportCSV
                               headers={headers || []}
                               title={title || 'data'}
                               data={data}
                            />
+                           {searchBox}
                         </div>
-                     </div>
-                  ) : (
-                     <div className='right-data-table'>
-                        <ExportCSV
-                           headers={headers || []}
-                           title={title || 'data'}
-                           data={data}
-                        />
-                        {searchBox}
-                     </div>
-                  )
-               }
-               columns={columns}
-               data={data}
-               fixedHeaderScrollHeight='300px'
-               highlightOnHover
-               pointerOnHover
-               pagination
-               paginationResetDefaultPage={true}
-               paginationPerPage={pagination?.limitPage}
-               paginationRowsPerPageOptions={[5, 10]}
-               customStyles={TableCustomStyles}
-               striped
-               className='react-table'
-               paginationServer
-               paginationTotalRows={
-                  (pagination?.totalPages ?? 1) * (pagination?.limitPage ?? 1)
-               }
-               onChangePage={pagination?.onPageChange}
-               onChangeRowsPerPage={(newLimit) => {
-                  pagination?.onLimitChange(newLimit);
+                     )
+                  }
+                  columns={columns}
+                  data={data}
+                  fixedHeaderScrollHeight='300px'
+                  highlightOnHover
+                  pointerOnHover
+                  pagination
+                  paginationResetDefaultPage={true}
+                  paginationPerPage={pagination?.limitPage}
+                  paginationRowsPerPageOptions={[5, 10]}
+                  customStyles={TableCustomStyles}
+                  striped
+                  className='react-table'
+                  paginationServer
+                  paginationTotalRows={
+                     (pagination?.totalPages ?? 1) *
+                     (pagination?.limitPage ?? 1)
+                  }
+                  onChangePage={pagination?.onPageChange}
+                  onChangeRowsPerPage={(newLimit) => {
+                     pagination?.onLimitChange(newLimit);
+                  }}
+                  paginationDefaultPage={pagination?.currentPage}
+               />
+            </LoadingData>
+         </div>
+         {isAddPanelOpen && (
+            <FormPanel
+               title='Add'
+               handleSubmit={(e: any) => {
+                  handleSubmitAndEdit?.(e);
                }}
-               paginationDefaultPage={pagination?.currentPage}
+               formData={formData}
+               handleClose={handleClose}
+               isOpen={isAddPanelOpen}
             />
-         </LoadingData>
-      </div>
+         )}
+         {isEditPanelOpen && (
+            <FormPanel
+               title='Edit'
+               handleSubmit={handleSubmitAndEdit}
+               formData={formData}
+               handleClose={handleClose}
+               isOpen={isEditPanelOpen}
+            />
+         )}
+      </>
    );
 };
 

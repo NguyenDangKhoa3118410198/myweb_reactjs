@@ -48,12 +48,6 @@ export const columnsProduct1 = ({
    handleReview?: (record: any) => void;
 }) => [
    {
-      name: 'STT',
-      selector: (row: any, index: number) => index + 1,
-      width: '70px',
-      center: true,
-   },
-   {
       name: 'Name',
       selector: (row: any) => row.name,
       maxWidth: '250px',
@@ -104,12 +98,6 @@ export const columnsProduct1 = ({
 ];
 
 export const columnsProduct2 = [
-   {
-      name: 'STT',
-      selector: (row: any, index: number) => index + 1,
-      width: '70px',
-      center: true,
-   },
    // {
    //    name: 'ID',
    //    selector: (row: any) => row.id,
@@ -134,12 +122,6 @@ export const columnsCustomer = ({
    handleEditClick = (record: any) => {},
    handleDelete = (record: any) => {},
 }) => [
-   {
-      name: 'STT',
-      selector: (row: any, index: number) => index + 1,
-      width: '70px',
-      center: true,
-   },
    // {
    //    name: 'UserId',
    //    selector: (row: any) => row.userId,
@@ -189,12 +171,6 @@ export const columnsUserDetail = ({
    handleEditClick?: (record: any) => void;
    handleDelete?: (record: any) => void;
 }) => [
-   {
-      name: 'STT',
-      selector: (row: any, index: number) => index + 1,
-      width: '70px',
-      center: true,
-   },
    // {
    //    name: 'UserId',
    //    selector: (row: any) => row.userId,
@@ -249,23 +225,17 @@ export const columnsMainDash = ({
    handleDeactivate?: (record: any) => void;
    handleActivate?: (record: any) => void;
 }) => [
-   {
-      name: 'STT',
-      selector: (row: any, index: number) => index + 1,
-      width: '70px',
-      center: true,
-   },
    // {
    //    name: 'ID',
    //    selector: (row: any) => row.id,
    //
    // },
    {
-      name: 'SubName',
+      name: 'Name',
       selector: (row: any) => row.name,
    },
    {
-      name: 'Name',
+      name: 'UserName',
       selector: (row: any) => row.username,
    },
    {
@@ -327,12 +297,6 @@ export const columnsOrder = ({
    //    selector: (row: any) => row.id,
    //
    // },
-   {
-      name: 'STT',
-      selector: (row: any, index: number) => index + 1,
-      width: '70px',
-      center: true,
-   },
    {
       name: 'Total Products',
       selector: (row: any) => row.totalProducts,

@@ -78,7 +78,7 @@ const canConvertToString = (value: any): boolean => {
    return typeof value === 'string' || typeof value === 'number';
 };
 
-export const isFormDataValid = (formData: FormData): FormData | false => {
+export const isFormDataValid = (formData: any) => {
    if (
       Object.values(formData).every(
          (value) =>
