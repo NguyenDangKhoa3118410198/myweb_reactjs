@@ -13,7 +13,7 @@
    color: white;
    padding: 10px;
    text-align: center;
-   background-color: var(--color-blue-02);
+   background-color: var(--color-purple-04);
    border-radius: 8px;
 
    h1 {
@@ -34,8 +34,8 @@
 }
 
 .info-web-section h2 {
-   color: var(--color-blue-03);
-   border-bottom: 3px solid var(--color-blue-05);
+   color: var(--color-purple-02);
+   border-bottom: 3px solid var(--color-purple-02);
    padding-bottom: 6px;
    margin-top: 16px;
    font-weight: 700;
@@ -67,7 +67,7 @@
    padding: 10px;
    border-radius: 8px;
    background-color: var(--color-gray-01);
-   border: 1px solid var(--color-blue-03);
+   border: 1px solid var(--color-purple-03);
 }
 
 .info-web-wrapper {

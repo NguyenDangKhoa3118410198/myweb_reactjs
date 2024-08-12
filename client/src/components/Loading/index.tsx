@@ -14,12 +14,12 @@ const LoadingContainer = styled.div`
    height: 100vh;
    background-color: #fff;
    font-size: 24px;
-   font-weight: bold;
+   font-weight: 700;
 `;
 
 const LoadingCircle = styled.div`
-   border: 8px solid #f3f3f3;
-   border-top: 8px solid #3498db;
+   border: 6px solid #f3f3f3;
+   border-top: 6px solid var(--color-purple-04);
    border-radius: 50%;
    width: 50px;
    height: 50px;
@@ -29,6 +29,7 @@ const LoadingCircle = styled.div`
 const LoadingText = styled.p`
    margin-top: 10px;
    font-weight: 600;
+   font-size: 18px;
 `;
 
 const LoadingWrapper = styled.div`
@@ -58,7 +59,13 @@ const Loading = () => {
    );
 };
 
-export const LoadingData = ({ children, loading }) => {
+export const LoadingData = ({
+   children,
+   loading,
+}: {
+   children: any;
+   loading: any;
+}) => {
    return (
       <LoadingWrapper>
          {loading && (
