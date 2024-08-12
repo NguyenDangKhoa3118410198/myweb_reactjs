@@ -54,6 +54,7 @@ const ForgotPasswordForm = () => {
                      <InputEmail
                         placeholder='Enter Email'
                         className='input-new-password'
+                        autoFocus
                      />
                   </Form.Item>
                   <Form.Item>

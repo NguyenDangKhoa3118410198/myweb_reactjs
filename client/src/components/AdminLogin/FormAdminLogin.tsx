@@ -23,6 +23,8 @@ const FormAdminLogin: React.FC<IFormAdminLogin> = ({
          <div style={{ width: '100%' }}>
             <Form.Item
                name='email'
+               label='Email'
+               labelCol={{ span: 24 }}
                rules={[
                   {
                      required: true,
@@ -35,6 +37,8 @@ const FormAdminLogin: React.FC<IFormAdminLogin> = ({
 
             <Form.Item
                name='password'
+               label='Password'
+               labelCol={{ span: 24 }}
                rules={[
                   {
                      required: true,

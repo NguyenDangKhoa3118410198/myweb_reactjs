@@ -130,6 +130,7 @@
    border-radius: 50%;
    height: 50px;
    gap: 20px;
+   cursor: pointer;
 }
 
 .user-profile-avatar {

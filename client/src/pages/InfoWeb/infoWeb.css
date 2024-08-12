@@ -1,41 +1,54 @@
 .info-web-container {
    text-align: center;
-   padding: 1rem 1.5rem;
-   background-color: #eee;
-   height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   overflow: auto;
+   padding: 20px 10px;
+   background-color: var(--color-main-background);
 }
 
 .info-web-header {
-   background-color: #333;
    color: white;
-   padding: 1rem;
+   padding: 10px;
+   text-align: center;
+   background-color: var(--color-blue-03);
+   border-radius: 8px;
+
+   h1 {
+      margin-bottom: 0;
+      font-weight: 700;
+   }
 }
 
 .info-web-section {
+   color: var(--color-purple-04);
    max-width: 800px;
    margin: 2rem auto;
    text-align: left;
    padding: 20px;
    background-color: #f8f8f8;
-   border-radius: 5px;
+   border-radius: 14px;
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .info-web-section h2 {
-   color: #333;
-   border-bottom: 4px solid #333;
+   color: var(--color-blue-03);
+   border-bottom: 4px solid var(--color-blue-01);
    padding-bottom: 8px;
    margin-top: 16px;
+   font-weight: 700;
 }
 
 .info-web-section p {
-   font-size: 1.2rem;
+   font-weight: 500;
+   font-size: 16px;
    line-height: 1.5;
 }
 
 .info-web-section ul {
    list-style-type: none;
-   padding: 0;
 }
 
 .info-web-section li {
@@ -43,10 +56,16 @@
 }
 
 .info-web-section a {
-   color: #007bff;
    text-decoration: none;
 }
 
 .info-web-section a:hover {
    text-decoration: underline;
+}
+
+.info-web-content {
+   padding: 10px;
+   border-radius: 8px;
+   background-color: var(--color-gray-01);
+   border: 1px solid var(--color-blue-03);
 }

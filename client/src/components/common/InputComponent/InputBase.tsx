@@ -14,7 +14,7 @@ const StyledInput = styled(Input)<InputProps>`
    font-size: 14px;
    line-height: 120%;
    max-width: 502px;
-   min-height: 40px;
+   min-height: 38px;
    width: 100%;
 `;
 

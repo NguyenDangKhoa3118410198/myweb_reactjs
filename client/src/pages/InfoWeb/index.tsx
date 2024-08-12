@@ -10,38 +10,50 @@ const InfoWeb = () => {
 
          <section className='info-web-section'>
             <p>
-               Welcome! This is a personal learning website dedicated to
-               studying ReactJS. The site aggregates information and presents it
-               in the form of a table and chart.
+               Welcome! This website is designed using ReactJS, Bootstrap, and
+               Ant Design to create the user interface, with API calls and Redux
+               for data management. The data is presented in the form of tables,
+               charts, and more. The purpose of this website is to enhance
+               personal skills.
             </p>
 
             <h2>Main Information</h2>
-            <ul>
+            <ul className='info-web-content'>
                <li>
                   <strong>Type:</strong> Learning Resource
                </li>
                <li>
-                  <strong>Purpose:</strong> Study ReactJS
+                  <strong>Purpose:</strong> Practice Personal Skills
                </li>
                <li>
                   <strong>Language:</strong> English
                </li>
             </ul>
 
-            <h2>Featured Topics</h2>
-            <p>This website covers topics such as:</p>
-            <ul>
+            <h2>Featured Technologies</h2>
+            <p>This website is built with the following technologies:</p>
+            <ul className='info-web-content'>
                <li>React Components</li>
-               <li>State and Props</li>
+               <li>State, Props, and Redux</li>
                <li>React Hooks</li>
-               <li>Building React Applications</li>
+               <li>API Integration</li>
+               <li>Bootstrap and Ant Design</li>
+            </ul>
+
+            <h2>Backend Technologies</h2>
+            <p>The backend is developed using:</p>
+            <ul className='info-web-content'>
+               <li>Node.js</li>
+               <li>Express.js</li>
+               <li>MongoDB</li>
+               <li>NodeMailer</li>
+               <li>JWT (JSON Web Tokens)</li>
             </ul>
 
             <h2>Contact</h2>
             <p>
-               If you notice any violations or errors, please feel free to
-               overlook them as this is a personal project. Your understanding
-               is greatly appreciated.
+               If you notice any issues or errors, please understand that this
+               is a personal project. Your understanding is greatly appreciated.
             </p>
          </section>
       </div>
