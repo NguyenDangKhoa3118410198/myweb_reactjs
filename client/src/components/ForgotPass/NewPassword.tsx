@@ -39,6 +39,18 @@ const NewPassword = () => {
          <Form onFinish={handleSubmit} className='forgot-password-form'>
             <h2 className='header-form'>Reset Password</h2>
             <Form.Item
+               label='Reset Code'
+               name='code'
+               rules={[
+                  { required: true, message: 'Please enter the reset code!' },
+               ]}
+            >
+               <InputText
+                  placeholder='Enter Reset Code'
+                  className='input-new-password'
+               />
+            </Form.Item>
+            <Form.Item
                label='New Password'
                name='newPassword'
                rules={[
@@ -48,16 +60,10 @@ const NewPassword = () => {
                   },
                ]}
             >
-               <InputPassword placeholder='Enter New Password' />
-            </Form.Item>
-            <Form.Item
-               label='Reset Code'
-               name='code'
-               rules={[
-                  { required: true, message: 'Please enter the reset code!' },
-               ]}
-            >
-               <InputText placeholder='Enter Reset Code' />
+               <InputPassword
+                  placeholder='Enter New Password'
+                  className='input-new-password'
+               />
             </Form.Item>
             <Form.Item>
                <PrimaryButton type='primary' htmlType='submit' label='Submit' />
