@@ -1,48 +1,45 @@
-import { EllipsisOutlined } from '@ant-design/icons';
+import {
+   setSettingProgressChart,
+   setSettingTodolist,
+   setSettingTopRevenue,
+} from 'components/features/setting/settingSlice';
 import ContextualExample from 'components/ProgressBar';
 import CircularProgressbarChart from 'components/Statistics/ChartTemplate/CircularProgressbarChart';
 import Todolist from 'components/Totolist/Totolist';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import StatsCard from './StatsCard';
 
-const TopRevenueStats = () => (
-   <div className='combined-stats-item'>
-      <div className='combined-stats-header'>
-         <h1 className='combined-stats-title'>Top Revenue</h1>
-         <div className='combined-stats-icon'>
-            <EllipsisOutlined />
-         </div>
-      </div>
-      <div className='combined-stats-content'>
-         <CircularProgressbarChart />
-      </div>
-   </div>
-);
+const TopRevenueStats = () => {
+   const dispatch = useAppDispatch();
+   return (
+      <StatsCard
+         title='Top Revenue'
+         onHide={() => dispatch(setSettingTopRevenue(false))}
+         content={<CircularProgressbarChart />}
+      />
+   );
+};
 
-const TodolistStats = () => (
-   <div className='combined-stats-item'>
-      <div className='combined-stats-header'>
-         <h1 className='combined-stats-title'>Todolist</h1>
-         <div className='combined-stats-icon'>
-            <EllipsisOutlined />
-         </div>
-      </div>
-      <div className='combined-stats-content'>
-         <Todolist />
-      </div>
-   </div>
-);
+const TodolistStats = () => {
+   const dispatch = useAppDispatch();
+   return (
+      <StatsCard
+         title='Todolist'
+         onHide={() => dispatch(setSettingTodolist(false))}
+         content={<Todolist />}
+      />
+   );
+};
 
-const ProgressChartStats = () => (
-   <div className='combined-stats-item'>
-      <div className='combined-stats-header'>
-         <h1 className='combined-stats-title'>Progress Chart</h1>
-         <div className='combined-stats-icon'>
-            <EllipsisOutlined />
-         </div>
-      </div>
-      <div className='combined-stats-content'>
-         <ContextualExample />
-      </div>
-   </div>
-);
+const ProgressChartStats = () => {
+   const dispatch = useAppDispatch();
+   return (
+      <StatsCard
+         title='Progress Chart'
+         onHide={() => dispatch(setSettingProgressChart(false))}
+         content={<ContextualExample />}
+      />
+   );
+};
 
 export { TopRevenueStats, TodolistStats, ProgressChartStats };

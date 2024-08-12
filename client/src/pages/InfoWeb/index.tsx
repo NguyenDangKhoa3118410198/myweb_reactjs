@@ -17,38 +17,42 @@ const InfoWeb = () => {
                personal skills.
             </p>
 
-            <h2>Main Information</h2>
-            <ul className='info-web-content'>
-               <li>
-                  <strong>Type:</strong> Learning Resource
-               </li>
-               <li>
-                  <strong>Purpose:</strong> Practice Personal Skills
-               </li>
-               <li>
-                  <strong>Language:</strong> English
-               </li>
-            </ul>
-
-            <h2>Featured Technologies</h2>
-            <p>This website is built with the following technologies:</p>
-            <ul className='info-web-content'>
-               <li>React Components</li>
-               <li>State, Props, and Redux</li>
-               <li>React Hooks</li>
-               <li>API Integration</li>
-               <li>Bootstrap and Ant Design</li>
-            </ul>
-
-            <h2>Backend Technologies</h2>
-            <p>The backend is developed using:</p>
-            <ul className='info-web-content'>
-               <li>Node.js</li>
-               <li>Express.js</li>
-               <li>MongoDB</li>
-               <li>NodeMailer</li>
-               <li>JWT (JSON Web Tokens)</li>
-            </ul>
+            <div className='info-web-wrapper'>
+               <h2>Main Information</h2>
+               <ul className='info-web-content'>
+                  <li>
+                     <strong>Type:</strong> Learning Resource
+                  </li>
+                  <li>
+                     <strong>Purpose:</strong> Practice Personal Skills
+                  </li>
+                  <li>
+                     <strong>Language:</strong> English
+                  </li>
+               </ul>
+            </div>
+            <div className='info-web-wrapper'>
+               <h2>Featured Technologies</h2>
+               <p>This website is built with the following technologies:</p>
+               <ul className='info-web-content'>
+                  <li>React Components</li>
+                  <li>State, Props, and Redux</li>
+                  <li>React Hooks</li>
+                  <li>API Integration</li>
+                  <li>Bootstrap and Ant Design</li>
+               </ul>
+            </div>
+            <div className='info-web-wrapper'>
+               <h2>Backend Technologies</h2>
+               <p>The backend is developed using:</p>
+               <ul className='info-web-content'>
+                  <li>Node.js</li>
+                  <li>Express.js</li>
+                  <li>MongoDB</li>
+                  <li>NodeMailer</li>
+                  <li>JWT (JSON Web Tokens)</li>
+               </ul>
+            </div>
 
             <h2>Contact</h2>
             <p>

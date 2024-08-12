@@ -15,7 +15,7 @@ a.menuItem[href] {
    display: flex;
    align-items: center;
    height: 45px;
-   border-radius: 6px;
+   border-radius: 8px;
    gap: 14px;
    color: var(--color-blue-06);
    transition: background-color, color .3s ease;

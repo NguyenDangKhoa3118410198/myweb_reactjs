@@ -258,6 +258,7 @@
 }
 
 .forgot-password {
+   color: var(--color-blue-01);
    cursor: pointer;
 }
 

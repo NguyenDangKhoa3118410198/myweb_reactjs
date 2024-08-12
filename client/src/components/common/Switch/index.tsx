@@ -47,5 +47,7 @@ const SwitchStyled = styled.div`
 `;
 
 const Label = styled.span`
+   font-size: 16px;
+   font-weight: 600;
    margin-right: 2px;
 `;

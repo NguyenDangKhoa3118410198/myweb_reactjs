@@ -56,15 +56,15 @@ const Header = ({ nameContent = '', toggleBurger = () => {} }) => {
          ),
          key: 'info',
       },
-      {
-         label: (
-            <Link to='/profile' className='user-menu-item'>
-               <UserOutlined className='icon-sidebar-menu' />
-               <span className='name-menu-item'>Profile</span>
-            </Link>
-         ),
-         key: 'profile',
-      },
+      // {
+      //    label: (
+      //       <Link to='/profile' className='user-menu-item'>
+      //          <UserOutlined className='icon-sidebar-menu' />
+      //          <span className='name-menu-item'>Profile</span>
+      //       </Link>
+      //    ),
+      //    key: 'profile',
+      // },
       {
          label: (
             <Link to='/contact' className='user-menu-item'>

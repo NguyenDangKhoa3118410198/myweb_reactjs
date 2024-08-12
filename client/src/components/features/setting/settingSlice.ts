@@ -2,12 +2,16 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface SettingState {
    calendar: boolean;
-   popup: boolean;
+   topRevenue: boolean;
+   todolist: boolean;
+   progressChart: boolean;
 }
 
 const initialState: SettingState = {
    calendar: false,
-   popup: false,
+   topRevenue: true,
+   todolist: true,
+   progressChart: true,
 };
 
 const settingSlice = createSlice({
@@ -18,13 +22,26 @@ const settingSlice = createSlice({
          state.calendar = action.payload;
       },
 
-      setSettingPopup: (state, action: PayloadAction<boolean>) => {
-         state.popup = action.payload;
+      setSettingTopRevenue: (state, action: PayloadAction<boolean>) => {
+         state.topRevenue = action.payload;
+      },
+
+      setSettingTodolist: (state, action: PayloadAction<boolean>) => {
+         state.todolist = action.payload;
+      },
+
+      setSettingProgressChart: (state, action: PayloadAction<boolean>) => {
+         state.progressChart = action.payload;
       },
    },
 });
 
-export const { setSettingCalendar, setSettingPopup } = settingSlice.actions;
+export const {
+   setSettingCalendar,
+   setSettingTopRevenue,
+   setSettingTodolist,
+   setSettingProgressChart,
+} = settingSlice.actions;
 export default settingSlice.reducer;
 
 export type { SettingState };

@@ -32,7 +32,9 @@ const MainDash = () => {
    const [searchTerm, setSearchTerm] = useState('');
 
    const darkMode = useSelector((state: RootState) => state.darkMode);
-   const calendar = useSelector((state: RootState) => state.setting.calendar);
+   const { calendar, topRevenue, todolist, progressChart } = useSelector(
+      (state: RootState) => state.setting
+   );
 
    const [isAddPanelOpen, setIsAddPanelOpen] = useState(false);
    const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
@@ -239,9 +241,9 @@ const MainDash = () => {
          </Suspense>
 
          <div className='combined-stats-container'>
-            <TopRevenueStats />
-            <TodolistStats />
-            <ProgressChartStats />
+            {topRevenue && <TopRevenueStats />}
+            {todolist && <TodolistStats />}
+            {progressChart && <ProgressChartStats />}
          </div>
 
          {calendar && <MyCalendar />}

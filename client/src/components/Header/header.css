@@ -246,13 +246,17 @@
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 750px) {
    .slider.round {
       margin-left: 10px;
       width: 60px;
    }
 
    .icon-menu-item {
+      display: none;
+   }
+
+   #nav-search {
       display: none;
    }
 

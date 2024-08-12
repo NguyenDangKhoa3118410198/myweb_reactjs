@@ -98,7 +98,7 @@ const privateRoutes: IRoute[] = [
       name: 'Setting',
       path: '/setting',
       component: Setting,
-      layout: NullLayout,
+      layout: AdminDefaultLayout,
    },
    {
       name: 'Info',

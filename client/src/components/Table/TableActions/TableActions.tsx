@@ -2,13 +2,13 @@ import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import styled from 'styled-components';
 import {
+   CheckCircleOutlined,
+   CloseCircleOutlined,
    CommentOutlined,
    DeleteOutlined,
    EditOutlined,
    EyeOutlined,
-   LockOutlined,
    MoreOutlined,
-   UnlockOutlined,
 } from '@ant-design/icons';
 
 interface ItemMenuProps {
@@ -127,7 +127,7 @@ const TableActions: React.FC<TableActionsProps> = ({
                   {handleActivate && (
                      <ItemMenu
                         handleFunction={handleActivate}
-                        icon={<UnlockOutlined />}
+                        icon={<CheckCircleOutlined />}
                         label='Activate'
                         record={record}
                      />
@@ -136,7 +136,7 @@ const TableActions: React.FC<TableActionsProps> = ({
                   {handleDeactivate && (
                      <ItemMenu
                         handleFunction={handleDeactivate}
-                        icon={<LockOutlined />}
+                        icon={<CloseCircleOutlined />}
                         label='Deactivate'
                         record={record}
                      />
@@ -164,7 +164,7 @@ const ItemMenuAction = styled.div`
    margin: 0 0.2rem;
 
    .icon {
-      font-size: 1.4rem;
+      font-size: 20px;
       margin: 0;
       padding: 0;
       display: flex;
