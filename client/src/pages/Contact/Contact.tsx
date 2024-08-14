@@ -76,7 +76,7 @@ const Contact = () => {
                         </Form.Item>
                      </Form>
                   </div>
-                  <div className='form-img'>
+                  <div className='contact-form-img'>
                      <img
                         style={{ filter: 'hue-rotate(335deg)' }}
                         src={backgroundImage}

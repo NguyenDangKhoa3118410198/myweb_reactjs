@@ -147,3 +147,9 @@
       gap: 5px;
    }
 }
+
+@media screen and (max-width: 425px) {
+   .large-box-wrapper {
+      display: none;
+   }
+}
