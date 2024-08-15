@@ -1,6 +1,8 @@
 const axios = require('axios');
 const { API } = require('../ulti/API');
 const Product = require('../models/Product');
+const Brand = require('../models/Brand');
+const Category = require('../models/Category');
 
 const reviews = [];
 
@@ -23,12 +25,34 @@ const getProducts = async (req, res) => {
          .skip(skip)
          .limit(limit);
 
+      const brandIds = [
+         ...new Set(productsDB.map((product) => product.brand_id)),
+      ];
+
+      const brands = await Brand.find({ id: { $in: brandIds } });
+
+      const brandMap = brands.reduce((map, brand) => {
+         map[brand.id] = brand.name;
+         return map;
+      }, {});
+
+      const categoryIds = [
+         ...new Set(productsDB.map((product) => product.category_id)),
+      ];
+
+      const categories = await Category.find({ id: { $in: categoryIds } });
+
+      const categoryMap = categories.reduce((map, cate) => {
+         map[cate.id] = cate.name;
+         return map;
+      }, {});
+
       const productData = productsDB.map((product) => {
          const productInfo = {
             id: product.id,
             name: product.name,
-            brandName: product.brand_id,
-            category: product.category_id,
+            brandName: brandMap[product.brand_id] || 'Unknown',
+            category: categoryMap[product.category_id] || 'Unknown',
             price: product.price,
          };
 
