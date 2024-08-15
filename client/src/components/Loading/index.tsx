@@ -19,7 +19,7 @@ const LoadingContainer = styled.div`
 
 const LoadingCircle = styled.div`
    border: 6px solid #f3f3f3;
-   border-top: 6px solid var(--color-purple-04);
+   border-top: 8px solid var(--color-black);
    border-radius: 50%;
    width: 50px;
    height: 50px;

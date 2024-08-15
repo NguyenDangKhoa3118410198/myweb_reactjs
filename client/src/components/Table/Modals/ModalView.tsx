@@ -46,8 +46,6 @@ const ModalView: React.FC<ModalViewProps> = (props) => {
                         key !== 'id' &&
                         key !== 'avatar' &&
                         key !== 'thumbnailUrl' &&
-                        key !== 'brandName' &&
-                        key !== 'category' &&
                         key !== 'sku' &&
                         key !== 'urlPath' &&
                         key !== 'urlKey' && (

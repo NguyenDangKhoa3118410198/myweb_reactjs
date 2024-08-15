@@ -1,19 +1,16 @@
 .info-web-container {
    text-align: center;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
    overflow: auto;
-   padding: 20px 10px;
    background-color: var(--color-main-background);
+   height: 100%;
+   padding: 10px;
 }
 
 .info-web-header {
    color: white;
    padding: 10px;
    text-align: center;
-   background-color: var(--color-purple-04);
+   background-color: var(--color-blue-01);
    border-radius: 8px;
 
    h1 {
@@ -23,7 +20,7 @@
 }
 
 .info-web-section {
-   color: var(--color-purple-04);
+   color: var(--color-black);
    max-width: 800px;
    margin: 2rem auto;
    text-align: left;
@@ -34,8 +31,8 @@
 }
 
 .info-web-section h2 {
-   color: var(--color-purple-02);
-   border-bottom: 3px solid var(--color-purple-02);
+   color: var(--color-blue-01);
+   border-bottom: 3px solid var(--color-blue-01);
    padding-bottom: 6px;
    margin-top: 16px;
    font-weight: 700;

@@ -1,9 +1,9 @@
-import React from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input } from 'antd';
 import './contact.css';
 import backgroundImage from '../../imgs/background-contact.png';
 import InputText from 'components/common/InputComponent/InputText';
 import InputEmail from 'components/common/InputComponent/InputEmail';
+import ButtonChild from 'components/common/ButtonComponent/ButtonChild';
 
 const Contact = () => {
    const onFinish = (values: any) => {
@@ -13,7 +13,6 @@ const Contact = () => {
    return (
       <div className='contact-form-wrapper'>
          <div className='contact-form main-container'>
-            <h1>We will address your issues</h1>
             <div className='container-contact'>
                <div className='main-contact'>
                   <div className='content-contact'>
@@ -57,7 +56,6 @@ const Contact = () => {
                            label='Message'
                            rules={[
                               {
-                                 required: true,
                                  message: 'Please enter your message!',
                               },
                            ]}
@@ -66,13 +64,9 @@ const Contact = () => {
                         </Form.Item>
 
                         <Form.Item>
-                           <Button
-                              type='primary'
-                              htmlType='submit'
-                              className='contact-form-btn'
-                           >
+                           <ButtonChild htmlType='submit'>
                               Send <i className='fas fa-paper-plane'></i>
-                           </Button>
+                           </ButtonChild>
                         </Form.Item>
                      </Form>
                   </div>
