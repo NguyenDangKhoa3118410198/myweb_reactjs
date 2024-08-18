@@ -10,10 +10,11 @@
    --smboxShadow: -79px 51px 60px rgba(0, 0, 0, 0.08);
    --activeItem: #788097;
    --color-primary: #141414;
-   --color-green: #4a9d77;
    --color-primary-01: #e2f4ec;
    --color-primary-02: #f8f8ff;
    --color-primary-03: #f4fffa;
+   --color-green: #57b48a;
+   --color-green-01: #49eba2;
    --color-red: #e95060;
    --color-red-01: #ffeff1;
    --color-red-02: #F5222D;
@@ -31,7 +32,7 @@
    --color-purple-07: #595959;
    --color-purple-08: #dddcff;
    --color-purple-blur: rgba(54, 53, 101, 0.8);
-   --color-yellow: #f7c957;
+   --color-yellow: rgb(247, 225, 126);
    --color-yellow-01: #ffc107;
    --color-yellow-02: rgb(243, 213, 17);
    --color-blue-01: #4299e1;

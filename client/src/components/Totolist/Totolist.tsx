@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import { todoList, deleteTodo, isCompletedTodo } from '../../Data/fetchData';
 import { formattedDateAndTime } from '../../ulti';
 import './todolist.css';
@@ -25,6 +24,7 @@ interface ITodo {
 const Todolist = () => {
    const [todo, setTodo] = useState('');
    const [todolist, setTodolist] = useState<ITodo[]>([]);
+   const [activeFilter, setActiveFilter] = useState<string>('All');
 
    const todoListRef = useRef<HTMLDivElement | null>(null);
 
@@ -84,24 +84,64 @@ const Todolist = () => {
       })
    );
 
+   const handleActiveFilter = (filter: string) => {
+      setActiveFilter(filter);
+   };
+
+   const filteredTodolist = useMemo(() => {
+      if (activeFilter === 'Done') {
+         return todolist.filter((item) => item.completed);
+      } else if (activeFilter === 'Waitting') {
+         return todolist.filter((item) => !item.completed);
+      } else {
+         return todolist;
+      }
+   }, [todolist, activeFilter]);
+
    return (
-      <Container>
+      <div className='todolist-container'>
          <TodoForm
             setTodolist={setTodolist}
             setTodo={setTodo}
             todo={todo}
             scrollToBottom={scrollToBottom}
          />
+         <div className='todolist-filter'>
+            <div
+               className={`todo-item-filter all ${
+                  activeFilter === 'All' ? 'active' : ''
+               }`}
+               onClick={() => handleActiveFilter('All')}
+            >
+               All
+            </div>
+            <div
+               className={`todo-item-filter waitting ${
+                  activeFilter === 'Waitting' ? 'active' : ''
+               }`}
+               onClick={() => handleActiveFilter('Waitting')}
+            >
+               Waitting
+            </div>
+            <div
+               className={`todo-item-filter done ${
+                  activeFilter === 'Done' ? 'active' : ''
+               }`}
+               onClick={() => handleActiveFilter('Done')}
+            >
+               Completed
+            </div>
+         </div>
          <DndContext
             collisionDetection={closestCenter}
             onDragEnd={handleDragEnd}
             sensors={sensors}
          >
-            <SortableContext items={todolist}>
+            <SortableContext items={filteredTodolist}>
                <div className='todolist'>
                   <div className='todoscroll' ref={todoListRef}>
-                     {todolist.length > 0 ? (
-                        todolist.map((todo) => {
+                     {filteredTodolist.length > 0 ? (
+                        filteredTodolist.map((todo) => {
                            const { id, task, completed, created: time } = todo;
                            const formattedDateTime = formattedDateAndTime(time);
                            return (
@@ -133,7 +173,7 @@ const Todolist = () => {
                </div>
             </SortableContext>
          </DndContext>
-      </Container>
+      </div>
    );
 };
 

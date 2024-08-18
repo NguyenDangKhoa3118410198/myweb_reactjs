@@ -37,7 +37,7 @@ const TodoForm: React.FC<TodoFormProps> = ({
                placeholder='New todo'
                value={todo}
                onChange={(e) => setTodo(e.target.value)}
-               style={{ fontSize: '16px', fontWeight: '600' }}
+               style={{ fontSize: '16px', fontWeight: '600', margin: 0 }}
             />
          </Form.Item>
          <Form.Item>
@@ -45,7 +45,7 @@ const TodoForm: React.FC<TodoFormProps> = ({
                label='Enter'
                htmlType='submit'
                style={{
-                  margin: '10px',
+                  margin: '14px',
                   fontWeight: 500,
                   fontSize: '16px',
                   height: '38px',
