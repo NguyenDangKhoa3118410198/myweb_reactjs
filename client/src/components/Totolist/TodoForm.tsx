@@ -37,13 +37,19 @@ const TodoForm: React.FC<TodoFormProps> = ({
                placeholder='New todo'
                value={todo}
                onChange={(e) => setTodo(e.target.value)}
+               style={{ fontSize: '16px', fontWeight: '600' }}
             />
          </Form.Item>
          <Form.Item>
             <PrimaryButton
                label='Enter'
                htmlType='submit'
-               style={{ margin: '10px', fontWeight: 600 }}
+               style={{
+                  margin: '10px',
+                  fontWeight: 500,
+                  fontSize: '16px',
+                  height: '38px',
+               }}
             />
          </Form.Item>
       </Form>

@@ -1,6 +1,6 @@
 import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
-import { alertMessage } from '../ulti/modals';
+import { message } from 'antd';
 const apiUrl = 'https://react-backend-two.vercel.app';
 // const apiUrl = 'http://localhost:4000';
 
@@ -95,8 +95,7 @@ api.interceptors.request.use(
 );
 
 const redirectToLogin = () => {
-   console.log('Refresh token is missing. Redirecting to login.');
-   alertMessage('You need to log in again. Sorry for the inconvenience');
+   message.warning('You need to log in again. Sorry for the inconvenience');
    window.location.href = '/login';
 };
 
@@ -116,7 +115,7 @@ export const sendRequest = async (method, path, data = {}) => {
       }
    } catch (error) {
       if (error.response.data.requestLoginAgain) redirectToLogin();
-      console.error('Error fetching: ', error);
+      message.error(error.response.data.message);
       throw error;
    }
 };

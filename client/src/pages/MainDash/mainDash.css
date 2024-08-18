@@ -11,8 +11,8 @@
 
 .title-page {
    padding: 25px 10px 15px 10px;
-   font-size: 30px;
-   font-weight: 700;
+   font-size: 32px;
+   font-weight: 800;
    margin: 0;
 
    &.darkmode {
@@ -67,14 +67,14 @@ input[type='search'].searchBox {
    flex-direction: row;
    flex-wrap: wrap;
    padding-left: 1rem;
-   gap: 24px;
+   gap: 15px;
    margin: 10px 0 20px -1rem;
    justify-content: space-between;
 }
 
 .combined-stats-item {
    min-width: 300px;
-   padding: 30px 20px;
+   padding: 18px;
    flex: 1;
    margin: 0.2rem 0 0.2rem 1rem;
    border-radius: 20px;
@@ -91,11 +91,12 @@ input[type='search'].searchBox {
 }
 
 .combined-stats-title {
-   font-weight: 600;
-   font-size: 20px;
+   font-weight: 700;
+   font-size: 22px;
 }
 
 .combined-stats-icon {
+   padding: 0 10px;
    cursor: pointer;
 }
 

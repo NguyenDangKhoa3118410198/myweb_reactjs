@@ -3,8 +3,17 @@ import { Container } from 'react-bootstrap';
 import { todoList, deleteTodo, isCompletedTodo } from '../../Data/fetchData';
 import { formattedDateAndTime } from '../../ulti';
 import './todolist.css';
-import Todo from './Todo';
 import TodoForm from './TodoForm';
+import {
+   closestCenter,
+   DndContext,
+   MouseSensor,
+   TouchSensor,
+   useSensor,
+   useSensors,
+} from '@dnd-kit/core';
+import { arrayMove, SortableContext } from '@dnd-kit/sortable';
+import SortableItem from './SortableItem ';
 
 interface ITodo {
    id: string;
@@ -48,6 +57,33 @@ const Todolist = () => {
       setTodolist(todolist.filter((todo: ITodo) => todo.id !== id));
    };
 
+   function handleDragEnd(event: any) {
+      const { active, over } = event;
+
+      if (active.id !== over.id) {
+         setTodolist((items) => {
+            const oldIndex = items.findIndex((item) => item.id === active.id);
+            const newIndex = items.findIndex((item) => item.id === over.id);
+
+            return arrayMove(items, oldIndex, newIndex);
+         });
+      }
+   }
+
+   const sensors = useSensors(
+      useSensor(MouseSensor, {
+         activationConstraint: {
+            distance: 8,
+         },
+      }),
+      useSensor(TouchSensor, {
+         activationConstraint: {
+            delay: 200,
+            tolerance: 6,
+         },
+      })
+   );
+
    return (
       <Container>
          <TodoForm
@@ -56,39 +92,47 @@ const Todolist = () => {
             todo={todo}
             scrollToBottom={scrollToBottom}
          />
-         <div className='todolist'>
-            <div className='todoscroll' ref={todoListRef}>
-               {todolist.length > 0 ? (
-                  todolist.map((todo) => {
-                     const { id, task, completed, created: time } = todo;
-                     const formattedDateTime = formattedDateAndTime(time);
-                     return (
-                        <Todo
-                           key={id}
-                           id={id}
-                           task={task}
-                           completed={completed}
-                           formattedDateTime={formattedDateTime}
-                           handleIsCompleted={handleToggleTodo}
-                           handleDelete={handleDeleteTodo}
-                        />
-                     );
-                  })
-               ) : (
-                  <p
-                     style={{
-                        padding: '10px',
-                        textTransform: 'capitalize',
-                        textAlign: 'center',
-                        fontWeight: '600',
-                        fontSize: '18px',
-                     }}
-                  >
-                     Nothing left to do. Your task is completed.
-                  </p>
-               )}
-            </div>
-         </div>
+         <DndContext
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+            sensors={sensors}
+         >
+            <SortableContext items={todolist}>
+               <div className='todolist'>
+                  <div className='todoscroll' ref={todoListRef}>
+                     {todolist.length > 0 ? (
+                        todolist.map((todo) => {
+                           const { id, task, completed, created: time } = todo;
+                           const formattedDateTime = formattedDateAndTime(time);
+                           return (
+                              <SortableItem
+                                 key={id}
+                                 id={id}
+                                 task={task}
+                                 completed={completed}
+                                 formattedDateTime={formattedDateTime}
+                                 handleToggleTodo={handleToggleTodo}
+                                 handleDelete={handleDeleteTodo}
+                              />
+                           );
+                        })
+                     ) : (
+                        <p
+                           style={{
+                              padding: '10px',
+                              textTransform: 'capitalize',
+                              textAlign: 'center',
+                              fontWeight: '600',
+                              fontSize: '18px',
+                           }}
+                        >
+                           Nothing left to do. Your task is completed.
+                        </p>
+                     )}
+                  </div>
+               </div>
+            </SortableContext>
+         </DndContext>
       </Container>
    );
 };

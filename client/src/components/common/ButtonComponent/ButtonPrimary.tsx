@@ -4,6 +4,8 @@ import styled from 'styled-components';
 
 const StyledButton = styled(Button)`
    border-radius: 10px;
+   align-items: center;
+   justify-content: center;
    font-size: 14px;
    padding: 16px;
    color: var(--color-white);
@@ -28,7 +30,16 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 }) => {
    return (
       <StyledButton {...props} icon={icon}>
-         {label}
+         <span
+            style={{
+               display: 'flex',
+               alignItems: 'center',
+               justifyContent: 'center',
+               textAlign: 'center',
+            }}
+         >
+            {label}
+         </span>
       </StyledButton>
    );
 };

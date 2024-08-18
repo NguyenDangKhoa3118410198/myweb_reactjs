@@ -1,3 +1,6 @@
+import { EllipsisOutlined } from '@ant-design/icons';
+import { Dropdown, Tooltip, Menu } from 'antd';
+import { MenuProps } from 'antd/lib';
 import { FaCalendar, FaClock, FaRegTrashAlt } from 'react-icons/fa';
 
 interface TodoProps {
@@ -20,6 +23,20 @@ const Todo = ({
    handleIsCompleted,
    handleDelete,
 }: TodoProps) => {
+   const handleMenuClick: MenuProps['onClick'] = (e) => {
+      if (e.key === 'delete') {
+         handleDelete(id);
+      }
+   };
+
+   const menu = (
+      <Menu className='' onClick={handleMenuClick}>
+         <Menu.Item key='delete' icon={<FaRegTrashAlt />}>
+            Delete
+         </Menu.Item>
+      </Menu>
+   );
+
    return (
       <div className='todo' key={id}>
          <div className='todo-content'>
@@ -29,29 +46,34 @@ const Todo = ({
                onChange={() => handleIsCompleted(id)}
                checked={completed}
             />
-            <div className='container-todo'>
-               <div className='container-todo-daytime'>
-                  <div className='date-time-todolist'>
+            <Tooltip
+               title={
+                  <div
+                     style={{ display: 'flex', alignItems: 'center' }}
+                     className='container-todo-daytime'
+                  >
                      <FaCalendar className='icon-todo' />
-                     <p className='time-todo'>{formattedDateTime.date}</p>
+                     <span>{formattedDateTime.date}</span>
+                     <FaClock className='icon-todo' style={{ marginLeft: 8 }} />
+                     <span>{formattedDateTime.time}</span>
                   </div>
-                  <div className='date-time-todolist'>
-                     <FaClock className='icon-todo' />
-                     <p className='time-todo'>{formattedDateTime.time}</p>
-                  </div>
+               }
+               placement='left'
+            >
+               <div className='container-todo'>
+                  <span
+                     className={`todo-text ${completed ? 'completed' : ''} `}
+                  >
+                     {task}
+                  </span>
                </div>
-
-               <span className={`${completed ? 'completed' : ''} `}>
-                  {task}
-               </span>
+            </Tooltip>
+         </div>
+         <Dropdown overlay={menu} trigger={['click']}>
+            <div className='combined-stats-icon'>
+               <EllipsisOutlined />
             </div>
-         </div>
-         <div className='todo-delete-wrapper' onClick={() => handleDelete(id)}>
-            <FaRegTrashAlt
-               className='todo-delete'
-               onClick={() => handleDelete(id)}
-            />
-         </div>
+         </Dropdown>
       </div>
    );
 };
