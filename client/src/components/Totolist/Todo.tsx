@@ -38,7 +38,15 @@ const Todo = ({
    );
 
    return (
-      <div className='todo' key={id}>
+      <div
+         className='todo'
+         key={id}
+         style={{
+            borderLeft: `8px solid ${
+               completed ? 'var(--color-green-01)' : 'var(--color-yellow)'
+            }`,
+         }}
+      >
          <div className='todo-content'>
             <input
                className='todo-checkbox'
@@ -70,7 +78,10 @@ const Todo = ({
             </Tooltip>
          </div>
          <Dropdown overlay={menu} trigger={['click']}>
-            <div className='combined-stats-icon'>
+            <div
+               className='combined-stats-icon'
+               style={{ color: 'var(--color-black)' }}
+            >
                <EllipsisOutlined />
             </div>
          </Dropdown>

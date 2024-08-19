@@ -37,7 +37,7 @@ const TodoForm: React.FC<TodoFormProps> = ({
                placeholder='New todo'
                value={todo}
                onChange={(e) => setTodo(e.target.value)}
-               style={{ fontSize: '16px', fontWeight: '600', margin: 0 }}
+               style={{ fontSize: '14px', fontWeight: '600', margin: 0 }}
             />
          </Form.Item>
          <Form.Item>
