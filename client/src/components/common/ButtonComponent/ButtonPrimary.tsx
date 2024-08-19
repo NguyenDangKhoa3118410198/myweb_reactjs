@@ -8,6 +8,9 @@ const StyledButton = styled(Button)`
    justify-content: center;
    font-size: 14px;
    padding: 16px;
+   min-height: 38px;
+   font-weight: 500;
+   line-height: 25px;
    color: var(--color-white);
    background-color: var(--color-blue-04);
 
